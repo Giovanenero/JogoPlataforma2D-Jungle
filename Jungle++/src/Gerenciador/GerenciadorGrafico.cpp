@@ -27,7 +27,7 @@ Jungle::Gerenciador::GerenciadorGrafico* Jungle::Gerenciador::GerenciadorGrafico
      */
 
     if(pGrafico == nullptr){
-        pGrafico = new GerenciadorGrafico();
+        pGrafico =  new GerenciadorGrafico();
     }
     return pGrafico;
 }

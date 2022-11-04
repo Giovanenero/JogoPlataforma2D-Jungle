@@ -1,21 +1,16 @@
 #pragma once
 
-#include <SFML\Graphics.hpp>
-#include "..\Gerenciador\GerenciadorGrafico.hpp"
-#include <iostream>
-
-#include "..\IDs.hpp"
+#include "..\Ente.hpp"
 
 namespace Jungle {
 
     namespace Entidade {
 
-        class Entidade {
+        class Entidade : public Ente {
         protected:
             sf::RectangleShape corpo;
             sf::Vector2f pos;
             sf::Vector2f tam;
-            const IDs::IDs ID;
         public:
             Entidade(const sf::Vector2f pos, const sf::Vector2f tam, const IDs::IDs ID);
             ~Entidade();

@@ -1,7 +1,7 @@
 #include "..\..\include\Entidade\Entidade.hpp"
 
 Jungle::Entidade::Entidade::Entidade(const sf::Vector2f pos, const sf::Vector2f tam, const IDs::IDs ID):
-    corpo(sf::RectangleShape(tam)), ID(ID), pos(pos), tam(tam)
+    Ente(ID), corpo(sf::RectangleShape(tam)), pos(pos), tam(tam)
 {
     corpo.setPosition(pos);
 }
