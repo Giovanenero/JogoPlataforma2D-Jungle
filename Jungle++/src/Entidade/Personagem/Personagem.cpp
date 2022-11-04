@@ -42,6 +42,9 @@ void Jungle::Entidade::Personagem::Personagem::atualizarPosicao(){
 
     //atualiza velocidade na horizontal
     velFinal.x = velMax;
+
+    //desenha na janela
+    desenhar();
 }
 
 void Jungle::Entidade::Personagem::Personagem::setVelFinal(sf::Vector2f velFinal){

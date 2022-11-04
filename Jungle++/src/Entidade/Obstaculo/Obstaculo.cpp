@@ -9,3 +9,7 @@ Jungle::Entidade::Obstaculo::Obstaculo::Obstaculo(const sf::Vector2f pos, const 
 Jungle::Entidade::Obstaculo::Obstaculo::~Obstaculo(){
 
 }
+
+void Jungle::Entidade::Obstaculo::Obstaculo::atualizar(){
+    desenhar();
+}

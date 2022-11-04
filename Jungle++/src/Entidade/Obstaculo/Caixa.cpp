@@ -13,7 +13,3 @@ Jungle::Entidade::Obstaculo::Caixa::~Caixa(){
 void Jungle::Entidade::Obstaculo::Caixa::colisao(Entidade* outraEntidade, sf::Vector2f ds){
 
 }
-
-void Jungle::Entidade::Obstaculo::Caixa::atualizar(){
-
-}

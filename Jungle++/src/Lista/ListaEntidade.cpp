@@ -30,16 +30,15 @@ Jungle::Entidade::Entidade* Jungle::Lista::ListaEntidade::operator[](int pos){
     return objListaEntidade.operator[](pos);
 }
 
-void Jungle::Lista::ListaEntidade::executar(sf::RenderWindow* window){
+void Jungle::Lista::ListaEntidade::limparLista(){
+    objListaEntidade.limparLista();
+}
+
+void Jungle::Lista::ListaEntidade::executar(){
     int tam = objListaEntidade.getTam();
     Entidade::Entidade* aux = nullptr;
     for(int i = 0; i < tam; i++){
         aux = objListaEntidade.operator[](i);
         aux->atualizar();
-        window->draw(aux->getCorpo());
     }
-}
-
-void Jungle::Lista::ListaEntidade::limparLista(){
-    objListaEntidade.limparLista();
 }

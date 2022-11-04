@@ -48,7 +48,3 @@ void Jungle::Entidade::Obstaculo::Plataforma::colisaoObstaculo(sf::Vector2f ds, 
     pPersonagem->setPos(posOutro);
     pPersonagem->setVelFinal(velFinal);
 }
-
-void Jungle::Entidade::Obstaculo::Plataforma::atualizar(){
-    //terminar..
-}

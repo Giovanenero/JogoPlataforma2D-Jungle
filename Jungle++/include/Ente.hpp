@@ -16,6 +16,7 @@ namespace Jungle {
         Ente(const IDs::IDs ID);
         ~Ente();
         const IDs::IDs getID() const;
+        virtual void desenhar() = 0;
     };
 
 }

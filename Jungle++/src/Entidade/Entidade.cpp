@@ -26,3 +26,7 @@ const sf::Vector2f Jungle::Entidade::Entidade::getPos(){
 const sf::Vector2f Jungle::Entidade::Entidade::getTam(){
     return tam;
 }
+
+void Jungle::Entidade::Entidade::desenhar(){
+    pGrafico->desenhaElemento(corpo);
+}

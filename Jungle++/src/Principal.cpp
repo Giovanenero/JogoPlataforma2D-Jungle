@@ -71,8 +71,8 @@ void Jungle::Principal::executar(){
         pGrafico->limpaJanela();
 
         //pinta entidades
-        listaPersonagem.executar(pGrafico->getWindow());
-        listaObstaculo.executar(pGrafico->getWindow());
+        listaPersonagem.executar();
+        listaObstaculo.executar();
 
         //colisão
         colisor.executar();

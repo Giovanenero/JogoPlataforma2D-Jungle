@@ -20,7 +20,6 @@ namespace Jungle {
                 Caixa(sf::Vector2f pos, sf::Vector2f tam);
                 ~Caixa();
                 void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
-                void atualizar();
             };
 
         }
