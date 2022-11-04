@@ -18,7 +18,6 @@ namespace Jungle {
             void setPos(sf::Vector2f pos);
             const sf::Vector2f getPos();
             const sf::Vector2f getTam();
-            const IDs::IDs getID() const;
             virtual void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f)) = 0;
             virtual void atualizar() = 0;
         };

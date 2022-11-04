@@ -26,7 +26,3 @@ const sf::Vector2f Jungle::Entidade::Entidade::getPos(){
 const sf::Vector2f Jungle::Entidade::Entidade::getTam(){
     return tam;
 }
-
-const IDs::IDs Jungle::Entidade::Entidade::getID() const{
-    return ID;
-}
