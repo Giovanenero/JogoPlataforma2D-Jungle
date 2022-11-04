@@ -19,6 +19,7 @@ namespace Jungle {
             int getTam();
             Entidade::Entidade* operator[](int pos);
             void executar(sf::RenderWindow* window);
+            void limparLista();
         };
 
     }

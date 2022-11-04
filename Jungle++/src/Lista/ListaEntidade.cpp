@@ -39,3 +39,7 @@ void Jungle::Lista::ListaEntidade::executar(sf::RenderWindow* window){
         window->draw(aux->getCorpo());
     }
 }
+
+void Jungle::Lista::ListaEntidade::limparLista(){
+    objListaEntidade.limparLista();
+}

@@ -21,7 +21,8 @@ Jungle::Principal::Principal():
 }
 
 Jungle::Principal::~Principal(){
-
+    listaObstaculo.limparLista();
+    listaPersonagem.limparLista();
 }
 
 void Jungle::Principal::instanciaEntidades(){

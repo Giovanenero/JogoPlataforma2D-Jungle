@@ -19,6 +19,7 @@ namespace Jungle {
             void removerElemento(TL* elemento);
             void removerElemento(int pos);
             int getTam();
+            void limparLista();
             TL* operator[](int pos);
         };
 
@@ -31,18 +32,7 @@ namespace Jungle {
 
         template<class TL>
         Lista<TL>::~Lista(){
-            if(pInicio){
-                Elemento<TL>* aux = pInicio;
-                Elemento<TL>* aux2 = nullptr;
-                while(aux != nullptr){
-                    aux2 = aux->getProx();
-                    delete(aux->getElemento());
-                    aux = nullptr;
-                    aux = aux2;
-                }
-            }
-            pInicio = nullptr;
-            pUltimo = nullptr;
+            limparLista();
         }
 
         template<class TL>
@@ -117,6 +107,21 @@ namespace Jungle {
                 aux = aux->getProx();
             }
             return aux->getElemento();
+        }
+        template<class TL>
+        void Lista<TL>::limparLista(){
+            if(pInicio){
+                Elemento<TL>* aux = pInicio;
+                Elemento<TL>* aux2 = nullptr;
+                while(aux != nullptr){
+                    aux2 = aux->getProx();
+                    delete(aux->getElemento());
+                    aux = nullptr;
+                    aux = aux2;
+                }
+            }
+            pInicio = nullptr;
+            pUltimo = nullptr;
         }
 
     }
