@@ -64,14 +64,20 @@ void Jungle::Principal::executar(){
      */
 
     while(pGrafico->verificaJanelaAberta()){
+        //gerencia eventos
         pEvento->executar();
+
+        //limpa janela
         pGrafico->limpaJanela();
+
         //pinta entidades
         listaPersonagem.executar(pGrafico->getWindow());
         listaObstaculo.executar(pGrafico->getWindow());
 
+        //colisão
         colisor.executar();
 
+        //mostra tudo na janela
         pGrafico->mostraElementos();
     }
 }
