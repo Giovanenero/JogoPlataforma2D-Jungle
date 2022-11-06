@@ -4,6 +4,8 @@
 #include "..\Personagem\Jogador\Jogador.hpp"
 #include "..\Personagem\Inimigo\Inimigo.hpp"
 
+#include "..\..\Animador\Animacao.hpp"
+
 namespace Jungle {
 
     namespace Entidade {

@@ -6,7 +6,7 @@ Jungle::Entidade::Obstaculo::Plataforma::Plataforma(sf::Vector2f pos, sf::Vector
 {
     //textura = pGrafico->carregarTextura(CAMINHO_TEXTURA_PLATAFORMA);
     //corpo.setTexture(&textura);
-    corpo.setFillColor(sf::Color::Green);
+    //corpo.setFillColor(sf::Color::Green);
 }
 
 Jungle::Entidade::Obstaculo::Plataforma::~Plataforma(){
