@@ -1,7 +1,6 @@
 #pragma once
 
-#include "..\Gerenciador\GerenciadorGrafico.hpp"
-#include <SFML\Graphics.hpp>
+#include "Imagem.hpp"
 #include <map>
 
 namespace Jungle {
@@ -10,13 +9,15 @@ namespace Jungle {
 
         class Animacao {
         private:
-            Gerenciador::GerenciadorGrafico* pGrafico;
             sf::RectangleShape* corpo;
-            std::map<std::string, sf::Texture*> mapTextura;
+            std::map<std::string, Imagem> mapImagem;
+            sf::Clock relogio;
+            std::string imgAtual;
         public:
             Animacao(sf::RectangleShape* corpo);
             ~Animacao();            
-            void atualizar();
+            void atualizar(const bool paraEsquerda, std::string imgAtual);
+            void addAnimacao(const char* caminhoTextura, std::string nomeAnimacao, int qtdImagem, const float trocaImg);
         };
 
     }
