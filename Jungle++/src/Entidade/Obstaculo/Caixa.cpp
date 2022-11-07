@@ -1,7 +1,7 @@
 #include "..\..\..\include\Entidade\Obstaculo\Caixa.hpp"
 
 Jungle::Entidade::Obstaculo::Caixa::Caixa(sf::Vector2f pos, sf::Vector2f tam):
-    Obstaculo(pos, tam, IDs::IDs::caixa), podeEmpurrar(false)
+    Obstaculo(pos, tam, IDs::IDs::caixa, CAMINHO_TEXTURA_CAIXA), podeEmpurrar(false)
 {
     //terminar...
 }

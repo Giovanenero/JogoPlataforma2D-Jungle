@@ -22,14 +22,20 @@ void Jungle::Animador::Imagem::atualizar(const bool paraEsquerda, const float dt
             imgAtual = 0;
         }
     }
-    tamanho.left = imgAtual * tamanho.width;
+    if(paraEsquerda){
+        tamanho.left = (imgAtual + 1) * abs(tamanho.width);
+        tamanho.width = -abs(tamanho.width);
+    } else {
+        tamanho.left = imgAtual * tamanho.width;
+        tamanho.width = abs(tamanho.width);
+    }
 }
 
-const sf::IntRect Jungle::Animador::Imagem::getTamanho(){
+const sf::IntRect Jungle::Animador::Imagem::getTamanho() const {
     return tamanho;
 }
 
-const sf::Texture* Jungle::Animador::Imagem::getTextura(){
+const sf::Texture* Jungle::Animador::Imagem::getTextura() const {
     return &textura;
 }
 

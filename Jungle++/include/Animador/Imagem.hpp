@@ -21,8 +21,8 @@ namespace Jungle {
             Imagem(const char* caminhoTextura, const unsigned int qtdImagem, const float tempoTroca, const sf::Vector2u escala);
             ~Imagem();
             void atualizar(const bool paraEsquerda, const float dt);
-            const sf::IntRect getTamanho();
-            const sf::Texture* getTextura();
+            const sf::IntRect getTamanho() const;
+            const sf::Texture* getTextura() const;
             const sf::Vector2u getEscala() const;
         };
 

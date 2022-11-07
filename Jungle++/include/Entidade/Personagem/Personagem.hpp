@@ -3,7 +3,7 @@
 #include "..\Entidade.hpp"
 #include "..\..\Animador\Animacao.hpp"
 
-#define GRAVIDADE 0.5f
+#define GRAVIDADE 0.85f
 
 namespace Jungle {
 
