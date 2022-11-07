@@ -10,7 +10,7 @@ namespace Jungle {
         class Animacao {
         private:
             sf::RectangleShape* corpo;
-            std::map<std::string, Imagem> mapImagem;
+            std::map<std::string, Imagem*> mapImagem;
             sf::Clock relogio;
             std::string imgAtual;
         public:

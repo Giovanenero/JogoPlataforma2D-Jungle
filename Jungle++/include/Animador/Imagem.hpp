@@ -11,16 +11,17 @@ namespace Jungle {
         private:
             Gerenciador::GerenciadorGrafico* pGrafico;
             sf::Texture textura;
+            sf::IntRect tamanho;
             const unsigned int qtdImagem;
             unsigned int imgAtual;
-            sf::IntRect tamanho;
             const float tempoTroca;
             float tempoTotal;
         public:
-            Imagem(const char* caminhoTextura, const unsigned int qtdImagem, const float trocaImg);
+            Imagem(const char* caminhoTextura, const unsigned int qtdImagem, const float tempoTroca);
             ~Imagem();
             void atualizar(const bool paraEsquerda, const float dt);
-            const sf::IntRect getTamanho() const;
+            const sf::IntRect getTamanho();
+            const sf::Texture* getTextura();
         };
 
     }

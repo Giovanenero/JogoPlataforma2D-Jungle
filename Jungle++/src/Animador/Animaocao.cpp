@@ -1,14 +1,13 @@
 #include "..\..\include\Animador\Animacao.hpp"
-#include "Imagem.hpp"
 
 Jungle::Animador::Animacao::Animacao(sf::RectangleShape* corpo):
-    corpo(corpo), mapImagem()
+    corpo(corpo), mapImagem(), imgAtual(""), relogio()
 {
 
 }
 
 Jungle::Animador::Animacao::~Animacao(){
-
+    mapImagem.clear();
 }
 
 void Jungle::Animador::Animacao::atualizar(const bool paraEsquerda, std::string imgAtual){
@@ -16,12 +15,14 @@ void Jungle::Animador::Animacao::atualizar(const bool paraEsquerda, std::string 
     if(this->imgAtual != imgAtual){
         this->imgAtual = imgAtual;
     }
-    const float dt = relogio.getElapsedTime().asSeconds();
+    float dt = relogio.getElapsedTime().asSeconds();
     relogio.restart();
-    mapImagem[imgAtual].atualizar(paraEsquerda, dt);
+    mapImagem[this->imgAtual]->atualizar(paraEsquerda, dt);
+    corpo->setTextureRect(mapImagem[this->imgAtual]->getTamanho());
+    corpo->setTexture(mapImagem[this->imgAtual]->getTextura());
 }
 
 void Jungle::Animador::Animacao::addAnimacao(const char* caminhoTextura, std::string nomeAnimacao, int qtdImagem, const float trocaImg){
-    Imagem img(caminhoTextura, qtdImagem, trocaImg);
-    mapImagem.insert(std::pair<std::string, Imagem>(nomeAnimacao, img));
+    Imagem* img = new Imagem(caminhoTextura, qtdImagem, trocaImg);
+    mapImagem.insert(std::pair<std::string, Imagem*>(nomeAnimacao, img));
 }
