@@ -8,12 +8,11 @@ Jungle::Entidade::Personagem::Jogador::Jogador::Jogador(const sf::Vector2f pos, 
 {
     //corpo.setFillColor(sf::Color::Blue);
     //inicializa();
-    animacao.addAnimacao("Jungle++/img/Jogador/Anda.png", "Anda", 10, 0.5f);
+    animacao.addAnimacao("Jungle++/img/Jogador/Anda.png", "Anda", 10, 0.5f, sf::Vector2u(2,2));
 }
 
 
 void Jungle::Entidade::Personagem::Jogador::Jogador::inicializa(){
-    animacao.addAnimacao("Jungle++/img/Jogador/Anda.png", "Anda", 10, 0.5f);
 }
 
 void Jungle::Entidade::Personagem::Jogador::Jogador::atualizar(){

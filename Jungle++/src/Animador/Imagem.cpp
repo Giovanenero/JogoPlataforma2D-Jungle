@@ -1,9 +1,9 @@
 #include "..\..\include\Animador\Imagem.hpp"
 
-Jungle::Animador::Imagem::Imagem(const char* caminhoTextura, unsigned int qtdImagem, const float tempoTroca):
-    pGrafico(pGrafico->getGerenciadorGrafico()), qtdImagem(qtdImagem), 
-    textura(pGrafico->carregarTextura(caminhoTextura)), tempoTroca(tempoTroca),
-    tempoTotal(0.0f), tamanho(), imgAtual(0)
+Jungle::Animador::Imagem::Imagem(const char* caminhoTextura, unsigned int qtdImagem, const float tempoTroca, const sf::Vector2u escala):
+    pGrafico(pGrafico->getGerenciadorGrafico()), qtdImagem(qtdImagem), tempoTroca(tempoTroca),
+    tempoTotal(0.0f), tamanho(0,0,0,0), imgAtual(0), textura(pGrafico->carregarTextura(caminhoTextura)),
+    escala(escala)
 {
     tamanho.width = textura.getSize().x / (float)qtdImagem;
     tamanho.height = textura.getSize().y;
@@ -23,7 +23,6 @@ void Jungle::Animador::Imagem::atualizar(const bool paraEsquerda, const float dt
         }
     }
     tamanho.left = imgAtual * tamanho.width;
-    tamanho.top = 1 * tamanho.height;
 }
 
 const sf::IntRect Jungle::Animador::Imagem::getTamanho(){
@@ -32,4 +31,8 @@ const sf::IntRect Jungle::Animador::Imagem::getTamanho(){
 
 const sf::Texture* Jungle::Animador::Imagem::getTextura(){
     return &textura;
+}
+
+const sf::Vector2u Jungle::Animador::Imagem::getEscala() const {
+    return escala;
 }

@@ -17,12 +17,19 @@ void Jungle::Animador::Animacao::atualizar(const bool paraEsquerda, std::string 
     }
     float dt = relogio.getElapsedTime().asSeconds();
     relogio.restart();
-    mapImagem[this->imgAtual]->atualizar(paraEsquerda, dt);
-    corpo->setTextureRect(mapImagem[this->imgAtual]->getTamanho());
-    corpo->setTexture(mapImagem[this->imgAtual]->getTextura());
+    Imagem* img = mapImagem[this->imgAtual];
+    sf::Vector2f tamCorpo = corpo->getSize();
+    sf::Vector2u aux = img->getEscala();
+    
+    img->atualizar(paraEsquerda, dt);
+    sf::IntRect tam = img->getTamanho();
+    corpo->setTextureRect(img->getTamanho());
+    corpo->setTexture(img->getTextura());
+    corpo->setScale(aux.x, aux.y);
+    corpo->setOrigin(tamCorpo/2.0f);
 }
 
-void Jungle::Animador::Animacao::addAnimacao(const char* caminhoTextura, std::string nomeAnimacao, int qtdImagem, const float trocaImg){
-    Imagem* img = new Imagem(caminhoTextura, qtdImagem, trocaImg);
+void Jungle::Animador::Animacao::addAnimacao(const char* caminhoTextura, std::string nomeAnimacao, int qtdImagem, const float tempoTroda, const sf::Vector2u escala){
+    Imagem* img = new Imagem(caminhoTextura, qtdImagem, tempoTroda, escala);
     mapImagem.insert(std::pair<std::string, Imagem*>(nomeAnimacao, img));
 }
