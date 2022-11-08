@@ -17,6 +17,7 @@ namespace Jungle {
                 const float velMax;
                 bool podeAndar;
                 bool paraEsquerda;
+                bool podeAtacar;
                 sf::Clock relogio;
                 float dt;
             public:
@@ -26,8 +27,10 @@ namespace Jungle {
                 const sf::Vector2f getVelFinal();
                 void andar(const bool paraEsquerda);
                 void parar();
+                void atacar(const bool podeAtacar);
                 void atualizarPosicao();
                 virtual void atualizar() = 0;
+                virtual void atualizarAnimacao();
                 virtual void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f)) = 0;
             };
 

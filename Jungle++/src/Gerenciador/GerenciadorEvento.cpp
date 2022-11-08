@@ -29,6 +29,8 @@ void Jungle::Gerenciador::GerenciadorEvento::verificaTeclaPressionada(sf::Keyboa
         pJogador->andar(false);
     } else if(tecla == sf::Keyboard::W){
         pJogador->pular();
+    } else if(tecla == sf::Keyboard::S){
+        pJogador->atacar(true);
     } else if(tecla == sf::Keyboard::Escape){
         pGrafico->fecharJanela();
     }

@@ -53,7 +53,7 @@ void Jungle::Gerenciador::GerenciadorColisao::executar(){
             Entidade::Entidade* ent2 = listaObstaculo->operator[](j);
             sf::Vector2f ds = calculaColisao(ent1, ent2);
             if(ds.x < 0.0f && ds.y < 0.0f){
-                if(ent2->getID() == IDs::IDs::plataforma){
+                if(ent2->getID() == IDs::IDs::plataforma || ent2->getID() == IDs::IDs::caixa){
                     ent2->colisao(ent1, ds);
                 } else {
                     // outro obstáculo 

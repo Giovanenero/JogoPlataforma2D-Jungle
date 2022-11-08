@@ -15,11 +15,12 @@ namespace Jungle {
 
             class Caixa : public Obstaculo {
             private:
-                bool podeEmpurrar;
+                const float lentidao;
             public:
                 Caixa(sf::Vector2f pos, sf::Vector2f tam);
                 ~Caixa();
                 void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
+                void colisaoObstaculo(sf::Vector2f ds, Personagem::Personagem* pPersonagem);
             };
 
         }

@@ -3,7 +3,7 @@
 #include "..\Personagem.hpp"
 
 #define VELOCIDADE_JOGADOR 200.0f
-#define TAMANHO_PULO 0.03f
+#define TAMANHO_PULO 0.04f
 
 namespace Jungle {
 
@@ -26,6 +26,7 @@ namespace Jungle {
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
                     void pular();
                     void podePular();
+                    virtual void atualizarAnimacao();
                 };
 
             }

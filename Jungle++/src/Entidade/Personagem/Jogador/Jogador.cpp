@@ -11,22 +11,28 @@ Jungle::Entidade::Personagem::Jogador::Jogador::Jogador(const sf::Vector2f pos, 
 
 
 void Jungle::Entidade::Personagem::Jogador::Jogador::inicializa(){
-    animacao.addAnimacao("Jungle++/img/Jogador/Anda.png", "Anda", 10, 0.12f, sf::Vector2u(6,2));
-    animacao.addAnimacao("Jungle++/img/Jogador/Ataca.png", "Ataca", 10, 0.3f, sf::Vector2u(6,2));
-    animacao.addAnimacao("Jungle++/img/Jogador/Parado.png", "Parado", 10, 0.15f, sf::Vector2u(6,2));
+    animacao.addAnimacao("Jungle++/img/Jogador/Anda.png", "ANDA", 10, 0.12f, sf::Vector2u(6,2));
+    animacao.addAnimacao("Jungle++/img/Jogador/Ataca.png", "ATACA", 10, 0.15f, sf::Vector2u(5,2));
+    animacao.addAnimacao("Jungle++/img/Jogador/Parado.png", "PARADO", 10, 0.15f, sf::Vector2u(6,2));
 }
 
 void Jungle::Entidade::Personagem::Jogador::Jogador::atualizar(){
     /**
         * @ return void 
         * 
-        * Faz o movimeto do jogador para direita e esquerda
+        * Faz o movimeto do jogador e atualiza animação
      */
     atualizarPosicao();
-    if(podeAndar == false){
-        animacao.atualizar(paraEsquerda, "Parado");
+    atualizarAnimacao();
+}
+
+void Jungle::Entidade::Personagem::Jogador::Jogador::atualizarAnimacao(){
+    if(podeAtacar){
+        animacao.atualizar(paraEsquerda, "ATACA");
+    } else if(podeAndar){
+        animacao.atualizar(paraEsquerda, "ANDA");
     } else {
-        animacao.atualizar(paraEsquerda, "Anda");
+        animacao.atualizar(paraEsquerda, "PARADO");
     }
 }
 
