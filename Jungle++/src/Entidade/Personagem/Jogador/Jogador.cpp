@@ -3,7 +3,7 @@
 #include <cmath>
 
 Jungle::Entidade::Personagem::Jogador::Jogador::Jogador(const sf::Vector2f pos, const sf::Vector2f tam):
-    Personagem(pos, tam, VELOCIDADE_JOGADOR, IDs::IDs::jogador), noChao(false), animacao(&corpo)
+    Personagem(pos, tam, VELOCIDADE_JOGADOR, IDs::IDs::jogador), noChao(false)
 
 {
     inicializa();
@@ -18,6 +18,7 @@ void Jungle::Entidade::Personagem::Jogador::Jogador::inicializa(){
     animacao.addAnimacao("Jungle++/img/Jogador/Cai.png", "CAI", 3, 0.15f, sf::Vector2f(6,2));
     animacao.addAnimacao("Jungle++/img/Jogador/Morre.png", "MORRE", 10, 0.15f, sf::Vector2f(6,2));
     animacao.addAnimacao("Jungle++/img/Jogador/tomaDano.png", "TOMA_DANO", 1, 0.15f, sf::Vector2f(6,2));
+    corpo.setOrigin(sf::Vector2f(tam.x / 2.5f, tam.y / 2.0f));
 }
 
 void Jungle::Entidade::Personagem::Jogador::Jogador::atualizar(){

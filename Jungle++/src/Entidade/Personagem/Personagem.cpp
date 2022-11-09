@@ -2,7 +2,8 @@
 
 Jungle::Entidade::Personagem::Personagem::Personagem(const sf::Vector2f pos, const sf::Vector2f tam, const float vel, const IDs::IDs ID):
     Entidade(pos, tam, ID), podeAndar(false), paraEsquerda(false), relogio(), 
-    dt(0.0f), velFinal(sf::Vector2f(vel, 0.0f)), velMax(vel), podeAtacar(false)
+    dt(0.0f), velFinal(sf::Vector2f(vel, 0.0f)), velMax(vel), podeAtacar(false),
+    animacao(&corpo)
 {
 
 }
@@ -62,5 +63,9 @@ void Jungle::Entidade::Personagem::Personagem::atacar(const bool podeAtacar){
 }
 
 void Jungle::Entidade::Personagem::Personagem::atualizarAnimacao(){
-    //atualizar animacao dos inimigos
+    if(podeAndar){
+        animacao.atualizar(paraEsquerda, "ANDA");
+    } else {
+        animacao.atualizar(paraEsquerda, "PARADO");
+    }
 }

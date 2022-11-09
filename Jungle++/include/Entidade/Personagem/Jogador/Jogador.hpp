@@ -15,7 +15,6 @@ namespace Jungle {
 
                 class Jogador : public Personagem {
                 private:
-                    Animador::Animacao animacao;
                     void inicializa();
                     bool noChao;
                 public:
@@ -25,7 +24,7 @@ namespace Jungle {
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
                     void pular();
                     void podePular();
-                    virtual void atualizarAnimacao();
+                    void atualizarAnimacao();
                 };
 
             }

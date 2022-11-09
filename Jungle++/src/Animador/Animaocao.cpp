@@ -21,14 +21,12 @@ void Jungle::Animador::Animacao::atualizar(const bool paraEsquerda, std::string 
     relogio.restart();
     Imagem* img = mapImagem[this->imgAtual];
     sf::Vector2f tamCorpo = corpo->getSize();
-    sf::Vector2f aux = img->getEscala();
+    sf::Vector2f escala = img->getEscala();
     
     img->atualizar(paraEsquerda, dt);
-    sf::IntRect tam = img->getTamanho();
     corpo->setTextureRect(img->getTamanho());
     corpo->setTexture(img->getTextura());
-    corpo->setScale(aux.x, aux.y);
-    corpo->setOrigin(sf::Vector2f(tamCorpo.x / 2.5f, tamCorpo.y / 2.0f));
+    corpo->setScale(escala.x, escala.y);
 }
 
 void Jungle::Animador::Animacao::addAnimacao(const char* caminhoTextura, std::string nomeAnimacao, int qtdImagem, const float tempoTroda, const sf::Vector2f escala){

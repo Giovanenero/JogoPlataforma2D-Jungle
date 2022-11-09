@@ -14,6 +14,7 @@ namespace Jungle {
             class Personagem : public Entidade {
             protected:
                 sf::Vector2f velFinal;
+                Animador::Animacao animacao;
                 const float velMax;
                 bool podeAndar;
                 bool paraEsquerda;
