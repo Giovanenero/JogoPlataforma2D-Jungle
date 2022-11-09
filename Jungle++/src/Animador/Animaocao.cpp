@@ -19,6 +19,7 @@ void Jungle::Animador::Animacao::atualizar(const bool paraEsquerda, std::string 
     }
     float dt = relogio.getElapsedTime().asSeconds();
     relogio.restart();
+    
     Imagem* img = mapImagem[this->imgAtual];
     sf::Vector2f tamCorpo = corpo->getSize();
     sf::Vector2f escala = img->getEscala();
@@ -29,7 +30,7 @@ void Jungle::Animador::Animacao::atualizar(const bool paraEsquerda, std::string 
     corpo->setScale(escala.x, escala.y);
 }
 
-void Jungle::Animador::Animacao::addAnimacao(const char* caminhoTextura, std::string nomeAnimacao, int qtdImagem, const float tempoTroda, const sf::Vector2f escala){
+void Jungle::Animador::Animacao::addAnimacao(const char* caminhoTextura, std::string nomeAnimacao, const unsigned int qtdImagem, const float tempoTroda, const sf::Vector2f escala){
     Imagem* img = new Imagem(caminhoTextura, qtdImagem, tempoTroda, escala);
     mapImagem.insert(std::pair<std::string, Imagem*>(nomeAnimacao, img));
 }

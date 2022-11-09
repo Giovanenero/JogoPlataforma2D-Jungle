@@ -53,7 +53,7 @@ void Jungle::Entidade::Personagem::Personagem::setVelFinal(sf::Vector2f velFinal
     this->velFinal = velFinal;
 }
 
-const sf::Vector2f Jungle::Entidade::Personagem::Personagem::getVelFinal(){
+const sf::Vector2f Jungle::Entidade::Personagem::Personagem::getVelFinal() const{
     return velFinal;
 }
 
