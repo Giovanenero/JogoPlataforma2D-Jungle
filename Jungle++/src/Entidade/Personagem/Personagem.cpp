@@ -2,7 +2,7 @@
 
 Jungle::Entidade::Personagem::Personagem::Personagem(const sf::Vector2f pos, const sf::Vector2f tam, const float vel, const IDs::IDs ID):
     Entidade(pos, tam, ID), podeAndar(false), paraEsquerda(false), relogio(), 
-    dt(0.0f), velFinal(sf::Vector2f(vel, 0.0f)), velMax(vel), podeAtacar(false),
+    dt(0.0f), velFinal(sf::Vector2f(vel, 0.0f)), velMax(vel), atacando(false),
     animacao(&corpo)
 {
 
@@ -13,13 +13,18 @@ Jungle::Entidade::Personagem::Personagem::~Personagem(){
 }
 
 void Jungle::Entidade::Personagem::Personagem::andar(const bool paraEsquerda){
-    podeAtacar = false;
+    atacando = false;
     podeAndar = true;
     this->paraEsquerda = paraEsquerda;
 }
 
 void Jungle::Entidade::Personagem::Personagem::parar(){
     podeAndar = false;
+}
+
+void Jungle::Entidade::Personagem::Personagem::atacar(const bool atacando){
+    podeAndar = false;
+    this->atacando = atacando;
 }
 
 void Jungle::Entidade::Personagem::Personagem::atualizarPosicao(){
@@ -55,11 +60,6 @@ void Jungle::Entidade::Personagem::Personagem::setVelFinal(sf::Vector2f velFinal
 
 const sf::Vector2f Jungle::Entidade::Personagem::Personagem::getVelFinal() const{
     return velFinal;
-}
-
-void Jungle::Entidade::Personagem::Personagem::atacar(const bool podeAtacar){
-    podeAndar = false;
-    this->podeAtacar = podeAtacar;
 }
 
 void Jungle::Entidade::Personagem::Personagem::atualizarAnimacao(){

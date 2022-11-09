@@ -36,7 +36,7 @@ void Jungle::Entidade::Personagem::Jogador::Jogador::atualizarAnimacao(){
         animacao.atualizar(paraEsquerda, "CAI");
     } else if(!noChao){
         animacao.atualizar(paraEsquerda, "PULA");
-    } else if(podeAtacar){
+    } else if(atacando){
         animacao.atualizar(paraEsquerda, "ATACA");
     } else if(podeAndar){
         animacao.atualizar(paraEsquerda, "ANDA");
@@ -49,7 +49,7 @@ void Jungle::Entidade::Personagem::Jogador::Jogador::colisao(Entidade* outraEnti
     switch(outraEntidade->getID()){
         case (IDs::IDs::inimigo):
         {
-            //std::cout << "Pode bater no inimigo e inimigo pode bater no jogador" << std::endl;
+            
         }
         break;
         case(IDs::IDs::plataforma):

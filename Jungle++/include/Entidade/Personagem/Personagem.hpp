@@ -18,7 +18,7 @@ namespace Jungle {
                 const float velMax;
                 bool podeAndar;
                 bool paraEsquerda;
-                bool podeAtacar;
+                bool atacando;
                 sf::Clock relogio;
                 float dt;
             public:
@@ -28,7 +28,7 @@ namespace Jungle {
                 const sf::Vector2f getVelFinal() const;
                 void andar(const bool paraEsquerda);
                 void parar();
-                void atacar(const bool podeAtacar);
+                void atacar(const bool atacando);
                 void atualizarPosicao();
                 virtual void atualizar() = 0;
                 virtual void atualizarAnimacao();
