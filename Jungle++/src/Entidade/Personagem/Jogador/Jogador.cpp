@@ -11,9 +11,9 @@ Jungle::Entidade::Personagem::Jogador::Jogador::Jogador(const sf::Vector2f pos, 
 
 
 void Jungle::Entidade::Personagem::Jogador::Jogador::inicializa(){
-    animacao.addAnimacao("Jungle++/img/Jogador/Anda.png", "ANDA", 10, 0.12f, sf::Vector2u(6,2));
-    animacao.addAnimacao("Jungle++/img/Jogador/Ataca.png", "ATACA", 10, 0.15f, sf::Vector2u(5,2));
-    animacao.addAnimacao("Jungle++/img/Jogador/Parado.png", "PARADO", 10, 0.15f, sf::Vector2u(6,2));
+    animacao.addAnimacao("Jungle++/img/Jogador/Anda.png", "ANDA", 10, 0.12f, sf::Vector2f(6,2));
+    animacao.addAnimacao("Jungle++/img/Jogador/Ataca.png", "ATACA", 10, 0.15f, sf::Vector2f(5,2));
+    animacao.addAnimacao("Jungle++/img/Jogador/Parado.png", "PARADO", 10, 0.15f, sf::Vector2f(6,2));
 }
 
 void Jungle::Entidade::Personagem::Jogador::Jogador::atualizar(){

@@ -1,6 +1,6 @@
 #include "..\..\include\Animador\Imagem.hpp"
 
-Jungle::Animador::Imagem::Imagem(const char* caminhoTextura, unsigned int qtdImagem, const float tempoTroca, const sf::Vector2u escala):
+Jungle::Animador::Imagem::Imagem(const char* caminhoTextura, unsigned int qtdImagem, const float tempoTroca, const sf::Vector2f escala):
     pGrafico(pGrafico->getGerenciadorGrafico()), qtdImagem(qtdImagem), tempoTroca(tempoTroca),
     tempoTotal(0.0f), tamanho(0,0,0,0), imgAtual(0), textura(pGrafico->carregarTextura(caminhoTextura)),
     escala(escala)
@@ -31,6 +31,11 @@ void Jungle::Animador::Imagem::atualizar(const bool paraEsquerda, const float dt
     }
 }
 
+void Jungle::Animador::Imagem::resetar(){
+    imgAtual = 0;
+    tempoTotal = 0.0f;
+}
+
 const sf::IntRect Jungle::Animador::Imagem::getTamanho() const {
     return tamanho;
 }
@@ -39,6 +44,6 @@ const sf::Texture* Jungle::Animador::Imagem::getTextura() const {
     return &textura;
 }
 
-const sf::Vector2u Jungle::Animador::Imagem::getEscala() const {
+const sf::Vector2f Jungle::Animador::Imagem::getEscala() const {
     return escala;
 }
