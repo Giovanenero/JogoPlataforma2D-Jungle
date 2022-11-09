@@ -7,6 +7,14 @@ Jungle::Animador::Animacao::Animacao(sf::RectangleShape* corpo):
 }
 
 Jungle::Animador::Animacao::~Animacao(){
+    std::map<std::string, Imagem*>::iterator it = mapImagem.begin();
+    while(it != mapImagem.end()){
+        if(it->second){
+            delete(it->second);
+            it->second = nullptr;
+        }
+        it++;
+    }
     mapImagem.clear();
 }
 
