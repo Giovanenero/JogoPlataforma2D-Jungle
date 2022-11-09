@@ -14,6 +14,10 @@ void Jungle::Entidade::Personagem::Jogador::Jogador::inicializa(){
     animacao.addAnimacao("Jungle++/img/Jogador/Anda.png", "ANDA", 10, 0.12f, sf::Vector2f(6,2));
     animacao.addAnimacao("Jungle++/img/Jogador/Ataca.png", "ATACA", 10, 0.15f, sf::Vector2f(5,2));
     animacao.addAnimacao("Jungle++/img/Jogador/Parado.png", "PARADO", 10, 0.15f, sf::Vector2f(6,2));
+    animacao.addAnimacao("Jungle++/img/Jogador/Pula.png", "PULA", 3, 0.15f, sf::Vector2f(6,2));
+    animacao.addAnimacao("Jungle++/img/Jogador/Cai.png", "CAI", 3, 0.15f, sf::Vector2f(6,2));
+    animacao.addAnimacao("Jungle++/img/Jogador/Morre.png", "MORRE", 10, 0.15f, sf::Vector2f(6,2));
+    animacao.addAnimacao("Jungle++/img/Jogador/tomaDano.png", "TOMA_DANO", 1, 0.15f, sf::Vector2f(6,2));
 }
 
 void Jungle::Entidade::Personagem::Jogador::Jogador::atualizar(){
@@ -27,7 +31,11 @@ void Jungle::Entidade::Personagem::Jogador::Jogador::atualizar(){
 }
 
 void Jungle::Entidade::Personagem::Jogador::Jogador::atualizarAnimacao(){
-    if(podeAtacar){
+    if(!noChao && velFinal.y > 0.0f){
+        animacao.atualizar(paraEsquerda, "CAI");
+    } else if(!noChao){
+        animacao.atualizar(paraEsquerda, "PULA");
+    } else if(podeAtacar){
         animacao.atualizar(paraEsquerda, "ATACA");
     } else if(podeAndar){
         animacao.atualizar(paraEsquerda, "ANDA");

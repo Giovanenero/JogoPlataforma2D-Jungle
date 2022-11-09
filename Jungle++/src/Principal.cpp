@@ -28,13 +28,15 @@ Jungle::Principal::~Principal(){
 void Jungle::Principal::instanciaEntidades(){
 
     //cria personagens e obstaculos
-    Entidade::Personagem::Jogador::Jogador* jogador = new Entidade::Personagem::Jogador::Jogador(sf::Vector2f(500.0f, 100.0f), sf::Vector2f(50.0f, 90.0f));
+    Entidade::Personagem::Jogador::Jogador* jogador = new Entidade::Personagem::Jogador::Jogador(sf::Vector2f(100.0f, 400.0f), sf::Vector2f(50.0f, 90.0f));
     //Entidade::Personagem::Inimigo::Inimigo* i1 = new Entidade::Personagem::Inimigo::Inimigo(sf::Vector2f(500.0f, 100.0f), sf::Vector2f(50.0f, 50.0f), jogador);
     Entidade::Obstaculo::Plataforma* p1 = new Entidade::Obstaculo::Plataforma(sf::Vector2f(0.0f, 550.0f), sf::Vector2f(300.0f, 50.0f));
     Entidade::Obstaculo::Plataforma* p2 = new Entidade::Obstaculo::Plataforma(sf::Vector2f(300.0f, 550.0f), sf::Vector2f(300.0f, 50.0f));
     Entidade::Obstaculo::Plataforma* p3 = new Entidade::Obstaculo::Plataforma(sf::Vector2f(600.0f, 550.0f), sf::Vector2f(300.0f, 50.0f));
     Entidade::Obstaculo::Plataforma* p4 = new Entidade::Obstaculo::Plataforma(sf::Vector2f(500.0f, 400.0f), sf::Vector2f(300.0f, 50.0f));
+    Entidade::Obstaculo::Plataforma* p5 = new Entidade::Obstaculo::Plataforma(sf::Vector2f(150.0f, 250.0f), sf::Vector2f(300.0f, 50.0f));
     Entidade::Obstaculo::Caixa *c1 = new Entidade::Obstaculo::Caixa(sf::Vector2f(200.0f, 500.0f), sf::Vector2f(50.0f, 50.0f));
+    Entidade::Obstaculo::Caixa *c2 = new Entidade::Obstaculo::Caixa(sf::Vector2f(650.0f, 350.0f), sf::Vector2f(50.0f, 50.0f));
 
     //transforma eles em entidades
     Entidade::Entidade* e1 = static_cast<Entidade::Entidade*>(jogador);
@@ -42,7 +44,9 @@ void Jungle::Principal::instanciaEntidades(){
     Entidade::Entidade* e3 = static_cast<Entidade::Entidade*>(p2);
     Entidade::Entidade* e4 = static_cast<Entidade::Entidade*>(p3);
     Entidade::Entidade* e5 = static_cast<Entidade::Entidade*>(p4);
-    Entidade::Entidade* e6 = static_cast<Entidade::Entidade*>(c1);
+    Entidade::Entidade* e6 = static_cast<Entidade::Entidade*>(p5);
+    Entidade::Entidade* e7 = static_cast<Entidade::Entidade*>(c1);
+    Entidade::Entidade* e8 = static_cast<Entidade::Entidade*>(c2);
 
     //Entidade::Entidade* e6 = static_cast<Entidade::Entidade*>(i1);
 
@@ -55,6 +59,8 @@ void Jungle::Principal::instanciaEntidades(){
     listaObstaculo.addEntidade(e4);
     listaObstaculo.addEntidade(e5);
     listaObstaculo.addEntidade(e6);
+    listaObstaculo.addEntidade(e7);
+    listaObstaculo.addEntidade(e8);
 
     pEvento->setJogador(jogador);
 }
