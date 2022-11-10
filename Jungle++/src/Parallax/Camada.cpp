@@ -8,7 +8,6 @@ Jungle::Parallax::Camada::Camada(const sf::Vector2f tamJanela, sf::Texture textu
     dimensao.left = textura.getSize().x;
 
     fundo.setSize(tamJanela);
-    fundo.setTextureRect(dimensao);
     fundo.setTexture(&this->textura);
     fundo.setPosition(0.0f, 0.0f);
     
@@ -19,6 +18,19 @@ Jungle::Parallax::Camada::Camada(const sf::Vector2f tamJanela, sf::Texture textu
 
 Jungle::Parallax::Camada::~Camada(){
 
+}
+
+void Jungle::Parallax::Camada::trocarTextura(){
+    sf::RectangleShape trocar = fundo;
+    fundo = fundoAuxiliar;
+    fundoAuxiliar = trocar;
+}
+
+void Jungle::Parallax::Camada::desenharCamada(sf::RenderWindow* window){
+    window->draw(fundo);
+    if(vel != 0.0f){
+        window->draw(fundoAuxiliar);
+    }
 }
 
 void Jungle::Parallax::Camada::atualizar(sf::Vector2f ds, const sf::Vector2f posCameraAtual){
@@ -34,33 +46,21 @@ void Jungle::Parallax::Camada::atualizar(sf::Vector2f ds, const sf::Vector2f pos
         fundo.move(ds.x * -vel, 0.0f);
         fundoAuxiliar.move(ds.x * -vel, 0.0f);
 
-        sf::RectangleShape aux = fundo;
         if(ds.x > 0.0f){ // camera movendo para a direita
             if(posFundo.x + tamJanela.x < posEsquerda){
-                fundo = fundoAuxiliar;
-                fundoAuxiliar = aux;
+                trocarTextura();
                 fundo.setPosition(posEsquerda, 0.0f);
                 fundoAuxiliar.setPosition(posDireita, 0.0f);
             }
 
         } else { // camera movendo para a esquerda
             if(posFundo.x > posEsquerda){
-                fundo = fundoAuxiliar;
-                fundoAuxiliar = aux;
+                trocarTextura();
                 fundo.setPosition(posEsquerda - tamJanela.x, 0.0f);
                 fundoAuxiliar.setPosition(posEsquerda, 0.0f);
             }
         }
     } else {
         fundo.setPosition(posEsquerda, 0.0f);
-        fundoAuxiliar.setPosition(posDireita, 0.0f);
     }
-}
-
-const sf::RectangleShape Jungle::Parallax::Camada::getFundo(){
-    return fundo;
-}
-
-const sf::RectangleShape Jungle::Parallax::Camada::getFundoAux(){
-    return fundoAuxiliar;
 }

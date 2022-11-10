@@ -18,9 +18,9 @@ namespace Jungle {
         public:
             Camada(const sf::Vector2f tamJanela, sf::Texture textura, const float vel);
             ~Camada();
+            void trocarTextura();
+            void desenharCamada(sf::RenderWindow* window);
             void atualizar(sf::Vector2f ds, const sf::Vector2f posCameraAtual);
-            const sf::RectangleShape getFundo();
-            const sf::RectangleShape getFundoAux();
         };
 
     }
