@@ -29,6 +29,7 @@ void Jungle::Entidade::Personagem::Jogador::Jogador::atualizar(){
      */
     atualizarPosicao();
     atualizarAnimacao();
+    pGrafico->atualizarCamera(pos);
 }
 
 void Jungle::Entidade::Personagem::Jogador::Jogador::atualizarAnimacao(){

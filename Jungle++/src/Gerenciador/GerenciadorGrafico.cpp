@@ -3,7 +3,8 @@
 Jungle::Gerenciador::GerenciadorGrafico* Jungle::Gerenciador::GerenciadorGrafico::pGrafico = nullptr;
 
 Jungle::Gerenciador::GerenciadorGrafico::GerenciadorGrafico():
-    window(new sf::RenderWindow(sf::VideoMode(800.0f, 600.0f), "Jungle++"))
+    window(new sf::RenderWindow(sf::VideoMode(800.0f, 600.0f), "Jungle++")),
+    camera()
 {
     if(window == nullptr){
         std::cout << "ERROR::Jungle::Gerenciador::GerenciadorGrafico nao foi possivel criar uma janela grafica" << std::endl;
@@ -63,4 +64,13 @@ void Jungle::Gerenciador::GerenciadorGrafico::fecharJanela(){
 
 const bool Jungle::Gerenciador::GerenciadorGrafico::verificaJanelaAberta(){
     return window->isOpen();
+}
+
+void Jungle::Gerenciador::GerenciadorGrafico::atualizarCamera(sf::Vector2f posJogador){
+    camera.setCenter(posJogador);
+    window->setView(camera);
+}
+
+const sf::View Jungle::Gerenciador::GerenciadorGrafico::getCamera(){
+    return camera;
 }

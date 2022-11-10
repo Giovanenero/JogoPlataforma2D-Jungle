@@ -10,12 +10,10 @@ namespace Jungle {
         private:
             sf::Sprite fundo;
             sf::Sprite fundoAuxiliar;
-
-            sf::IntRect tamFundo;
-            sf::IntRect tamFundoAuxiliar;
         public:
-            Camada();
+            Camada(const sf::Vector2f tamJanela, sf::Texture textura);
             ~Camada();
+            void atualizar(const sf::Vector2f ds);
         };
 
     }

@@ -28,6 +28,7 @@ namespace Jungle {
             Lista::ListaEntidade listaPersonagem;
             Lista::ListaEntidade listaObstaculo;
             Parallax::Fundo* fundo;
+            Entidade::Personagem::Jogador::Jogador* jogador;
         public:
             Principal();
             ~Principal();
