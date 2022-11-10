@@ -3,7 +3,7 @@
 #include "..\Personagem.hpp"
 
 #define VELOCIDADE_JOGADOR 200.0f
-#define TAMANHO_PULO 0.04f
+#define TAMANHO_PULO 0.045f
 
 namespace Jungle {
 
