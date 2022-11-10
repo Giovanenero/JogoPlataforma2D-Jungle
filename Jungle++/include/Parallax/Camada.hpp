@@ -10,6 +10,9 @@ namespace Jungle {
         private:
             sf::Sprite fundo;
             sf::Sprite fundoAuxiliar;
+
+            sf::IntRect tamFundo;
+            sf::IntRect tamFundoAuxiliar;
         public:
             Camada();
             ~Camada();

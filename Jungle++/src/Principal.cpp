@@ -101,6 +101,6 @@ void Jungle::Principal::executar(){
         //mostra tudo na janela
         pGrafico->mostraElementos();
 
-        //fundo->executar();
+        fundo->executar();
     }
 }
