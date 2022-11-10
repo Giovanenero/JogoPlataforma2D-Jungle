@@ -23,6 +23,11 @@ Jungle::Principal::Principal():
 Jungle::Principal::~Principal(){
     listaObstaculo.limparLista();
     listaPersonagem.limparLista();
+
+    if(fundo){
+        delete(fundo);
+        fundo = nullptr;
+    }
 }
 
 void Jungle::Principal::instanciaEntidades(){
@@ -68,6 +73,8 @@ void Jungle::Principal::instanciaEntidades(){
     listaObstaculo.addEntidade(e8);
 
     pEvento->setJogador(jogador);
+
+    fundo = new Parallax::Fundo(jogador->getEnderecoPos());
 }
 
 void Jungle::Principal::executar(){
@@ -93,5 +100,7 @@ void Jungle::Principal::executar(){
 
         //mostra tudo na janela
         pGrafico->mostraElementos();
+
+        //fundo->executar();
     }
 }

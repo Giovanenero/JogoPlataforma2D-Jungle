@@ -8,8 +8,8 @@ namespace Jungle {
 
         class Camada {
         private:
-            sf::Sprite ladoDireito;
-            sf::Sprite ladoEsquerdo;
+            sf::Sprite fundo;
+            sf::Sprite fundoAuxiliar;
         public:
             Camada();
             ~Camada();

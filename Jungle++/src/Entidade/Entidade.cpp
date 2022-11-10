@@ -19,7 +19,7 @@ void Jungle::Entidade::Entidade::setPos(sf::Vector2f pos){
     this->pos = pos;
 }
 
-const sf::Vector2f Jungle::Entidade::Entidade::getPos(){
+sf::Vector2f Jungle::Entidade::Entidade::getPos(){
     return pos;
 }
 

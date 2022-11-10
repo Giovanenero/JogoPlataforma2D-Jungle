@@ -69,3 +69,7 @@ void Jungle::Entidade::Personagem::Jogador::Jogador::pular(){
 void Jungle::Entidade::Personagem::Jogador::Jogador::podePular(){
     noChao = true;
 }
+
+sf::Vector2f* Jungle::Entidade::Personagem::Jogador::Jogador::getEnderecoPos(){
+    return &pos;
+}

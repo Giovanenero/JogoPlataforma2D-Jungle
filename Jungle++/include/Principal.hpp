@@ -11,6 +11,10 @@
 #include "Gerenciador\GerenciadorEvento.hpp"
 #include "Gerenciador\GerenciadorColisao.hpp"
 
+//Fundo
+
+#include "Parallax\Fundo.hpp"
+
 //Lista
 #include "Lista\ListaEntidade.hpp"
 
@@ -23,6 +27,7 @@ namespace Jungle {
             Gerenciador::GerenciadorColisao colisor;
             Lista::ListaEntidade listaPersonagem;
             Lista::ListaEntidade listaObstaculo;
+            Parallax::Fundo* fundo;
         public:
             Principal();
             ~Principal();
