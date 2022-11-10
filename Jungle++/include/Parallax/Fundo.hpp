@@ -9,10 +9,9 @@ namespace Jungle {
 
         class Fundo : public Ente {
         private:
-            sf::Vector2f* posJogador;
-            sf::Vector2f posAnterior;
+            sf::Vector2f posAnteriorCamera;
         public:
-            Fundo(sf::Vector2f* posJogador);
+            Fundo();
             ~Fundo();
             void desenhar();
             void executar();

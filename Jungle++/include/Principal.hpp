@@ -27,8 +27,7 @@ namespace Jungle {
             Gerenciador::GerenciadorColisao colisor;
             Lista::ListaEntidade listaPersonagem;
             Lista::ListaEntidade listaObstaculo;
-            Parallax::Fundo* fundo;
-            Entidade::Personagem::Jogador::Jogador* jogador;
+            Parallax::Fundo fundo;
         public:
             Principal();
             ~Principal();

@@ -1,7 +1,7 @@
 #include "..\..\include\Parallax\Fundo.hpp"
 
-Jungle::Parallax::Fundo::Fundo(sf::Vector2f* posJogador):
-    Ente(IDs::IDs::fundo), posJogador(posJogador), posAnterior(*posJogador)
+Jungle::Parallax::Fundo::Fundo():
+    Ente(IDs::IDs::fundo), posAnteriorCamera(pGrafico->getCamera().getCenter())
 {
 
 }
@@ -11,8 +11,9 @@ Jungle::Parallax::Fundo::~Fundo(){
 }
 
 void Jungle::Parallax::Fundo::executar(){
-    sf::Vector2f ds = *posJogador - posAnterior;
-    posAnterior = *posJogador;
+    sf::Vector2f posCamera = pGrafico->getCamera().getCenter();
+    const sf::Vector2f ds = posCamera - posAnteriorCamera;
+    posAnteriorCamera = posCamera;
 }
 
 void Jungle::Parallax::Fundo::desenhar(){

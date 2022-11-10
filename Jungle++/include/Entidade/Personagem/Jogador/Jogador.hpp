@@ -25,7 +25,6 @@ namespace Jungle {
                     void pular();
                     void podePular();
                     void atualizarAnimacao();
-                    sf::Vector2f* getEnderecoPos();
                 };
 
             }
