@@ -8,12 +8,19 @@ namespace Jungle {
 
         class Camada {
         private:
-            sf::Sprite fundo;
-            sf::Sprite fundoAuxiliar;
+            const sf::Vector2f tamJanela;
+            sf::IntRect dimensao;
+            const float vel;
+
+            sf::Texture textura;
+            sf::RectangleShape fundo;
+            sf::RectangleShape fundoAuxiliar;
         public:
-            Camada(const sf::Vector2f tamJanela, sf::Texture textura);
+            Camada(const sf::Vector2f tamJanela, sf::Texture textura, const float vel);
             ~Camada();
-            void atualizar(const sf::Vector2f ds);
+            void atualizar(sf::Vector2f ds, const sf::Vector2f posCameraAtual);
+            const sf::RectangleShape getFundo();
+            const sf::RectangleShape getFundoAux();
         };
 
     }
