@@ -33,6 +33,9 @@ namespace Jungle {
             ~Principal();
             void executar();
             void instanciaEntidades();
+            void criaPlataforma(const sf::Vector2f pos);
+            void criaCaixa(const sf::Vector2f pos);
+            void criaInimigo(const sf::Vector2f pos, Entidade::Personagem::Jogador::Jogador* jogador);
     };
 
 }
