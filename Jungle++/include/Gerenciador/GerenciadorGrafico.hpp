@@ -13,6 +13,8 @@ namespace Jungle {
         class GerenciadorGrafico {
         private:
             sf::RenderWindow* window;
+
+            //atributo para movimentar a camera
             sf::View camera;
 
             //a construtora privada faz parte do padrão de projeto singleton
@@ -28,7 +30,7 @@ namespace Jungle {
             void mostraElementos();
             void fecharJanela();
             const bool verificaJanelaAberta();
-            void atualizarCamera(sf::Vector2f posJogador);
+            void atualizarCamera(const sf::Vector2f posJogador);
             const sf::View getCamera();
         };
 

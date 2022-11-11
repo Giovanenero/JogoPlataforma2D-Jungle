@@ -33,15 +33,14 @@ void Jungle::Parallax::Camada::desenharCamada(sf::RenderWindow* window){
     }
 }
 
-void Jungle::Parallax::Camada::atualizar(sf::Vector2f ds, const sf::Vector2f posCameraAtual){
-
-    const sf::Vector2f posFundo = fundo.getPosition();
-    const sf::Vector2f posFundoAux = fundoAuxiliar.getPosition();
-
+void Jungle::Parallax::Camada::atualizar(const sf::Vector2f ds, const sf::Vector2f posCameraAtual){
     const float posDireita = posCameraAtual.x + tamJanela.x / 2.0f;
     const float posEsquerda = posCameraAtual.x - tamJanela.x / 2.0f;
 
     if(vel != 0.0f){
+        const sf::Vector2f posFundo = fundo.getPosition();
+        const sf::Vector2f posFundoAux = fundoAuxiliar.getPosition();
+
         //aplicando o movimento contrário para as camadas
         fundo.move(ds.x * -vel, 0.0f);
         fundoAuxiliar.move(ds.x * -vel, 0.0f);

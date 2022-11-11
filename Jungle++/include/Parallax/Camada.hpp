@@ -15,12 +15,13 @@ namespace Jungle {
             sf::Texture textura;
             sf::RectangleShape fundo;
             sf::RectangleShape fundoAuxiliar;
+
+            void trocarTextura();
         public:
             Camada(const sf::Vector2f tamJanela, sf::Texture textura, const float vel);
             ~Camada();
-            void trocarTextura();
             void desenharCamada(sf::RenderWindow* window);
-            void atualizar(sf::Vector2f ds, const sf::Vector2f posCameraAtual);
+            void atualizar(const sf::Vector2f ds, const sf::Vector2f posCameraAtual);
         };
 
     }

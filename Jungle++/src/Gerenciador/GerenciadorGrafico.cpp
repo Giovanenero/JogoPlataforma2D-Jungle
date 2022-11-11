@@ -66,7 +66,7 @@ const bool Jungle::Gerenciador::GerenciadorGrafico::verificaJanelaAberta(){
     return window->isOpen();
 }
 
-void Jungle::Gerenciador::GerenciadorGrafico::atualizarCamera(sf::Vector2f posJogador){
+void Jungle::Gerenciador::GerenciadorGrafico::atualizarCamera(const sf::Vector2f posJogador){
     camera.setCenter(posJogador.x, 300.0f);
     window->setView(camera);
 }
