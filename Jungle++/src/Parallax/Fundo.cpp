@@ -1,10 +1,11 @@
 #include "..\..\include\Parallax\Fundo.hpp"
 
-Jungle::Parallax::Fundo::Fundo():
-    Ente(IDs::IDs::fundo), posAnteriorCamera(pGrafico->getCamera().getCenter()),
+Jungle::Parallax::Fundo::Fundo(const IDs::IDs ID):
+    Ente(ID), posAnteriorCamera(pGrafico->getCamera().getCenter()),
     camadas()
 {  
-    
+    /*
+    //floresta vermelha
     addCamada("Jungle++/img/Fase/FlorestaVermelha/camada1.png", 0.0f);
     addCamada("Jungle++/img/Fase/FlorestaVermelha/camada2.png", 0.0f);
     addCamada("Jungle++/img/Fase/FlorestaVermelha/camada3.png", 0.1f);
@@ -13,17 +14,11 @@ Jungle::Parallax::Fundo::Fundo():
     addCamada("Jungle++/img/Fase/FlorestaVermelha/camada6.png", 0.5f);
     addCamada("Jungle++/img/Fase/FlorestaVermelha/camada7.png", 0.75f);
     addCamada("Jungle++/img/Fase/FlorestaVermelha/camada8.png", 1.5f);
-    
-    
-    /*
-    addCamada("Jungle++/img/Fase/FLorestaBranca/camada1.png", 0.0f);
-    addCamada("Jungle++/img/Fase/FLorestaBranca/camada2.png", 0.1f);
-    addCamada("Jungle++/img/Fase/FLorestaBranca/camada3.png", 0.3f);
-    addCamada("Jungle++/img/Fase/FLorestaBranca/camada4.png", 0.5f);
-    addCamada("Jungle++/img/Fase/FLorestaBranca/camada5.png", 1.0f);  
     */
     
+    
     /*
+    //floresta negra
     addCamada("Jungle++/img/Fase/FlorestaNegra/camada1.png", 0.0f);
     addCamada("Jungle++/img/Fase/FlorestaNegra/camada2.png", 0.05f);
     addCamada("Jungle++/img/Fase/FlorestaNegra/camada3.png", 0.1f);

@@ -14,7 +14,7 @@ namespace Jungle {
             sf::Vector2f posAnteriorCamera;
             std::vector<Camada*> camadas;
         public:
-            Fundo();
+            Fundo(const IDs::IDs ID);
             ~Fundo();
             void desenhar();
             void addCamada(const char* caminhoTextura, const float vel);
