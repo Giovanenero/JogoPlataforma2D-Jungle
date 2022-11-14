@@ -11,8 +11,8 @@ namespace Jungle {
         public:
             FaseFloresta();
             ~FaseFloresta();
-            void criaFundo();
-            void criaEntidades();
+            void criarFundo();
+            void criarEntidades();
             void executar();
         };
 
