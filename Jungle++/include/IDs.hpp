@@ -8,7 +8,8 @@ namespace IDs {
         inimigo,
         plataforma,
         caixa,
-        fundo
+        fundo,
+        fase
     };
 
 }

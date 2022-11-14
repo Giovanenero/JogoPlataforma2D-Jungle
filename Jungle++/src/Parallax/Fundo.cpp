@@ -4,7 +4,7 @@ Jungle::Parallax::Fundo::Fundo():
     Ente(IDs::IDs::fundo), posAnteriorCamera(pGrafico->getCamera().getCenter()),
     camadas()
 {  
-    /*
+    
     addCamada("Jungle++/img/Fase/FlorestaVermelha/camada1.png", 0.0f);
     addCamada("Jungle++/img/Fase/FlorestaVermelha/camada2.png", 0.0f);
     addCamada("Jungle++/img/Fase/FlorestaVermelha/camada3.png", 0.1f);
@@ -13,14 +13,15 @@ Jungle::Parallax::Fundo::Fundo():
     addCamada("Jungle++/img/Fase/FlorestaVermelha/camada6.png", 0.5f);
     addCamada("Jungle++/img/Fase/FlorestaVermelha/camada7.png", 0.75f);
     addCamada("Jungle++/img/Fase/FlorestaVermelha/camada8.png", 1.5f);
-    */
     
     
+    /*
     addCamada("Jungle++/img/Fase/FLorestaBranca/camada1.png", 0.0f);
     addCamada("Jungle++/img/Fase/FLorestaBranca/camada2.png", 0.1f);
     addCamada("Jungle++/img/Fase/FLorestaBranca/camada3.png", 0.3f);
     addCamada("Jungle++/img/Fase/FLorestaBranca/camada4.png", 0.5f);
-    addCamada("Jungle++/img/Fase/FLorestaBranca/camada5.png", 1.0f);
+    addCamada("Jungle++/img/Fase/FLorestaBranca/camada5.png", 1.0f);  
+    */
     
     /*
     addCamada("Jungle++/img/Fase/FlorestaNegra/camada1.png", 0.0f);
@@ -31,6 +32,7 @@ Jungle::Parallax::Fundo::Fundo():
     addCamada("Jungle++/img/Fase/FlorestaNegra/camada6.png", 0.4f);
     addCamada("Jungle++/img/Fase/FlorestaNegra/camada7.png", 0.6f);
     */
+    
 }   
 
 Jungle::Parallax::Fundo::~Fundo(){
@@ -50,7 +52,7 @@ void Jungle::Parallax::Fundo::executar(){
     posAnteriorCamera = posCamera;
     if(ds.x != 0.0f){
         ds.x *= 0.5f;
-        for(int i = camadas.size() - 1; i >= 0; i--){
+        for(int i = 0; i < camadas.size(); i++){
             camadas.at(i)->atualizar(ds, posCamera);
         }
     }
