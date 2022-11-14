@@ -22,7 +22,7 @@ namespace Jungle {
                 void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
                 void colisaoObstaculo(sf::Vector2f ds, Personagem::Personagem* pPersonagem);
             };
-
+            
         }
 
     }

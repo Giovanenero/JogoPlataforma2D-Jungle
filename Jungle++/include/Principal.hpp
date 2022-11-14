@@ -4,7 +4,9 @@
 #include "Gerenciador\GerenciadorGrafico.hpp"
 #include "Gerenciador\GerenciadorEvento.hpp"
 
-#include "Fase\FaseFloresta.hpp"
+//Fases
+#include "Fase\FlorestaBranca.hpp"
+#include "Fase\FlorestaVermelha.hpp"
 
 namespace Jungle {
 
@@ -12,10 +14,11 @@ namespace Jungle {
         private:
             Gerenciador::GerenciadorGrafico* pGrafico;
             Gerenciador::GerenciadorEvento* pEvento;
-            Fase::FaseFloresta faseFloresta;
+            Fase::Fase* fase;
         public:
             Principal();
             ~Principal();
+            void criarFase();
             void executar();
     };
 

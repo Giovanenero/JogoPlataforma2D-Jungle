@@ -1,25 +1,24 @@
-#include "..\..\include\Fase\FaseFloresta.hpp"
+#include "..\..\include\Fase\FlorestaBranca.hpp"
 
-Jungle::Fase::FaseFloresta::FaseFloresta():
-    Fase(IDs::IDs::faseFloresta, IDs::IDs::florestaBranca)
+Jungle::Fase::FlorestaBranca::FlorestaBranca():
+    Fase(IDs::IDs::fase_florestaBranca, IDs::IDs::fundo_florestaBranca)
 {
-    criarFundo();
-    criarEntidades();
+    
 }
 
-Jungle::Fase::FaseFloresta::~FaseFloresta(){
+Jungle::Fase::FlorestaBranca::~FlorestaBranca(){
 
 }
 
-void Jungle::Fase::FaseFloresta::criarFundo(){
+void Jungle::Fase::FlorestaBranca::criarFundo(){
     fundo.addCamada("Jungle++/img/Fase/FLorestaBranca/camada1.png", 0.0f);
     fundo.addCamada("Jungle++/img/Fase/FLorestaBranca/camada2.png", 0.1f);
     fundo.addCamada("Jungle++/img/Fase/FLorestaBranca/camada3.png", 0.3f);
     fundo.addCamada("Jungle++/img/Fase/FLorestaBranca/camada4.png", 0.5f);
-    fundo.addCamada("Jungle++/img/Fase/FLorestaBranca/camada5.png", 1.0f);  
+    fundo.addCamada("Jungle++/img/Fase/FLorestaBranca/camada5.png", 1.0f);
 }
 
-void Jungle::Fase::FaseFloresta::criarEntidades(){
+void Jungle::Fase::FlorestaBranca::criarEntidades(){
     Entidade::Personagem::Jogador::Jogador* jogador = criarJogador(sf::Vector2f(100.0f, 400.0f));
     Gerenciador::GerenciadorEvento* pEvento = pEvento->getGerenciadorEvento();
     pEvento->setJogador(jogador);
@@ -41,7 +40,7 @@ void Jungle::Fase::FaseFloresta::criarEntidades(){
     listaObstaculos.addEntidade(criarCaixa(sf::Vector2f(1000.0f, 350.0f)));
 }
 
-void Jungle::Fase::FaseFloresta::executar(){
+void Jungle::Fase::FlorestaBranca::executar(){
     fundo.executar();
     desenhar();
     pColisao->executar();

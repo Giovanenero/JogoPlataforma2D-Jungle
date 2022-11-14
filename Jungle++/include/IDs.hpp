@@ -8,8 +8,10 @@ namespace IDs {
         inimigo,
         plataforma,
         caixa,
-        florestaBranca,
-        faseFloresta
+        fundo_florestaBranca,
+        fase_florestaBranca,
+        fundo_florestaVermelha,
+        fase_florestaVermelha
     };
 
 }
