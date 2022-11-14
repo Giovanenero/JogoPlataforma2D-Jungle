@@ -59,3 +59,9 @@ void Jungle::Fase::Fase::desenhar(){
     listaPersonagens.executar();
     listaObstaculos.executar();
 }
+
+void Jungle::Fase::Fase::executar(){
+    fundo.executar();
+    desenhar();
+    pColisao->executar();
+}

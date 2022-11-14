@@ -13,7 +13,6 @@ namespace Jungle {
             ~FlorestaBranca();
             void criarFundo();
             void criarEntidades();
-            void executar();
         };
 
     }

@@ -11,7 +11,6 @@ namespace Jungle {
         public:
             FlorestaVermelha();
             ~FlorestaVermelha();
-            void executar();
             void criarFundo();
             void criarEntidades();
         };

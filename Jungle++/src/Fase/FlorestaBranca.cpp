@@ -40,9 +40,3 @@ void Jungle::Fase::FlorestaBranca::criarEntidades(){
     listaObstaculos.addEntidade(criarCaixa(sf::Vector2f(1000.0f, 350.0f)));
 }
 
-void Jungle::Fase::FlorestaBranca::executar(){
-    fundo.executar();
-    desenhar();
-    pColisao->executar();
-}
-

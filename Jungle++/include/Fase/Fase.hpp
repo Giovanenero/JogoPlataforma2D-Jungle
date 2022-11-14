@@ -42,7 +42,7 @@ namespace Jungle {
             Entidade::Entidade* criarCaixa(const sf::Vector2f pos);
             virtual void criarFundo() = 0;
             virtual void criarEntidades() = 0;
-            virtual void executar() = 0;
+            void executar();
             void desenhar();
         };
 
