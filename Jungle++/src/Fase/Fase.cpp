@@ -19,40 +19,68 @@ Jungle::Fase::Fase::~Fase(){
     listaPersonagens.limparLista();
 }
 
-Jungle::Entidade::Entidade* Jungle::Fase::Fase::criarPlataforma(const sf::Vector2f pos){
+void Jungle::Fase::Fase::criarPlataforma(const sf::Vector2f pos){
     Entidade::Obstaculo::Plataforma* plataforma = new Entidade::Obstaculo::Plataforma(pos, sf::Vector2f(300.0f, 50.0f));
     if(plataforma == nullptr){
         std::cout << "Jungle::Fase::nao foi possivel criar uma plataforma" << std::endl;
         exit(1);
     }
-    return static_cast<Entidade::Entidade*>(plataforma);
+    listaObstaculos.addEntidade(static_cast<Entidade::Entidade*>(plataforma));
 }
 
-Jungle::Entidade::Entidade* Jungle::Fase::Fase::criarCaixa(const sf::Vector2f pos){
+void Jungle::Fase::Fase::criarCaixa(const sf::Vector2f pos){
     Entidade::Obstaculo::Caixa* caixa = new Entidade::Obstaculo::Caixa(pos, sf::Vector2f(50.0f, 50.0f));
     if(caixa == nullptr){
         std::cout << "Jungle::Fase::nao foi possivel criar uma caixa" << std::endl;
         exit(1);
     }
-    return static_cast<Entidade::Entidade*>(caixa);
+    listaObstaculos.addEntidade(static_cast<Entidade::Entidade*>(caixa));
 }
 
-Jungle::Entidade::Entidade* Jungle::Fase::Fase::criaInimigo(const sf::Vector2f pos, Entidade::Personagem::Jogador::Jogador* jogador){
-    Entidade::Personagem::Inimigo::Inimigo* inimigo = new Entidade::Personagem::Inimigo::Inimigo(pos, sf::Vector2f(50.0f, 90.0f), jogador);
+void Jungle::Fase::Fase::criaInimigo(const sf::Vector2f pos){
+    Gerenciador::GerenciadorEvento* pEvento = pEvento->getGerenciadorEvento();
+    Entidade::Personagem::Jogador::Jogador* pJogador = pEvento->getJogador();
+    Entidade::Personagem::Inimigo::Inimigo* inimigo = new Entidade::Personagem::Inimigo::Inimigo(pos, sf::Vector2f(50.0f, 90.0f), pJogador);
     if(inimigo == nullptr){
         std::cout << "Jungle::Fase::nao foi possivel criar um inimigo" << std::endl;
         exit(1);
     }
-    return static_cast<Entidade::Entidade*>(inimigo);
+    listaPersonagens.addEntidade(static_cast<Entidade::Entidade*>(inimigo));
 }
 
-Jungle::Entidade::Personagem::Jogador::Jogador* Jungle::Fase::Fase::criarJogador(const sf::Vector2f pos){
+void Jungle::Fase::Fase::criarJogador(const sf::Vector2f pos){
     Entidade::Personagem::Jogador::Jogador* jogador = new Entidade::Personagem::Jogador::Jogador(pos, sf::Vector2f(50.0f, 90.0f));
     if(jogador == nullptr){
         std::cout << "Jungle::Fase::nao foi possivel criar um Jogador" << std::endl;
         exit(1);
     }
-    return jogador;
+    Gerenciador::GerenciadorEvento* pEvento = pEvento->getGerenciadorEvento();
+    pEvento->setJogador(jogador);
+    listaPersonagens.addEntidade(static_cast<Entidade::Entidade*>(jogador));
+}
+
+void Jungle::Fase::Fase::criarEntidade(char letra, const sf::Vector2i pos){
+    switch (letra)
+    {
+        case ('i'):
+        {
+            criaInimigo(sf::Vector2f(pos.x * 50.0f, pos.y * 50.0f));
+        }
+        break;
+        case('c'):
+        {
+            criarCaixa(sf::Vector2f(pos.x * 50.0f, pos.y * 50.0f));
+        }
+        break;
+        case('#'):
+        {
+            criarPlataforma(sf::Vector2f(pos.x * 50.0f, pos.y * 50.0f));
+        }
+        break;
+        case('j'):{
+            criarJogador(sf::Vector2f(pos.x * 50.0f, pos.y * 50.0f));
+        }
+    }
 }
 
 void Jungle::Fase::Fase::desenhar(){

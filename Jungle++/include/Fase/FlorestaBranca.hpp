@@ -6,13 +6,13 @@ namespace Jungle {
 
     namespace Fase {
 
-        class FlorestaBranca : public Fase {
+        class FlorestaBranca : private Fase  {
         private:
         public:
             FlorestaBranca();
             ~FlorestaBranca();
             void criarFundo();
-            void criarEntidades();
+            void criarMapa();
         };
 
     }

@@ -19,6 +19,7 @@ namespace Jungle {
             ~GerenciadorEvento();
             static GerenciadorEvento* getGerenciadorEvento();
             void setJogador(Entidade::Personagem::Jogador::Jogador* pJogador);
+            Entidade::Personagem::Jogador::Jogador* getJogador();
             void verificaTeclaPressionada(sf::Keyboard::Key tecla);
             void verificaTeclaSolta(sf::Keyboard::Key tecla);
             void executar();

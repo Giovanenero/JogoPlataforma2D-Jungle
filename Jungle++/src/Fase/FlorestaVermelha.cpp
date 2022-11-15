@@ -17,7 +17,27 @@ void Jungle::Fase::FlorestaVermelha::criarFundo(){
     fundo.addCamada("Jungle++/img/Fase/FLorestaVermelha/camada4.png", 0.5f);
 }
 
-void Jungle::Fase::FlorestaVermelha::criarEntidades(){
+void Jungle::Fase::FlorestaVermelha::criarMapa(){
+    std::ifstream arquivo;
+    std::string linha;
+    arquivo.open("Jungle++/arquivo/Mapa_FlorestaVermelha.txt");
+    if(!arquivo.is_open()){
+        std::cout << "Jungle::Fase::FlorestaVermelha::nao foi possivel abrir o arquivo" << std::endl;
+        exit(1);
+    }
+    int j = 0;
+    while(std::getline(arquivo, linha)){
+        for(int i = 0; i < linha.size(); i++){
+            if(linha[i] != ' '){
+                criarEntidade(linha[i], sf::Vector2i(i, j));
+            }
+        }
+        j++;
+    }
+    arquivo.close();
+
+
+    /*
     Entidade::Personagem::Jogador::Jogador* jogador = criarJogador(sf::Vector2f(100.0f, 400.0f));
     Gerenciador::GerenciadorEvento* pEvento = pEvento->getGerenciadorEvento();
     pEvento->setJogador(jogador);
@@ -37,5 +57,5 @@ void Jungle::Fase::FlorestaVermelha::criarEntidades(){
     listaObstaculos.addEntidade(criarPlataforma(sf::Vector2f(600.0f, 250.0f)));
     listaObstaculos.addEntidade(criarCaixa(sf::Vector2f(0.0f, 500.0f)));
     listaObstaculos.addEntidade(criarCaixa(sf::Vector2f(300.0f, 350.0f)));
-    
+    */
 }

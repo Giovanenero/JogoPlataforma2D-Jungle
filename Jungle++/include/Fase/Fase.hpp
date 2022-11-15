@@ -23,6 +23,8 @@
 //Listas
 #include "..\Lista\ListaEntidade.hpp"
 
+#include <fstream>
+
 namespace Jungle {
 
     namespace Fase {
@@ -36,12 +38,13 @@ namespace Jungle {
         public:
             Fase(const IDs::IDs ID_Fase, const IDs::IDs ID_Fundo);
             ~Fase();
-            Entidade::Entidade* criaInimigo(const sf::Vector2f pos, Entidade::Personagem::Jogador::Jogador* jogador);
-            Entidade::Personagem::Jogador::Jogador* criarJogador(const sf::Vector2f pos);
-            Entidade::Entidade* criarPlataforma(const sf::Vector2f pos);
-            Entidade::Entidade* criarCaixa(const sf::Vector2f pos);
+            void criaInimigo(const sf::Vector2f pos);
+            void criarJogador(const sf::Vector2f pos);
+            void criarPlataforma(const sf::Vector2f pos);
+            void criarCaixa(const sf::Vector2f pos);
             virtual void criarFundo() = 0;
-            virtual void criarEntidades() = 0;
+            virtual void criarMapa() = 0;
+            void criarEntidade(char letra, const sf::Vector2i pos);
             void executar();
             void desenhar();
         };

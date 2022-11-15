@@ -22,6 +22,10 @@ void Jungle::Gerenciador::GerenciadorEvento::setJogador(Entidade::Personagem::Jo
     this->pJogador = pJogador;
 }
 
+Jungle::Entidade::Personagem::Jogador::Jogador* Jungle::Gerenciador::GerenciadorEvento::getJogador(){
+    return pJogador;
+}
+
 void Jungle::Gerenciador::GerenciadorEvento::verificaTeclaPressionada(sf::Keyboard::Key tecla){
     if(tecla == sf::Keyboard::A){
         pJogador->andar(true);

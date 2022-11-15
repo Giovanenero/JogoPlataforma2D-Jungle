@@ -34,7 +34,7 @@ void Jungle::Principal::criarFase(){
     }
     fase = static_cast<Fase::Fase*>(aux);
     fase->criarFundo();
-    fase->criarEntidades();
+    fase->criarMapa();
 }
 
 void Jungle::Principal::executar(){
