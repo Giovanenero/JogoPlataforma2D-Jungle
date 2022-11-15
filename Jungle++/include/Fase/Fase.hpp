@@ -6,8 +6,6 @@
 //Fundo efeito Parallax
 #include "..\Parallax\Fundo.hpp"
 
-#include "..\Entidade\Entidade.hpp"
-
 //Personagens
 #include "..\Entidade\Personagem\Jogador\Jogador.hpp"
 #include "..\Entidade\Personagem\Inimigo\Inimigo.hpp"

@@ -89,7 +89,12 @@ void Jungle::Fase::Fase::desenhar(){
 }
 
 void Jungle::Fase::Fase::executar(){
+    //atualiza fundo
     fundo.executar();
+
+    //atualiza entidade e desenha
     desenhar();
+
+    //verifica colisão
     pColisao->executar();
 }
