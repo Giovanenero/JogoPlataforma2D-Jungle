@@ -14,7 +14,7 @@ namespace Jungle {
         private:
             sf::RenderWindow* window;
 
-            //atributo para movimentar a camera
+            //movimentar a camera
             sf::View camera;
 
             //a construtora privada faz parte do padrão de projeto singleton

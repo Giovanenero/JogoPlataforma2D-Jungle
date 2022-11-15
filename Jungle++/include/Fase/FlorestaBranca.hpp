@@ -7,7 +7,6 @@ namespace Jungle {
     namespace Fase {
 
         class FlorestaBranca : private Fase  {
-        private:
         public:
             FlorestaBranca();
             ~FlorestaBranca();
