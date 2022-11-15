@@ -15,10 +15,11 @@ namespace Jungle {
             Gerenciador::GerenciadorGrafico* pGrafico;
             Gerenciador::GerenciadorEvento* pEvento;
             Fase::Fase* fase;
+
+            void criarFase();
         public:
             Principal();
             ~Principal();
-            void criarFase();
             void executar();
     };
 
