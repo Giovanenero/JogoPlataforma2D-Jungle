@@ -5,15 +5,6 @@ Jungle::Principal::Principal():
     pEvento(pEvento->getGerenciadorEvento()),
     pGerenciadorEstado(pGerenciadorEstado->getGerenciadorEstado())
 {
-    inicializa();
-    executar();
-}
-
-Jungle::Principal::~Principal(){
-
-}
-
-void Jungle::Principal::inicializa(){
     if(pGrafico == nullptr){
         std::cout << "ERROR::Jungle::Principal nao foi possivel criar o GerenciadorGrafico" << std::endl;
         exit(1);
@@ -26,6 +17,14 @@ void Jungle::Principal::inicializa(){
         std::cout << "ERROR::Jungle::Principal::nao foi possivel criar um GerenciadorEstado" << std::endl;
         exit(1);
     }
+    inicializa();
+}
+
+Jungle::Principal::~Principal(){
+
+}
+
+void Jungle::Principal::inicializa(){
     pGerenciadorEstado->addEstado(IDs::IDs::jogar_florestaBranca);
 }
 

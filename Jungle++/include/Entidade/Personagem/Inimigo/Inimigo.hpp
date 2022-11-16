@@ -28,7 +28,6 @@ namespace Jungle {
                     short moveAleatorio;
                     float dtAux;
 
-                    virtual void inicializa() = 0;
                     void moveInimigo();
                     void atualizaMovimentoAleatorio();
                 public:
