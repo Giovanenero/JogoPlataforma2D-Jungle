@@ -3,7 +3,8 @@
 Jungle::Principal::Principal():
     pGrafico(pGrafico->getGerenciadorGrafico()), 
     pEvento(pEvento->getGerenciadorEvento()),
-    fase(nullptr)
+    //fase(nullptr)
+    maquinaEstado()
 {
     if(pGrafico == nullptr){
         std::cout << "ERROR::Jungle::Principal nao foi possivel criar o GerenciadorGrafico" << std::endl;
@@ -14,17 +15,21 @@ Jungle::Principal::Principal():
         std::cout << "ERROR::Jungle::Principal nao foi possivel criar um GerenciadorEvento" << std::endl;
         exit(1);
     }
-    criarFase();
+    //criarFase();
+    maquinaEstado.addEstado(IDs::IDs::jogar_florestaBranca);
     executar();
 }
 
 Jungle::Principal::~Principal(){
+    /*
     if(fase){
         delete(fase);
         fase = nullptr;
     }
+    */
 }
 
+/*
 void Jungle::Principal::criarFase(){
     //Fase::FlorestaBranca* aux = new Fase::FlorestaBranca();
     Fase::FlorestaVermelha* aux = new Fase::FlorestaVermelha();
@@ -36,6 +41,7 @@ void Jungle::Principal::criarFase(){
     fase->criarFundo();
     fase->criarMapa();
 }
+*/
 
 void Jungle::Principal::executar(){
     /**
@@ -52,7 +58,8 @@ void Jungle::Principal::executar(){
         pGrafico->limpaJanela();
 
         //atualiza fase
-        fase->executar();
+        //fase->executar();
+        maquinaEstado.executar();
 
         //mostra tudo na janela
         pGrafico->mostraElementos();

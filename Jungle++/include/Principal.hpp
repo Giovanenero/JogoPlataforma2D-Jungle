@@ -8,15 +8,19 @@
 #include "Fase\FlorestaBranca.hpp"
 #include "Fase\FlorestaVermelha.hpp"
 
+#include "Estado\MaquinaEstado.hpp"
+
 namespace Jungle {
 
     class Principal {
         private:
             Gerenciador::GerenciadorGrafico* pGrafico;
             Gerenciador::GerenciadorEvento* pEvento;
-            Fase::Fase* fase;
+            //Fase::Fase* fase;
 
-            void criarFase();
+            //void criarFase();
+
+            Estado::MaquinaEstado maquinaEstado;
         public:
             Principal();
             ~Principal();
