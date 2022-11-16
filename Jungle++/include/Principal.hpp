@@ -8,7 +8,7 @@
 #include "Fase\FlorestaBranca.hpp"
 #include "Fase\FlorestaVermelha.hpp"
 
-#include "Estado\MaquinaEstado.hpp"
+#include "Gerenciador\GerenciadorEstado.hpp"
 
 namespace Jungle {
 
@@ -16,7 +16,7 @@ namespace Jungle {
         private:
             Gerenciador::GerenciadorGrafico* pGrafico;
             Gerenciador::GerenciadorEvento* pEvento;
-            Estado::MaquinaEstado maquinaEstado;
+            Gerenciador::GerenciadorEstado* pGerenciadorEstado;
 
             void inicializa();
         public:
