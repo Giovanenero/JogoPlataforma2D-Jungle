@@ -26,8 +26,8 @@ Jungle::Principal::~Principal(){
 }
 
 void Jungle::Principal::criarFase(){
-    Fase::FlorestaBranca* aux = new Fase::FlorestaBranca();
-    //Fase::FlorestaVermelha* aux = new Fase::FlorestaVermelha();
+    //Fase::FlorestaBranca* aux = new Fase::FlorestaBranca();
+    Fase::FlorestaVermelha* aux = new Fase::FlorestaVermelha();
     if(aux == nullptr){
         std::cout << "Jungle::Principal::nao foi possivel criar fase" << std::endl;
         exit(1);
