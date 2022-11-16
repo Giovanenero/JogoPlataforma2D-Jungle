@@ -26,7 +26,7 @@ void Jungle::Fase::FlorestaBranca::criarMapa(){
     }
 
     for(int i = 0; i < 2; i++){
-        criaInimigo(sf::Vector2f(500.0f * (i + 1), 0.0f));
+        criarEsqueleto(sf::Vector2f(500.0f * (i + 1), 0.0f));
     }
     criarPlataforma(sf::Vector2f(500.0f, 400.0f));
     criarPlataforma(sf::Vector2f(900.0f, 400.0f));

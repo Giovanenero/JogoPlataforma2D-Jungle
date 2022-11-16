@@ -16,11 +16,9 @@ namespace Jungle {
         private:
             Gerenciador::GerenciadorGrafico* pGrafico;
             Gerenciador::GerenciadorEvento* pEvento;
-            //Fase::Fase* fase;
-
-            //void criarFase();
-
             Estado::MaquinaEstado maquinaEstado;
+
+            void inicializa();
         public:
             Principal();
             ~Principal();

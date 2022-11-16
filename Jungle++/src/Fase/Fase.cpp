@@ -37,15 +37,15 @@ void Jungle::Fase::Fase::criarCaixa(const sf::Vector2f pos){
     listaObstaculos.addEntidade(static_cast<Entidade::Entidade*>(caixa));
 }
 
-void Jungle::Fase::Fase::criaInimigo(const sf::Vector2f pos){
+void Jungle::Fase::Fase::criarEsqueleto(const sf::Vector2f pos){
     Gerenciador::GerenciadorEvento* pEvento = pEvento->getGerenciadorEvento();
     Entidade::Personagem::Jogador::Jogador* pJogador = pEvento->getJogador();
-    Entidade::Personagem::Inimigo::Inimigo* inimigo = new Entidade::Personagem::Inimigo::Inimigo(pos, sf::Vector2f(50.0f, 90.0f), pJogador);
-    if(inimigo == nullptr){
-        std::cout << "Jungle::Fase::nao foi possivel criar um inimigo" << std::endl;
+    Entidade::Personagem::Inimigo::Esqueleto* esqueleto = new Entidade::Personagem::Inimigo::Esqueleto(pos, sf::Vector2f(50.0f, 90.0f), pJogador);
+    if(esqueleto == nullptr){
+        std::cout << "Jungle::Fase::nao foi possivel criar um esqueleto" << std::endl;
         exit(1);
     }
-    listaPersonagens.addEntidade(static_cast<Entidade::Entidade*>(inimigo));
+    listaPersonagens.addEntidade(static_cast<Entidade::Entidade*>(esqueleto));
 }
 
 void Jungle::Fase::Fase::criarJogador(const sf::Vector2f pos){
@@ -64,7 +64,7 @@ void Jungle::Fase::Fase::criarEntidade(char letra, const sf::Vector2i pos){
     {
         case ('i'):
         {
-            criaInimigo(sf::Vector2f(pos.x * 50.0f, pos.y * 50.0f));
+            criarEsqueleto(sf::Vector2f(pos.x * 50.0f, pos.y * 50.0f));
         }
         break;
         case('c'):

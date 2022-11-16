@@ -48,7 +48,7 @@ void Jungle::Entidade::Personagem::Jogador::Jogador::atualizarAnimacao(){
 
 void Jungle::Entidade::Personagem::Jogador::Jogador::colisao(Entidade* outraEntidade, sf::Vector2f ds){
     switch(outraEntidade->getID()){
-        case (IDs::IDs::inimigo):
+        case (IDs::IDs::esqueleto):
         {
             
         }

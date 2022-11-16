@@ -5,7 +5,8 @@ namespace IDs {
     enum class IDs {
         vazio = 0,
         jogador,
-        inimigo,
+        esqueleto,
+        minotauro,
         plataforma,
         caixa,
         fundo_florestaBranca,

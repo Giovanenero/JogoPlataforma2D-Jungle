@@ -3,45 +3,27 @@
 Jungle::Principal::Principal():
     pGrafico(pGrafico->getGerenciadorGrafico()), 
     pEvento(pEvento->getGerenciadorEvento()),
-    //fase(nullptr)
     maquinaEstado()
 {
-    if(pGrafico == nullptr){
-        std::cout << "ERROR::Jungle::Principal nao foi possivel criar o GerenciadorGrafico" << std::endl;
-        exit(1);
-    }
-
-    if(pEvento == nullptr){
-        std::cout << "ERROR::Jungle::Principal nao foi possivel criar um GerenciadorEvento" << std::endl;
-        exit(1);
-    }
-    //criarFase();
-    maquinaEstado.addEstado(IDs::IDs::jogar_florestaBranca);
+    inicializa();
     executar();
 }
 
 Jungle::Principal::~Principal(){
-    /*
-    if(fase){
-        delete(fase);
-        fase = nullptr;
-    }
-    */
+
 }
 
-/*
-void Jungle::Principal::criarFase(){
-    //Fase::FlorestaBranca* aux = new Fase::FlorestaBranca();
-    Fase::FlorestaVermelha* aux = new Fase::FlorestaVermelha();
-    if(aux == nullptr){
-        std::cout << "Jungle::Principal::nao foi possivel criar fase" << std::endl;
+void Jungle::Principal::inicializa(){
+    if(pGrafico == nullptr){
+        std::cout << "ERROR::Jungle::Principal nao foi possivel criar o GerenciadorGrafico" << std::endl;
         exit(1);
     }
-    fase = static_cast<Fase::Fase*>(aux);
-    fase->criarFundo();
-    fase->criarMapa();
+    if(pEvento == nullptr){
+        std::cout << "ERROR::Jungle::Principal nao foi possivel criar um GerenciadorEvento" << std::endl;
+        exit(1);
+    }
+    maquinaEstado.addEstado(IDs::IDs::jogar_florestaBranca);
 }
-*/
 
 void Jungle::Principal::executar(){
     /**
@@ -57,8 +39,7 @@ void Jungle::Principal::executar(){
         //limpa janela
         pGrafico->limpaJanela();
 
-        //atualiza fase
-        //fase->executar();
+        //atualiza maquina de estado
         maquinaEstado.executar();
 
         //mostra tudo na janela

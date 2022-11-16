@@ -14,7 +14,7 @@ void Jungle::Entidade::Obstaculo::Caixa::colisao(Entidade* outraEntidade, sf::Ve
     sf::Vector2f posOutro = outraEntidade->getPos();
     sf::Vector2f tamOutro = outraEntidade->getTam();
 
-    if(outraEntidade->getID() == IDs::IDs::jogador || outraEntidade->getID() == IDs::IDs::inimigo){
+    if(outraEntidade->getID() == IDs::IDs::jogador || outraEntidade->getID() == IDs::IDs::esqueleto){
         colisaoObstaculo(ds, static_cast<Personagem::Personagem*>(outraEntidade));
     }
 }

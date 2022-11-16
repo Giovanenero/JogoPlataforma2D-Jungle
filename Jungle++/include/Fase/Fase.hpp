@@ -8,7 +8,7 @@
 
 //Personagens
 #include "..\Entidade\Personagem\Jogador\Jogador.hpp"
-#include "..\Entidade\Personagem\Inimigo\Inimigo.hpp"
+#include "..\Entidade\Personagem\Inimigo\Esqueleto.hpp"
 
 //Obstaculos
 #include "..\Entidade\Obstaculo\Caixa.hpp"
@@ -36,7 +36,7 @@ namespace Jungle {
         public:
             Fase(const IDs::IDs ID_Fase, const IDs::IDs ID_Fundo);
             ~Fase();
-            void criaInimigo(const sf::Vector2f pos);
+            void criarEsqueleto(const sf::Vector2f pos);
             void criarJogador(const sf::Vector2f pos);
             void criarPlataforma(const sf::Vector2f pos);
             void criarCaixa(const sf::Vector2f pos);
