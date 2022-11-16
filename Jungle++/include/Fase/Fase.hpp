@@ -6,14 +6,7 @@
 //Fundo efeito Parallax
 #include "..\Parallax\Fundo.hpp"
 
-//Personagens
-#include "..\Entidade\Personagem\Jogador\Jogador.hpp"
-#include "..\Entidade\Personagem\Inimigo\Esqueleto.hpp"
-#include "..\Entidade\Personagem\Inimigo\Chefao\Minotauro.hpp"
-
-//Obstaculos
-#include "..\Entidade\Obstaculo\Caixa.hpp"
-#include "..\Entidade\Obstaculo\Plataforma.hpp"
+#include "..\Construtor\ConstrutorFase.hpp"
 
 //Gerenciadores
 #include "..\Gerenciador\GerenciadorColisao.hpp"
@@ -34,14 +27,10 @@ namespace Jungle {
             Lista::ListaEntidade listaObstaculos;
             Gerenciador::GerenciadorColisao* pColisao;
             Parallax::Fundo fundo;
+            Construtor::ConstrutorFase construtor;
         public:
             Fase(const IDs::IDs ID_Fase, const IDs::IDs ID_Fundo);
             ~Fase();
-            void criarMinotauro(const sf::Vector2f pos);
-            void criarEsqueleto(const sf::Vector2f pos);
-            void criarJogador(const sf::Vector2f pos);
-            void criarPlataforma(const sf::Vector2f pos);
-            void criarCaixa(const sf::Vector2f pos);
             virtual void criarFundo() = 0;
             virtual void criarMapa() = 0;
             void criarEntidade(char letra, const sf::Vector2i pos);

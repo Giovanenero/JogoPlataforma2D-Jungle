@@ -2,8 +2,8 @@
 
 #include <cmath>
 
-Jungle::Entidade::Personagem::Jogador::Jogador::Jogador(const sf::Vector2f pos, const sf::Vector2f tam):
-    Personagem(pos, tam, VELOCIDADE_JOGADOR, IDs::IDs::jogador), noChao(false)
+Jungle::Entidade::Personagem::Jogador::Jogador::Jogador(const sf::Vector2f pos):
+    Personagem(pos, sf::Vector2f(TAMANHO_JOGADOR_X, TAMANHO_JOGADOR_Y), VELOCIDADE_JOGADOR, IDs::IDs::jogador), noChao(false)
 
 {
     inicializa();

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "..\Estado\EstadoJogar.hpp"
+#include "..\Construtor\ConstrutorEstado.hpp"
 #include <stack>
 
 namespace Jungle {
@@ -10,8 +10,7 @@ namespace Jungle {
         class GerenciadorEstado {
         private:
             std::stack<Estado::Estado*> pilhaEstados;
-
-            void addEstadoJogar(const IDs::IDs ID);
+            Construtor::ConstrutorEstado construtor;
 
             //padrão de projeto singleton
             static GerenciadorEstado* pGerenciadorEstado;

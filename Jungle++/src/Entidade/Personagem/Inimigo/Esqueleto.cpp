@@ -8,8 +8,8 @@ namespace Jungle {
 
             namespace Inimigo {
 
-                Esqueleto::Esqueleto(const sf::Vector2f pos, const sf::Vector2f tam, Jogador::Jogador* jogador):
-                    Inimigo(pos, tam, jogador, IDs::IDs::esqueleto)
+                Esqueleto::Esqueleto(const sf::Vector2f pos, Jogador::Jogador* jogador):
+                    Inimigo(pos, sf::Vector2f(TAMANHO_ESQUELO_X, TAMANHO_ESQUELO_Y), jogador, IDs::IDs::esqueleto)
                 {
                     inicializa();
                 }

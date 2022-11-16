@@ -3,7 +3,7 @@
 Jungle::Gerenciador::GerenciadorEvento* Jungle::Gerenciador::GerenciadorEvento::pEvento = nullptr;
 
 Jungle::Gerenciador::GerenciadorEvento::GerenciadorEvento():
-    pGrafico(pGrafico->getGerenciadorGrafico())
+    pGrafico(pGrafico->getGerenciadorGrafico()), pJogador(nullptr)
 {
 
 }

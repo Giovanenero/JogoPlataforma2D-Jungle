@@ -1,7 +1,7 @@
 #include "..\..\..\include\Entidade\Obstaculo\Caixa.hpp"
 
-Jungle::Entidade::Obstaculo::Caixa::Caixa(sf::Vector2f pos, sf::Vector2f tam):
-    Obstaculo(pos, tam, IDs::IDs::caixa, CAMINHO_TEXTURA_CAIXA), lentidao(0.25f)
+Jungle::Entidade::Obstaculo::Caixa::Caixa(sf::Vector2f pos):
+    Obstaculo(pos, sf::Vector2f(TAMANHO_CAIXA_X, TAMANHO_CAIXA_Y), IDs::IDs::caixa, CAMINHO_TEXTURA_CAIXA), lentidao(0.25f)
 {
     //terminar...
 }
