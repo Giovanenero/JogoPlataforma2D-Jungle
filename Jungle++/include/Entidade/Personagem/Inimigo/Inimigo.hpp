@@ -30,6 +30,7 @@ namespace Jungle {
 
                     void moveInimigo();
                     void atualizaMovimentoAleatorio();
+                    //virtual void atualizarAnimacao(){ }
                 public:
                     Inimigo(const sf::Vector2f pos, const sf::Vector2f tam, Jogador::Jogador* jogador, const IDs::IDs ID);
                     ~Inimigo();

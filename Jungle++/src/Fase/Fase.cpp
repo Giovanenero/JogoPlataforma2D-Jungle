@@ -59,27 +59,44 @@ void Jungle::Fase::Fase::criarJogador(const sf::Vector2f pos){
     listaPersonagens.addEntidade(static_cast<Entidade::Entidade*>(jogador));
 }
 
+void Jungle::Fase::Fase::criarMinotauro(const sf::Vector2f pos){
+    Gerenciador::GerenciadorEvento* pEvento = pEvento->getGerenciadorEvento();
+    Entidade::Personagem::Jogador::Jogador* pJogador = pEvento->getJogador();
+    Entidade::Personagem::Inimigo::Chefao::Minotauro* minotauro = new Entidade::Personagem::Inimigo::Chefao::Minotauro(pos, sf::Vector2f(60.0f, 110.0f), pJogador);
+    if(minotauro == nullptr){
+        std::cout << "Jungle::Fase::nao foi possivel criar um minotauro" << std::endl;
+        exit(1);
+    }
+    listaPersonagens.addEntidade(static_cast<Entidade::Entidade*>(minotauro));
+}
+
 void Jungle::Fase::Fase::criarEntidade(char letra, const sf::Vector2i pos){
+    sf::Vector2f posAux = sf::Vector2f(pos.x * 50.0f, pos.y * 50.0f);
     switch (letra)
     {
-        case ('i'):
+        case ('e'):
         {
-            criarEsqueleto(sf::Vector2f(pos.x * 50.0f, pos.y * 50.0f));
+            criarEsqueleto(posAux);
         }
         break;
         case('c'):
         {
-            criarCaixa(sf::Vector2f(pos.x * 50.0f, pos.y * 50.0f));
+            criarCaixa(posAux);
         }
         break;
         case('#'):
         {
-            criarPlataforma(sf::Vector2f(pos.x * 50.0f, pos.y * 50.0f));
+            criarPlataforma(posAux);
         }
         break;
         case('j'):{
-            criarJogador(sf::Vector2f(pos.x * 50.0f, pos.y * 50.0f));
+            criarJogador(posAux);
         }
+        break;
+        case('m'):{
+            criarMinotauro(posAux);
+        }
+        break;
     }
 }
 

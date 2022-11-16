@@ -25,7 +25,7 @@ Jungle::Principal::~Principal(){
 }
 
 void Jungle::Principal::inicializa(){
-    pGerenciadorEstado->addEstado(IDs::IDs::jogar_florestaBranca);
+    pGerenciadorEstado->addEstado(IDs::IDs::jogar_florestaVermleha);
 }
 
 void Jungle::Principal::executar(){

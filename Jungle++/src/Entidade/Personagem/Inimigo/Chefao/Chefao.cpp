@@ -1,5 +1,3 @@
-#pragma once 
-
 #include "..\..\..\..\..\include\Entidade\Personagem\Inimigo\Chefao\Chefao.hpp"
 
 namespace Jungle {
@@ -22,9 +20,11 @@ namespace Jungle {
 
                     }
 
+                    /*
                     void Chefao::atualizarAnimacao(){
-
+                        animacao.atualizar(paraEsquerda, "PARADO");
                     }
+                    */
 
                 }
 
