@@ -20,7 +20,6 @@ namespace Jungle {
             EstadoJogar(Fase::Fase* fase);
             ~EstadoJogar();
             void executar();
-            //void desenhar();
         };
 
     }

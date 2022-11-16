@@ -14,15 +14,8 @@ namespace Jungle {
 
         }
 
-        /*
-        void EstadoJogar::desenhar(){
-            fase->desenhar();
-        }
-        */
-
          void EstadoJogar::executar(){
             fase->executar();
-            //desenhar();
         }
 
     }
