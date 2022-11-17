@@ -12,7 +12,7 @@ namespace Jungle {
 
         } 
 
-        Estado::Estado* ConstrutorEstado::addEstadoJogar(const IDs::IDs ID){
+        Fase::Fase* ConstrutorEstado::criarFase(const IDs::IDs ID){
             Fase::Fase* fase = nullptr;
             if(ID == IDs::IDs::jogar_florestaBranca){
                 fase = static_cast<Fase::Fase*>(new Fase::FlorestaBranca());
@@ -25,6 +25,11 @@ namespace Jungle {
             }
             fase->criarFundo();
             fase->criarMapa();
+            return fase;
+        }
+
+        Estado::Estado* ConstrutorEstado::criarEstadoJogar(const IDs::IDs ID){
+            Fase::Fase* fase = criarFase(ID);
             Estado::EstadoJogar* estadoJogar = new Estado::EstadoJogar(fase);
             if(estadoJogar == nullptr){
                 std::cout << "Jungle::Estado::MaquinaEstado::nao foi possivel criar um Estado Jogar" << std::endl;

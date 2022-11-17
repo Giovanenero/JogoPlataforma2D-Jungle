@@ -9,10 +9,12 @@ namespace Jungle {
     namespace Construtor {
 
         class ConstrutorEstado {
+        private:
+            Fase::Fase* criarFase(const IDs::IDs ID);
         public:
             ConstrutorEstado();
             ~ConstrutorEstado();
-            Estado::Estado* addEstadoJogar(const IDs::IDs ID);
+            Estado::Estado* criarEstadoJogar(const IDs::IDs ID);
         };
 
     }
