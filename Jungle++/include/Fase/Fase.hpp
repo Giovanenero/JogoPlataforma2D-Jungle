@@ -6,14 +6,14 @@
 //Fundo efeito Parallax
 #include "..\Parallax\Fundo.hpp"
 
-#include "..\Construtor\ConstrutorFase.hpp"
-
 //Gerenciadores
 #include "..\Gerenciador\GerenciadorColisao.hpp"
-#include "..\Gerenciador\GerenciadorEvento.hpp"
 
 //Listas
 #include "..\Lista\ListaEntidade.hpp"
+
+//Construtor
+#include "..\Construtor\ConstrutorEntidade.hpp"
 
 #include <fstream>
 
@@ -25,9 +25,9 @@ namespace Jungle {
         protected:
             Lista::ListaEntidade listaPersonagens;
             Lista::ListaEntidade listaObstaculos;
+            Construtor::ConstrutorEntidade construtorEntidade;
             Gerenciador::GerenciadorColisao* pColisao;
             Parallax::Fundo fundo;
-            Construtor::ConstrutorFase construtor;
         public:
             Fase(const IDs::IDs ID_Fase, const IDs::IDs ID_Fundo);
             ~Fase();
@@ -36,6 +36,7 @@ namespace Jungle {
             void criarEntidade(char letra, const sf::Vector2i pos);
             void executar();
             void desenhar();
+            Entidade::Personagem::Jogador::Jogador* getJogador();
         };
 
     }

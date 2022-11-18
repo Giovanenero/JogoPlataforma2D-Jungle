@@ -7,7 +7,7 @@ namespace Jungle {
         GerenciadorEstado* GerenciadorEstado::pGerenciadorEstado = nullptr;
 
         GerenciadorEstado::GerenciadorEstado():
-            pilhaEstados(), construtor()
+            pilhaEstados(), construtorEstado()
         {
 
         }
@@ -26,6 +26,7 @@ namespace Jungle {
                 pilhaEstados.top() = nullptr;
                 pilhaEstados.pop();
             }
+
             if(pGerenciadorEstado){
                 delete(pGerenciadorEstado);
                 pGerenciadorEstado = nullptr;
@@ -33,21 +34,29 @@ namespace Jungle {
         }
 
         void GerenciadorEstado::addEstado(const IDs::IDs ID){
-            Estado::Estado* estado = nullptr;
-            if(ID == IDs::IDs::jogar_florestaBranca || ID == IDs::IDs::jogar_florestaVermelha){
-                estado = construtor.criarEstadoJogar(ID);
+            Estado::Estado* estado = construtorEstado.criarEstado(ID);
+            if(estado ==  nullptr){
+                std::cout << "ERROR::Jungle::Gerenciador::GerenciadorEstado::estado eh nullptr" << std::endl;
+                exit(1);
             }
             pilhaEstados.push(estado);
         }
 
         void GerenciadorEstado::removerEstado(){
-            delete(pilhaEstados.top());
-            pilhaEstados.top() = nullptr;
-            pilhaEstados.pop();
+            if(pilhaEstados.top() != nullptr){
+                delete(pilhaEstados.top());
+                pilhaEstados.top() = nullptr;
+                pilhaEstados.pop();
+            }
 
             if(pilhaEstados.empty()){
-               Gerenciador::GerenciadorGrafico::getGerenciadorGrafico()->fecharJanela(); 
+                GerenciadorGrafico* pGrafico = pGrafico->getGerenciadorGrafico();
+                pGrafico->fecharJanela(); 
             }
+        }
+
+        Estado::Estado* GerenciadorEstado::getEstadoAtual() {
+            return pilhaEstados.top();
         }
 
 

@@ -7,10 +7,12 @@ namespace Jungle {
 
     namespace Gerenciador {
 
+        class GerenciadorEstado;
+
         class GerenciadorEvento {
         private:
             GerenciadorGrafico* pGrafico;
-            Entidade::Personagem::Jogador::Jogador* pJogador;
+            GerenciadorEstado* pGEstado;
 
             //padrão de projeto singleton
             static GerenciadorEvento* pEvento;
@@ -18,8 +20,6 @@ namespace Jungle {
         public:
             ~GerenciadorEvento();
             static GerenciadorEvento* getGerenciadorEvento();
-            void setJogador(Entidade::Personagem::Jogador::Jogador* pJogador);
-            Entidade::Personagem::Jogador::Jogador* getJogador();
             void verificaTeclaPressionada(sf::Keyboard::Key tecla);
             void verificaTeclaSolta(sf::Keyboard::Key tecla);
             void executar();

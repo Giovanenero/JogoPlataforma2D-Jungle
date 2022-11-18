@@ -9,6 +9,12 @@
 #include "..\Fase\FlorestaBranca.hpp"
 #include "..\Fase\FlorestaVermelha.hpp"
 
+//Jogador
+#include "..\Entidade\Personagem\Jogador\Jogador.hpp"
+
+//Construtor
+#include "..\Construtor\ConstrutorEstado.hpp"
+
 namespace Jungle {
 
     namespace Estado {
@@ -17,9 +23,10 @@ namespace Jungle {
         private:
             Fase::Fase* fase;
         public:
-            EstadoJogar(Fase::Fase* fase);
+            EstadoJogar(const IDs::IDs ID, Fase::Fase* fase);
             ~EstadoJogar();
             void executar();
+            Entidade::Personagem::Jogador::Jogador* getJogador();
         };
 
     }

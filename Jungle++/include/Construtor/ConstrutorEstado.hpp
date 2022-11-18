@@ -1,20 +1,25 @@
 #pragma once 
 
 #include "..\Estado\EstadoJogar.hpp"
-#include "..\Fase\FlorestaBranca.hpp"
-#include "..\Fase\FlorestaVermelha.hpp"
+
+#include "..\Construtor\ConstrutorFase.hpp"
 
 namespace Jungle {
 
     namespace Construtor {
 
         class ConstrutorEstado {
-        private:
-            Fase::Fase* criarFase(const IDs::IDs ID);
         public:
             ConstrutorEstado();
             ~ConstrutorEstado();
+            Estado::Estado* criarEstado(const IDs::IDs ID);
+        private:
             Estado::Estado* criarEstadoJogar(const IDs::IDs ID);
+            //Estado::Estado* criarMenuPrinciapal();
+            //Estado::Estado* criarMenuPausar();
+            //Estado::Estado* criarMenuSalvar();
+            //Estado::Estado* criarMenuOpcao();
+            //Estado::Estado* criarColocao();
         };
 
     }
