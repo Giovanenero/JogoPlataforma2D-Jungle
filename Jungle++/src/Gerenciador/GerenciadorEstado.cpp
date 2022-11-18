@@ -34,7 +34,7 @@ namespace Jungle {
 
         void GerenciadorEstado::addEstado(const IDs::IDs ID){
             Estado::Estado* estado = nullptr;
-            if(ID == IDs::IDs::jogar_florestaBranca || ID == IDs::IDs::jogar_florestaVermleha){
+            if(ID == IDs::IDs::jogar_florestaBranca || ID == IDs::IDs::jogar_florestaVermelha){
                 estado = construtor.criarEstadoJogar(ID);
             }
             pilhaEstados.push(estado);

@@ -25,16 +25,10 @@ Jungle::Principal::~Principal(){
 }
 
 void Jungle::Principal::inicializa(){
-    pGerenciadorEstado->addEstado(IDs::IDs::jogar_florestaVermleha);
+    pGerenciadorEstado->addEstado(IDs::IDs::jogar_florestaVermelha);
 }
 
 void Jungle::Principal::executar(){
-    /**
-     * @ return void 
-     * 
-     * Loop principal do jogo em que ocorre todo os eventos e move as entidades
-     */
-
     while(pGrafico->verificaJanelaAberta()){
         //gerencia eventos
         pEvento->executar();
