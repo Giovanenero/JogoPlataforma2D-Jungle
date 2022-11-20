@@ -1,7 +1,12 @@
 #pragma once
 
+//Construtor
 #include "..\Construtor\ConstrutorEstado.hpp"
+
+//Gerenciadores
 #include "GerenciadorGrafico.hpp"
+
+//Pilha
 #include <stack>
 
 namespace Jungle {

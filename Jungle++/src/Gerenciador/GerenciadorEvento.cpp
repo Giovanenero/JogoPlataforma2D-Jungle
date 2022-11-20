@@ -34,7 +34,7 @@ namespace Jungle {
                     exit(1);
                 }
                 if(tecla == sf::Keyboard::A){
-                pJogador->andar(true);
+                    pJogador->andar(true);
                 } else if(tecla == sf::Keyboard::D){
                     pJogador->andar(false);
                 } else if(tecla == sf::Keyboard::W){
@@ -59,8 +59,10 @@ namespace Jungle {
             } 
             if(tecla == sf::Keyboard::Escape){
                 pGEstado->removerEstado();
-            } else if(tecla == sf::Keyboard::P){
+            } else if(tecla == sf::Keyboard::B){
                 pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
+            } else if(tecla == sf::Keyboard::V){
+                pGEstado->addEstado(IDs::IDs::jogar_florestaVermelha);
             }
         }
 
