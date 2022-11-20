@@ -26,10 +26,10 @@ Jungle::Principal::~Principal(){
 
 void Jungle::Principal::inicializa(){
     pGerenciadorEstado->addEstado(IDs::IDs::jogar_florestaVermelha);
-    //pGerenciadorEstado->addEstado(IDs::IDs::jogar_florestaBranca);
 }
 
 void Jungle::Principal::executar(){
+
     while(pGrafico->verificaJanelaAberta()){
         //gerencia eventos
         pEvento->executar();

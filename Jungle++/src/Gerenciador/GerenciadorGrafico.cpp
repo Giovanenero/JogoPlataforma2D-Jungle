@@ -46,12 +46,24 @@ sf::Texture Jungle::Gerenciador::GerenciadorGrafico::carregarTextura(const char*
     return textura;
 }
 
+sf::Font Jungle::Gerenciador::GerenciadorGrafico::carregarFonte(const char* caminhoFonte){
+    sf::Font fonte;
+    if(!fonte.loadFromFile(caminhoFonte)){
+        throw("ERROR::Jungle::Gerenciador::GerenciadorGrafico::nao foi possivel encontrar o caminho da fonte");
+    }
+    return fonte;
+}
+
 void Jungle::Gerenciador::GerenciadorGrafico::limpaJanela(){
     window->clear();
 }
 
 void Jungle::Gerenciador::GerenciadorGrafico::desenhaElemento(sf::RectangleShape corpo){
     window->draw(corpo);
+}
+
+void Jungle::Gerenciador::GerenciadorGrafico::desenhaElemento(sf::Text texto){
+    window->draw(texto);
 }
 
 void Jungle::Gerenciador::GerenciadorGrafico::mostraElementos(){

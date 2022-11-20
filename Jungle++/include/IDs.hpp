@@ -14,7 +14,8 @@ namespace IDs {
         fundo_florestaVermelha,
         fase_florestaVermelha,
         jogar_florestaVermelha,
-        jogar_florestaBranca
+        jogar_florestaBranca,
+        botao
     };
 
 }

@@ -25,8 +25,10 @@ namespace Jungle {
             static GerenciadorGrafico* getGerenciadorGrafico();
             sf::RenderWindow* getWindow();
             sf::Texture carregarTextura(const char* caminhoTextura);
+            sf::Font carregarFonte(const char* caminhoFonte);
             void limpaJanela();
             void desenhaElemento(sf::RectangleShape corpo);
+            void desenhaElemento(sf::Text texto);
             void mostraElementos();
             void fecharJanela();
             const bool verificaJanelaAberta();

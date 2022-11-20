@@ -58,11 +58,12 @@ namespace Jungle {
                 }
             } 
             if(tecla == sf::Keyboard::Escape){
-                pGEstado->removerEstado();
+                //pGEstado->removerEstado();
+                pGrafico->fecharJanela();
             } else if(tecla == sf::Keyboard::B){
-                pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
+                //pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
             } else if(tecla == sf::Keyboard::V){
-                pGEstado->addEstado(IDs::IDs::jogar_florestaVermelha);
+                //pGEstado->addEstado(IDs::IDs::jogar_florestaVermelha);
             }
         }
 
