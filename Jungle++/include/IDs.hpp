@@ -15,7 +15,9 @@ namespace IDs {
         fase_florestaVermelha,
         jogar_florestaVermelha,
         jogar_florestaBranca,
-        botao
+        botao,
+        menu_principal,
+        estado_menu_principal
     };
 
 }

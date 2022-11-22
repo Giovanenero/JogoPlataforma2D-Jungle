@@ -7,7 +7,8 @@ namespace Jungle {
         namespace Botao {
 
             Botao::Botao(const std::string texto):
-                Ente(IDs::IDs::botao), caixaTexto(pGrafico->carregarFonte(CAMINHO_FONTE), texto)
+                Ente(IDs::IDs::botao), caixaTexto(pGrafico->carregarFonte(CAMINHO_FONTE), texto),
+                selecionado(false)
             {
 
             }

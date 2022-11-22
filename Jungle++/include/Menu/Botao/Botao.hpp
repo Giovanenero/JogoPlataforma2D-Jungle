@@ -11,11 +11,12 @@ namespace Jungle {
 
         namespace Botao {
 
-            class Botao : public Ente{
+            class Botao : public Ente {
             private:
                 sf::RectangleShape caixa;
                 Texto caixaTexto;
                 bool selecionado;
+
             public:
                 Botao(const std::string texto);
                 ~Botao();
