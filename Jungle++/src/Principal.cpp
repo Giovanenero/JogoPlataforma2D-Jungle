@@ -6,7 +6,7 @@ namespace Jungle {
     Gerenciador::GerenciadorEstado* Principal::pGerenciadorEstado = Gerenciador::GerenciadorEstado::getGerenciadorEstado();
     Gerenciador::GerenciadorEvento* Principal::pEvento = Gerenciador::GerenciadorEvento::getGerenciadorEvento();
 
-    Jungle::Principal::Principal(){
+    Principal::Principal(){
         if(pGrafico == nullptr){
             std::cout << "ERROR::Jungle::Principal nao foi possivel criar o GerenciadorGrafico" << std::endl;
             exit(1);
@@ -22,15 +22,15 @@ namespace Jungle {
         inicializa();
     }
 
-    Jungle::Principal::~Principal(){
+    Principal::~Principal(){
 
     }
 
-    void Jungle::Principal::inicializa(){
+    void Principal::inicializa(){
         pGerenciadorEstado->addEstado(IDs::IDs::jogar_florestaVermelha);
     }
 
-    void Jungle::Principal::executar(){
+    void Principal::executar(){
 
         while(pGrafico->verificaJanelaAberta()){
             //gerencia eventos
