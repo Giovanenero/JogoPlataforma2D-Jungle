@@ -14,9 +14,9 @@ namespace Jungle {
 
     class Principal {
         private:
-            Gerenciador::GerenciadorGrafico* pGrafico;
-            Gerenciador::GerenciadorEvento* pEvento;
-            Gerenciador::GerenciadorEstado* pGerenciadorEstado;
+            static Gerenciador::GerenciadorGrafico* pGrafico;
+            static Gerenciador::GerenciadorEvento* pEvento;
+            static Gerenciador::GerenciadorEstado* pGerenciadorEstado;
 
             void inicializa();
         public:

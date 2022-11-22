@@ -1,10 +1,14 @@
 #include "..\include\Ente.hpp"
 
-Jungle::Ente::Ente(const IDs::IDs ID):
-    ID(ID), pGrafico(pGrafico->getGerenciadorGrafico())
-{
+namespace Jungle {
 
-}
+    Gerenciador::GerenciadorGrafico* Ente::pGrafico = Gerenciador::GerenciadorGrafico::getGerenciadorGrafico();
+
+    Ente::Ente(const IDs::IDs ID):
+        ID(ID)
+    {
+
+    }   
 
 Jungle::Ente::~Ente(){
 
@@ -12,4 +16,6 @@ Jungle::Ente::~Ente(){
 
 const IDs::IDs Jungle::Ente::getID() const {
     return ID;
+}
+
 }

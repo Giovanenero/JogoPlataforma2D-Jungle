@@ -11,8 +11,8 @@ namespace Jungle {
 
         class GerenciadorEvento {
         private:
-            GerenciadorGrafico* pGrafico;
-            GerenciadorEstado* pGEstado;
+            static GerenciadorGrafico* pGrafico;
+            static GerenciadorEstado* pGEstado;
 
             //padrão de projeto singleton
             static GerenciadorEvento* pEvento;

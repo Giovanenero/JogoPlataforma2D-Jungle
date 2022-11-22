@@ -6,11 +6,10 @@ namespace Jungle {
     namespace Gerenciador {
 
         GerenciadorEvento* GerenciadorEvento::pEvento = nullptr;
+        GerenciadorGrafico* GerenciadorEvento::pGrafico = GerenciadorGrafico::getGerenciadorGrafico();
+        GerenciadorEstado* GerenciadorEvento::pGEstado = GerenciadorEstado::getGerenciadorEstado();
 
-        GerenciadorEvento::GerenciadorEvento():
-            pGrafico(pGrafico->getGerenciadorGrafico()),
-            pGEstado(pGEstado->getGerenciadorEstado())
-        {
+        GerenciadorEvento::GerenciadorEvento(){
 
         }
 

@@ -1,46 +1,50 @@
 #include "..\include\Principal.hpp"
 
-Jungle::Principal::Principal():
-    pGrafico(pGrafico->getGerenciadorGrafico()), 
-    pGerenciadorEstado(pGerenciadorEstado->getGerenciadorEstado()),
-    pEvento(pEvento->getGerenciadorEvento())
-{
-    if(pGrafico == nullptr){
-        std::cout << "ERROR::Jungle::Principal nao foi possivel criar o GerenciadorGrafico" << std::endl;
-        exit(1);
+namespace Jungle {
+
+    Gerenciador::GerenciadorGrafico* Principal::pGrafico = Gerenciador::GerenciadorGrafico::getGerenciadorGrafico();
+    Gerenciador::GerenciadorEstado* Principal::pGerenciadorEstado = Gerenciador::GerenciadorEstado::getGerenciadorEstado();
+    Gerenciador::GerenciadorEvento* Principal::pEvento = Gerenciador::GerenciadorEvento::getGerenciadorEvento();
+
+    Jungle::Principal::Principal(){
+        if(pGrafico == nullptr){
+            std::cout << "ERROR::Jungle::Principal nao foi possivel criar o GerenciadorGrafico" << std::endl;
+            exit(1);
+        }
+        if(pEvento == nullptr){
+            std::cout << "ERROR::Jungle::Principal nao foi possivel criar um GerenciadorEvento" << std::endl;
+            exit(1);
+        }
+        if(pGerenciadorEstado == nullptr){
+            std::cout << "ERROR::Jungle::Principal::nao foi possivel criar um GerenciadorEstado" << std::endl;
+            exit(1);
+        }
+        inicializa();
     }
-    if(pEvento == nullptr){
-        std::cout << "ERROR::Jungle::Principal nao foi possivel criar um GerenciadorEvento" << std::endl;
-        exit(1);
+
+    Jungle::Principal::~Principal(){
+
     }
-    if(pGerenciadorEstado == nullptr){
-        std::cout << "ERROR::Jungle::Principal::nao foi possivel criar um GerenciadorEstado" << std::endl;
-        exit(1);
+
+    void Jungle::Principal::inicializa(){
+        pGerenciadorEstado->addEstado(IDs::IDs::jogar_florestaVermelha);
     }
-    inicializa();
-}
 
-Jungle::Principal::~Principal(){
+    void Jungle::Principal::executar(){
 
-}
+        while(pGrafico->verificaJanelaAberta()){
+            //gerencia eventos
+            pEvento->executar();
 
-void Jungle::Principal::inicializa(){
-    pGerenciadorEstado->addEstado(IDs::IDs::jogar_florestaVermelha);
-}
+            //limpa janela
+            pGrafico->limpaJanela();
 
-void Jungle::Principal::executar(){
+            //atualiza maquina de estado
+            pGerenciadorEstado->executar();
 
-    while(pGrafico->verificaJanelaAberta()){
-        //gerencia eventos
-        pEvento->executar();
-
-        //limpa janela
-        pGrafico->limpaJanela();
-
-        //atualiza maquina de estado
-        pGerenciadorEstado->executar();
-
-        //mostra tudo na janela
-        pGrafico->mostraElementos();
+            //mostra tudo na janela
+            pGrafico->mostraElementos();
+        }
     }
+
 }
