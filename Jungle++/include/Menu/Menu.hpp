@@ -14,10 +14,12 @@ namespace Jungle {
             sf::RectangleShape fundo;
             std::list<Botao::Botao*> listaBotao;
             std::list<Botao::Botao*>::iterator it;
+            const sf::Vector2f tamBotao;
+            const sf::Vector2f tamJanela;
         public:
-            Menu(const IDs::IDs ID);
+            Menu(const IDs::IDs ID, const sf::Vector2f tamBotao);
             ~Menu();
-            void addBotao(const std::string texto);
+            void addBotao(const std::string texto, const sf::Vector2f pos);
             void desenhar();
             virtual void executar() = 0;
         };

@@ -15,12 +15,19 @@ namespace Jungle {
             private:
                 sf::RectangleShape caixa;
                 Texto caixaTexto;
+                sf::Vector2f pos;
+                sf::Vector2f tam;
                 bool selecionado;
 
+                sf::Clock relogio;
+                const float tempoTrocaCor;
+                float tempo;
             public:
-                Botao(const std::string texto);
+                Botao(const std::string texto, const sf::Vector2f tam,const sf::Vector2f pos);
                 ~Botao();
                 void desenhar();
+                void atualizarTexto();
+                void setSelecionado(const bool selecionado = true);
             };
 
         }

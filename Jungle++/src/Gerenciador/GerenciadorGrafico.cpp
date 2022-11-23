@@ -97,6 +97,10 @@ namespace Jungle {
             window->setView(camera);
         }
 
+        const sf::Vector2f GerenciadorGrafico::getTamJanela() const{
+            return (sf::Vector2f)window->getSize();
+        }
+
     }
 
 }

@@ -35,6 +35,7 @@ namespace Jungle {
             void atualizarCamera(const sf::Vector2f posJogador);
             const sf::View getCamera();
             void resetarJanela();
+            const sf::Vector2f getTamJanela() const;
         };
 
     }

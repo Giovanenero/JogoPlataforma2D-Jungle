@@ -5,10 +5,10 @@ namespace Jungle {
     namespace Menu {
 
         MenuPrincipal::MenuPrincipal():
-            Menu(IDs::IDs::menu_principal), sair(false)
+            Menu(IDs::IDs::menu_principal, sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y)), sair(false)
         {
             criarFundo();
-            //criarBotoes();
+            criarBotoes();
         }
 
         MenuPrincipal::~MenuPrincipal(){
@@ -21,11 +21,15 @@ namespace Jungle {
         }
 
         void MenuPrincipal::criarBotoes(){
-            addBotao("Novo Jogo");
-            addBotao("Carregar Jogo");
-            addBotao("Colocacao");
-            addBotao("Opcao");
-            addBotao("Sair");
+            const float posBotaoX = tamJanela.x / 2.0f - tamBotao.x / 2.0f;
+            addBotao("Novo Jogo", sf::Vector2f(posBotaoX, tamJanela.y / 2.5f));
+            addBotao("Carregar Jogo", sf::Vector2f(posBotaoX, tamJanela.y / 2.5f + tamBotao.y * 1.2f));
+            addBotao("Colocacao", sf::Vector2f(posBotaoX, tamJanela.y / 2.5f + tamBotao.y * 2.4f));
+            addBotao("Opcao", sf::Vector2f(posBotaoX, tamJanela.y / 2.5f + tamBotao.y * 3.6f));
+            addBotao("Sair", sf::Vector2f(posBotaoX, tamJanela.y / 2.5f + tamBotao.y * 4.8f));
+
+            it = listaBotao.begin();
+            (*it)->setSelecionado(true);
         }
 
         void MenuPrincipal::setSair(const bool sair){
