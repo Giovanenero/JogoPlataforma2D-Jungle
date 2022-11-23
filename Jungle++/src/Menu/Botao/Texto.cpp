@@ -9,7 +9,7 @@ namespace Jungle {
             Texto::Texto(sf::Font fonte, const std::string texto):
                 fonte(fonte), texto(), info(texto), corTexto(sf::Color::White),
                 corBorda(sf::Color::Black), tamTexto(50), clareando(true),
-                transparente(0)
+                transparente(255)
             {
                 inicializa();
             }
@@ -63,6 +63,15 @@ namespace Jungle {
 
             void Texto::setTransparente(const int transparente){
                 this->transparente = transparente;
+                atualizar();
+            }
+
+            void Texto::resetar(){
+                transparente = 255;
+                atualizar();
+            }
+
+            void Texto::atualizar(){
                 corBorda = sf::Color{0, 0, 0, (sf::Uint8)this->transparente};
                 corTexto = sf::Color{255, 255, 255, (sf::Uint8)this->transparente};
                 texto.setOutlineColor(corBorda);

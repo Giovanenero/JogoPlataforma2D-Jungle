@@ -5,7 +5,7 @@ namespace Jungle {
     namespace Observador {
 
         ObservadorJogador::ObservadorJogador(Entidade::Personagem::Jogador::Jogador* pJogador):
-            pJogador(pJogador)
+            Observador(), pJogador(pJogador)
         {
 
         }

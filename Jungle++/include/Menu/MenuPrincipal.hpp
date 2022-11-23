@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Menu.hpp"
+#include "Botao\Texto.hpp"
+#include "..\Observador\ObservadorMenuPrincipal.hpp"
 
 #define CAMINHO_TEXTURA_MENU_PRINCIPAL "Jungle++/img/Menu/menuPrincipal.png"
 #define TAMANHO_BOTAO_X 350.0f
@@ -11,8 +13,9 @@ namespace Jungle {
     namespace Menu {
 
         class MenuPrincipal: public Menu {
-        protected:
+        private:
             bool sair;
+            Observador::ObservadorMenuPrincipal* observadorMenuPrincipal;
 
             void criarFundo();
             void criarBotoes();
@@ -21,6 +24,8 @@ namespace Jungle {
             ~MenuPrincipal();
             void setSair(const bool sair = true);
             const bool getSair() const;
+            void selecionaCima();
+            void selecionaBaixo();
             void executar();
         };
 

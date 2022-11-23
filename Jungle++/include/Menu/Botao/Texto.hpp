@@ -34,6 +34,8 @@ namespace Jungle {
                 const bool getClareando() const;
                 const int  getTransparente() const;
                 void setTransparente(int transparente);
+                void resetar();
+                void atualizar();
             };
 
         }

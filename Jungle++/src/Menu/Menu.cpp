@@ -33,8 +33,9 @@ namespace Jungle {
             //desenha fundo e todos os botões e textos na janela gráfica
             pGrafico->resetarJanela();
             pGrafico->desenhaElemento(fundo);
-            for(it = listaBotao.begin(); it != listaBotao.end(); it++){
-                Botao::Botao* botao = *it;
+            std::list<Botao::Botao*>::iterator aux;
+            for(aux = listaBotao.begin(); aux != listaBotao.end(); aux++){
+                Botao::Botao* botao = *aux;
                 botao->desenhar();
                 botao = nullptr;
             }
