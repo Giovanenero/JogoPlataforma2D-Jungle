@@ -76,7 +76,6 @@ namespace Jungle {
             } 
             if(tecla == sf::Keyboard::Escape){
                 pGEstado->removerEstado();
-                //pGrafico->fecharJanela();
             }
         }
 
@@ -84,9 +83,11 @@ namespace Jungle {
             sf::Event evento;
             while(pGrafico->getWindow()->pollEvent(evento)){
                 if(evento.type == sf::Event::KeyPressed){
-                    verificaTeclaPressionada(evento.key.code);
+                    //verificaTeclaPressionada(evento.key.code);
+                    listaObservador->notificarTeclaPressionada(evento.key.code);
                 } else if(evento.type == sf::Event::KeyReleased){
-                    verificaTeclaSolta(evento.key.code);
+                    //verificaTeclaSolta(evento.key.code);
+                    listaObservador->notificarTeclaSolta(evento.key.code);
                 } else if(evento.type == sf::Event::Closed){
                     pGrafico->fecharJanela();
                 }

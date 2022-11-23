@@ -2,6 +2,7 @@
 
 #include "Lista.hpp"
 #include "..\Observador\Observador.hpp"
+#include "SFML\Graphics.hpp"
 
 namespace Jungle {
 
@@ -18,7 +19,8 @@ namespace Jungle {
             void removerObservador(int pos);
             int getTam();
             Observador::Observador* operator[](int pos);
-            void executar();
+            void notificarTeclaPressionada(const sf::Keyboard::Key tecla);
+            void notificarTeclaSolta(const sf::Keyboard::Key tecla);
         };
 
     }

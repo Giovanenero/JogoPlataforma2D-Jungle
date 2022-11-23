@@ -9,6 +9,10 @@
 
 namespace Jungle {
 
+    namespace Observador {
+        class ObservadorJogador;
+    }
+
     namespace Entidade {
 
         namespace Personagem {
@@ -19,6 +23,7 @@ namespace Jungle {
                 private:
                     void inicializa();
                     bool noChao;
+                    Observador::ObservadorJogador* observadorJogador;
                 public:
                     Jogador(const sf::Vector2f pos);
                     ~Jogador();

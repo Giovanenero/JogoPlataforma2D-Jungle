@@ -1,5 +1,7 @@
 #pragma once
 
+#include "SFML\Graphics.hpp"
+
 namespace Jungle {
 
     namespace Gerenciador {
@@ -14,8 +16,8 @@ namespace Jungle {
         public:
             Observador();
             ~Observador();
-            virtual void teclaPressionada(){}
-            virtual void teclaSolta(){}
+            virtual void teclaPressionada(const sf::Keyboard::Key tecla) = 0;
+            virtual void teclaSolta(const sf::Keyboard::Key tecla) = 0;
         };
 
     }

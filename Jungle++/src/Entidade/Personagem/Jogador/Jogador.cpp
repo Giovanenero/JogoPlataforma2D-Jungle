@@ -1,12 +1,25 @@
 #include "..\..\..\..\include\Entidade\Personagem\Jogador\Jogador.hpp"
+#include "..\..\..\..\include\Observador\ObservadorJogador.hpp"
 
 #include <cmath>
 
 Jungle::Entidade::Personagem::Jogador::Jogador::Jogador(const sf::Vector2f pos):
-    Personagem(pos, sf::Vector2f(TAMANHO_JOGADOR_X, TAMANHO_JOGADOR_Y), VELOCIDADE_JOGADOR, IDs::IDs::jogador), noChao(false)
+    Personagem(pos, sf::Vector2f(TAMANHO_JOGADOR_X, TAMANHO_JOGADOR_Y), VELOCIDADE_JOGADOR, IDs::IDs::jogador), 
+    noChao(false), observadorJogador(new Observador::ObservadorJogador(this))
 
 {
+    if(observadorJogador == nullptr){
+        std::cout << "ERROR::Entidade::Personagem::Jogador::Jogador::nao foi possivel criar um observador para o jogador" << std::endl;
+        exit(1);
+    }
     inicializa();
+}
+
+Jungle::Entidade::Personagem::Jogador::Jogador::~Jogador(){
+    if(observadorJogador){
+        delete(observadorJogador);
+        observadorJogador = nullptr;
+    }
 }
 
 
