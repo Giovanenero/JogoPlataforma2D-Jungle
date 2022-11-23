@@ -1,3 +1,4 @@
 Jungle++/.vscode
 *.dll
 *.exe
+*.o
