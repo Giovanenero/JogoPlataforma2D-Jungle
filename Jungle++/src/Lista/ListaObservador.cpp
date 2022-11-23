@@ -37,7 +37,9 @@ namespace Jungle {
         void ListaObservador::notificarTeclaPressionada(const sf::Keyboard::Key tecla){
             for(int i = 0; i < objListaObservador.getTam(); i++){
                 Observador::Observador* observador = objListaObservador.operator[](i);
-                observador->teclaPressionada(tecla);
+                if(observador->getAtivar()){
+                    observador->teclaPressionada(tecla);
+                }
                 observador = nullptr;
             }
         }
@@ -45,7 +47,9 @@ namespace Jungle {
         void ListaObservador::notificarTeclaSolta(const sf::Keyboard::Key tecla){
             for(int i = 0; i < objListaObservador.getTam(); i++){
                 Observador::Observador* observador = objListaObservador.operator[](i);
-                observador->teclaSolta(tecla);
+                if(observador->getAtivar()){
+                    observador->teclaSolta(tecla);
+                }
                 observador = nullptr;
             }
         }

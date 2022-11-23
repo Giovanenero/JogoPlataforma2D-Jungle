@@ -11,7 +11,7 @@ namespace Jungle {
             bool remover;
         public:
             Estado(const IDs::IDs ID);
-            ~Estado();
+            virtual ~Estado();
             virtual void executar() = 0;
             virtual void desenhar();
             void setRemover(const bool remover = true);

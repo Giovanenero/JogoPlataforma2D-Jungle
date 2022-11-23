@@ -11,7 +11,10 @@ namespace Jungle {
         }
 
         EstadoJogar::~EstadoJogar(){
-
+            if(fase){
+                delete(fase);
+                fase = nullptr;
+            }
         }
 
         Entidade::Personagem::Jogador::Jogador* EstadoJogar::getJogador(){

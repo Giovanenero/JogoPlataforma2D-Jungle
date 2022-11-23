@@ -21,6 +21,9 @@ namespace Jungle {
             //padrão de projeto singleton
             static GerenciadorEstado* pGerenciadorEstado;
             GerenciadorEstado();
+
+            void desativarObservadores();
+            void ativarObservadores();
         public:
             ~GerenciadorEstado();
             static GerenciadorEstado* getGerenciadorEstado();

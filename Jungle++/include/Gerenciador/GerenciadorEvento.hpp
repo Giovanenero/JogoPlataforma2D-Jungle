@@ -19,8 +19,6 @@ namespace Jungle {
             //padrão de projeto singleton
             static GerenciadorEvento* pEvento;
             GerenciadorEvento();
-            void verificaTeclaPressionada(sf::Keyboard::Key tecla);
-            void verificaTeclaSolta(sf::Keyboard::Key tecla);
         public:
             ~GerenciadorEvento();
             static GerenciadorEvento* getGerenciadorEvento();

@@ -32,6 +32,7 @@ namespace Jungle {
 
         void Menu::desenhar(){
             //desenha fundo e todos os botões e textos na janela gráfica
+            pGrafico->resetarJanela();
             pGrafico->desenhaElemento(fundo);
             for(it = listaBotao.begin(); it != listaBotao.end(); it++){
                 Botao::Botao* botao = *it;
