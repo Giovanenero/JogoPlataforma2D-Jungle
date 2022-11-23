@@ -2,6 +2,7 @@
 
 #include "GerenciadorGrafico.hpp"
 #include "..\Entidade\Personagem\Jogador\Jogador.hpp"
+#include "..\Lista\ListaObservador.hpp"
 
 namespace Jungle {
 
@@ -13,15 +14,19 @@ namespace Jungle {
         private:
             static GerenciadorGrafico* pGrafico;
             static GerenciadorEstado* pGEstado;
+            static Lista::ListaObservador* listaObservador;
 
             //padrão de projeto singleton
             static GerenciadorEvento* pEvento;
             GerenciadorEvento();
+            void verificaTeclaPressionada(sf::Keyboard::Key tecla);
+            void verificaTeclaSolta(sf::Keyboard::Key tecla);
         public:
             ~GerenciadorEvento();
             static GerenciadorEvento* getGerenciadorEvento();
-            void verificaTeclaPressionada(sf::Keyboard::Key tecla);
-            void verificaTeclaSolta(sf::Keyboard::Key tecla);
+            void addObservador(Observador::Observador* observador);
+            void removerObservador(Observador::Observador* observador);
+            void removerObservador(int pos);
             void executar();
         };
 
