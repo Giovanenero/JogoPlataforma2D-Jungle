@@ -23,11 +23,12 @@ namespace Jungle {
                 const float tempoTrocaCor;
                 float tempo;
             public:
-                Botao(const std::string texto, const sf::Vector2f tam,const sf::Vector2f pos);
+                Botao(const std::string texto, const sf::Vector2f tam,const sf::Vector2f pos, const IDs::IDs ID);
                 ~Botao();
                 void desenhar();
                 void atualizarTexto();
                 void setSelecionado(const bool selecionado = true);
+                const bool getSelecionado() const;
             };
 
         }

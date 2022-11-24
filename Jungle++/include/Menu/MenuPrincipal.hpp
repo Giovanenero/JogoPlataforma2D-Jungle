@@ -26,6 +26,7 @@ namespace Jungle {
             const bool getSair() const;
             void selecionaCima();
             void selecionaBaixo();
+            const IDs::IDs getIDBotaoSelecionado();
             void executar();
         };
 

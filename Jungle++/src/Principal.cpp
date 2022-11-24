@@ -27,7 +27,6 @@ namespace Jungle {
     }
 
     void Principal::inicializa(){
-        pGerenciadorEstado->addEstado(IDs::IDs::jogar_florestaVermelha);
         pGerenciadorEstado->addEstado(IDs::IDs::estado_menu_principal);
     }
 

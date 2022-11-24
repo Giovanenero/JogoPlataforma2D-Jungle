@@ -6,8 +6,8 @@ namespace Jungle {
 
         namespace Botao {
 
-            Botao::Botao(const std::string texto, const sf::Vector2f tam,const sf::Vector2f pos):
-                Ente(IDs::IDs::botao), caixaTexto(pGrafico->carregarFonte(CAMINHO_FONTE), texto),
+            Botao::Botao(const std::string texto, const sf::Vector2f tam,const sf::Vector2f pos, const IDs::IDs ID):
+                Ente(ID), caixaTexto(pGrafico->carregarFonte(CAMINHO_FONTE), texto),
                 selecionado(false), pos(pos), tam(tam), relogio(),
                 tempoTrocaCor(0.01f), tempo(0.0f)
             {
@@ -29,6 +29,10 @@ namespace Jungle {
             void Botao::setSelecionado(const bool selecionado){
                 this->selecionado = selecionado;
                 caixaTexto.resetar();
+            }
+
+            const bool Botao::getSelecionado() const{
+                return selecionado;
             }
 
             void Botao::atualizarTexto(){

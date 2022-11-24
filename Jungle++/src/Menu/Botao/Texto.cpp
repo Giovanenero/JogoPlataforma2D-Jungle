@@ -22,7 +22,7 @@ namespace Jungle {
                 texto.setString(info);
                 texto.setCharacterSize(tamTexto);
                 texto.setFont(fonte);
-                texto.setOutlineThickness(2);
+                texto.setOutlineThickness(5);
                 texto.setOutlineColor(corBorda);
                 texto.setFillColor(corTexto);
                 tam = sf::Vector2f(texto.getGlobalBounds().width, texto.getGlobalBounds().height);

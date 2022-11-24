@@ -32,11 +32,11 @@ namespace Jungle {
 
         void MenuPrincipal::criarBotoes(){
             const float posBotaoX = tamJanela.x / 2.0f - tamBotao.x / 2.0f;
-            addBotao("Novo Jogo", sf::Vector2f(posBotaoX, tamJanela.y / 2.5f));
-            addBotao("Carregar Jogo", sf::Vector2f(posBotaoX, tamJanela.y / 2.5f + tamBotao.y * 1.2f));
-            addBotao("Colocacao", sf::Vector2f(posBotaoX, tamJanela.y / 2.5f + tamBotao.y * 2.4f));
-            addBotao("Opcao", sf::Vector2f(posBotaoX, tamJanela.y / 2.5f + tamBotao.y * 3.6f));
-            addBotao("Sair", sf::Vector2f(posBotaoX, tamJanela.y / 2.5f + tamBotao.y * 4.8f));
+            addBotao("Novo Jogo", sf::Vector2f(posBotaoX, tamJanela.y / 2.0f), IDs::IDs::botao_novoJogo);
+            addBotao("Carregar Jogo", sf::Vector2f(posBotaoX, tamJanela.y / 2.0f + tamBotao.y * 1.2f), IDs::IDs::botao_carregarJogo);
+            addBotao("Colocacao", sf::Vector2f(posBotaoX, tamJanela.y / 2.0f + tamBotao.y * 2.4f), IDs::IDs::botao_colocacao);
+            addBotao("Opcao", sf::Vector2f(posBotaoX, tamJanela.y / 2.0f + tamBotao.y * 3.6f), IDs::IDs::botao_opcao);
+            addBotao("Sair", sf::Vector2f(posBotaoX, tamJanela.y / 2.0f + tamBotao.y * 4.8f), IDs::IDs::botao_sair);
         }
 
         void MenuPrincipal::setSair(const bool sair){
@@ -51,7 +51,6 @@ namespace Jungle {
             Botao::Botao* botao = *it;
             botao->setSelecionado(false);
             if(it == listaBotao.begin()){
-                std::cout << "a ";
                 it = listaBotao.end();
             }
             it--;
@@ -68,6 +67,17 @@ namespace Jungle {
             }
             botao = *it;
             botao->setSelecionado(true);
+        }
+
+        const IDs::IDs MenuPrincipal::getIDBotaoSelecionado(){
+            std::list<Botao::Botao*>::iterator aux;
+            for(aux = listaBotao.begin(); aux != listaBotao.end(); aux++){
+                Botao::Botao* botao = *aux;
+                if(botao->getSelecionado()){
+                    return botao->getID();
+                }
+            }
+            return IDs::IDs::vazio;
         }
 
         void MenuPrincipal::executar(){

@@ -19,7 +19,7 @@ namespace Jungle {
         public:
             Menu(const IDs::IDs ID, const sf::Vector2f tamBotao);
             ~Menu();
-            void addBotao(const std::string texto, const sf::Vector2f pos);
+            void addBotao(const std::string texto, const sf::Vector2f pos, const IDs::IDs ID);
             void desenhar();
             virtual void executar() = 0;
         };
