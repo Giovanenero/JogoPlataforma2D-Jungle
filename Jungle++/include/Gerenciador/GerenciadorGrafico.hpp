@@ -32,7 +32,7 @@ namespace Jungle {
             void mostraElementos();
             void fecharJanela();
             const bool verificaJanelaAberta();
-            void atualizarCamera(const sf::Vector2f posJogador);
+            void atualizarCamera(const sf::Vector2f pos);
             const sf::View getCamera();
             void resetarJanela();
             const sf::Vector2f getTamJanela() const;

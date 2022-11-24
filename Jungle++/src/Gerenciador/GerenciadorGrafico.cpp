@@ -83,8 +83,8 @@ namespace Jungle {
             return window->isOpen();
         }
 
-        void GerenciadorGrafico::atualizarCamera(const sf::Vector2f posJogador){
-            camera.setCenter(posJogador.x, 300.0f);
+        void GerenciadorGrafico::atualizarCamera(const sf::Vector2f pos){
+            camera.setCenter(pos);
             window->setView(camera);
         }
 

@@ -30,6 +30,11 @@ namespace Jungle {
                         pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
                     }
                         break;
+                    case (IDs::IDs::botao_sair):
+                    {  
+                        pGEstado->removerEstado();
+                    }
+                        break;
                     }
                 }
                     break;

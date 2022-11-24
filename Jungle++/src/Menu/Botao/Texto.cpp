@@ -6,10 +6,9 @@ namespace Jungle {
 
         namespace Botao {
 
-            Texto::Texto(sf::Font fonte, const std::string texto):
+            Texto::Texto(sf::Font fonte, const std::string texto, const unsigned int tamFonte):
                 fonte(fonte), texto(), info(texto), corTexto(sf::Color::White),
-                corBorda(sf::Color::Black), tamTexto(50), clareando(true),
-                transparente(255)
+                corBorda(sf::Color::Black), tamFonte(tamFonte)
             {
                 inicializa();
             }
@@ -20,7 +19,7 @@ namespace Jungle {
 
             void Texto::inicializa(){
                 texto.setString(info);
-                texto.setCharacterSize(tamTexto);
+                texto.setCharacterSize(tamFonte);
                 texto.setFont(fonte);
                 texto.setOutlineThickness(5);
                 texto.setOutlineColor(corBorda);
@@ -28,13 +27,9 @@ namespace Jungle {
                 tam = sf::Vector2f(texto.getGlobalBounds().width, texto.getGlobalBounds().height);
             }
 
-            void Texto::setString(const std::string texto){
-                info = texto;
-                this->texto.setString(info);
-            }
-
-            const std::string Texto::getString(){
-                return info;
+            void Texto::setCorTexto(const sf::Color corTexto){
+                this->corTexto = corTexto;
+                texto.setFillColor(corTexto);
             }
 
             sf::Text Texto::getTexto(){
@@ -47,35 +42,6 @@ namespace Jungle {
 
             sf::Vector2f Texto::getTam(){
                 return tam;
-            }
-
-            void Texto::mudarClareando(){
-                clareando = (clareando) ? false : true;
-            }
-
-            const bool Texto::getClareando() const {
-                return clareando;
-            }
-
-            const int Texto::getTransparente() const{
-                return transparente;
-            }
-
-            void Texto::setTransparente(const int transparente){
-                this->transparente = transparente;
-                atualizar();
-            }
-
-            void Texto::resetar(){
-                transparente = 255;
-                atualizar();
-            }
-
-            void Texto::atualizar(){
-                corBorda = sf::Color{0, 0, 0, (sf::Uint8)this->transparente};
-                corTexto = sf::Color{255, 255, 255, (sf::Uint8)this->transparente};
-                texto.setOutlineColor(corBorda);
-                texto.setFillColor(corTexto);
             }
 
         }

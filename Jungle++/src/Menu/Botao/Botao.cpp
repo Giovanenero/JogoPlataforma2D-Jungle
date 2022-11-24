@@ -7,19 +7,19 @@ namespace Jungle {
         namespace Botao {
 
             Botao::Botao(const std::string texto, const sf::Vector2f tam,const sf::Vector2f pos, const IDs::IDs ID):
-                Ente(ID), caixaTexto(pGrafico->carregarFonte(CAMINHO_FONTE), texto),
+                Ente(ID), texto(pGrafico->carregarFonte(CAMINHO_FONTE), texto),
                 selecionado(false), pos(pos), tam(tam), relogio(),
-                tempoTrocaCor(0.01f), tempo(0.0f)
+                tempoTrocaCor(TEMPO_TROCAR_COR), tempo(0.0f)
             {
-                caixa.setPosition(pos);
-                caixa.setSize(tam);
-                sf::Vector2f tamTexto = caixaTexto.getTam();
+                caixaTexto.setPosition(pos);
+                caixaTexto.setSize(tam);
+                sf::Vector2f tamTexto = this->texto.getTam();
                 sf::Vector2f posTexto = sf::Vector2f(
                     pos.x + tam.x / 2.0f - tamTexto.x / 2.0f,
                     pos.y + tam.y / 2.0f - tamTexto.y * 1.5f
                 );
-                caixaTexto.setPos(posTexto);
-                caixa.setFillColor(sf::Color::Transparent);
+                this->texto.setPos(posTexto);
+                caixaTexto.setFillColor(sf::Color::Transparent);
             }
 
             Botao::~Botao(){
@@ -27,8 +27,13 @@ namespace Jungle {
             }
 
             void Botao::setSelecionado(const bool selecionado){
+                if(selecionado){
+                    texto.setCorTexto(sf::Color{0, 200, 0});
+                } else {
+                    texto.setCorTexto(sf::Color::White);
+                }
                 this->selecionado = selecionado;
-                caixaTexto.resetar();
+                texto.resetar();
             }
 
             const bool Botao::getSelecionado() const{
@@ -41,23 +46,23 @@ namespace Jungle {
                 tempo += dt;
                 if(selecionado){
                     if(tempo > tempoTrocaCor){
-                        int transparente = caixaTexto.getTransparente();
-                        if(caixaTexto.getClareando()){
+                        int transparente = texto.getTransparente();
+                        if(texto.getClareando()){
                             //texto clareando
                             transparente += 5;
                             if(transparente > 255){
                                 transparente = 255;
-                                caixaTexto.mudarClareando();
+                                texto.mudarClareando();
                             }
                         } else {
                             //texto escurecendo
                             transparente -= 5;
                             if(transparente < 0){
                                 transparente = 0;
-                                caixaTexto.mudarClareando();
+                                texto.mudarClareando();
                             }
                         }
-                        caixaTexto.setTransparente(transparente);
+                        texto.setTransparente(transparente);
                         tempo = 0.0f;
                     }
                 } else {
@@ -67,8 +72,8 @@ namespace Jungle {
 
             void Botao::desenhar(){
                 atualizarTexto();
-                pGrafico->desenhaElemento(caixa);
-                pGrafico->desenhaElemento(caixaTexto.getTexto());
+                pGrafico->desenhaElemento(caixaTexto);
+                pGrafico->desenhaElemento(texto.getTexto());
             }
 
         }

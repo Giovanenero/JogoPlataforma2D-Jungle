@@ -49,7 +49,7 @@ namespace Jungle {
                     */
                     atualizarPosicao();
                     atualizarAnimacao();
-                    pGrafico->atualizarCamera(pos);
+                    pGrafico->atualizarCamera(sf::Vector2f(pos.x, 300.0f));
                 }
 
                 void Jogador::atualizarAnimacao(){

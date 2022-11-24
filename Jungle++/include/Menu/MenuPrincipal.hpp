@@ -15,6 +15,7 @@ namespace Jungle {
         class MenuPrincipal: public Menu {
         private:
             bool sair;
+            Botao::Texto nomeJogo;
             Observador::ObservadorMenuPrincipal* observadorMenuPrincipal;
 
             void criarFundo();

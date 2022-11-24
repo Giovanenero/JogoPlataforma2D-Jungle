@@ -1,9 +1,10 @@
 #pragma once 
 
 #include "..\..\Ente.hpp"
-#include "Texto.hpp"
+#include "TextoAnimado.hpp"
 
 #define CAMINHO_FONTE "Jungle++/fonte/menu.ttf"
+#define TEMPO_TROCAR_COR 0.01f
 
 namespace Jungle {
 
@@ -13,8 +14,8 @@ namespace Jungle {
 
             class Botao : public Ente {
             private:
-                sf::RectangleShape caixa;
-                Texto caixaTexto;
+                sf::RectangleShape caixaTexto;
+                TextoAnimado texto;
                 sf::Vector2f pos;
                 sf::Vector2f tam;
                 bool selecionado;

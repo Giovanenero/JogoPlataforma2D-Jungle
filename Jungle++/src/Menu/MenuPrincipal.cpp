@@ -5,9 +5,12 @@ namespace Jungle {
     namespace Menu {
 
         MenuPrincipal::MenuPrincipal():
-            Menu(IDs::IDs::menu_principal, sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y)), sair(false),
-            observadorMenuPrincipal(new Observador::ObservadorMenuPrincipal(this))
+            Menu(IDs::IDs::menu_principal, sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), IDs::IDs::fundo_florestaNegra), sair(false),
+            observadorMenuPrincipal(new Observador::ObservadorMenuPrincipal(this)),
+            nomeJogo(pGrafico->carregarFonte("Jungle++/fonte/menu.ttf"), "JUNGLE++", 180)
         {
+            nomeJogo.setPos(sf::Vector2f(tamJanela.x / 2.0f - nomeJogo.getTam().x / 2.0f, 25.0f));
+            nomeJogo.setCorTexto(sf::Color{0,200,0});
             if(observadorMenuPrincipal == nullptr){
                 std::cout << "ERROR::Jungle::Menu::MenuPrincipal::nao foi possivel criar um Observador Menu Principal" << std::endl;
                 exit(1);
@@ -26,8 +29,15 @@ namespace Jungle {
         }
 
         void MenuPrincipal::criarFundo(){
-            textura = pGrafico->carregarTextura(CAMINHO_TEXTURA_MENU_PRINCIPAL);
-            fundo.setTexture(&textura);
+            //textura = pGrafico->carregarTextura(CAMINHO_TEXTURA_MENU_PRINCIPAL);
+            //fundo.setTexture(&textura);
+            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada1.png", 0.0f);
+            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada2.png", 0.05f);
+            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada3.png", 0.1f);
+            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada4.png", 0.15f);
+            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada5.png", 0.2f);
+            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada6.png", 0.4f);
+            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada7.png", 0.6f);
         }
 
         void MenuPrincipal::criarBotoes(){
@@ -83,6 +93,7 @@ namespace Jungle {
         void MenuPrincipal::executar(){
             //pGrafico->desenhaElemento(nomeJogo.getTexto());
             desenhar();
+            pGrafico->desenhaElemento(nomeJogo.getTexto());
         }
 
     }

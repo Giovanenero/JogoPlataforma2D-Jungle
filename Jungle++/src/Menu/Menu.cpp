@@ -4,11 +4,17 @@ namespace Jungle {
 
     namespace Menu {
 
-        Menu::Menu(const IDs::IDs ID, const sf::Vector2f tamBotao):
-            Ente(ID), listaBotao(), it(), textura(), tamBotao(tamBotao), tamJanela(pGrafico->getTamJanela())
+        Menu::Menu(const IDs::IDs ID, const sf::Vector2f tamBotao, const IDs::IDs ID_Fundo):
+            Ente(ID), listaBotao(), it(), tamBotao(tamBotao), tamJanela(pGrafico->getTamJanela()),//, textura()
+            posFundo(0.0f, 0.0f), fundo(ID_Fundo)
         {
-            fundo = sf::RectangleShape(tamJanela);
-            fundo.setPosition(0.0f, 0.0f);
+            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada1.png", 0.0f);
+            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada2.png", 0.05f);
+            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada3.png", 0.1f);
+            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada4.png", 0.15f);
+            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada5.png", 0.2f);
+            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada6.png", 0.4f);
+            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada7.png", 0.6f);
         }
 
         Menu::~Menu(){
@@ -30,9 +36,10 @@ namespace Jungle {
         }
 
         void Menu::desenhar(){
-            //desenha fundo e todos os botões e textos na janela gráfica
+            posFundo = sf::Vector2f(posFundo.x + 0.05f, posFundo.y);
+            pGrafico->atualizarCamera(sf::Vector2f(posFundo.x + tamJanela.x / 2.0f, posFundo.y + tamJanela.y / 2.0f));
+            fundo.executar();
             pGrafico->resetarJanela();
-            pGrafico->desenhaElemento(fundo);
             std::list<Botao::Botao*>::iterator aux;
             for(aux = listaBotao.begin(); aux != listaBotao.end(); aux++){
                 Botao::Botao* botao = *aux;

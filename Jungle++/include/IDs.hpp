@@ -9,6 +9,7 @@ namespace IDs {
         minotauro,
         plataforma,
         caixa,
+        fundo_florestaNegra,
         fundo_florestaBranca,
         fase_florestaBranca,
         fundo_florestaVermelha,
