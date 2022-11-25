@@ -12,6 +12,7 @@ namespace Jungle {
             private:
                 int transparente;
                 bool clareando;
+                void atualizar();
             public:
                 TextoAnimado(sf::Font fonte, const std::string texto);
                 ~TextoAnimado();
@@ -20,7 +21,6 @@ namespace Jungle {
                 const int  getTransparente() const;
                 void setTransparente(int transparente);
                 void resetar();
-                void atualizar();
             };
 
         }

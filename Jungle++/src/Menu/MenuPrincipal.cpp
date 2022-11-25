@@ -91,7 +91,6 @@ namespace Jungle {
         }
 
         void MenuPrincipal::executar(){
-            //pGrafico->desenhaElemento(nomeJogo.getTexto());
             desenhar();
             pGrafico->desenhaElemento(nomeJogo.getTexto());
         }

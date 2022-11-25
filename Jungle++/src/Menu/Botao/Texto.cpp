@@ -32,7 +32,7 @@ namespace Jungle {
                 texto.setFillColor(corTexto);
             }
 
-            sf::Text Texto::getTexto(){
+            const sf::Text Texto::getTexto() const{
                 return texto;
             }
 

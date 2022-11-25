@@ -9,10 +9,11 @@ namespace Jungle {
         namespace Botao {
 
             class Texto {
-            protected:
-                sf::Text texto;
+            private:
                 sf::Font fonte;
                 std::string info;
+            protected:
+                sf::Text texto;
                 sf::Vector2f tam;
                 unsigned int tamFonte;
                 sf::Color corTexto;
@@ -22,7 +23,7 @@ namespace Jungle {
             public:
                 Texto(sf::Font fonte, const std::string texto, const unsigned int tamFonte = 50);
                 ~Texto();
-                sf::Text getTexto();
+                const sf::Text getTexto() const;
                 void setPos(const sf::Vector2f pos);
                 sf::Vector2f getTam();
                 void setCorTexto(const sf::Color corTexto);
