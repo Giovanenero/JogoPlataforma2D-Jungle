@@ -28,6 +28,7 @@ namespace Jungle {
             void selecionaCima();
             void selecionaBaixo();
             const IDs::IDs getIDBotaoSelecionado();
+            void mudarEstadoObservador();
             void executar();
         };
 

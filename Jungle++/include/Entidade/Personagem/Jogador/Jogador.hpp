@@ -32,9 +32,7 @@ namespace Jungle {
                     void pular();
                     void podePular();
                     void atualizarAnimacao();
-                    void ativarObservador();
-                    void desativarObservador();
-                    const bool getAtivarObservador() const;
+                    void mudarEstadoObservador();
                 };
 
             }

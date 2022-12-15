@@ -18,8 +18,7 @@ namespace Jungle {
         public:
             Observador();
             ~Observador();
-            void ativarObservador();
-            void desativarObservador();
+            void mudarEstadoAtivar();
             const bool getAtivar() const;
             void removerObservador();
             virtual void teclaPressionada(const sf::Keyboard::Key tecla) = 0;

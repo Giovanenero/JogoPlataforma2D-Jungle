@@ -83,6 +83,10 @@ namespace Jungle {
            return (*it)->getID();
         }
 
+        void MenuPrincipal::mudarEstadoObservador(){
+            observadorMenuPrincipal->mudarEstadoAtivar();
+        }
+
         void MenuPrincipal::executar(){
             desenhar();
             pGrafico->desenhaElemento(nomeJogo.getTexto());

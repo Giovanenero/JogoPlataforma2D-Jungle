@@ -14,6 +14,10 @@ namespace Jungle {
 
         }
 
+        void EstadoMenuPrincipal::mudarEstadoObservador(){
+            menuPrincipal.mudarEstadoObservador();
+        }
+
         void EstadoMenuPrincipal::executar(){
             menuPrincipal.executar();
         }

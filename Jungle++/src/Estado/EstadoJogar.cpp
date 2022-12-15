@@ -17,8 +17,8 @@ namespace Jungle {
             }
         }
 
-        Entidade::Personagem::Jogador::Jogador* EstadoJogar::getJogador(){
-            return fase->getJogador();
+        void EstadoJogar::mudarEstadoObservador(){
+            fase->getJogador()->mudarEstadoObservador();
         }
 
          void EstadoJogar::executar(){

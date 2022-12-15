@@ -13,6 +13,7 @@ namespace Jungle {
         public:
             EstadoMenuPrincipal(const IDs::IDs ID = IDs::IDs::estado_menu_principal);
             ~EstadoMenuPrincipal();
+            void mudarEstadoObservador();
             void executar();
         };
 

@@ -21,12 +21,8 @@ namespace Jungle {
             pEvento->removerObservador(this);
         }
 
-        void Observador::ativarObservador(){
-            ativar = true;
-        }
-
-        void Observador::desativarObservador(){
-            ativar = false;
+        void Observador::mudarEstadoAtivar(){
+            ativar = (ativar) ? false : true;
         }
 
         const bool Observador::getAtivar() const {

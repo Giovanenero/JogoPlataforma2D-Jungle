@@ -91,15 +91,8 @@ namespace Jungle {
                     noChao = true;
                 }
 
-                void Jogador::ativarObservador(){
-                    observadorJogador->ativarObservador();
-                }
-                void Jogador::desativarObservador(){
-                    observadorJogador->desativarObservador();
-                }
-                
-                const bool Jogador::getAtivarObservador() const {
-                    return observadorJogador->getAtivar();
+                void Jogador::mudarEstadoObservador(){
+                    observadorJogador->mudarEstadoAtivar();
                 }
 
             }

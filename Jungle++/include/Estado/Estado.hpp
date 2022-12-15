@@ -16,6 +16,7 @@ namespace Jungle {
             virtual void desenhar();
             void setRemover(const bool remover = true);
             const bool getRemover() const;
+            virtual void mudarEstadoObservador() = 0;
         };
 
     }
