@@ -21,7 +21,7 @@ void Jungle::Fase::FlorestaBranca::criarFundo(){
 void Jungle::Fase::FlorestaBranca::criarMapa(){
     listaPersonagens.addEntidade(construtorEntidade.criarJogador(sf::Vector2f(100.0f, 400.0f)));
     
-    for(int i = 0; i < 10; i++){
+    for(int i = -2; i < 8; i++){
         listaObstaculos.addEntidade(construtorEntidade.criarPlataforma(sf::Vector2f(i * 300.0f, 550.0f)));
     }
 

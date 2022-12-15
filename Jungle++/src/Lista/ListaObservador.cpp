@@ -42,6 +42,7 @@ namespace Jungle {
                 }
                 observador = nullptr;
             }
+            std::cout << objListaObservador.getTam() << std::endl;
         }
 
         void ListaObservador::notificarTeclaSolta(const sf::Keyboard::Key tecla){

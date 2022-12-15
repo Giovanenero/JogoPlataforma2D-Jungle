@@ -5,7 +5,7 @@ namespace Jungle {
     namespace Menu {
 
         Menu::Menu(const IDs::IDs ID, const sf::Vector2f tamBotao, const IDs::IDs ID_Fundo):
-            Ente(ID), listaBotao(), it(), tamBotao(tamBotao), tamJanela(pGrafico->getTamJanela()),//, textura()
+            Ente(ID), listaBotao(), it(), tamBotao(tamBotao), tamJanela(pGrafico->getTamJanela()),
             posFundo(0.0f, 0.0f), fundo(ID_Fundo)
         {
             fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada1.png", 0.0f);
@@ -36,10 +36,13 @@ namespace Jungle {
         }
 
         void Menu::desenhar(){
+            //conteúdo do efeito Parallax
             posFundo = sf::Vector2f(posFundo.x + 0.05f, posFundo.y);
             pGrafico->atualizarCamera(sf::Vector2f(posFundo.x + tamJanela.x / 2.0f, posFundo.y + tamJanela.y / 2.0f));
             fundo.executar();
             pGrafico->resetarJanela();
+
+            //desenha tudo na janela
             std::list<Botao::Botao*>::iterator aux;
             for(aux = listaBotao.begin(); aux != listaBotao.end(); aux++){
                 Botao::Botao* botao = *aux;
