@@ -2,6 +2,7 @@
 
 #include "Menu.hpp"
 #include "Botao\Texto.hpp"
+#include "..\Parallax\Fundo.hpp"
 #include "..\Observador\ObservadorMenuPrincipal.hpp"
 
 #define CAMINHO_TEXTURA_MENU_PRINCIPAL "Jungle++/img/Menu/menuPrincipal.png"
@@ -14,9 +15,12 @@ namespace Jungle {
 
         class MenuPrincipal: public Menu {
         private:
+            Parallax::Fundo fundo;
             bool sair;
             Botao::Texto nomeJogo;
             Observador::ObservadorMenuPrincipal* observadorMenuPrincipal;
+            const sf::Vector2f tamJanela;
+            sf::Vector2f posFundo;
 
             void criarFundo();
             void criarBotoes();

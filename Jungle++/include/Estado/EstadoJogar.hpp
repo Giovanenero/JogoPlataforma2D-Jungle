@@ -9,9 +9,6 @@
 #include "..\Fase\FlorestaBranca.hpp"
 #include "..\Fase\FlorestaVermelha.hpp"
 
-//Jogador
-#include "..\Entidade\Personagem\Jogador\Jogador.hpp"
-
 //Construtor
 #include "..\Construtor\ConstrutorEstado.hpp"
 

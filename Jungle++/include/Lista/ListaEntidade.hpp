@@ -20,6 +20,7 @@ namespace Jungle {
             Entidade::Entidade* operator[](int pos);
             void limparLista();
             void executar();
+            void desenharEntidades();
         };
 
     }

@@ -5,9 +5,11 @@ namespace Jungle {
     namespace Menu {
 
         MenuPrincipal::MenuPrincipal():
-            Menu(IDs::IDs::menu_principal, sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), IDs::IDs::fundo_florestaNegra), sair(false),
+            Menu(IDs::IDs::menu_principal, sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y)), sair(false),
             observadorMenuPrincipal(new Observador::ObservadorMenuPrincipal(this)),
-            nomeJogo(pGrafico->carregarFonte("Jungle++/fonte/menu.ttf"), "JUNGLE++", 180)
+            nomeJogo(pGrafico->carregarFonte("Jungle++/fonte/menu.ttf"), "JUNGLE++", 180),
+            fundo(IDs::IDs::fundo_florestaNegra), tamJanela(pGrafico->getTamJanela()),
+            posFundo(0.0f, 0.0f)
         {
             nomeJogo.setPos(sf::Vector2f(tamJanela.x / 2.0f - nomeJogo.getTam().x / 2.0f, 25.0f));
             nomeJogo.setCorTexto(sf::Color{0,200,0});
@@ -88,6 +90,13 @@ namespace Jungle {
         }
 
         void MenuPrincipal::executar(){
+            //conteúdo do efeito Parallax
+            posFundo = sf::Vector2f(posFundo.x + 0.05f, posFundo.y);
+            pGrafico->atualizarCamera(sf::Vector2f(posFundo.x + tamJanela.x / 2.0f, posFundo.y + tamJanela.y / 2.0f));
+            fundo.executar();
+            pGrafico->resetarJanela();
+
+            //desenha todo o conteúdo do menu principal na tela
             desenhar();
             pGrafico->desenhaElemento(nomeJogo.getTexto());
         }

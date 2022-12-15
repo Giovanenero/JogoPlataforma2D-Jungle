@@ -1,44 +1,63 @@
 #include "..\..\include\Lista\ListaEntidade.hpp"
 
-Jungle::Lista::ListaEntidade::ListaEntidade():
-    objListaEntidade()
-{
+namespace Jungle {
 
-}
+    namespace Lista {
 
-Jungle::Lista::ListaEntidade::~ListaEntidade(){
+        ListaEntidade::ListaEntidade():
+            objListaEntidade()
+        {
 
-}
+        }
 
-void Jungle::Lista::ListaEntidade::addEntidade(Entidade::Entidade* entidade){
-    objListaEntidade.addElemento(entidade);
-}
+        ListaEntidade::~ListaEntidade(){
 
-void Jungle::Lista::ListaEntidade::removerEntidade(Entidade::Entidade* entidade){
-    objListaEntidade.removerElemento(entidade);
-}
-    
-void Jungle::Lista::ListaEntidade::removerEntidade(int pos){
-    objListaEntidade.removerElemento(pos);
-}
+        }
 
-int Jungle::Lista::ListaEntidade::getTam(){
-    return objListaEntidade.getTam();
-}
+        void ListaEntidade::addEntidade(Entidade::Entidade* entidade){
+            objListaEntidade.addElemento(entidade);
+        }
 
-Jungle::Entidade::Entidade* Jungle::Lista::ListaEntidade::operator[](int pos){
-    return objListaEntidade.operator[](pos);
-}
+        void ListaEntidade::removerEntidade(Entidade::Entidade* entidade){
+            objListaEntidade.removerElemento(entidade);
+        }
+            
+        void ListaEntidade::removerEntidade(int pos){
+            objListaEntidade.removerElemento(pos);
+        }
 
-void Jungle::Lista::ListaEntidade::limparLista(){
-    objListaEntidade.limparLista();
-}
+        int ListaEntidade::getTam(){
+            return objListaEntidade.getTam();
+        }
 
-void Jungle::Lista::ListaEntidade::executar(){
-    int tam = objListaEntidade.getTam();
-    Entidade::Entidade* aux = nullptr;
-    for(int i = 0; i < tam; i++){
-        aux = objListaEntidade.operator[](i);
-        aux->atualizar();
+        Entidade::Entidade* ListaEntidade::operator[](int pos){
+            return objListaEntidade.operator[](pos);
+        }
+
+        void ListaEntidade::limparLista(){
+            objListaEntidade.limparLista();
+        }
+
+        void ListaEntidade::executar(){
+            //atualiza e desenha as entidades
+            int tam = objListaEntidade.getTam();
+            Entidade::Entidade* aux = nullptr;
+            for(int i = 0; i < tam; i++){
+                aux = objListaEntidade.operator[](i);
+                aux->atualizar();
+            }
+        }
+
+        void ListaEntidade::desenharEntidades(){
+            //apenas desenha as Entidades
+            int tam = objListaEntidade.getTam();
+            Entidade::Entidade* aux = nullptr;
+            for(int i = 0; i < tam; i++){
+                aux = objListaEntidade.operator[](i);
+                aux->desenhar();
+            }
+        }
+
     }
+
 }
