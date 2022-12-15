@@ -80,14 +80,7 @@ namespace Jungle {
         }
 
         const IDs::IDs MenuPrincipal::getIDBotaoSelecionado(){
-            std::list<Botao::Botao*>::iterator aux;
-            for(aux = listaBotao.begin(); aux != listaBotao.end(); aux++){
-                Botao::Botao* botao = *aux;
-                if(botao->getSelecionado()){
-                    return botao->getID();
-                }
-            }
-            return IDs::IDs::vazio;
+           return (*it)->getID();
         }
 
         void MenuPrincipal::executar(){

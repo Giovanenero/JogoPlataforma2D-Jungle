@@ -14,7 +14,7 @@ namespace Jungle {
                 bool clareando;
                 void atualizar();
             public:
-                TextoAnimado(sf::Font fonte, const std::string texto);
+                TextoAnimado(const sf::Font fonte, const std::string info);
                 ~TextoAnimado();
                 void mudarClareando();
                 const bool getClareando() const;

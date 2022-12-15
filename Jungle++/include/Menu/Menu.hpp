@@ -21,7 +21,7 @@ namespace Jungle {
         public:
             Menu(const IDs::IDs ID, const sf::Vector2f tamBotao, const IDs::IDs ID_Fundo);
             ~Menu();
-            void addBotao(const std::string texto, const sf::Vector2f pos, const IDs::IDs ID);
+            void addBotao(const std::string info, const sf::Vector2f pos, const IDs::IDs ID);
             void desenhar();
             virtual void executar() = 0;
         };

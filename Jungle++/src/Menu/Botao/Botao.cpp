@@ -6,8 +6,8 @@ namespace Jungle {
 
         namespace Botao {
 
-            Botao::Botao(const std::string texto, const sf::Vector2f tam,const sf::Vector2f pos, const IDs::IDs ID):
-                Ente(ID), texto(pGrafico->carregarFonte(CAMINHO_FONTE), texto),
+            Botao::Botao(const std::string info, const sf::Vector2f tam, const sf::Vector2f pos, const IDs::IDs ID):
+                Ente(ID), texto(pGrafico->carregarFonte(CAMINHO_FONTE), info),
                 selecionado(false), pos(pos), tam(tam), relogio(),
                 tempoTrocaCor(TEMPO_TROCAR_COR), tempo(0.0f)
             {
@@ -72,7 +72,7 @@ namespace Jungle {
 
             void Botao::desenhar(){
                 atualizarTexto();
-                pGrafico->desenhaElemento(caixaTexto);
+                //pGrafico->desenhaElemento(caixaTexto);
                 pGrafico->desenhaElemento(texto.getTexto());
             }
 

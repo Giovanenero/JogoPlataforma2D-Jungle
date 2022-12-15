@@ -27,8 +27,8 @@ namespace Jungle {
             }
         }
 
-        void Menu::addBotao(const std::string texto, const sf::Vector2f pos, const IDs::IDs ID){
-            Botao::Botao* botao = new Botao::Botao(texto, tamBotao, pos, ID);
+        void Menu::addBotao(const std::string info, const sf::Vector2f pos, const IDs::IDs ID){
+            Botao::Botao* botao = new Botao::Botao(info, tamBotao, pos, ID);
             if(botao == nullptr){
                 throw("ERROR::Jungle::Menu::nao foi possivel criar um botao");
             }

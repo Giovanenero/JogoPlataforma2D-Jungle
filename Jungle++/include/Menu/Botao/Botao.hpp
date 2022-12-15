@@ -24,7 +24,7 @@ namespace Jungle {
                 const float tempoTrocaCor;
                 float tempo;
             public:
-                Botao(const std::string texto, const sf::Vector2f tam,const sf::Vector2f pos, const IDs::IDs ID);
+                Botao(const std::string info, const sf::Vector2f tam,const sf::Vector2f pos, const IDs::IDs ID);
                 ~Botao();
                 void desenhar();
                 void atualizarTexto();

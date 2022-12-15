@@ -6,8 +6,8 @@ namespace Jungle {
 
         namespace Botao {
 
-            Texto::Texto(sf::Font fonte, const std::string texto, const unsigned int tamFonte):
-                fonte(fonte), texto(), info(texto), corTexto(sf::Color::White),
+            Texto::Texto(const sf::Font fonte, const std::string info, const unsigned int tamFonte):
+                fonte(fonte), texto(), info(info), corTexto(sf::Color::White),
                 corBorda(sf::Color::Black), tamFonte(tamFonte)
             {
                 inicializa();
