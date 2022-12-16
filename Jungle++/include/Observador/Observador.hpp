@@ -6,6 +6,7 @@ namespace Jungle {
 
     namespace Gerenciador {
         class GerenciadorEvento;
+        class GerenciadorEstado;
     }
 
     namespace Observador {
@@ -13,11 +14,12 @@ namespace Jungle {
         class Observador {
         protected:
             static Gerenciador::GerenciadorEvento* pEvento;
+            static Gerenciador::GerenciadorEstado* pGEstado;
         private:
             bool ativar;
         public:
             Observador();
-            ~Observador();
+            virtual ~Observador();
             void mudarEstadoAtivar();
             const bool getAtivar() const;
             void removerObservador();

@@ -1,12 +1,10 @@
 #include "..\..\include\Observador\ObservadorMenuPrincipal.hpp"
-#include "..\..\include\Menu\MenuPrincipal.hpp"
 #include "..\..\include\Gerenciador\GerenciadorEstado.hpp"
+#include "..\..\include\Menu\MenuPrincipal.hpp"
 
 namespace Jungle {
 
     namespace Observador {
-
-        Gerenciador::GerenciadorEstado* ObservadorMenuPrincipal::pGEstado = Gerenciador::GerenciadorEstado::getGerenciadorEstado();
 
         ObservadorMenuPrincipal::ObservadorMenuPrincipal(Menu::MenuPrincipal* menuPrincipal):
             Observador(), menuPrincipal(menuPrincipal)
@@ -15,7 +13,7 @@ namespace Jungle {
         }
 
         ObservadorMenuPrincipal::~ObservadorMenuPrincipal(){
-            removerObservador();
+            
         }
         
         void ObservadorMenuPrincipal::teclaPressionada(const sf::Keyboard::Key tecla){

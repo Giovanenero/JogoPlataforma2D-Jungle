@@ -1,4 +1,5 @@
 #include "..\..\include\Fase\Fase.hpp"
+#include "..\..\include\Observador\ObservadorFase.hpp"
 
 namespace Jungle {
 
@@ -7,7 +8,7 @@ namespace Jungle {
         Fase::Fase(const IDs::IDs ID_Fase, const IDs::IDs ID_Fundo):
             Ente(ID_Fase), fundo(ID_Fundo), listaPersonagens(), listaObstaculos(),
             pColisao(new Gerenciador::GerenciadorColisao(&listaPersonagens, &listaObstaculos)),
-            construtorEntidade()
+            construtorEntidade(), observadorFase(new Observador::ObservadorFase(this))
         {
             if(pColisao == nullptr){
                 std::cout << "Jungle::Fase::nao foi possivel criar um Gerenciador de Colisao" << std::endl;
@@ -22,6 +23,10 @@ namespace Jungle {
             }
             listaObstaculos.limparLista();
             listaPersonagens.limparLista();
+            if(observadorFase){
+                delete(observadorFase);
+                observadorFase = nullptr;
+            }
         }
 
         void Fase::criarEntidade(char letra, const sf::Vector2i pos){
@@ -65,6 +70,7 @@ namespace Jungle {
         }
 
         void Fase::desenhar(){
+            fundo.executar();
             listaPersonagens.desenharEntidades();
             listaObstaculos.desenharEntidades();
         }

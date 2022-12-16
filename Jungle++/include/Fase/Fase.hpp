@@ -19,9 +19,15 @@
 
 namespace Jungle {
 
+    namespace Observador {
+        class ObservadorFase;
+    }
+
     namespace Fase {
 
         class Fase : public Ente {
+        private:
+            Observador::ObservadorFase* observadorFase;
         protected:
             Lista::ListaEntidade listaPersonagens;
             Lista::ListaEntidade listaObstaculos;

@@ -11,7 +11,7 @@ namespace Jungle {
         }
 
         ObservadorJogador::~ObservadorJogador(){
-            removerObservador();
+            
         }
 
         void ObservadorJogador::teclaPressionada(const sf::Keyboard::Key tecla){

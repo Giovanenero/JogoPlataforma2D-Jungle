@@ -1,11 +1,13 @@
 #include "..\..\include\Observador\Observador.hpp"
 #include "..\..\include\Gerenciador\GerenciadorEvento.hpp"
+#include "..\..\include\Gerenciador\GerenciadorEstado.hpp"
 
 namespace Jungle { 
 
     namespace Observador {
 
         Gerenciador::GerenciadorEvento* Observador::pEvento = Gerenciador::GerenciadorEvento::getGerenciadorEvento();
+        Gerenciador::GerenciadorEstado* Observador::pGEstado = Gerenciador::GerenciadorEstado::getGerenciadorEstado();
 
         Observador::Observador():
             ativar(true)
@@ -14,7 +16,7 @@ namespace Jungle {
         }
 
         Observador::~Observador(){
-
+            removerObservador();
         }
 
         void Observador::removerObservador(){

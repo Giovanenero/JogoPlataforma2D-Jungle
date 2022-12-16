@@ -12,7 +12,7 @@ namespace Jungle {
             Estado(IDs::IDs::estado_menu_pausa), estadoJogar(nullptr), menuPausa()
         {
             Estado* estado = pGEstado->getEstadoAtual();
-            if(estado->getID() != IDs::IDs::jogar_florestaBranca || estado->getID() != IDs::IDs::jogar_florestaVermelha){
+            if(estado->getID() != IDs::IDs::jogar_florestaBranca && estado->getID() != IDs::IDs::jogar_florestaVermelha){
                 std::cout << "ERRO::Estado::EstadoMenuPausa::Estado atual não é uma fase!" << std::endl;
                 exit(1);
             }
