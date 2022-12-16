@@ -29,6 +29,10 @@ void Jungle::Entidade::Personagem::Personagem::atacar(const bool atacando){
 
 void Jungle::Entidade::Personagem::Personagem::atualizarPosicao(){
     dt = relogio.getElapsedTime().asSeconds();
+    //vai resetar o relógio no caso de jogo pausado;
+    if(dt > 0.3){
+        dt = 0.0f;
+    }
     relogio.restart();
     sf::Vector2f ds(0.0f, 0.0f);
 

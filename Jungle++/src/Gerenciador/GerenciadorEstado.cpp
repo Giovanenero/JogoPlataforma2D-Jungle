@@ -46,7 +46,7 @@ namespace Jungle {
             //desativa os observaores que estavam no estado anterior
             Estado::Estado* estadoAtual = getEstadoAtual();
 
-            //por enquanto
+            //por enquanto...tem q arrumar
            estadoAtual->mudarEstadoObservador();
         }
 

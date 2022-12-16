@@ -69,6 +69,10 @@ namespace Jungle {
             return nullptr;
         }
 
+        void Fase::mudarEstadoObservador(){
+            observadorFase->mudarEstadoAtivar();
+        }
+
         void Fase::desenhar(){
             fundo.executar();
             listaPersonagens.desenharEntidades();

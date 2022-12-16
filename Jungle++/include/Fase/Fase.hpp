@@ -45,6 +45,7 @@ namespace Jungle {
             void executar();
             void desenhar();
             Entidade::Personagem::Jogador::Jogador* getJogador();
+            void mudarEstadoObservador();
         };
 
     }
