@@ -22,7 +22,9 @@ namespace IDs {
         botao_opcao,
         botao_sair,
         menu_principal,
-        estado_menu_principal
+        menu_pausa,
+        estado_menu_principal,
+        estado_menu_pausa
     };
 
 }

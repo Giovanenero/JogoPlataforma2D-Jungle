@@ -17,6 +17,10 @@ namespace Jungle {
             }
         }
 
+        Fase::Fase* EstadoJogar::getFase(){
+            return fase;
+        }
+
         void EstadoJogar::mudarEstadoObservador(){
             fase->getJogador()->mudarEstadoObservador();
         }

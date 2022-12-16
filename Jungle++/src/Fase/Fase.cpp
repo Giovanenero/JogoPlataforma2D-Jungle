@@ -65,16 +65,17 @@ namespace Jungle {
         }
 
         void Fase::desenhar(){
-            listaPersonagens.executar();
-            listaObstaculos.executar();
+            listaPersonagens.desenharEntidades();
+            listaObstaculos.desenharEntidades();
         }
 
         void Fase::executar(){
             //atualiza fundo
             fundo.executar();
 
-            //atualiza entidade e desenha
-            desenhar();
+            //atualiza e desenha entidades
+            listaPersonagens.executar();
+            listaObstaculos.executar();
 
             //verifica colisão
             pColisao->executar();

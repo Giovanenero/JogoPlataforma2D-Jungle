@@ -49,9 +49,7 @@ namespace Jungle {
             sf::Event evento;
             while(pGrafico->getWindow()->pollEvent(evento)){
                 if(evento.type == sf::Event::KeyPressed){
-                    if(evento.key.code == sf::Keyboard::P){
-                        pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
-                    } else if(evento.key.code == sf::Keyboard::Escape){
+                    if(evento.key.code == sf::Keyboard::Escape){
                         pGEstado->removerEstado();
                     } else {
                         listaObservador->notificarTeclaPressionada(evento.key.code);

@@ -22,18 +22,42 @@ namespace Jungle {
             return static_cast<Estado::Estado*>(estadoJogar);
         }
 
-        Estado::Estado* ConstrutorEstado::criarMenuPrinciapal(const IDs::IDs ID){
-            Estado::Estado* estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuPrincipal(ID));
+        Estado::Estado* ConstrutorEstado::criarMenuPrinciapal(){
+            Estado::Estado* estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuPrincipal());
+            return estado;
+        }
+
+        Estado::Estado* ConstrutorEstado::criarMenuPausar(){
+            Estado::Estado* estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuPausa());
             return estado;
         }
 
         Estado::Estado* ConstrutorEstado::criarEstado(const IDs::IDs ID){
-            if(IDs::IDs::jogar_florestaBranca == ID || IDs::IDs::jogar_florestaVermelha == ID){
-                return criarEstadoJogar(ID);
-            } else if(ID == IDs::IDs::estado_menu_principal){
-                return criarMenuPrinciapal(ID);
+            Estado::Estado* estado = nullptr;
+            switch (ID)
+            {
+                case (IDs::IDs::jogar_florestaBranca):
+                {
+                    estado = criarEstadoJogar(ID);
+                }
+                    break;
+                case (IDs::IDs::jogar_florestaVermelha):
+                {
+                    estado = criarEstadoJogar(ID);
+                }
+                    break;
+                case (IDs::IDs::estado_menu_principal):
+                {
+                    estado = criarMenuPrinciapal();
+                }
+                    break;
+                case (IDs::IDs::estado_menu_pausa):
+                {
+                    estado = criarMenuPausar();
+                }
+                    break;
             }
-            return nullptr;
+            return estado;
         }
     }
 

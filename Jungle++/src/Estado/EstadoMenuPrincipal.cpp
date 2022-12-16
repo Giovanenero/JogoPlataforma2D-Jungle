@@ -4,8 +4,8 @@ namespace Jungle {
 
     namespace Estado {
 
-        EstadoMenuPrincipal::EstadoMenuPrincipal(const IDs::IDs ID):
-            Estado(ID), menuPrincipal()
+        EstadoMenuPrincipal::EstadoMenuPrincipal():
+            Estado(IDs::IDs::estado_menu_principal), menuPrincipal()
         {
 
         }

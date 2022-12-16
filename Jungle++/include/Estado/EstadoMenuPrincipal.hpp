@@ -11,7 +11,7 @@ namespace Jungle {
         private:
             Menu::MenuPrincipal menuPrincipal;
         public:
-            EstadoMenuPrincipal(const IDs::IDs ID = IDs::IDs::estado_menu_principal);
+            EstadoMenuPrincipal();
             ~EstadoMenuPrincipal();
             void mudarEstadoObservador();
             void executar();
