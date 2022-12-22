@@ -49,11 +49,7 @@ namespace Jungle {
             sf::Event evento;
             while(pGrafico->getWindow()->pollEvent(evento)){
                 if(evento.type == sf::Event::KeyPressed){
-                    if(evento.key.code == sf::Keyboard::Escape){
-                        pGEstado->removerEstado();
-                    } else {
-                        listaObservador->notificarTeclaPressionada(evento.key.code);
-                    }
+                    listaObservador->notificarTeclaPressionada(evento.key.code);
                 } else if(evento.type == sf::Event::KeyReleased){
                     listaObservador->notificarTeclaSolta(evento.key.code);
                 } else if(evento.type == sf::Event::Closed){

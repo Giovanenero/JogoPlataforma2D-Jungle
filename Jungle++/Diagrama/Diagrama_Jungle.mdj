@@ -19084,6 +19084,42 @@
 											"height": 13,
 											"text": "+criarEstadoJogar(ID: const IDs): Estado*",
 											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGFGDbpuwvi93k=",
+											"_parent": {
+												"$ref": "AAAAAAGEgzkd5DF6pd0="
+											},
+											"model": {
+												"$ref": "AAAAAAGFGDbpkQuXz1E="
+											},
+											"fillColor": "#007c3e",
+											"font": "Arial;13;0",
+											"left": 5805,
+											"top": 3057,
+											"width": 241.6806640625,
+											"height": 13,
+											"text": "+criarMenuPrincipal(): Estado*",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGFGFuxSRdEV1Y=",
+											"_parent": {
+												"$ref": "AAAAAAGEgzkd5DF6pd0="
+											},
+											"model": {
+												"$ref": "AAAAAAGFGFuxJBb5J58="
+											},
+											"fillColor": "#007c3e",
+											"font": "Arial;13;0",
+											"left": 5805,
+											"top": 3072,
+											"width": 241.6806640625,
+											"height": 13,
+											"text": "+criarMenuPausa(): Estado*",
+											"horizontalAlignment": 0
 										}
 									],
 									"fillColor": "#007c3e",
@@ -19091,7 +19127,7 @@
 									"left": 5800,
 									"top": 2992,
 									"width": 251.6806640625,
-									"height": 68
+									"height": 98
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -19137,7 +19173,7 @@
 							"left": 5800,
 							"top": 2944,
 							"width": 251.6806640625,
-							"height": 116,
+							"height": 146,
 							"nameCompartment": {
 								"$ref": "AAAAAAGEgzkd5DF0PEU="
 							},
@@ -23801,7 +23837,7 @@
 											"top": 4146,
 											"width": 264.09423828125,
 											"height": 13,
-											"text": "«create»+EstadoMenuPrincipal(ID: const IDs)",
+											"text": "«create»+EstadoMenuPrincipal(i)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -38569,6 +38605,44 @@
 											"direction": "return"
 										}
 									]
+								},
+								{
+									"_type": "UMLOperation",
+									"_id": "AAAAAAGFGDbpkQuXz1E=",
+									"_parent": {
+										"$ref": "AAAAAAGEgzkd4zFxaSI="
+									},
+									"name": "criarMenuPrincipal",
+									"parameters": [
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGFGDdaHhDHuTI=",
+											"_parent": {
+												"$ref": "AAAAAAGFGDbpkQuXz1E="
+											},
+											"type": "Estado*",
+											"direction": "return"
+										}
+									]
+								},
+								{
+									"_type": "UMLOperation",
+									"_id": "AAAAAAGFGFuxJBb5J58=",
+									"_parent": {
+										"$ref": "AAAAAAGEgzkd4zFxaSI="
+									},
+									"name": "criarMenuPausa",
+									"parameters": [
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGFGFvzeRsgfIA=",
+											"_parent": {
+												"$ref": "AAAAAAGFGFuxJBb5J58="
+											},
+											"type": "Estado*",
+											"direction": "return"
+										}
+									]
 								}
 							]
 						},
@@ -40727,8 +40801,7 @@
 											"_parent": {
 												"$ref": "AAAAAAGEq4W33gFNQew="
 											},
-											"name": "ID",
-											"type": "const IDs"
+											"name": "i"
 										}
 									]
 								},

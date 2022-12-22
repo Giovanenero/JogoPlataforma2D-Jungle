@@ -21,6 +21,7 @@ namespace IDs {
         botao_colocacao,
         botao_opcao,
         botao_sair,
+        botao_voltar,
         menu_principal,
         menu_pausa,
         estado_menu_principal,

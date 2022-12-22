@@ -6,10 +6,10 @@ namespace Jungle {
 
         namespace Botao {
 
-            Botao::Botao(const std::string info, const sf::Vector2f tam, const sf::Vector2f pos, const IDs::IDs ID):
-                Ente(ID), texto(pGrafico->carregarFonte(CAMINHO_FONTE), info),
+            Botao::Botao(const std::string info, const sf::Vector2f tam, const sf::Vector2f pos, const IDs::IDs ID, const sf::Color corSelecionado):
+                Ente(ID), texto(pGrafico->carregarFonte(CAMINHO_FONTE), info), 
                 selecionado(false), pos(pos), tam(tam), relogio(),
-                tempoTrocaCor(TEMPO_TROCAR_COR), tempo(0.0f)
+                tempoTrocaCor(TEMPO_TROCAR_COR), tempo(0.0f), corSelecionado(corSelecionado)
             {
                 caixaTexto.setPosition(pos);
                 caixaTexto.setSize(tam);
@@ -28,7 +28,7 @@ namespace Jungle {
 
             void Botao::setSelecionado(const bool selecionado){
                 if(selecionado){
-                    texto.setCorTexto(sf::Color{0, 200, 0});
+                    texto.setCorTexto(corSelecionado);
                 } else {
                     texto.setCorTexto(sf::Color::White);
                 }
@@ -68,6 +68,17 @@ namespace Jungle {
                 } else {
                     tempo = 0.0f;
                 }
+            }
+
+            void Botao::atualizarPosicao(const sf::Vector2f pos){
+                this->pos = pos;
+                caixaTexto.setPosition(pos);
+                sf::Vector2f tamTexto = this->texto.getTam();
+                sf::Vector2f posTexto = sf::Vector2f(
+                    pos.x + tam.x / 2.0f - tamTexto.x / 2.0f,
+                    pos.y + tam.y / 2.0f - tamTexto.y * 2.0f
+                );
+                this->texto.setPos(posTexto);
             }
 
             void Botao::desenhar(){
