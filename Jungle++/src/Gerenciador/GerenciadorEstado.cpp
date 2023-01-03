@@ -5,6 +5,7 @@ namespace Jungle {
     namespace Gerenciador {
 
         GerenciadorEstado* GerenciadorEstado::pGerenciadorEstado = nullptr;
+        GerenciadorMusica* GerenciadorEstado::pMusica = GerenciadorMusica::getGerenciadorMusica();
 
         GerenciadorEstado::GerenciadorEstado():
             pilhaEstados(), construtorEstado()
@@ -25,6 +26,11 @@ namespace Jungle {
                 delete(pilhaEstados.top());
                 pilhaEstados.top() = nullptr;
                 pilhaEstados.pop();
+            }
+
+            if(pMusica){
+                delete(pMusica);
+                pMusica = nullptr;
             }
 
             if(pGerenciadorEstado){
@@ -59,6 +65,8 @@ namespace Jungle {
             if(!pilhaEstados.empty()){
                 desativarObservadores();
             }
+            //arrumar...
+            pMusica->mudarMusica(ID);
             pilhaEstados.push(estado);
         }
 
@@ -69,6 +77,7 @@ namespace Jungle {
                 pilhaEstados.pop();
             }
             if(!pilhaEstados.empty()){
+                pMusica->mudarMusica(pilhaEstados.top()->getID());
                 ativarObservadores();
             } else {
                 GerenciadorGrafico* pGrafico = pGrafico->getGerenciadorGrafico();

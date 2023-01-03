@@ -22,7 +22,7 @@ namespace Jungle {
         void ObservadorFase::teclaSolta(const sf::Keyboard::Key tecla){
             switch (tecla)
             {
-                case (sf::Keyboard::P):
+                case (sf::Keyboard::Escape):
                 {
                     pGEstado->addEstado(IDs::IDs::estado_menu_pausa);
                 }

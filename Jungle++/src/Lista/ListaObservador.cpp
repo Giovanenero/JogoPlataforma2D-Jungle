@@ -55,6 +55,27 @@ namespace Jungle {
             }
         }
 
+        void ListaObservador::notificarMovimentoMouse(const sf::Event::MouseMoveEvent mouse){
+            sf::Vector2f posMouse = sf::Vector2f((float)mouse.x, (float)mouse.y);
+            for(int i = 0; i < objListaObservador.getTam(); i++){
+                Observador::Observador* observador = objListaObservador.operator[](i);
+                if(observador->getAtivar()){
+                    observador->moveMouse(posMouse);
+                }
+                observador = nullptr;
+            }
+        }
+
+        void ListaObservador::notificarBotaoMouseSolta(const sf::Mouse::Button botaoMouse){
+            for(int i = 0; i < objListaObservador.getTam(); i++){
+                Observador::Observador* observador = objListaObservador.operator[](i);
+                if(observador->getAtivar()){
+                    observador->botaoMouseSolta(botaoMouse);
+                }
+                observador = nullptr;
+            }
+        }
+
     }
 
 }

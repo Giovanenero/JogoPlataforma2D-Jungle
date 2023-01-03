@@ -13,7 +13,7 @@ namespace Jungle {
         namespace Botao {
 
             class Botao : public Ente {
-            private:
+            protected:
                 sf::RectangleShape caixaTexto;
                 TextoAnimado texto;
                 sf::Vector2f pos;
@@ -24,14 +24,17 @@ namespace Jungle {
                 sf::Clock relogio;
                 const float tempoTrocaCor;
                 float tempo;
+
+                const sf::Vector2f getTamTexto() const;
             public:
                 Botao(const std::string info, const sf::Vector2f tam,const sf::Vector2f pos, const IDs::IDs ID, const sf::Color corSelecionado);
-                ~Botao();
-                void desenhar();
+                virtual ~Botao();
+                virtual void desenhar();
                 void atualizarTexto();
                 void setSelecionado(const bool selecionado = true);
                 const bool getSelecionado() const;
                 void atualizarPosicao(const sf::Vector2f pos);
+                const sf::Vector2f getPos() const;
             };
 
         }

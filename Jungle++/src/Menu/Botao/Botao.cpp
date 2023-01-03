@@ -15,10 +15,11 @@ namespace Jungle {
                 caixaTexto.setSize(tam);
                 sf::Vector2f tamTexto = this->texto.getTam();
                 sf::Vector2f posTexto = sf::Vector2f(
-                    pos.x + tam.x / 2.0f - tamTexto.x / 2.0f,
-                    pos.y + tam.y / 2.0f - tamTexto.y * 1.5f
+                    pos.x + tam.x / 2.0f - tamTexto.x / 2.05f,
+                    pos.y + tam.y / 2.0f - tamTexto.y * 1.2f
                 );
                 this->texto.setPos(posTexto);
+                //arrumar
                 caixaTexto.setFillColor(sf::Color::Transparent);
             }
 
@@ -75,8 +76,8 @@ namespace Jungle {
                 caixaTexto.setPosition(pos);
                 sf::Vector2f tamTexto = this->texto.getTam();
                 sf::Vector2f posTexto = sf::Vector2f(
-                    pos.x + tam.x / 2.0f - tamTexto.x / 2.0f,
-                    pos.y + tam.y / 2.0f - tamTexto.y * 2.0f
+                    pos.x + tam.x / 2.0f - tamTexto.x / 2.05f,
+                    pos.y + tam.y / 2.0f - tamTexto.y * 1.2f
                 );
                 this->texto.setPos(posTexto);
             }
@@ -85,6 +86,14 @@ namespace Jungle {
                 atualizarTexto();
                 //pGrafico->desenhaElemento(caixaTexto);
                 pGrafico->desenhaElemento(texto.getTexto());
+            }
+
+            const sf::Vector2f Botao::getPos() const{
+                return caixaTexto.getPosition();
+            }
+
+            const sf::Vector2f Botao::getTamTexto() const{
+                return sf::Vector2f(texto.getTexto().getGlobalBounds().width, texto.getTexto().getGlobalBounds().height);
             }
 
         }

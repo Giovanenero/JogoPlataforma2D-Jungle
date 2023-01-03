@@ -54,6 +54,10 @@ namespace Jungle {
                     listaObservador->notificarTeclaSolta(evento.key.code);
                 } else if(evento.type == sf::Event::Closed){
                     pGrafico->fecharJanela();
+                } else if(evento.type == sf::Event::MouseMoved){
+                    listaObservador->notificarMovimentoMouse(evento.mouseMove);
+                } else if(evento.type == sf::Event::MouseButtonReleased){
+                    listaObservador->notificarBotaoMouseSolta(evento.mouseButton.button);
                 }
             }
         }

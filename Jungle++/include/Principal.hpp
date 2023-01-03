@@ -10,6 +10,8 @@
 
 #include "Gerenciador\GerenciadorEstado.hpp"
 
+#include <SFML/Audio.hpp>
+
 namespace Jungle {
 
     class Principal {

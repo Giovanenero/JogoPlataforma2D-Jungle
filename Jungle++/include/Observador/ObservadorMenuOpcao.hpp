@@ -1,22 +1,18 @@
-#pragma once
+#pragma once 
 
 #include "Observador.hpp"
-#include "..\Menu\Botao\Botao.hpp"
+#include "..\Menu\MenuOpcao.hpp"
 
 namespace Jungle {
 
-    namespace Menu {
-        class MenuPrincipal;
-    }
-
     namespace Observador {
 
-        class ObservadorMenuPrincipal: public Observador {
+        class ObservadorMenuOpcao: public Observador {
         private:
-            Menu::MenuPrincipal* menuPrincipal;
+            Menu::MenuOpcao* menuOpcao;
         public:
-            ObservadorMenuPrincipal(Menu::MenuPrincipal* menuPrincipal);
-            ~ObservadorMenuPrincipal();
+            ObservadorMenuOpcao(Menu::MenuOpcao* menuOpcao);
+            ~ObservadorMenuOpcao();
             void teclaPressionada(const sf::Keyboard::Key tecla);
             void teclaSolta(const sf::Keyboard::Key tecla);
             void moveMouse(const sf::Vector2f posMouse);

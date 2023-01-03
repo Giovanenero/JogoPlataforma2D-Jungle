@@ -31,6 +31,14 @@ namespace Jungle {
             return ativar;
         }
 
+        void Observador::moveMouse(const sf::Vector2f posMouse){
+            
+        }
+
+        void Observador::botaoMouseSolta(const sf::Mouse::Button botaoMouse){
+            
+        }
+
     }
 
 }

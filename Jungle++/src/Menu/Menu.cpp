@@ -29,15 +29,8 @@ namespace Jungle {
             listaBotao.push_back(botao);
         }
 
-        void Menu::atualizarPosicaoBotoes(sf::Vector2f pos){
-            std::list<Botao::Botao*>::iterator aux;
-            int i = 1;
-            for(aux = listaBotao.begin(); aux != listaBotao.end(); aux++, i++){
-                Botao::Botao* botao = *aux;
-                pos = sf::Vector2f(pos.x, pos.y + (i * tamBotao.y * 0.6f));
-                botao->atualizarPosicao(pos);
-                botao = nullptr;
-            }
+        void Menu::atualizarPosicaoFundo(){
+            posFundo = pGrafico->getCamera().getCenter();
         }
 
         void Menu::selecionaCima(){
@@ -64,6 +57,28 @@ namespace Jungle {
 
         const IDs::IDs Menu::getIDBotaoSelecionado(){
             return (*it)->getID();
+        }
+
+        void Menu::eventoMouse(const sf::Vector2f posMouse){
+            std::list<Botao::Botao*>::iterator aux;
+            mouseSelecionado = false;
+            for(aux = listaBotao.begin(); aux != listaBotao.end(); aux++){
+                Botao::Botao* botao = *aux;
+                sf::Vector2f posBotao = botao->getPos();
+                sf::Vector2f posCamera = pGrafico->getCamera().getCenter();
+                if(posMouse.x + posCamera.x - tamJanela.x / 2.0f > posBotao.x && posMouse.x + posCamera.x - tamJanela.x / 2.0f < posBotao.x + tamBotao.x && 
+                   posMouse.y + posCamera.y - tamJanela.y / 2.0f > posBotao.y && posMouse.y + posCamera.y - tamJanela.y / 2.0f < posBotao.y + tamBotao.y){
+                    (*it)->setSelecionado(false);
+                    it = aux;
+                    (*it)->setSelecionado(true);
+                    mouseSelecionado = true;
+                    break;
+                }
+            }
+        }
+
+        const bool Menu::getMouseSelecionado() const{
+            return mouseSelecionado;
         }
 
         void Menu::desenhar(){

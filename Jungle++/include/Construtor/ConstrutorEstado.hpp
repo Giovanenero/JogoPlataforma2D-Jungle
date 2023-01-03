@@ -3,6 +3,7 @@
 #include "..\Estado\EstadoJogar.hpp"
 #include "..\Estado\EstadoMenuPrincipal.hpp"
 #include "..\Estado\EstadoMenuPausa.hpp"
+#include "..\Estado\EstadoMenuOpcaoPrincipal.hpp"
 
 #include "..\Construtor\ConstrutorFase.hpp"
 
@@ -19,8 +20,8 @@ namespace Jungle {
             Estado::Estado* criarEstadoJogar(const IDs::IDs ID);
             Estado::Estado* criarMenuPrinciapal();
             Estado::Estado* criarMenuPausar();
+            Estado::Estado* criarMenuOpcaoPrincipal();
             //Estado::Estado* criarMenuSalvar();
-            //Estado::Estado* criarMenuOpcao();
             //Estado::Estado* criarColocao();
         };
 

@@ -25,6 +25,8 @@ namespace Jungle {
             void removerObservador();
             virtual void teclaPressionada(const sf::Keyboard::Key tecla) = 0;
             virtual void teclaSolta(const sf::Keyboard::Key tecla) = 0;
+            virtual void moveMouse(const sf::Vector2f posMouse);
+            virtual void botaoMouseSolta(const sf::Mouse::Button botaoMouse);
         };
 
     }

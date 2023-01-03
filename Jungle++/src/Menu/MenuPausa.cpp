@@ -11,8 +11,8 @@ namespace Jungle {
             fundoPainel(sf::Vector2f(tamJanela.x / 2.0f, tamJanela.y))
         {
             nomeMenu.setCorTexto(sf::Color{255,0,0});
-            fundoEscuro.setFillColor(sf::Color{0, 0, 0, 125});
-            fundoPainel.setFillColor(sf::Color{0, 0, 0, 200});
+            fundoEscuro.setFillColor(sf::Color{0, 0, 0, 180});
+            fundoPainel.setFillColor(sf::Color{0, 0, 0, 220});
             criarBotoes();
         }
 
@@ -24,10 +24,10 @@ namespace Jungle {
         }
 
         void MenuPausa::criarBotoes(){
-            const float posBotaoX = tamJanela.x / 2.0f - tamBotao.x / 2.0f;
-            addBotao("Voltar", sf::Vector2f(posBotaoX, posFundo.y), IDs::IDs::botao_voltar, sf::Color{255, 0, 0});
-            addBotao("Opacao", sf::Vector2f(posBotaoX, posFundo.y + tamBotao.y / 2.0f * 1.2f), IDs::IDs::botao_opcao, sf::Color{255, 0, 0});
-            addBotao("Sair", sf::Vector2f(posBotaoX, posFundo.y + tamBotao.y / 2.0f * 2.4f), IDs::IDs::botao_sair, sf::Color{255, 0, 0});
+            addBotao("Voltar", sf::Vector2f(0.0f, 0.0f), IDs::IDs::botao_voltar, sf::Color{255, 0, 0});
+            addBotao("Salvar Jogada", sf::Vector2f(0.0f, 0.0f), IDs::IDs::botao_salvarJogada, sf::Color{255, 0, 0});
+            addBotao("Opcao", sf::Vector2f(0.0f, 0.0f), IDs::IDs::botao_opcao, sf::Color{255, 0, 0});
+            addBotao("Sair", sf::Vector2f(0.0f, 0.0f), IDs::IDs::botao_sair, sf::Color{255, 0, 0});
             it = listaBotao.begin();
             (*it)->setSelecionado(true);
         }
@@ -41,7 +41,7 @@ namespace Jungle {
         }
 
         void MenuPausa::atualizarFundo(){
-            posFundo = pGrafico->getCamera().getCenter();
+            atualizarPosicaoFundo();
             sf::Vector2f posFundoEscuro = sf::Vector2f(posFundo.x - tamJanela.x / 2.0f, posFundo.y - tamJanela.y / 2.0f);
             fundoEscuro.setPosition(posFundoEscuro);
             fundoPainel.setPosition(sf::Vector2f(posFundoEscuro.x + tamJanela.x / 4.0f, posFundoEscuro.y));
@@ -51,13 +51,19 @@ namespace Jungle {
         }
 
         void MenuPausa::atualizarNomeMenu(){
-            nomeMenu.setPos(sf::Vector2f(posFundo.x - nomeMenu.getTam().x / 2.0f, posFundo.y - tamJanela.y / 2.0f));
+            nomeMenu.setPos(sf::Vector2f(posFundo.x - nomeMenu.getTam().x / 2.1f, posFundo.y - tamJanela.y / 2.0f));
 
             pGrafico->desenhaElemento(nomeMenu.getTexto());
         }
 
         void MenuPausa::atualizarBotoes(){
-            atualizarPosicaoBotoes(sf::Vector2f(posFundo.x - tamJanela.x / 5.0f, posFundo.y));
+            std::list<Botao::Botao*>::iterator aux;
+            int i = 1;
+            for(aux = listaBotao.begin(); aux != listaBotao.end(); aux++, i++){
+                Botao::Botao* botao = *aux;
+                botao->atualizarPosicao(sf::Vector2f(posFundo.x - tamJanela.x / 4.6f, posFundo.y / 1.5f + (tamBotao.y + 20.f)* i));
+                botao = nullptr;
+            }
 
             desenhar();
         }

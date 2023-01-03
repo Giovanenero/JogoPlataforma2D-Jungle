@@ -21,6 +21,8 @@ namespace Jungle {
             Observador::Observador* operator[](int pos);
             void notificarTeclaPressionada(const sf::Keyboard::Key tecla);
             void notificarTeclaSolta(const sf::Keyboard::Key tecla);
+            void notificarMovimentoMouse(const sf::Event::MouseMoveEvent mouse);
+            void notificarBotaoMouseSolta(const sf::Mouse::Button botaoMouse);
         };
 
     }

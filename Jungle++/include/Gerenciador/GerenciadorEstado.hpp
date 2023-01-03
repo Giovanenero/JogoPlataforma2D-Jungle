@@ -5,6 +5,7 @@
 
 //Gerenciadores
 #include "GerenciadorGrafico.hpp"
+#include "GerenciadorMusica.hpp"
 
 //Pilha
 #include <stack>
@@ -17,6 +18,7 @@ namespace Jungle {
         private:
             std::stack<Estado::Estado*> pilhaEstados;
             Construtor::ConstrutorEstado construtorEstado;
+            static GerenciadorMusica* pMusica;
 
             //padrão de projeto singleton
             static GerenciadorEstado* pGerenciadorEstado;

@@ -17,8 +17,9 @@ namespace Jungle {
             const sf::Vector2f tamJanela;
             sf::Vector2f posFundo;
             Botao::Texto nomeMenu;
+            bool mouseSelecionado = false;
 
-            void atualizarPosicaoBotoes(sf::Vector2f pos);
+            void atualizarPosicaoFundo();
         public:
             Menu(const IDs::IDs ID, const sf::Vector2f tamBotao, const std::string nome, const unsigned int tamFonte);
             ~Menu();
@@ -27,6 +28,8 @@ namespace Jungle {
             void selecionaCima();
             void selecionaBaixo() ;
             const IDs::IDs getIDBotaoSelecionado();
+            void eventoMouse(const sf::Vector2f posMouse);
+            const bool getMouseSelecionado() const;
             virtual void executar() = 0;
         };
 

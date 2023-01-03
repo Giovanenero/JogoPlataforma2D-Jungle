@@ -32,6 +32,11 @@ namespace Jungle {
             return estado;
         }
 
+        Estado::Estado* ConstrutorEstado::criarMenuOpcaoPrincipal(){
+            Estado::Estado* estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuOpcaoPrincipal());
+            return estado;
+        }
+
         Estado::Estado* ConstrutorEstado::criarEstado(const IDs::IDs ID){
             Estado::Estado* estado = nullptr;
             switch (ID)
@@ -54,6 +59,11 @@ namespace Jungle {
                 case (IDs::IDs::estado_menu_pausa):
                 {
                     estado = criarMenuPausar();
+                }
+                    break;
+                case (IDs::IDs::estado_menu_opcaoPrincipal):
+                {
+                    estado = criarMenuOpcaoPrincipal();
                 }
                     break;
             }
