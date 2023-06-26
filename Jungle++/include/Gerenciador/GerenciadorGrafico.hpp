@@ -3,7 +3,9 @@
 #define TELA_X 800.0f
 #define TELA_Y 600.0f
 
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
+
+
 #include <iostream>
 
 namespace Jungle {

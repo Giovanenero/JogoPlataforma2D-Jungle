@@ -37,6 +37,11 @@ namespace Jungle {
             return estado;
         }
 
+        Estado::Estado* ConstrutorEstado::criarEstadoMenuPerfil(){
+            Estado::Estado* estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuPerfil());
+            return estado;
+        }
+
         Estado::Estado* ConstrutorEstado::criarEstado(const IDs::IDs ID){
             Estado::Estado* estado = nullptr;
             switch (ID)
@@ -64,6 +69,11 @@ namespace Jungle {
                 case (IDs::IDs::estado_menu_opcaoPrincipal):
                 {
                     estado = criarMenuOpcaoPrincipal();
+                }
+                    break;
+                case(IDs::IDs::estado_menu_perfil):
+                {
+                    estado = criarEstadoMenuPerfil();
                 }
                     break;
             }

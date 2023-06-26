@@ -8,8 +8,8 @@ namespace Jungle {
         MenuOpcaoPrincipal::MenuOpcaoPrincipal():
             MenuOpcao(), fundo(IDs::IDs::fundo_florestaNegra), observadorMenuOpcao(new Observador::ObservadorMenuOpcao(this))
         {
-            nomeMenu.setCorTexto(sf::Color{0,255,0});
-            nomeMenu.setPos(sf::Vector2f(tamJanela.x / 2.0f - nomeMenu.getTam().x / 2.0f, 25.0f));
+            titulo.setCorTexto(sf::Color{0,255,0});
+            titulo.setPos(sf::Vector2f(tamJanela.x / 2.0f - titulo.getTam().x / 2.0f, 25.0f));
             criarFundo();
             criarBotoes();
         }
@@ -27,8 +27,7 @@ namespace Jungle {
             addBotao("Volume Geral", sf::Vector2f(25.0f, 350.0f), IDs::IDs::botao_volume_geral, sf::Color{0,255,0}, 20.0f);
 
             Menu::addBotao("Voltar", sf::Vector2f(tamJanela.x / 2.0f - tamBotao.x / 2.0f, 450.0f), IDs::IDs::botao_voltar, sf::Color{0,255,0});
-            it = listaBotao.begin();
-            (*it)->setSelecionado(true);
+            inicializarIterator();
         }
 
         void MenuOpcaoPrincipal::criarFundo(){
@@ -49,7 +48,7 @@ namespace Jungle {
             pGrafico->resetarJanela();
 
             desenhar();
-            pGrafico->desenhaElemento(nomeMenu.getTexto());
+            pGrafico->desenhaElemento(titulo.getTexto());
         }
 
     }

@@ -22,7 +22,7 @@ namespace Jungle {
                 void inicializa();
             public:
                 Texto(const sf::Font fonte, const std::string info, const unsigned int tamFonte = 50);
-                ~Texto();
+                virtual ~Texto();
                 const sf::Text getTexto() const;
                 void setPos(const sf::Vector2f pos);
                 sf::Vector2f getTam();

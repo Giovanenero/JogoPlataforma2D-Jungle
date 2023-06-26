@@ -6,7 +6,7 @@ namespace Jungle {
 
         Menu::Menu(const IDs::IDs ID, const sf::Vector2f tamBotao, const std::string nome, const unsigned int tamFonte):
             Ente(ID), listaBotao(), it(), tamBotao(tamBotao), tamJanela(pGrafico->getTamJanela()), posFundo(sf::Vector2f(0.0f, 0.0f)),
-            nomeMenu(pGrafico->carregarFonte("Jungle++/fonte/menu.ttf"), nome, tamFonte)
+            titulo(pGrafico->carregarFonte("Jungle++/fonte/menu.ttf"), nome, tamFonte)
         {
 
         }
@@ -31,6 +31,17 @@ namespace Jungle {
 
         void Menu::atualizarPosicaoFundo(){
             posFundo = pGrafico->getCamera().getCenter();
+        }
+
+        void Menu::inicializarIterator(){
+            try {
+                it = listaBotao.begin();
+                (*it)->setSelecionado(true);
+            } catch(const std::exception& e)
+            {
+                std::cerr << e.what() << '\n';
+                exit(1);
+            }
         }
 
         void Menu::selecionaCima(){

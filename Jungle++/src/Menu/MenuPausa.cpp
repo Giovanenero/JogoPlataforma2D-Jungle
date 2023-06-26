@@ -10,7 +10,7 @@ namespace Jungle {
             observadorMenuPausa(new Observador::ObservadorMenuPausa(this)), fundoEscuro(tamJanela),
             fundoPainel(sf::Vector2f(tamJanela.x / 2.0f, tamJanela.y))
         {
-            nomeMenu.setCorTexto(sf::Color{255,0,0});
+            titulo.setCorTexto(sf::Color{255,0,0});
             fundoEscuro.setFillColor(sf::Color{0, 0, 0, 180});
             fundoPainel.setFillColor(sf::Color{0, 0, 0, 220});
             criarBotoes();
@@ -28,8 +28,7 @@ namespace Jungle {
             addBotao("Salvar Jogada", sf::Vector2f(0.0f, 0.0f), IDs::IDs::botao_salvarJogada, sf::Color{255, 0, 0});
             addBotao("Opcao", sf::Vector2f(0.0f, 0.0f), IDs::IDs::botao_opcao, sf::Color{255, 0, 0});
             addBotao("Sair", sf::Vector2f(0.0f, 0.0f), IDs::IDs::botao_sair, sf::Color{255, 0, 0});
-            it = listaBotao.begin();
-            (*it)->setSelecionado(true);
+            inicializarIterator();
         }
 
         void MenuPausa::setFase(Fase::Fase* fase){
@@ -51,9 +50,9 @@ namespace Jungle {
         }
 
         void MenuPausa::atualizarNomeMenu(){
-            nomeMenu.setPos(sf::Vector2f(posFundo.x - nomeMenu.getTam().x / 2.1f, posFundo.y - tamJanela.y / 2.0f));
+            titulo.setPos(sf::Vector2f(posFundo.x - titulo.getTam().x / 2.1f, posFundo.y - tamJanela.y / 2.0f));
 
-            pGrafico->desenhaElemento(nomeMenu.getTexto());
+            pGrafico->desenhaElemento(titulo.getTexto());
         }
 
         void MenuPausa::atualizarBotoes(){

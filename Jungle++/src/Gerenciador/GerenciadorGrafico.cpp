@@ -11,6 +11,7 @@ namespace Jungle {
             window(new sf::RenderWindow(sf::VideoMode(TELA_X, TELA_Y), "Jungle++")),
             camera(sf::Vector2f(TELA_X / 2.0f, TELA_Y / 2.0f), sf::Vector2f(TELA_X, TELA_Y))
         {
+            window->setFramerateLimit(0);
             if(window == nullptr){
                 std::cout << "ERROR::Jungle::Gerenciador::GerenciadorGrafico nao foi possivel criar uma janela grafica" << std::endl;
                 exit(1);

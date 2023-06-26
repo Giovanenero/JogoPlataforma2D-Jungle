@@ -13,8 +13,8 @@ namespace Jungle {
                 std::cout << "ERROR::Jungle::Menu::MenuPrincipal::nao foi possivel criar um Observador Menu Principal" << std::endl;
                 exit(1);
             }
-            nomeMenu.setPos(sf::Vector2f(tamJanela.x / 2.0f - nomeMenu.getTam().x / 2.0f, 25.0f));
-            nomeMenu.setCorTexto(sf::Color{0,200,0});
+            titulo.setPos(sf::Vector2f(tamJanela.x / 2.0f - titulo.getTam().x / 2.0f, 25.0f));
+            titulo.setCorTexto(sf::Color{0,200,0});
             criarFundo();
             criarBotoes();
         }
@@ -43,8 +43,7 @@ namespace Jungle {
             addBotao("Colocacao", sf::Vector2f(posBotaoX, tamJanela.y / 2.0f + tamBotao.y * 2.4f), IDs::IDs::botao_colocacao, sf::Color{0, 255, 0});
             addBotao("Opcao", sf::Vector2f(posBotaoX, tamJanela.y / 2.0f + tamBotao.y * 3.6f), IDs::IDs::botao_opcao, sf::Color{0, 255, 0});
             addBotao("Sair", sf::Vector2f(posBotaoX, tamJanela.y / 2.0f + tamBotao.y * 4.8f), IDs::IDs::botao_sair, sf::Color{0, 255, 0});
-            it = listaBotao.begin();
-            (*it)->setSelecionado(true);
+            inicializarIterator();
         }
 
         void MenuPrincipal::setSair(const bool sair){
@@ -68,7 +67,7 @@ namespace Jungle {
 
             //desenha todo o conteúdo do menu principal na tela
             desenhar();
-            pGrafico->desenhaElemento(nomeMenu.getTexto());
+            pGrafico->desenhaElemento(titulo.getTexto());
         }
 
     }

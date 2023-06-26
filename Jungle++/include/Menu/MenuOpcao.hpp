@@ -19,6 +19,8 @@ namespace Jungle {
 
             void addBotao(const std::string info, const sf::Vector2f pos, const IDs::IDs ID, const sf::Color corSelecionado, const float posInicioFundo);
             void atualizarVolume(const float volume, Botao::BotaoVolume* botaoVolume);
+            virtual void criarFundo() = 0;
+            virtual void criarBotoes() = 0;
         public:
             MenuOpcao();
             ~MenuOpcao();

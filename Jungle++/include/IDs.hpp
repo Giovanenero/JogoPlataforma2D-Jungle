@@ -29,9 +29,11 @@ namespace IDs {
         menu_principal,
         menu_pausa,
         menu_opcao,
+        menu_perfil,
         estado_menu_principal,
         estado_menu_pausa,
-        estado_menu_opcaoPrincipal
+        estado_menu_opcaoPrincipal,
+        estado_menu_perfil,
     };
 
 }

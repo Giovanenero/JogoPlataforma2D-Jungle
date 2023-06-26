@@ -16,10 +16,13 @@ namespace Jungle {
             const sf::Vector2f tamBotao;
             const sf::Vector2f tamJanela;
             sf::Vector2f posFundo;
-            Botao::Texto nomeMenu;
+            Botao::Texto titulo;
             bool mouseSelecionado = false;
 
             void atualizarPosicaoFundo();
+            virtual void criarFundo(){};
+            virtual void criarBotoes() = 0;
+            void inicializarIterator();
         public:
             Menu(const IDs::IDs ID, const sf::Vector2f tamBotao, const std::string nome, const unsigned int tamFonte);
             ~Menu();
@@ -34,5 +37,5 @@ namespace Jungle {
         };
 
     }
-
+    
 }

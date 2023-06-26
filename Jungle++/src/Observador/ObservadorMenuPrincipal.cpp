@@ -74,7 +74,8 @@ namespace Jungle {
                         {
                             case (IDs::IDs::botao_novoJogo):
                             {
-                                pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
+                                pGEstado->addEstado(IDs::IDs::estado_menu_perfil);
+                                //pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
                             }
                                 break;
                             case (IDs::IDs::botao_sair):

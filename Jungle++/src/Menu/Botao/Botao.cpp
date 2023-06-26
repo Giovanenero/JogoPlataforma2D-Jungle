@@ -28,11 +28,7 @@ namespace Jungle {
             }
 
             void Botao::setSelecionado(const bool selecionado){
-                if(selecionado){
-                    texto.setCorTexto(corSelecionado);
-                } else {
-                    texto.setCorTexto(sf::Color::White);
-                }
+                texto.setCorTexto(selecionado ? corSelecionado : sf::Color::White);
                 this->selecionado = selecionado;
                 texto.resetar();
             }
@@ -82,18 +78,18 @@ namespace Jungle {
                 this->texto.setPos(posTexto);
             }
 
-            void Botao::desenhar(){
-                atualizarTexto();
-                //pGrafico->desenhaElemento(caixaTexto);
-                pGrafico->desenhaElemento(texto.getTexto());
-            }
-
             const sf::Vector2f Botao::getPos() const{
                 return caixaTexto.getPosition();
             }
 
             const sf::Vector2f Botao::getTamTexto() const{
                 return sf::Vector2f(texto.getTexto().getGlobalBounds().width, texto.getTexto().getGlobalBounds().height);
+            }
+
+            void Botao::desenhar(){
+                atualizarTexto();
+                //pGrafico->desenhaElemento(caixaTexto);
+                pGrafico->desenhaElemento(texto.getTexto());
             }
 
         }

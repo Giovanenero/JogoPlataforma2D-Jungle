@@ -24,7 +24,7 @@ namespace Jungle {
         }
 
         void Observador::mudarEstadoAtivar(){
-            ativar = (ativar) ? false : true;
+            ativar = !ativar;
         }
 
         const bool Observador::getAtivar() const {

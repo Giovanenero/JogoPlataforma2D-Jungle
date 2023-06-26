@@ -4,6 +4,7 @@
 #include "..\Estado\EstadoMenuPrincipal.hpp"
 #include "..\Estado\EstadoMenuPausa.hpp"
 #include "..\Estado\EstadoMenuOpcaoPrincipal.hpp"
+#include "..\Estado\EstadoMenuPerfil.hpp"
 
 #include "..\Construtor\ConstrutorFase.hpp"
 
@@ -21,6 +22,7 @@ namespace Jungle {
             Estado::Estado* criarMenuPrinciapal();
             Estado::Estado* criarMenuPausar();
             Estado::Estado* criarMenuOpcaoPrincipal();
+            Estado::Estado* criarEstadoMenuPerfil();
             //Estado::Estado* criarMenuSalvar();
             //Estado::Estado* criarColocao();
         };
