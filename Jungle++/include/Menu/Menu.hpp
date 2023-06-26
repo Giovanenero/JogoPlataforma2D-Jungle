@@ -1,7 +1,7 @@
 #pragma once 
 
 #include "..\Ente.hpp"
-#include "Botao\Botao.hpp"
+#include "Botao\BotaoTexto.hpp"
 #include "Botao\Texto.hpp"
 #include <list>
 
@@ -11,8 +11,8 @@ namespace Jungle {
 
         class Menu: public Ente {
         protected:
-            std::list<Botao::Botao*> listaBotao;
-            std::list<Botao::Botao*>::iterator it;
+            std::list<Botao::BotaoTexto*> listaBotaoTexto;
+            std::list<Botao::BotaoTexto*>::iterator it;
             const sf::Vector2f tamBotao;
             const sf::Vector2f tamJanela;
             sf::Vector2f posFundo;
@@ -29,7 +29,9 @@ namespace Jungle {
             void addBotao(const std::string info, const sf::Vector2f pos, const IDs::IDs ID, const sf::Color corSelecionado);
             void desenhar();
             void selecionaCima();
-            void selecionaBaixo() ;
+            void selecionaBaixo();
+            virtual void selecionaEsquerda(){};
+            virtual void selecionaDireita(){};
             const IDs::IDs getIDBotaoSelecionado();
             void eventoMouse(const sf::Vector2f posMouse);
             const bool getMouseSelecionado() const;

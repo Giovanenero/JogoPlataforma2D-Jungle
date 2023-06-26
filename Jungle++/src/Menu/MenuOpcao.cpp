@@ -22,12 +22,12 @@ namespace Jungle {
             if(botaoVolume == nullptr){
                 throw("ERROR::Jungle::Menu::nao foi possivel criar um botao");
             }
-            listaBotao.push_back(static_cast<Botao::Botao*>(botaoVolume));
+            listaBotaoTexto.push_back(static_cast<Botao::BotaoTexto*>(botaoVolume));
         }
 
         void MenuOpcao::alterarVolume(const bool aumentando){
             if(getIDBotaoSelecionado() != IDs::IDs::botao_voltar){
-                std::list<Botao::Botao*>::iterator it_botao = listaBotao.begin();
+                std::list<Botao::BotaoTexto*>::iterator it_botao = listaBotaoTexto.begin();
                 while((*it_botao)->getID() != getIDBotaoSelecionado()){
                     it_botao++;
                 }
@@ -42,8 +42,8 @@ namespace Jungle {
 
         void MenuOpcao::atualizarVolume(const float volume, Botao::BotaoVolume* botaoVolume){
             if(botaoVolume->getID() == IDs::IDs::botao_volume_geral){
-                std::list<Botao::Botao*>::iterator aux = listaBotao.begin();
-                while (aux != listaBotao.end())
+                std::list<Botao::BotaoTexto*>::iterator aux = listaBotaoTexto.begin();
+                while (aux != listaBotaoTexto.end())
                 {
                     botaoVolume = static_cast<Botao::BotaoVolume*>(*aux);
                     botaoVolume->alterarVolume(volume);

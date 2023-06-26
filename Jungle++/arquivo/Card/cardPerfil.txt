@@ -1,0 +1,4 @@
+nome_jogador_1 vida_jogador_1 escudo_jogador_1 nome_jogador_2 vida_jogador_2 escudo_jogador_2 pontos tempo
+nome_jogador_1 vida_jogador_1 escudo_jogador_1 nome_jogador_2 vida_jogador_2 escudo_jogador_2 pontos tempo
+nome_jogador_1 vida_jogador_1 escudo_jogador_1 nome_jogador_2 vida_jogador_2 escudo_jogador_2 pontos
+nome_jogador_1 vida_jogador_1 escudo_jogador_1 nome_jogador_2 vida_jogador_2 escudo_jogador_2 pontos tempo

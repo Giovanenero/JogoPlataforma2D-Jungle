@@ -9,7 +9,7 @@ namespace Jungle {
         namespace Botao {
 
             BotaoVolume::BotaoVolume(const std::string info, const sf::Vector2f tam,const sf::Vector2f pos, const IDs::IDs ID, const sf::Color corSelecionado, const float posInicioFundo):
-                Botao(info, tam, pos, ID, corSelecionado), posInicioFundo(posInicioFundo),
+                BotaoTexto(info, tam, pos, ID, corSelecionado), posInicioFundo(posInicioFundo),
                 fundoVolume(sf::Vector2f(TAMANHO_BARRA_VOLUME_X, TAMANHO_BARRA_VOLUME_Y)),
                 corpoVolume(sf::Vector2f(TAMANHO_BOTAO_VOLUME_X, TAMANHO_BOTAO_VOLUME_Y)),
                 parametrizacao((TAMANHO_BARRA_VOLUME_X - TAMANHO_BOTAO_VOLUME_X) / 100.0f),

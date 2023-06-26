@@ -56,11 +56,11 @@ namespace Jungle {
         }
 
         void MenuPausa::atualizarBotoes(){
-            std::list<Botao::Botao*>::iterator aux;
+            std::list<Botao::BotaoTexto*>::iterator aux;
             int i = 1;
-            for(aux = listaBotao.begin(); aux != listaBotao.end(); aux++, i++){
-                Botao::Botao* botao = *aux;
-                botao->atualizarPosicao(sf::Vector2f(posFundo.x - tamJanela.x / 4.6f, posFundo.y / 1.5f + (tamBotao.y + 20.f)* i));
+            for(aux = listaBotaoTexto.begin(); aux != listaBotaoTexto.end(); aux++, i++){
+                Botao::BotaoTexto* botao = *aux;
+                botao->atualizarPosicaoCaixa(sf::Vector2f(posFundo.x - tamJanela.x / 4.6f, posFundo.y / 1.5f + (tamBotao.y + 20.f)* i));
                 botao = nullptr;
             }
 

@@ -31,13 +31,13 @@ namespace Jungle {
 
 
                 void Jogador::inicializa(){
-                    animacao.addAnimacao("Jungle++/img/Jogador/Anda.png", "ANDA", 10, 0.12f, sf::Vector2f(6,2));
-                    animacao.addAnimacao("Jungle++/img/Jogador/Ataca.png", "ATACA", 10, 0.1f, sf::Vector2f(6,2));
-                    animacao.addAnimacao("Jungle++/img/Jogador/Parado.png", "PARADO", 10, 0.15f, sf::Vector2f(6,2));
-                    animacao.addAnimacao("Jungle++/img/Jogador/Pula.png", "PULA", 3, 0.15f, sf::Vector2f(6,2));
-                    animacao.addAnimacao("Jungle++/img/Jogador/Cai.png", "CAI", 3, 0.15f, sf::Vector2f(6,2));
-                    animacao.addAnimacao("Jungle++/img/Jogador/Morre.png", "MORRE", 10, 0.15f, sf::Vector2f(6,2));
-                    animacao.addAnimacao("Jungle++/img/Jogador/tomaDano.png", "TOMA_DANO", 1, 0.15f, sf::Vector2f(6,2));
+                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Anda.png", "ANDA", 10, 0.12f, sf::Vector2f(6,2));
+                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Ataca.png", "ATACA", 10, 0.1f, sf::Vector2f(6,2));
+                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Parado.png", "PARADO", 10, 0.15f, sf::Vector2f(6,2));
+                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Pula.png", "PULA", 3, 0.15f, sf::Vector2f(6,2));
+                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Cai.png", "CAI", 3, 0.15f, sf::Vector2f(6,2));
+                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Morre.png", "MORRE", 10, 0.15f, sf::Vector2f(6,2));
+                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/tomaDano.png", "TOMA_DANO", 1, 0.15f, sf::Vector2f(6,2));
                     corpo.setOrigin(sf::Vector2f(tam.x / 2.5f, tam.y / 2.0f));
                 }
 

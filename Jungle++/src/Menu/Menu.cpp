@@ -5,28 +5,29 @@ namespace Jungle {
     namespace Menu {
 
         Menu::Menu(const IDs::IDs ID, const sf::Vector2f tamBotao, const std::string nome, const unsigned int tamFonte):
-            Ente(ID), listaBotao(), it(), tamBotao(tamBotao), tamJanela(pGrafico->getTamJanela()), posFundo(sf::Vector2f(0.0f, 0.0f)),
+            Ente(ID), listaBotaoTexto(), it(), tamBotao(tamBotao), 
+            tamJanela(pGrafico->getTamJanela()), posFundo(sf::Vector2f(0.0f, 0.0f)),
             titulo(pGrafico->carregarFonte("Jungle++/fonte/menu.ttf"), nome, tamFonte)
         {
 
         }
 
         Menu::~Menu(){
-            if(!listaBotao.empty()){
-                for(it = listaBotao.begin(); it != listaBotao.end(); it++){
+            if(!listaBotaoTexto.empty()){
+                for(it = listaBotaoTexto.begin(); it != listaBotaoTexto.end(); it++){
                     delete(*it);
                     *it = nullptr;
                 }
-                listaBotao.clear();
+                listaBotaoTexto.clear();
             }
         }
 
         void Menu::addBotao(const std::string info, const sf::Vector2f pos, const IDs::IDs ID, const sf::Color corSelecionado){
-            Botao::Botao* botao = new Botao::Botao(info, tamBotao, pos, ID, corSelecionado);
+            Botao::BotaoTexto* botao = new Botao::BotaoTexto(info, tamBotao, pos, ID, corSelecionado);
             if(botao == nullptr){
                 throw("ERROR::Jungle::Menu::nao foi possivel criar um botao");
             }
-            listaBotao.push_back(botao);
+            listaBotaoTexto.push_back(botao);
         }
 
         void Menu::atualizarPosicaoFundo(){
@@ -35,7 +36,7 @@ namespace Jungle {
 
         void Menu::inicializarIterator(){
             try {
-                it = listaBotao.begin();
+                it = listaBotaoTexto.begin();
                 (*it)->setSelecionado(true);
             } catch(const std::exception& e)
             {
@@ -45,10 +46,10 @@ namespace Jungle {
         }
 
         void Menu::selecionaCima(){
-            Botao::Botao* botao = *it;
+            Botao::BotaoTexto* botao = *it;
             botao->setSelecionado(false);
-            if(it == listaBotao.begin()){
-                it = listaBotao.end();
+            if(it == listaBotaoTexto.begin()){
+                it = listaBotaoTexto.end();
             }
             it--;
             botao = *it;
@@ -56,11 +57,11 @@ namespace Jungle {
         }
 
         void Menu::selecionaBaixo(){
-            Botao::Botao* botao = *it;
+            Botao::BotaoTexto* botao = *it;
             botao->setSelecionado(false);
             it++;
-            if(it == listaBotao.end()){
-                it = listaBotao.begin();
+            if(it == listaBotaoTexto.end()){
+                it = listaBotaoTexto.begin();
             }
             botao = *it;
             botao->setSelecionado(true);
@@ -71,10 +72,10 @@ namespace Jungle {
         }
 
         void Menu::eventoMouse(const sf::Vector2f posMouse){
-            std::list<Botao::Botao*>::iterator aux;
+            std::list<Botao::BotaoTexto*>::iterator aux;
             mouseSelecionado = false;
-            for(aux = listaBotao.begin(); aux != listaBotao.end(); aux++){
-                Botao::Botao* botao = *aux;
+            for(aux = listaBotaoTexto.begin(); aux != listaBotaoTexto.end(); aux++){
+                Botao::BotaoTexto* botao = *aux;
                 sf::Vector2f posBotao = botao->getPos();
                 sf::Vector2f posCamera = pGrafico->getCamera().getCenter();
                 if(posMouse.x + posCamera.x - tamJanela.x / 2.0f > posBotao.x && posMouse.x + posCamera.x - tamJanela.x / 2.0f < posBotao.x + tamBotao.x && 
@@ -94,9 +95,9 @@ namespace Jungle {
 
         void Menu::desenhar(){
             //desenha todos os botões na janela
-            std::list<Botao::Botao*>::iterator aux;
-            for(aux = listaBotao.begin(); aux != listaBotao.end(); aux++){
-                Botao::Botao* botao = *aux;
+            std::list<Botao::BotaoTexto*>::iterator aux;
+            for(aux = listaBotaoTexto.begin(); aux != listaBotaoTexto.end(); aux++){
+                Botao::BotaoTexto* botao = *aux;
                 botao->desenhar();
                 botao = nullptr;
             }

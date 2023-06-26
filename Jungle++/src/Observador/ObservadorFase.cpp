@@ -27,6 +27,20 @@ namespace Jungle {
                     pGEstado->addEstado(IDs::IDs::estado_menu_pausa);
                 }
                     break;
+                case(sf::Keyboard::P):
+                {
+                    /*
+                    //capturando uma imagem
+                    sf::RenderWindow* window = Gerenciador::GerenciadorGrafico::getGerenciadorGrafico()->getWindow();
+                    sf::Texture textura;
+                    textura.create(window->getSize().x, window->getSize().y);
+                    textura.update(*static_cast<sf::Window*>(window));
+                    sf::Image print = textura.copyToImage();
+                    print.saveToFile("Jungle++/img/Captura/print.png");
+                    */
+                    pGEstado->addEstado(IDs::IDs::estado_menu_pausa);
+                }
+                    break;
             }
         }
 

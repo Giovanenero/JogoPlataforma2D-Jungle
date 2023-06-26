@@ -1,6 +1,6 @@
 #pragma once 
 
-#include "Botao.hpp"
+#include "BotaoTexto.hpp"
 #include "..\..\Gerenciador\GerenciadorMusica.hpp"
 
 #define TAMANHO_BARRA_VOLUME_X 300.0f
@@ -15,7 +15,7 @@ namespace Jungle {
 
         namespace Botao {
 
-            class BotaoVolume: public Botao {
+            class BotaoVolume: public BotaoTexto {
             private:
                 sf::RectangleShape fundoVolume;
                 sf::RectangleShape corpoVolume;
