@@ -6,16 +6,18 @@ namespace Jungle {
     namespace Gerenciador {
 
         GerenciadorGrafico* GerenciadorGrafico::pGrafico = nullptr;
+        float GerenciadorGrafico::tempo = 0.0f;
 
         GerenciadorGrafico::GerenciadorGrafico():
             window(new sf::RenderWindow(sf::VideoMode(TELA_X, TELA_Y), "Jungle++")),
-            camera(sf::Vector2f(TELA_X / 2.0f, TELA_Y / 2.0f), sf::Vector2f(TELA_X, TELA_Y))
+            camera(sf::Vector2f(TELA_X / 2.0f, TELA_Y / 2.0f), sf::Vector2f(TELA_X, TELA_Y)),
+            relogio()
         {
-            window->setFramerateLimit(0);
             if(window == nullptr){
                 std::cout << "ERROR::Jungle::Gerenciador::GerenciadorGrafico nao foi possivel criar uma janela grafica" << std::endl;
                 exit(1);
             }
+            window->setFramerateLimit(0);
         }
 
         GerenciadorGrafico::~GerenciadorGrafico(){
@@ -62,6 +64,15 @@ namespace Jungle {
 
         void GerenciadorGrafico::limpaJanela(){
             window->clear();
+        }
+
+        void GerenciadorGrafico::resetarRelogio(){
+            tempo = relogio.getElapsedTime().asSeconds();
+            relogio.restart();
+        }
+
+        const float GerenciadorGrafico::getTempo() const {
+            return tempo;
         }
 
         void GerenciadorGrafico::desenhaElemento(sf::RectangleShape corpo){

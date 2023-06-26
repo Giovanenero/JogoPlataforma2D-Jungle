@@ -21,7 +21,7 @@ namespace Jungle {
         }
 
         EstadoMenuPausa::~EstadoMenuPausa(){
-
+            
         }
 
         void EstadoMenuPausa::mudarEstadoObservador(){

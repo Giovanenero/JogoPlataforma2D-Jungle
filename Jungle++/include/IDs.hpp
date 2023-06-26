@@ -26,6 +26,8 @@ namespace IDs {
         botao_volume_geral,
         botao_volume_jogo,
         botao_volume_menu,
+        botao_esquerda,
+        botao_direita,
         menu_principal,
         menu_pausa,
         menu_opcao,

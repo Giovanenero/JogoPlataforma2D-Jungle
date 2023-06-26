@@ -6,7 +6,7 @@ namespace Jungle {
 
         MenuPerfil::MenuPerfil():
             Menu(IDs::IDs::menu_perfil, sf::Vector2f(TAMANHO_BOTAO_MENU_PERFIL_X, TAMANHO_BOTAO_MENU_PERFIL_Y), "SELECIONAR PERFIL", 80),
-            fundo(IDs::IDs::fundo_florestaNegra), arquivo(), listaCards(),
+            fundo(IDs::IDs::fundo_florestaNegra), arquivo(), listaCards(), setas(),
             painelPerfil(sf::Vector2f(tamJanela.x - tamJanela.x / 4, tamJanela.y  - tamJanela.y / 2))
         {
             titulo.setPos(sf::Vector2f(tamJanela.x / 2.0f - titulo.getTam().x / 2.0f, 25.0f));
@@ -26,33 +26,12 @@ namespace Jungle {
 
         MenuPerfil::~MenuPerfil(){
             for(int i = 0; i < setas.size(); i++){
-                const sf::Texture* textura = setas.at(i).getTexture();
-                if(textura != nullptr){
-                    delete(textura);
-                    textura = nullptr;
+                Botao::Botao* botao = setas[i];
+                if(botao){
+                    delete(botao);
+                    botao = nullptr;
                 }
             }
-        }
-
-        void MenuPerfil::inicializarSetas(){
-            sf::Texture* textura1 = new sf::Texture();
-            sf::Texture* textura2 = new sf::Texture();
-            sf::RectangleShape setaDireita(sf::Vector2f(TAMANHO_SETA, TAMANHO_SETA));
-            if(!textura1->loadFromFile("Jungle++/img/Menu/setaDireita.png")){
-                std::cout << "ERRO no caminho Jungle++/img/Menu/setaDireita.png" << std::endl;
-                exit(1);
-            }
-            setaDireita.setPosition(tamJanela.x / 2 + tamJanela.x / 3 - setaDireita.getSize().x / 2, tamJanela.y / 2 - setaDireita.getSize().y / 2);
-            setaDireita.setTexture(textura1);
-            setas.push_back(setaDireita);
-            sf::RectangleShape setaEsquerda(sf::Vector2f(TAMANHO_SETA, TAMANHO_SETA));
-            setaEsquerda.setPosition(tamJanela.x / 2 - tamJanela.x / 3 - setaDireita.getSize().x / 2, tamJanela.y / 2 - setaDireita.getSize().y / 2);
-            if(!textura2->loadFromFile("Jungle++/img/Menu/setaEsquerda.png")){
-                std::cout << "ERRO no caminho Jungle++/img/Menu/setaEsquerda.png" << std::endl;
-                exit(1);
-            }
-            setaEsquerda.setTexture(textura2);
-            setas.push_back(setaEsquerda);
         }
 
         void MenuPerfil::criarFundo(){
@@ -70,6 +49,22 @@ namespace Jungle {
             addBotao("Novo Jogo", sf::Vector2f(posBotaoX, tamJanela.y / 2.0f + tamBotao.y * 3.2f), IDs::IDs::botao_voltar, sf::Color{0, 255, 0});
             addBotao("Voltar", sf::Vector2f(posBotaoX, tamJanela.y / 2.0f + tamBotao.y * 4.4f), IDs::IDs::botao_voltar, sf::Color{0, 255, 0});
             inicializarIterator();
+        }
+
+        void MenuPerfil::inicializarSetas(){
+            sf::Vector2f pos(tamJanela.x / 2 + tamJanela.x / 3 - TAMANHO_SETA / 2 - 20, tamJanela.y / 2 - TAMANHO_SETA / 2);
+            const sf::Vector2f tam(TAMANHO_SETA, TAMANHO_SETA);
+            Botao::Botao* botao1 = new Botao::Botao(tam, pos, IDs::IDs::botao_direita, TEMPO_TROCA_ANIMACAO_BOTAO, sf::Vector2f(tam.x + 15.0f, tam.y + 15.0f));
+            pos = sf::Vector2f(tamJanela.x / 2 - tamJanela.x / 3 - TAMANHO_SETA / 2, pos.y);
+            Botao::Botao* botao2 = new Botao::Botao(tam, pos, IDs::IDs::botao_esquerda, TEMPO_TROCA_ANIMACAO_BOTAO, sf::Vector2f(tam.x + 15.0f, tam.y + 15.0f));
+            sf::Texture* texturaDireita = new sf::Texture();
+            sf::Texture* texturaEsquerda = new sf::Texture();
+            texturaDireita->loadFromFile("Jungle++/img/Menu/setaDireita.png");
+            texturaEsquerda->loadFromFile("Jungle++/img/Menu/setaEsquerda.png");
+            botao1->setTextura(texturaDireita);
+            botao2->setTextura(texturaEsquerda);
+            setas.push_back(botao1);
+            setas.push_back(botao2);
         }
 
         void MenuPerfil::inicializarCards(){
@@ -97,12 +92,20 @@ namespace Jungle {
                 }
             }
             //inicializa o iterador da lista de cards
-            listaCards.push_back(new Card
+            listaCards.push_front(new Card
                 (
                     "teste", 
                     sf::Vector2f(painelPerfil.getSize()), 
                     sf::Vector2f(painelPerfil.getPosition()),
                     "Jungle++/img/Captura/print.png"
+                )
+            );
+
+            listaCards.push_front(new Card
+                (
+                    "teste", 
+                    sf::Vector2f(painelPerfil.getSize()), 
+                    sf::Vector2f(painelPerfil.getPosition())
                 )
             );
             iteratorCard = listaCards.begin();
@@ -143,20 +146,32 @@ namespace Jungle {
         }
 
         void MenuPerfil::executarSetas(){
-            for(int i = 0; i < setas.size(); i++){
-                pGrafico->desenhaElemento(setas.at(i));
+            const float tempo = pGrafico->getTempo();
+            Botao::Botao* botao = nullptr;
+            //seta da direita
+            if(iteratorCard != listaCards.begin()){
+                botao = setas[1];
+                botao->atualizarAnimacao();
+                botao->desenhar();
+            }
+            //seta da esquerda
+            if(iteratorCard != listaCards.end() && listaCards.size() != 1){
+                botao = setas[0];
+                botao->atualizarAnimacao();
+                botao->desenhar();
             }
         }
 
         void MenuPerfil::executar(){
+            //atualiza o fundo - efeito parallax
             posFundo = sf::Vector2f(posFundo.x + 0.05f, posFundo.y);
             pGrafico->atualizarCamera(sf::Vector2f(posFundo.x + tamJanela.x / 2.0f, posFundo.y + tamJanela.y / 2.0f));
             fundo.executar();
             pGrafico->resetarJanela();
             
+            //desenha título, painel, botões e cards, além de atualizar a animação das setas
             pGrafico->desenhaElemento(titulo.getTexto());
             pGrafico->desenhaElemento(painelPerfil);
-            //desenha todos os botões
             desenhar();
             executarCards();
             executarSetas();
@@ -171,10 +186,15 @@ namespace Jungle {
     namespace Menu {
 
         MenuPerfil::Card::Card(const char* tipo, const sf::Vector2f tam, const sf::Vector2f pos, const char* caminhoTextura):
-            textura(pGrafico->carregarTextura(caminhoTextura)), corpo(tam)
+            corpo(tam)
         {
             corpo.setPosition(pos);
-            corpo.setTexture(&textura);
+            if(caminhoTextura != ""){
+                textura = pGrafico->carregarTextura(caminhoTextura);
+                corpo.setTexture(&textura);
+            } else {
+                corpo.setFillColor(sf::Color::Black);
+            }
             if(tipo == "corrompido"){
                 //terminar
             }

@@ -18,6 +18,8 @@ namespace Jungle {
 
             //movimentar a camera
             sf::View camera;
+            sf::Clock relogio;
+            static float tempo;
 
             //a construtora privada faz parte do padrão de projeto singleton
             static GerenciadorGrafico* pGrafico;
@@ -29,6 +31,8 @@ namespace Jungle {
             sf::Texture carregarTextura(const char* caminhoTextura);
             sf::Font carregarFonte(const char* caminhoFonte);
             void limpaJanela();
+            void resetarRelogio();
+            const float getTempo() const;
             void desenhaElemento(sf::RectangleShape corpo);
             void desenhaElemento(sf::Text texto);
             void mostraElementos();

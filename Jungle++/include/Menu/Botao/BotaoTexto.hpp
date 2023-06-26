@@ -4,6 +4,7 @@
 #include "TextoAnimado.hpp"
 
 #define CAMINHO_FONTE "Jungle++/fonte/menu.ttf"
+#define TEMPO_TROCAR_COR 0.01f
 
 namespace Jungle {
 
@@ -21,7 +22,7 @@ namespace Jungle {
                 public:
                     BotaoTexto(const std::string info, const sf::Vector2f pos, const sf::Vector2f tam, const IDs::IDs ID, const sf::Color corSelecionado);
                     virtual ~BotaoTexto();
-                    void atualizarTexto();
+                    void atualizarAnimacao();
                     void setSelecionado(bool selecionado);
                     const bool getSelecionado() const;
                     virtual void desenhar();

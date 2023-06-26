@@ -2,8 +2,6 @@
 
 #include "..\..\Ente.hpp"
 
-#define TEMPO_TROCAR_COR 0.01f
-
 namespace Jungle {
 
     namespace Menu {
@@ -11,19 +9,26 @@ namespace Jungle {
         namespace Botao {
 
             class Botao : public Ente {
+                private:
+                    const sf::Vector2f tamMax;
+                    const sf::Vector2f tamInicial;
+                    bool aumentando;
+
                 protected:
                     sf::RectangleShape caixa;
+                    sf::Texture* textura;
                     sf::Vector2f pos;
                     sf::Vector2f tam;
 
-                    sf::Clock relogio;
-                    const float tempoTrocaCor;
+                    const float tempoTroca;
                     float tempo;
                 public:
-                    Botao(const sf::Vector2f tam, const sf::Vector2f pos, const IDs::IDs ID);
+                    Botao(const sf::Vector2f tam, const sf::Vector2f pos, const IDs::IDs ID, const float tempoTroca = 0.0f, const sf::Vector2f tamMax = sf::Vector2f(0.0f, 0.0f));
                     virtual ~Botao();
-                    virtual void desenhar() = 0;
+                    virtual void desenhar();
+                    virtual void atualizarAnimacao();
                     void atualizarPosicaoCaixa(const sf::Vector2f pos);
+                    void setTextura(sf::Texture* textura);
                     const sf::Vector2f getPos() const;
             };
 

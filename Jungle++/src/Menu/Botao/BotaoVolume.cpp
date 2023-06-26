@@ -83,7 +83,7 @@ namespace Jungle {
             }
 
             void BotaoVolume::desenhar(){
-                atualizarTexto();
+                atualizarAnimacao();
                 //pGrafico->desenhaElemento(caixaTexto);
                 pGrafico->desenhaElemento(fundoVolume);
                 pGrafico->desenhaElemento(corpoVolume);

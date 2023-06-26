@@ -44,6 +44,9 @@ namespace Jungle {
 
             //mostra tudo na janela
             pGrafico->mostraElementos();
+
+            //reseta o relogio
+            pGrafico->resetarRelogio();
         }
     }
 

@@ -7,7 +7,7 @@ namespace Jungle {
         namespace Botao {
 
             BotaoTexto::BotaoTexto(const std::string info,  const sf::Vector2f tam, const sf::Vector2f pos, const IDs::IDs ID, const sf::Color corSelecionado):
-                Botao(tam, pos, ID), corSelecionado(corSelecionado), 
+                Botao(tam, pos, ID, TEMPO_TROCAR_COR), corSelecionado(corSelecionado), 
                 texto(pGrafico->carregarFonte(CAMINHO_FONTE), info), selecionado(false)
             {
                 sf::Vector2f tamTexto = this->texto.getTam();
@@ -26,16 +26,14 @@ namespace Jungle {
             }
 
             void BotaoTexto::desenhar(){
-                atualizarTexto();
+                atualizarAnimacao();
                 pGrafico->desenhaElemento(texto.getTexto());
             }
             
-            void BotaoTexto::atualizarTexto(){
-                const float dt = relogio.getElapsedTime().asSeconds();
-                relogio.restart();
-                tempo += dt;
+            void BotaoTexto::atualizarAnimacao(){
+                this->tempo += pGrafico->getTempo();
                 if(selecionado){
-                    if(tempo > tempoTrocaCor){
+                    if(this->tempo > tempoTroca){
                         int transparente = texto.getTransparente();
                         if(texto.getClareando()){
                             //texto clareando
@@ -53,10 +51,10 @@ namespace Jungle {
                             }
                         }
                         texto.setTransparente(transparente);
-                        tempo = 0.0f;
+                        this->tempo = 0.0f;
                     }
                 } else {
-                    tempo = 0.0f;
+                    this->tempo = 0.0f;
                 }
             }
                 

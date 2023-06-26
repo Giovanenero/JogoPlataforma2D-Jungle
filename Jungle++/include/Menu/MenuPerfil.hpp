@@ -7,8 +7,9 @@
 
 #define TAMANHO_BOTAO_MENU_PERFIL_X 100.0f
 #define TAMANHO_BOTAO_MENU_PERFIL_Y 50.0f
-#define TAMANHO_SETA 50.0f
+#define TAMANHO_SETA 75.0f
 #define QUANTIDADE_PARAMETRO_CARD 8
+#define TEMPO_TROCA_ANIMACAO_BOTAO 0.05f
 #define CAMINHO_ARQUIVO "Jungle++/arquivo/Card/cardPerfil.txt"
 
 namespace Jungle {
@@ -24,7 +25,7 @@ namespace Jungle {
 
                     void desenhar() const;
                 public:
-                    Card(const char* tipo, const sf::Vector2f tam, const sf::Vector2f pos, const char* caminhoTextura);
+                    Card(const char* tipo, const sf::Vector2f tam, const sf::Vector2f pos, const char* caminhoTextura = "");
                     ~Card();
                     void executar();
             };
@@ -34,7 +35,7 @@ namespace Jungle {
                 std::list<Card*>::iterator iteratorCard;
                 std::ifstream arquivo;
                 sf::RectangleShape painelPerfil;
-                std::vector<sf::RectangleShape> setas;
+                std::vector<Botao::Botao*> setas;
 
                 void criarFundo();
                 void criarBotoes();
