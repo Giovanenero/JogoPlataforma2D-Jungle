@@ -10,13 +10,13 @@
 #define TAMANHO_SETA 75.0f
 #define QUANTIDADE_PARAMETRO_CARD 8
 #define TEMPO_TROCA_ANIMACAO_BOTAO 0.05f
-#define CAMINHO_ARQUIVO "Jungle++/arquivo/Card/cardPerfil.txt"
+#define CAMINHO_ARQUIVO_CARREGAR_JOGO "Jungle++/arquivo/Card/cardPerfil.txt"
 
 namespace Jungle {
 
     namespace Menu {
 
-        class MenuPerfil: public Menu {
+        class MenuCarregarJogo: public Menu {
             class Card {
                 private:
                     sf::RectangleShape corpo;
@@ -44,12 +44,12 @@ namespace Jungle {
                 void inicializarSetas();
                 void executarSetas();
             public:
-                MenuPerfil();
-                ~MenuPerfil();
+                MenuCarregarJogo();
+                ~MenuCarregarJogo();
                 void mudarEstadoObservador();
-                void executar();
                 void selecionaEsquerda();
                 void selecionaDireita();
+                void executar();
         };
 
     }

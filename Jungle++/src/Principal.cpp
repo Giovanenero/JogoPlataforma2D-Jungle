@@ -28,6 +28,7 @@ namespace Jungle {
 
     void Principal::inicializa(){
         pGerenciadorEstado->addEstado(IDs::IDs::estado_menu_principal);
+        //pGerenciadorEstado->addEstado(IDs::IDs::estado_menu_colocacao);
     }
 
     void Principal::executar(){

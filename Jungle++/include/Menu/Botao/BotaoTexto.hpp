@@ -23,6 +23,7 @@ namespace Jungle {
                     BotaoTexto(const std::string info, const sf::Vector2f pos, const sf::Vector2f tam, const IDs::IDs ID, const sf::Color corSelecionado);
                     virtual ~BotaoTexto();
                     void atualizarAnimacao();
+                    void atualizarPosicaoCaixa(const sf::Vector2f pos);
                     void setSelecionado(bool selecionado);
                     const bool getSelecionado() const;
                     virtual void desenhar();

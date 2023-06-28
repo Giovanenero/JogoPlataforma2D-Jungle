@@ -57,6 +57,17 @@ namespace Jungle {
                     this->tempo = 0.0f;
                 }
             }
+
+            void BotaoTexto::atualizarPosicaoCaixa(const sf::Vector2f pos){
+                this->pos = pos;
+                caixa.setPosition(pos);
+                sf::Vector2f tamTexto = this->texto.getTam();
+                sf::Vector2f posTexto = sf::Vector2f(
+                    pos.x + tam.x / 2.0f - tamTexto.x / 2.05f,
+                    pos.y + tam.y / 2.0f - tamTexto.y * 1.2f
+                );
+                this->texto.setPos(posTexto);
+            }
                 
             void BotaoTexto::setSelecionado(bool selecionado){
                 texto.setCorTexto(selecionado ? corSelecionado : sf::Color::White);

@@ -2,6 +2,7 @@
 
 #include "Observador.hpp"
 #include "..\Fase\Fase.hpp"
+#include "../Menu/Menu.hpp"
 
 namespace Jungle {
 

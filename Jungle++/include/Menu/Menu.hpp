@@ -3,6 +3,7 @@
 #include "..\Ente.hpp"
 #include "Botao\BotaoTexto.hpp"
 #include "Botao\Texto.hpp"
+#include "..\Parallax\Fundo.hpp"
 #include <list>
 
 namespace Jungle {

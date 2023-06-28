@@ -27,7 +27,7 @@ namespace Jungle {
                     virtual ~Botao();
                     virtual void desenhar();
                     virtual void atualizarAnimacao();
-                    void atualizarPosicaoCaixa(const sf::Vector2f pos);
+                    virtual void atualizarPosicaoCaixa(const sf::Vector2f pos);
                     void setTextura(sf::Texture* textura);
                     const sf::Vector2f getPos() const;
             };

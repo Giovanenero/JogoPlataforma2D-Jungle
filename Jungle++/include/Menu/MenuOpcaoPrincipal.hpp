@@ -1,7 +1,6 @@
 #pragma once 
 
 #include "MenuOpcao.hpp"
-#include "..\Parallax\Fundo.hpp"
 
 
 namespace Jungle {

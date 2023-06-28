@@ -37,8 +37,13 @@ namespace Jungle {
             return estado;
         }
 
-        Estado::Estado* ConstrutorEstado::criarEstadoMenuPerfil(){
-            Estado::Estado* estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuPerfil());
+        Estado::Estado* ConstrutorEstado::criarEstadoMenuCarregarJogo(){
+            Estado::Estado* estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuCarregarJogo());
+            return estado;
+        }
+
+        Estado::Estado* ConstrutorEstado::criarEstadoMenuColocacao(){
+            Estado::Estado* estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuColocacao());
             return estado;
         }
 
@@ -71,9 +76,14 @@ namespace Jungle {
                     estado = criarMenuOpcaoPrincipal();
                 }
                     break;
-                case(IDs::IDs::estado_menu_perfil):
+                case(IDs::IDs::estado_menu_carregar_jogo):
                 {
-                    estado = criarEstadoMenuPerfil();
+                    estado = criarEstadoMenuCarregarJogo();
+                }
+                    break;
+                case(IDs::IDs::estado_menu_colocacao):
+                {
+                    estado = criarEstadoMenuColocacao();
                 }
                     break;
             }

@@ -27,6 +27,7 @@ namespace Jungle {
                 void setPos(const sf::Vector2f pos);
                 sf::Vector2f getTam();
                 void setCorTexto(const sf::Color corTexto);
+                void setTamanhoBorda(const float tamBorda);
             };
 
         }

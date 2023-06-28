@@ -21,7 +21,7 @@ namespace Jungle {
                 texto.setString(info);
                 texto.setCharacterSize(tamFonte);
                 texto.setFont(fonte);
-                texto.setOutlineThickness(5);
+                texto.setOutlineThickness(5.0f);
                 texto.setOutlineColor(corBorda);
                 texto.setFillColor(corTexto);
                 tam = sf::Vector2f(texto.getGlobalBounds().width, texto.getGlobalBounds().height);
@@ -42,6 +42,10 @@ namespace Jungle {
 
             sf::Vector2f Texto::getTam(){
                 return tam;
+            }
+
+            void Texto::setTamanhoBorda(const float tamBorda){
+                texto.setOutlineThickness(tamBorda);
             }
 
         }
