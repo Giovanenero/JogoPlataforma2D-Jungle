@@ -1,4 +1,5 @@
 #include "..\..\include\Fase\FlorestaBranca.hpp"
+#include "../../include/Entidade/Item/Moeda.hpp"
 
 Jungle::Fase::FlorestaBranca::FlorestaBranca():
     Fase(IDs::IDs::fase_florestaBranca, IDs::IDs::fundo_florestaBranca)
@@ -19,13 +20,17 @@ void Jungle::Fase::FlorestaBranca::criarFundo(){
 }
 
 void Jungle::Fase::FlorestaBranca::criarMapa(){
+    //teste...
     Entidade::Item::Espada* espada = new Entidade::Item::Espada(IDs::IDs::espada_jogador);
     if(espada == nullptr){
         std::cout << "Jungle::Construtor::ConstrutorFase::nao foi possivel criar uma Espada" << std::endl;
         exit(1);
     }
-    //teste...
+    Entidade::Item::Moeda* moeda = new Entidade::Item::Moeda(sf::Vector2f(300.0f, 500.0f));
+    listaPersonagens.addEntidade(static_cast<Entidade::Entidade*>(moeda));
     listaPersonagens.addEntidade(static_cast<Entidade::Entidade*>(espada));
+
+
     Entidade::Entidade* jogador = construtorEntidade.criarJogador(sf::Vector2f(100.0f, 400.0f), espada);
     espada->setEntidade(jogador);
     listaPersonagens.addEntidade(jogador);

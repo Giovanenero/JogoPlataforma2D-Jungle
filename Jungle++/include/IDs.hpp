@@ -11,6 +11,7 @@ namespace IDs {
         minotauro,
         plataforma,
         caixa,
+        moeda_amarela,
         fundo_florestaNegra,
         fundo_florestaBranca,
         fase_florestaBranca,
