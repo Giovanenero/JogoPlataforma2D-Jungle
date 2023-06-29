@@ -42,9 +42,14 @@ namespace Jungle {
             //atualiza e desenha as entidades
             int tam = objListaEntidade.getTam();
             Entidade::Entidade* aux = nullptr;
-            for(int i = 0; i < tam; i++){
+            for(int i = tam - 1; i >= 0; i--){
                 aux = objListaEntidade.operator[](i);
-                aux->atualizar();
+                if(aux->getRemover()){
+                    objListaEntidade.removerElemento(aux);
+                    std::cout << "entidade morreu" << std::endl;
+                } else {
+                    aux->atualizar();
+                }
             }
         }
 

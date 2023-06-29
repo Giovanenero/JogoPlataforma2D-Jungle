@@ -11,15 +11,18 @@ namespace Jungle {
 
             namespace Jogador {
 
-                Jogador::Jogador(const sf::Vector2f pos):
-                    Personagem(pos, sf::Vector2f(TAMANHO_JOGADOR_X, TAMANHO_JOGADOR_Y), VELOCIDADE_JOGADOR, IDs::IDs::jogador), 
-                    noChao(false), observadorJogador(new Observador::ObservadorJogador(this))
+                Jogador::Jogador(const sf::Vector2f pos, Item::Espada* espada):
+                    Personagem(pos, sf::Vector2f(TAMANHO_JOGADOR_X, TAMANHO_JOGADOR_Y), VELOCIDADE_JOGADOR, IDs::IDs::jogador, TEMPO_JOGADOR_MORRER), 
+                    noChao(false), observadorJogador(new Observador::ObservadorJogador(this)),
+                    espada(espada), pontuacao(0)
                 {
                     if(observadorJogador == nullptr){
                         std::cout << "ERROR::Entidade::Personagem::Jogador::Jogador::nao foi possivel criar um observador para o jogador" << std::endl;
                         exit(1);
                     }
-                    inicializa();
+                    inicializaAnimacao();
+                    espada->setDano(DANO);
+                    espada->setTam(sf::Vector2f(TAMANHO_ESPADA_X, TAMANHO_JOGADOR_Y));
                 }
 
                 Jogador::~Jogador(){
@@ -27,10 +30,16 @@ namespace Jungle {
                         delete(observadorJogador);
                         observadorJogador = nullptr;
                     }
+                    /*
+                    if(espada){
+                        delete(espada);
+                        espada = nullptr;
+                    }
+                    */
                 }
 
 
-                void Jogador::inicializa(){
+                void Jogador::inicializaAnimacao(){
                     animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Anda.png", "ANDA", 10, 0.12f, sf::Vector2f(6,2));
                     animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Ataca.png", "ATACA", 10, 0.1f, sf::Vector2f(6,2));
                     animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Parado.png", "PARADO", 10, 0.15f, sf::Vector2f(6,2));
@@ -48,7 +57,18 @@ namespace Jungle {
                         * Faz o movimeto do jogador e atualiza animação
                     */
                     atualizarPosicao();
+
+                    if(atacando){
+                        sf::Vector2f tamEspada = espada->getTam();
+                        sf::Vector2f posEspada = pos + (paraEsquerda ? sf::Vector2f(-tamEspada.x - tam.x, tamEspada.y) : tamEspada);
+                        espada->setPos(posEspada);
+                    } else {
+                        espada->setPos(sf::Vector2f(-500.0f, -500.0f));
+                    }
+
                     atualizarAnimacao();
+
+
                     pGrafico->atualizarCamera(sf::Vector2f(pos.x, 300.0f));
                 }
 
@@ -68,15 +88,15 @@ namespace Jungle {
 
                 void Jogador::colisao(Entidade* outraEntidade, sf::Vector2f ds){
                     switch(outraEntidade->getID()){
-                        case (IDs::IDs::esqueleto):
-                        {
-                            
-                        }
-                        break;
                         case(IDs::IDs::plataforma):
                         {
                             
                         }
+                        case(IDs::IDs::espada_inimigo):
+                        {
+                            std::cout << "Tomar dano do inimigo" << std::endl;
+                        }
+                            break;
                     }   
                 }
 
@@ -93,6 +113,14 @@ namespace Jungle {
 
                 void Jogador::mudarEstadoObservador(){
                     observadorJogador->mudarEstadoAtivar();
+                }
+
+                void Jogador::addPontuacao(unsigned int pontos){
+                    pontuacao += pontos;
+                }
+
+                unsigned int Jogador::getPontos() const {
+                    return pontuacao;
                 }
 
             }

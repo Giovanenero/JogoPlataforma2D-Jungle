@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Fase.hpp"
+#include "..\Entidade\Item\Espada.hpp"
 
 namespace Jungle {
 

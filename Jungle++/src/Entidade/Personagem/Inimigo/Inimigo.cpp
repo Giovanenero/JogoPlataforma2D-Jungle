@@ -1,7 +1,7 @@
 #include "..\..\..\..\include\Entidade\Personagem\Inimigo\Inimigo.hpp"
 
-Jungle::Entidade::Personagem::Inimigo::Inimigo::Inimigo(const sf::Vector2f pos, const sf::Vector2f tam, Jogador::Jogador* jogador, const IDs::IDs ID):
-    Personagem(pos, tam, VELOCIDADE_INIMIGO, ID), jogador(jogador), dtAux(0.0f)
+Jungle::Entidade::Personagem::Inimigo::Inimigo::Inimigo(const sf::Vector2f pos, const sf::Vector2f tam, Jogador::Jogador* jogador, const IDs::IDs ID, const float tempoMorrer, const unsigned int pontos):
+    Personagem(pos, tam, VELOCIDADE_INIMIGO, ID, tempoMorrer), jogador(jogador), dtAux(0.0f), pontos(pontos)
 {
     srand(time(NULL));
     moveAleatorio = rand()%3;
@@ -60,16 +60,25 @@ void Jungle::Entidade::Personagem::Inimigo::Inimigo::colisao(Entidade* outraEnti
         {
             //std::cout << "Bate jogador e jogador pode bater no inimigo" << std::endl;
         }
-        break;
+            break;
         case (IDs::IDs::minotauro):
         {
             //std::cout << "Empurra inimigo" << std::endl;
         }
-        break;
+            break;
         case(IDs::IDs::esqueleto):
         {
 
         }
-        break;
+            break;
+        case(IDs::IDs::espada_jogador):
+        {
+            std::cout << "Colidiu com o inimigo" << std::endl;
+        }
+            break;
     }
+}
+
+unsigned int Jungle::Entidade::Personagem::Inimigo::Inimigo::getPontos() const{
+    return pontos;
 }

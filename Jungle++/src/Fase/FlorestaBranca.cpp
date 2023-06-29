@@ -19,7 +19,16 @@ void Jungle::Fase::FlorestaBranca::criarFundo(){
 }
 
 void Jungle::Fase::FlorestaBranca::criarMapa(){
-    listaPersonagens.addEntidade(construtorEntidade.criarJogador(sf::Vector2f(100.0f, 400.0f)));
+    Entidade::Item::Espada* espada = new Entidade::Item::Espada(IDs::IDs::espada_jogador);
+    if(espada == nullptr){
+        std::cout << "Jungle::Construtor::ConstrutorFase::nao foi possivel criar uma Espada" << std::endl;
+        exit(1);
+    }
+    //teste...
+    listaPersonagens.addEntidade(static_cast<Entidade::Entidade*>(espada));
+    Entidade::Entidade* jogador = construtorEntidade.criarJogador(sf::Vector2f(100.0f, 400.0f), espada);
+    espada->setEntidade(jogador);
+    listaPersonagens.addEntidade(jogador);
     
     for(int i = -2; i < 8; i++){
         listaObstaculos.addEntidade(construtorEntidade.criarPlataforma(sf::Vector2f(i * 300.0f, 550.0f)));

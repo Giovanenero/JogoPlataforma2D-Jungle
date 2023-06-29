@@ -32,7 +32,7 @@ namespace Jungle {
 
         template<class TL>
         Lista<TL>::~Lista(){
-            limparLista();
+            //limparLista();
         }
 
         template<class TL>
@@ -108,9 +108,11 @@ namespace Jungle {
             }
             return aux->getElemento();
         }
+
         template<class TL>
         void Lista<TL>::limparLista(){
-            if(pInicio){
+            if(pInicio != nullptr && tam > 0){
+                std::cout << tam << std::endl;
                 Elemento<TL>* aux = pInicio;
                 Elemento<TL>* aux2 = nullptr;
                 while(aux != nullptr){

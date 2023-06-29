@@ -27,15 +27,18 @@ namespace Jungle {
                     Jogador::Jogador* jogador;
                     short moveAleatorio;
                     float dtAux;
+                    const unsigned int pontos;
 
                     void moveInimigo();
                     void atualizaMovimentoAleatorio();
+                    virtual void inicializaAnimacao() = 0;
                     //virtual void atualizarAnimacao(){ }
                 public:
-                    Inimigo(const sf::Vector2f pos, const sf::Vector2f tam, Jogador::Jogador* jogador, const IDs::IDs ID);
+                    Inimigo(const sf::Vector2f pos, const sf::Vector2f tam, Jogador::Jogador* jogador, const IDs::IDs ID, const float tempoMorrer, const unsigned int pontos);
                     ~Inimigo();
                     virtual void atualizar();
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
+                    unsigned int getPontos() const;
                 };
 
             }

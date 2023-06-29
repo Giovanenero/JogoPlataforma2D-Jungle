@@ -18,7 +18,7 @@ namespace Jungle {
 
                     class Minotauro : public Chefao {
                         private:
-                            void inicializa();
+                            void inicializaAnimacao();
                         public:
                             Minotauro(const sf::Vector2f pos, Jogador::Jogador* jogador);
                             ~Minotauro();

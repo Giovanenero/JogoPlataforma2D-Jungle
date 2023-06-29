@@ -1,9 +1,10 @@
 #include "..\..\..\include\Entidade\Personagem\Personagem.hpp"
 
-Jungle::Entidade::Personagem::Personagem::Personagem(const sf::Vector2f pos, const sf::Vector2f tam, const float vel, const IDs::IDs ID):
-    Entidade(pos, tam, ID), podeAndar(false), paraEsquerda(false), relogio(), 
+Jungle::Entidade::Personagem::Personagem::Personagem(const sf::Vector2f pos, const sf::Vector2f tam, const float vel, const IDs::IDs ID,  const float tempoMorrer, const float tempoDano):
+    Entidade(tam, ID, pos), podeAndar(false), paraEsquerda(false), relogio(), 
     dt(0.0f), velFinal(sf::Vector2f(vel, 0.0f)), velMax(vel), atacando(false),
-    animacao(&corpo)
+    animacao(&corpo), tempoAnimacaoMorrer(tempoMorrer), tempoMorrer(0.0f),
+    vidaMaxima(100.0f), vida(100.0f), tempoAnimacaoTomarDano(tempoDano), tempoDano(0.0f)
 {
 
 }
@@ -66,10 +67,26 @@ const sf::Vector2f Jungle::Entidade::Personagem::Personagem::getVelFinal() const
     return velFinal;
 }
 
+void Jungle::Entidade::Personagem::Personagem::tomarDano(const float dano){
+    tempoDano += pGrafico->getTempo() * 50.0f;
+    std::cout << tempoDano << std::endl;
+    if(tempoDano > tempoAnimacaoTomarDano){
+        vida -= dano;
+        if(vida < 0.0f){
+            podeRemover = true;
+        } else {
+            
+        }
+        tempoDano = 0.0f;
+    }
+}
+
 void Jungle::Entidade::Personagem::Personagem::atualizarAnimacao(){
     if(podeAndar){
         animacao.atualizar(paraEsquerda, "ANDA");
-    } else {
+    } else if(!podeRemover){
         animacao.atualizar(paraEsquerda, "PARADO");
+    } else {
+        animacao.atualizar(paraEsquerda, "MORRE");
     }
 }

@@ -1,32 +1,49 @@
 #include "..\..\include\Entidade\Entidade.hpp"
 
-Jungle::Entidade::Entidade::Entidade(const sf::Vector2f pos, const sf::Vector2f tam, const IDs::IDs ID):
-    Ente(ID), corpo(sf::RectangleShape(tam)), pos(pos), tam(tam)
-{
-    corpo.setPosition(pos);
-}
+namespace Jungle {
 
-Jungle::Entidade::Entidade::~Entidade(){
-    
-}
+    namespace Entidade {
 
-const sf::RectangleShape Jungle::Entidade::Entidade::getCorpo(){
-    return corpo;
-}
+        Entidade::Entidade(const sf::Vector2f tam, const IDs::IDs ID, const sf::Vector2f pos):
+            Ente(ID), corpo(sf::RectangleShape(tam)), pos(pos), tam(tam), podeRemover(false)
+        {
+            corpo.setPosition(pos);
+        }
 
-void Jungle::Entidade::Entidade::setPos(sf::Vector2f pos){
-    corpo.setPosition(pos);
-    this->pos = pos;
-}
+        Entidade::~Entidade(){
+            
+        }
 
-sf::Vector2f Jungle::Entidade::Entidade::getPos(){
-    return pos;
-}
+        const sf::RectangleShape Entidade::getCorpo(){
+            return corpo;
+        }
 
-const sf::Vector2f Jungle::Entidade::Entidade::getTam(){
-    return tam;
-}
+        void Entidade::setPos(const sf::Vector2f pos){
+            corpo.setPosition(pos);
+            this->pos = pos;
+        }
 
-void Jungle::Entidade::Entidade::desenhar(){
-    pGrafico->desenhaElemento(corpo);
+        void Entidade::setTam(const sf::Vector2f tam){
+            corpo.setSize(tam);
+            this->tam = tam;
+        }
+
+        sf::Vector2f Entidade::getPos(){
+            return pos;
+        }
+
+        const sf::Vector2f Entidade::getTam(){
+            return tam;
+        }
+
+        const bool Entidade::getRemover() const {
+            return podeRemover;
+        }
+
+        void Entidade::desenhar(){
+            pGrafico->desenhaElemento(corpo);
+        }
+
+    }
+
 }
