@@ -28,7 +28,7 @@ namespace Jungle {
         }
         template<class TE>
         Elemento<TE>::~Elemento(){
-
+            
         }
 
         template<class TE>

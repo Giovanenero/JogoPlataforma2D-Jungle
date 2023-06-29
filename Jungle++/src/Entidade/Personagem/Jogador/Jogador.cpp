@@ -30,12 +30,6 @@ namespace Jungle {
                         delete(observadorJogador);
                         observadorJogador = nullptr;
                     }
-                    /*
-                    if(espada){
-                        delete(espada);
-                        espada = nullptr;
-                    }
-                    */
                 }
 
 
@@ -60,14 +54,14 @@ namespace Jungle {
 
                     if(atacando){
                         sf::Vector2f tamEspada = espada->getTam();
-                        sf::Vector2f posEspada = pos + (paraEsquerda ? sf::Vector2f(-tamEspada.x - tam.x, tamEspada.y) : tamEspada);
+                        const float posY = pos.y;
+                        sf::Vector2f posEspada = (paraEsquerda ? sf::Vector2f(pos.x - tamEspada.x, pos.y) : sf::Vector2f(pos.x + tam.x, pos.y));
                         espada->setPos(posEspada);
                     } else {
                         espada->setPos(sf::Vector2f(-500.0f, -500.0f));
                     }
 
                     atualizarAnimacao();
-
 
                     pGrafico->atualizarCamera(sf::Vector2f(pos.x, 300.0f));
                 }
@@ -79,7 +73,7 @@ namespace Jungle {
                         animacao.atualizar(paraEsquerda, "PULA");
                     } else if(atacando){
                         animacao.atualizar(paraEsquerda, "ATACA");
-                    } else if(podeAndar){
+                    } else if(andando){
                         animacao.atualizar(paraEsquerda, "ANDA");
                     } else {
                         animacao.atualizar(paraEsquerda, "PARADO");
@@ -104,7 +98,12 @@ namespace Jungle {
                     if(noChao){
                         velFinal.y = -sqrt(2.0f * GRAVIDADE * TAMANHO_PULO);
                         noChao = false;
+                        atacando = false;
                     }
+                }
+
+                const bool Jogador::getNoChao() const {
+                    return noChao;
                 }
 
                 void Jogador::podePular(){

@@ -21,11 +21,6 @@ namespace Jungle {
                 delete(pColisao);
                 pColisao = nullptr;
             }
-            std::cout << "a" << std::endl;
-            listaObstaculos.limparLista();
-            std::cout << "aa" << std::endl;
-            listaPersonagens.limparLista();
-            std::cout << "aaa" << std::endl;
             if(observadorFase){
                 delete(observadorFase);
                 observadorFase = nullptr;

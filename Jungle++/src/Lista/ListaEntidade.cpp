@@ -11,7 +11,7 @@ namespace Jungle {
         }
 
         ListaEntidade::~ListaEntidade(){
-
+            limparLista();
         }
 
         void ListaEntidade::addEntidade(Entidade::Entidade* entidade){
@@ -46,7 +46,6 @@ namespace Jungle {
                 aux = objListaEntidade.operator[](i);
                 if(aux->getRemover()){
                     objListaEntidade.removerElemento(aux);
-                    std::cout << "entidade morreu" << std::endl;
                 } else {
                     aux->atualizar();
                 }

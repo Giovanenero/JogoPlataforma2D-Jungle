@@ -40,13 +40,14 @@ namespace Jungle {
                             break;
                         case(IDs::IDs::esqueleto):
                         {
-                            std::cout << "Bater no esqueleto" << std::endl;
                             Personagem::Inimigo::Esqueleto* esqueleto = dynamic_cast<Personagem::Inimigo::Esqueleto*>(outraEntidade);
-                            esqueleto->tomarDano(dano);
-                            if(esqueleto->getRemover()){
-                                Personagem::Jogador::Jogador* jogador = dynamic_cast<Personagem::Jogador::Jogador*>(entidade);
-                                jogador->addPontuacao(esqueleto->getPontos());
-                                std::cout << jogador->getPontos() << std::endl;
+                            if(!esqueleto->getMorrer() &&  !esqueleto->getLevandoDano()){
+                                esqueleto->tomarDano(dano);
+                                if(esqueleto->getMorrer()){
+                                    Personagem::Jogador::Jogador* jogador = dynamic_cast<Personagem::Jogador::Jogador*>(entidade);
+                                    jogador->addPontuacao(esqueleto->getPontos());
+                                    std::cout << jogador->getPontos() << std::endl;
+                                }
                             }
                         }
                             break;

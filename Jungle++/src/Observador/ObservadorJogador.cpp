@@ -34,7 +34,9 @@ namespace Jungle {
                     break;
                 case(sf::Keyboard::S):
                 {
-                    pJogador->atacar(true);
+                    if(pJogador->getNoChao()){
+                        pJogador->atacar(true);
+                    }
                 }
                     break;;
             }

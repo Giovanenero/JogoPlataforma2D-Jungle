@@ -33,24 +33,27 @@ void Jungle::Entidade::Personagem::Inimigo::Inimigo::atualizaMovimentoAleatorio(
 }
 
 void Jungle::Entidade::Personagem::Inimigo::Inimigo::moveInimigo(){
-    sf::Vector2f posJogador = jogador->getPos();
-    sf::Vector2f posInimigo = getPos();
-    if(fabs(posJogador.x - posInimigo.x) <= RAIO_PERSEGUIR_X && fabs(posJogador.y - posInimigo.y) <= RAIO_PERSEGUIR_Y){
-        if(posJogador.x - posInimigo.x > 0.0f){
-            andar(false);
+    if(!levandoDano && !morrendo){
+        sf::Vector2f posJogador = jogador->getPos();
+        sf::Vector2f posInimigo = getPos();
+        if(fabs(posJogador.x - posInimigo.x) <= RAIO_PERSEGUIR_X && fabs(posJogador.y - posInimigo.y) <= RAIO_PERSEGUIR_Y){
+            if(posJogador.x - posInimigo.x > 0.0f){
+                andar(false);
+            } else {
+                andar(true);
+            }
         } else {
-            andar(true);
+            atualizaMovimentoAleatorio();
         }
     } else {
-        atualizaMovimentoAleatorio();
+        dtAux = 0.0f;
     }
 }
 
 void Jungle::Entidade::Personagem::Inimigo::Inimigo::atualizar(){
     moveInimigo();
     atualizarPosicao();
-    dtAux += relogio.getElapsedTime().asSeconds() * 100;
-    relogio.restart();
+    dtAux += pGrafico->getTempo();
     atualizarAnimacao();
 }
 

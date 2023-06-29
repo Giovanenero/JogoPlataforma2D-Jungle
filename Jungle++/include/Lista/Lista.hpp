@@ -77,10 +77,10 @@ namespace Jungle {
                 } else {
                     aux2->setProx(aux->getProx());
                 }
-                tam--;
                 delete(aux);
                 aux = nullptr;
                 aux2 = nullptr;
+                tam--;
             }
             
         }
@@ -111,19 +111,23 @@ namespace Jungle {
 
         template<class TL>
         void Lista<TL>::limparLista(){
-            if(pInicio != nullptr && tam > 0){
-                std::cout << tam << std::endl;
+            if(pInicio != nullptr){
                 Elemento<TL>* aux = pInicio;
                 Elemento<TL>* aux2 = nullptr;
-                while(aux != nullptr){
-                    aux2 = aux->getProx();
+                int i = 0;
+                while(aux != nullptr && i < tam){
                     delete(aux->getElemento());
+                    aux->setElemento(nullptr);
+                    aux2 = aux->getProx();
+                    delete(aux);
                     aux = nullptr;
                     aux = aux2;
+                    i++;
                 }
             }
             pInicio = nullptr;
             pUltimo = nullptr;
+            tam = 0;
         }
 
     }

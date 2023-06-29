@@ -16,16 +16,21 @@ namespace Jungle {
                 sf::Vector2f velFinal;
                 Animador::Animacao animacao;
                 const float velMax;
-                bool podeAndar;
+                bool andando;
                 bool paraEsquerda;
                 bool atacando;
+                bool levandoDano;
+                bool morrendo;
 
+                //vida do personagem
                 const float vidaMaxima;
                 float vida;
 
+                //tempo pro personagem poder levar um hit
                 const float tempoAnimacaoTomarDano;
                 float tempoDano;
 
+                //tempo pra ele morrer
                 const float tempoAnimacaoMorrer;
                 float tempoMorrer;
 
@@ -44,7 +49,10 @@ namespace Jungle {
                 void atacar(const bool atacando);
                 void atualizarPosicao();
                 virtual void atualizar() = 0;
+                void atualizarTomarDano();
                 void tomarDano(const float dano);
+                const bool getMorrer() const;
+                const bool getLevandoDano() const;
                 virtual void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f)) = 0;
                 virtual unsigned int getPontos() const = 0;
             };
