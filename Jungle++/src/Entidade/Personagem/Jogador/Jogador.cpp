@@ -1,5 +1,6 @@
 #include "..\..\..\..\include\Entidade\Personagem\Jogador\Jogador.hpp"
 #include "..\..\..\..\include\Observador\ObservadorJogador.hpp"
+#include "../../../../include/Entidade/Personagem/Inimigo/Inimigo.hpp"
 
 #include <cmath>
 
@@ -13,16 +14,17 @@ namespace Jungle {
 
                 Jogador::Jogador(const sf::Vector2f pos, Item::Espada* espada):
                     Personagem(pos, sf::Vector2f(TAMANHO_JOGADOR_X, TAMANHO_JOGADOR_Y), VELOCIDADE_JOGADOR, IDs::IDs::jogador, TEMPO_JOGADOR_MORRER), 
-                    noChao(false), observadorJogador(new Observador::ObservadorJogador(this)),
-                    espada(espada), pontuacao(0)
+                    noChao(false), observadorJogador(new Observador::ObservadorJogador(this)), pontuacao(0)
                 {
                     if(observadorJogador == nullptr){
                         std::cout << "ERROR::Entidade::Personagem::Jogador::Jogador::nao foi possivel criar um observador para o jogador" << std::endl;
                         exit(1);
                     }
-                    inicializaAnimacao();
+                    inicializarAnimacao();
+                    inicializarBarraVida();
+                    
+                    setEspada(espada);
                     espada->setDano(DANO);
-                    espada->setTam(sf::Vector2f(TAMANHO_ESPADA_X, TAMANHO_JOGADOR_Y));
                 }
 
                 Jogador::~Jogador(){
@@ -32,16 +34,20 @@ namespace Jungle {
                     }
                 }
 
+                void Jogador::inicializarBarraVida(){
 
-                void Jogador::inicializaAnimacao(){
-                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Anda.png", "ANDA", 10, 0.12f, sf::Vector2f(6,2));
-                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Ataca.png", "ATACA", 10, 0.1f, sf::Vector2f(6,2));
-                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Parado.png", "PARADO", 10, 0.15f, sf::Vector2f(6,2));
-                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Pula.png", "PULA", 3, 0.15f, sf::Vector2f(6,2));
-                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Cai.png", "CAI", 3, 0.15f, sf::Vector2f(6,2));
-                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Morre.png", "MORRE", 10, 0.15f, sf::Vector2f(6,2));
-                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/tomaDano.png", "TOMA_DANO", 1, 0.15f, sf::Vector2f(6,2));
-                    corpo.setOrigin(sf::Vector2f(tam.x / 2.5f, tam.y / 2.0f));
+                }
+
+
+                void Jogador::inicializarAnimacao(){
+                    const sf::Vector2f origin = sf::Vector2f(tam.x / 2.5f, tam.y / 2.0f);
+                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Anda.png", "ANDA", 10, 0.12f, sf::Vector2f(6,2), origin);
+                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Ataca.png", "ATACA", 10, 0.1f, sf::Vector2f(6,2), origin);
+                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Parado.png", "PARADO", 10, 0.15f, sf::Vector2f(6,2), origin);
+                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Pula.png", "PULA", 3, 0.15f, sf::Vector2f(6,2), origin);
+                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Cai.png", "CAI", 3, 0.15f, sf::Vector2f(6,2), origin);
+                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Morre.png", "MORRE", 10, 0.10f, sf::Vector2f(5,2), origin);
+                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/tomaDano.png", "TOMA_DANO", 1, 0.15f, sf::Vector2f(6,2), origin);
                 }
 
                 void Jogador::atualizar(){
@@ -67,7 +73,14 @@ namespace Jungle {
                 }
 
                 void Jogador::atualizarAnimacao(){
-                    if(!noChao && velFinal.y > 0.0f){
+                    if(morrendo){
+                        animacao.atualizar(paraEsquerda, "MORRE");
+                        tempoMorrer += pGrafico->getTempo();
+                        if(tempoMorrer > tempoAnimacaoMorrer){
+                            podeRemover = true;
+                            tempoMorrer = 0.0f;
+                        }
+                    } else if(!noChao && velFinal.y > 0.0f){
                         animacao.atualizar(paraEsquerda, "CAI");
                     } else if(!noChao){
                         animacao.atualizar(paraEsquerda, "PULA");
@@ -88,7 +101,23 @@ namespace Jungle {
                         }
                         case(IDs::IDs::espada_inimigo):
                         {
-                            std::cout << "Tomar dano do inimigo" << std::endl;
+                            //std::cout << "Tomar dano do inimigo" << std::endl;
+                            Item::Espada* espada = dynamic_cast<Item::Espada*>(outraEntidade);
+                            tomarDano(espada->getDano());
+                        }
+                            break;
+                        case(IDs::IDs::esqueleto):
+                        {
+                            //empura inimigo
+                            sf::Vector2f posInimigo = outraEntidade->getPos();
+                            Inimigo::Inimigo* inimigo = dynamic_cast<Inimigo::Inimigo*>(outraEntidade);
+                            if(pos.x < posInimigo.x){
+                                ds.x *= -1;
+                            }
+                            //inimigo->setPos(sf::Vector2f(posInimigo.x + ds.x, posInimigo.y));
+                            //bate no jogador
+                            inimigo->parar();
+                            inimigo->atacar(true);
                         }
                             break;
                     }   

@@ -17,14 +17,16 @@ namespace Jungle {
             unsigned int imgAtual;
             const float tempoTroca;
             float tempoTotal;
+            const sf::Vector2f origin;
         public:
-            Imagem(const char* caminhoTextura, const unsigned int qtdImagem, const float tempoTroca, const sf::Vector2f escala);
+            Imagem(const char* caminhoTextura, const unsigned int qtdImagem, const float tempoTroca, const sf::Vector2f escala, const sf::Vector2f origin);
             ~Imagem();
             void atualizar(const bool paraEsquerda, const float dt);
             void resetar();
             const sf::IntRect getTamanho() const;
             const sf::Texture* getTextura() const;
             const sf::Vector2f getEscala() const;
+            const sf::Vector2f getOrigin() const;
         };
 
     }

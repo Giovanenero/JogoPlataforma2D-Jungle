@@ -61,7 +61,7 @@ namespace Jungle {
             for(int i = 0; i < listaPersonagens.getTam(); i++){
                 Entidade::Entidade* ent = listaPersonagens.operator[](i);
                 if(ent->getID() == IDs::IDs::jogador){
-                    return static_cast<Entidade::Personagem::Jogador::Jogador*>(ent);
+                    return dynamic_cast<Entidade::Personagem::Jogador::Jogador*>(ent);
                 }
             }
             return nullptr;
@@ -78,15 +78,19 @@ namespace Jungle {
         }
 
         void Fase::executar(){
-            //atualiza fundo
-            fundo.executar();
+            if(getJogador()){
+                //atualiza fundo
+                fundo.executar();
 
-            //atualiza e desenha entidades
-            listaPersonagens.executar();
-            listaObstaculos.executar();
+                //atualiza e desenha entidades
+                listaPersonagens.executar();
+                listaObstaculos.executar();
 
-            //verifica colisão
-            pColisao->executar();
+                //verifica colisão
+                pColisao->executar();
+            } else {
+                observadorFase->notificarJogadorMorreu();
+            }
         }
 
     }

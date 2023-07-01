@@ -46,6 +46,7 @@ namespace Jungle {
         }
 
         void GerenciadorMusica::mudarMusica(const IDs::IDs IDOutraMusica){
+            /*
             switch (IDOutraMusica)
             {
                 case (IDs::IDs::estado_menu_principal):
@@ -84,6 +85,7 @@ namespace Jungle {
                     break;
             }
             IDMusicaAtual = IDOutraMusica;
+            */
         }
 
         void GerenciadorMusica::pausar(){

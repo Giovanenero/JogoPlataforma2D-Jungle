@@ -17,7 +17,7 @@ namespace Jungle {
 
                 class Esqueleto : public Inimigo {
                 private:
-                    void inicializaAnimacao();
+                    void inicializarAnimacao();
                 public:
                     Esqueleto(const sf::Vector2f pos, Jogador::Jogador* jogador);
                     ~Esqueleto();

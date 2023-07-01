@@ -14,6 +14,7 @@ namespace Jungle {
             
         }
 
+
         void ObservadorJogador::teclaPressionada(const sf::Keyboard::Key tecla){
             switch (tecla)
             {
@@ -53,6 +54,11 @@ namespace Jungle {
                 case(sf::Keyboard::D):
                 {
                     pJogador->parar();
+                }
+                    break;
+                case(sf::Keyboard::S):
+                {
+                    pJogador->atacar(false);
                 }
                     break;
             }

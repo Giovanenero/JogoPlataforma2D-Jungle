@@ -2,6 +2,7 @@
 
 #include "..\Personagem.hpp"
 #include "..\Jogador\Jogador.hpp"
+#include  "../../Item/Espada.hpp"
 
 // usado p/ gerar números aleatórios
 #include <time.h>
@@ -11,7 +12,6 @@
 
 #define RAIO_PERSEGUIR_X 200.0f
 #define RAIO_PERSEGUIR_Y 200.0f
-
 #define VELOCIDADE_INIMIGO 60.0f
 
 namespace Jungle {
@@ -28,17 +28,20 @@ namespace Jungle {
                     short moveAleatorio;
                     float dtAux;
                     const unsigned int pontos;
+                    const float tempoAnimacaoAtacar;
+                    float tempoAtacar;
 
                     void moveInimigo();
                     void atualizaMovimentoAleatorio();
-                    virtual void inicializaAnimacao() = 0;
-                    //virtual void atualizarAnimacao(){ }
+                    virtual void inicializarAnimacao() = 0;
+                    void inicializarBarraVida();
                 public:
-                    Inimigo(const sf::Vector2f pos, const sf::Vector2f tam, Jogador::Jogador* jogador, const IDs::IDs ID, const float tempoMorrer, const unsigned int pontos);
+                    Inimigo(const sf::Vector2f pos, const sf::Vector2f tam, Jogador::Jogador* jogador, const IDs::IDs ID, const float tempoMorrer, const unsigned int pontos, const float tempoAtacar = 2.0f);
                     ~Inimigo();
                     virtual void atualizar();
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
                     unsigned int getPontos() const;
+                    void atualizarTempoAtacar();
                 };
 
             }

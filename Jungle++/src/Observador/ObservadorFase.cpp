@@ -15,6 +15,10 @@ namespace Jungle {
 
         }
 
+        void ObservadorFase::notificarJogadorMorreu(){
+            pGEstado->removerEstado();
+        }
+
         void ObservadorFase::teclaPressionada(const sf::Keyboard::Key tecla){
             //terminar..
         }

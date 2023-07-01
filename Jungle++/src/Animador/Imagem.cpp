@@ -1,9 +1,9 @@
 #include "..\..\include\Animador\Imagem.hpp"
 
-Jungle::Animador::Imagem::Imagem(const char* caminhoTextura, unsigned int qtdImagem, const float tempoTroca, const sf::Vector2f escala):
+Jungle::Animador::Imagem::Imagem(const char* caminhoTextura, unsigned int qtdImagem, const float tempoTroca, const sf::Vector2f escala, const sf::Vector2f origin):
     pGrafico(pGrafico->getGerenciadorGrafico()), qtdImagem(qtdImagem), tempoTroca(tempoTroca),
     tempoTotal(0.0f), tamanho(0,0,0,0), imgAtual(0), textura(pGrafico->carregarTextura(caminhoTextura)),
-    escala(escala)
+    escala(escala), origin(origin)
 {
     tamanho.width = textura.getSize().x / (float)qtdImagem;
     tamanho.height = textura.getSize().y;
@@ -46,4 +46,8 @@ const sf::Texture* Jungle::Animador::Imagem::getTextura() const {
 
 const sf::Vector2f Jungle::Animador::Imagem::getEscala() const {
     return escala;
+}
+
+const sf::Vector2f Jungle::Animador::Imagem::getOrigin() const {
+    return origin;
 }

@@ -41,7 +41,7 @@ namespace Jungle {
                         case(IDs::IDs::esqueleto):
                         {
                             Personagem::Inimigo::Esqueleto* esqueleto = dynamic_cast<Personagem::Inimigo::Esqueleto*>(outraEntidade);
-                            if(!esqueleto->getMorrer() &&  !esqueleto->getLevandoDano()){
+                            if(!esqueleto->getMorrer()){
                                 esqueleto->tomarDano(dano);
                                 if(esqueleto->getMorrer()){
                                     Personagem::Jogador::Jogador* jogador = dynamic_cast<Personagem::Jogador::Jogador*>(entidade);
@@ -52,8 +52,6 @@ namespace Jungle {
                         }
                             break;
                     }
-                } else {
-                    std::cout << "Bater no jogador" << std::endl;
                 }
             }
 

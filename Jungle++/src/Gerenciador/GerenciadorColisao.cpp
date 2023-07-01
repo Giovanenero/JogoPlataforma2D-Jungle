@@ -42,7 +42,7 @@ void Jungle::Gerenciador::GerenciadorColisao::executar(){
             Entidade::Entidade* ent2 = listaPersonagem->operator[](j);
             sf::Vector2f ds = calculaColisao(ent1, ent2);
             if(ds.x < 0.0f && ds.y < 0.0f){
-                ent1->colisao(ent2);
+                ent1->colisao(ent2, ds);
             }
         }
     }

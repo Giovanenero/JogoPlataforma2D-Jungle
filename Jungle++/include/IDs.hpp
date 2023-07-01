@@ -12,6 +12,7 @@ namespace IDs {
         plataforma,
         caixa,
         moeda_amarela,
+        moeda_cinza,
         fundo_florestaNegra,
         fundo_florestaBranca,
         fase_florestaBranca,

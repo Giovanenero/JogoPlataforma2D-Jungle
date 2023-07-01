@@ -18,12 +18,12 @@ namespace Jungle {
             class Moeda : public Entidade {
                 private:
                     const unsigned int pontos;
-                    const std::string tipo;
                     Animador::Animacao animacao;
+                    const std::string tipo;
 
                     void inicializarAnimacao();
                 public:
-                    Moeda(const sf::Vector2f pos, const std::string tipo = "MOEDA_AMARELA");
+                    Moeda(const sf::Vector2f pos, const IDs::IDs ID = IDs::IDs::moeda_amarela);
                     ~Moeda();
                     void atualizar();
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));

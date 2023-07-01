@@ -16,6 +16,7 @@ namespace Jungle {
             ~ObservadorFase();
             void teclaPressionada(const sf::Keyboard::Key tecla);
             void teclaSolta(const sf::Keyboard::Key tecla);
+            void notificarJogadorMorreu();
         };
 
     }

@@ -46,6 +46,7 @@ namespace Jungle {
                 aux = objListaEntidade.operator[](i);
                 if(aux->getRemover()){
                     objListaEntidade.removerElemento(aux);
+                    aux = nullptr;
                 } else {
                     aux->atualizar();
                 }

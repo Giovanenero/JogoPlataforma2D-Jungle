@@ -7,10 +7,10 @@ namespace Jungle {
 
         namespace Item {
 
-            Moeda::Moeda(const sf::Vector2f pos, std::string tipo):
-                Entidade(sf::Vector2f(TAMANHO_MOEDA, TAMANHO_MOEDA), IDs::IDs::moeda_amarela, pos),
-                tipo(tipo), pontos(tipo == "MOEDA_AMARELA" ? PONTOS_MOEDA_AMARELA : PONTOS_MOEDA_CINZA),
-                animacao(&corpo)
+            Moeda::Moeda(const sf::Vector2f pos, const IDs::IDs ID):
+                Entidade(sf::Vector2f(TAMANHO_MOEDA, TAMANHO_MOEDA), ID, pos), 
+                pontos(ID == IDs::IDs::moeda_amarela ? PONTOS_MOEDA_AMARELA : PONTOS_MOEDA_CINZA),
+                animacao(&corpo), tipo(ID == IDs::IDs::moeda_amarela ? "MOEDA_AMARELA" : "MOEDA_CINZA")
             {
                 inicializarAnimacao();
             }
@@ -20,7 +20,8 @@ namespace Jungle {
             }
 
             void Moeda::inicializarAnimacao(){
-                animacao.addAnimacao(tipo == "MOEDA_AMARELA" ? CAMINHO_MOEDA_AMARELA : CAMINHO_MOEDA_CINZA, tipo, 8, 0.12f, sf::Vector2f(1.0f, 1.0f));
+                const char* caminhoTextura = ID == IDs::IDs::moeda_amarela ? CAMINHO_MOEDA_AMARELA : CAMINHO_MOEDA_CINZA; 
+                animacao.addAnimacao(caminhoTextura , tipo, 8, 0.12f, sf::Vector2f(1.0f, 1.0f));
             }
 
             void Moeda::colisao(Entidade* outraEntidade, sf::Vector2f ds){
