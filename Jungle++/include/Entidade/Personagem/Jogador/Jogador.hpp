@@ -9,6 +9,9 @@
 #define TAMANHO_JOGADOR_Y 90.0f
 #define TAMANHO_ESPADA_X 80.0f
 #define TEMPO_JOGADOR_MORRER 1.0f
+#define TEMPO_JOGADOR_TOMARDANO 0.30f
+#define BARRA_VIDA_JOGADOR_X 200.0f
+#define BARRA_VIDA_JOGADOR_Y 30.0f
 #define DANO 35.0f
 
 namespace Jungle {
@@ -27,11 +30,13 @@ namespace Jungle {
                 private:
                     bool noChao;
                     Observador::ObservadorJogador* observadorJogador;
+                    sf::RectangleShape tuboBarraVida;
                     unsigned int pontuacao;
 
                     void inicializarAnimacao();
                     void inicializarBarraVida();
                     void atualizarAnimacao();
+                    void atualizarBarraVida();
                 public:
                     Jogador(const sf::Vector2f pos, Item::Espada* espada);
                     ~Jogador();
@@ -43,6 +48,7 @@ namespace Jungle {
                     void mudarEstadoObservador();
                     void addPontuacao(unsigned int pontos);
                     unsigned int getPontos() const;
+                    void desenhar();
                 };
 
             }

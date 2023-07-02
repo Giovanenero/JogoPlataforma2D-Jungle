@@ -83,11 +83,11 @@ namespace Jungle {
             }
 
             void Personagem::setEspada(Item::Espada* espada){
-                    this->espada = espada;
-                    espada->setEntidade(static_cast<Entidade*>(this));
-                    espada->setTam(tam);
-                    espada->setDano(20.0f);
-                }
+                this->espada = espada;
+                espada->setEntidade(static_cast<Entidade*>(this));
+                espada->setTam(tam);
+                espada->setDano(20.0f);
+            }
 
             void Personagem::guardarEspada(){
                 espada->setPos(sf::Vector2f(-1000.0f, -1000.0f));
@@ -140,9 +140,9 @@ namespace Jungle {
             }
 
             void Personagem::desenhar(){
-            pGrafico->desenhaElemento(corpo);
-            pGrafico->desenhaElemento(barraVida);
-        }
+                pGrafico->desenhaElemento(corpo);
+                pGrafico->desenhaElemento(barraVida);
+            }
 
         }
 

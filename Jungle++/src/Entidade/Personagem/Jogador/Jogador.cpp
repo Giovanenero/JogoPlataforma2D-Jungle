@@ -13,7 +13,7 @@ namespace Jungle {
             namespace Jogador {
 
                 Jogador::Jogador(const sf::Vector2f pos, Item::Espada* espada):
-                    Personagem(pos, sf::Vector2f(TAMANHO_JOGADOR_X, TAMANHO_JOGADOR_Y), VELOCIDADE_JOGADOR, IDs::IDs::jogador, TEMPO_JOGADOR_MORRER), 
+                    Personagem(pos, sf::Vector2f(TAMANHO_JOGADOR_X, TAMANHO_JOGADOR_Y), VELOCIDADE_JOGADOR, IDs::IDs::jogador, TEMPO_JOGADOR_MORRER, TEMPO_JOGADOR_TOMARDANO), 
                     noChao(false), observadorJogador(new Observador::ObservadorJogador(this)), pontuacao(0)
                 {
                     if(observadorJogador == nullptr){
@@ -32,10 +32,27 @@ namespace Jungle {
                         delete(observadorJogador);
                         observadorJogador = nullptr;
                     }
+                    if(tuboBarraVida.getTexture()){
+                        delete(tuboBarraVida.getTexture());
+                    }
                 }
 
                 void Jogador::inicializarBarraVida(){
-
+                    sf::Vector2f tamBarra = sf::Vector2f(BARRA_VIDA_JOGADOR_X, BARRA_VIDA_JOGADOR_Y);
+                    sf::Vector2f origin = sf::Vector2f(tamBarra.x / 7.0f, tamBarra.y / 3.2f);
+                    sf::Vector2f scale(sf::Vector2f(1.5f, 2.5f));
+                    barraVida.setSize(tamBarra);
+                    tuboBarraVida.setSize(tamBarra);
+                    sf::Texture* texturaVida = new sf::Texture(); 
+                    sf::Texture* texturaBarra = new sf::Texture();
+                    texturaVida->loadFromFile("Jungle++/img/Personagem/Vida/BarraVida.png");
+                    texturaBarra->loadFromFile("Jungle++/img/Personagem/Vida/Barra.png");
+                    barraVida.setTexture(texturaVida);
+                    tuboBarraVida.setTexture(texturaBarra);
+                    barraVida.setScale(scale);
+                    barraVida.setOrigin(origin);
+                    tuboBarraVida.setScale(scale);
+                    tuboBarraVida.setOrigin(origin);
                 }
 
 
@@ -47,7 +64,7 @@ namespace Jungle {
                     animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Pula.png", "PULA", 3, 0.15f, sf::Vector2f(6,2), origin);
                     animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Cai.png", "CAI", 3, 0.15f, sf::Vector2f(6,2), origin);
                     animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Morre.png", "MORRE", 10, 0.10f, sf::Vector2f(5,2), origin);
-                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/tomaDano.png", "TOMA_DANO", 1, 0.15f, sf::Vector2f(6,2), origin);
+                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/tomaDano.png", "TOMADANO", 1, 0.5f, sf::Vector2f(6,2), origin);
                 }
 
                 void Jogador::atualizar(){
@@ -64,12 +81,26 @@ namespace Jungle {
                         sf::Vector2f posEspada = (paraEsquerda ? sf::Vector2f(pos.x - tamEspada.x, pos.y) : sf::Vector2f(pos.x + tam.x, pos.y));
                         espada->setPos(posEspada);
                     } else {
-                        espada->setPos(sf::Vector2f(-500.0f, -500.0f));
+                        guardarEspada();
                     }
 
                     atualizarAnimacao();
 
                     pGrafico->atualizarCamera(sf::Vector2f(pos.x, 300.0f));
+
+                    atualizarBarraVida();
+                }
+
+                void Jogador::atualizarBarraVida(){
+                    sf::Vector2f posJanela = pGrafico->getCamera().getCenter();
+                    sf::Vector2f tamJanela = pGrafico->getTamJanela();
+                    sf::Vector2f posBarra = sf::Vector2f(posJanela.x - tamJanela.x / 2.0f + 20.0f, posJanela.y - tamJanela.y / 2.0f + 20.0f);
+                    sf::Vector2f tamBarra = sf::Vector2f((vida / 100.0f) * BARRA_VIDA_JOGADOR_X, BARRA_VIDA_JOGADOR_Y);
+                    barraVida.setPosition(posBarra);
+                    barraVida.setSize(tamBarra);
+                    barraVida.setOrigin(sf::Vector2f(tamBarra.x / 7.0f, tamBarra.y / 3.2f));
+                    tuboBarraVida.setPosition(posBarra);
+                    //barraVida.setOrigin(sf::Vector2f(barraVida.getSize().x / 4.0f, 1.0f));
                 }
 
                 void Jogador::atualizarAnimacao(){
@@ -84,6 +115,8 @@ namespace Jungle {
                         animacao.atualizar(paraEsquerda, "CAI");
                     } else if(!noChao){
                         animacao.atualizar(paraEsquerda, "PULA");
+                    } else if(levandoDano){
+                        animacao.atualizar(paraEsquerda, "TOMADANO");
                     } else if(atacando){
                         animacao.atualizar(paraEsquerda, "ATACA");
                     } else if(andando){
@@ -149,6 +182,12 @@ namespace Jungle {
 
                 unsigned int Jogador::getPontos() const {
                     return pontuacao;
+                }
+
+                void Jogador::desenhar(){
+                    pGrafico->desenhaElemento(corpo);
+                    pGrafico->desenhaElemento(tuboBarraVida);
+                    pGrafico->desenhaElemento(barraVida);
                 }
 
             }

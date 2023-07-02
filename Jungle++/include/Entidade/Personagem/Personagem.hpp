@@ -36,6 +36,7 @@ namespace Jungle {
                 float dt;
 
                 virtual void atualizarAnimacao();
+                virtual void atualizarBarraVida();
                 virtual void inicializarBarraVida() = 0;
                 virtual void inicializarAnimacao() = 0;
             public:
@@ -53,8 +54,7 @@ namespace Jungle {
                 const bool getMorrer() const;
                 virtual void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f)) = 0;
                 virtual unsigned int getPontos() const = 0;
-                virtual void atualizarBarraVida();
-                void desenhar();
+                virtual void desenhar();
                 void guardarEspada();
                 void setEspada(Item::Espada* espada);
             };
