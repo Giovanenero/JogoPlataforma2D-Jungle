@@ -25,6 +25,7 @@ namespace Jungle {
             ~EstadoMenuFase();
             void mudarEstadoObservador();
             void executar();
+            Menu::MenuPausa* getMenuFase();
         };
 
     }

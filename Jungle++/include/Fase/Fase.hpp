@@ -34,6 +34,7 @@ namespace Jungle {
             Construtor::ConstrutorEntidade construtorEntidade;
             Gerenciador::GerenciadorColisao* pColisao;
             Parallax::Fundo fundo;
+            unsigned int pontuacaoJogador;
             
         public:
             Fase(const IDs::IDs ID_Fase, const IDs::IDs ID_Fundo);
@@ -45,6 +46,7 @@ namespace Jungle {
             void desenhar();
             Entidade::Personagem::Jogador::Jogador* getJogador();
             void mudarEstadoObservador();
+            const unsigned int getPontuacaoJogador() const;
         };
 
     }

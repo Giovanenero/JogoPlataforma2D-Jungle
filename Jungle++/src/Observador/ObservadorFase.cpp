@@ -24,10 +24,8 @@ namespace Jungle {
         }
 
         void ObservadorFase::teclaSolta(const sf::Keyboard::Key tecla){
-            if(tecladoEspecial[tecla] == "Escape"){
+            if(tecladoEspecial[tecla] == "Escape" || teclado[tecla] == 'p'){
                 pGEstado->addEstado(IDs::IDs::estado_menu_pausa);
-            } else if(teclado[tecla] == 'p'){
-                pGEstado->addEstado(IDs::IDs::estado_menu_game_over);
             }
         }
 

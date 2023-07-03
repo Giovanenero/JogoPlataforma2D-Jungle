@@ -49,10 +49,6 @@ namespace Jungle {
                     texturaBarra->loadFromFile("Jungle++/img/Personagem/Vida/Barra.png");
                     barraVida.setTexture(texturaVida);
                     tuboBarraVida.setTexture(texturaBarra);
-                    //barraVida.setScale(scale);
-                    //barraVida.setOrigin(origin);
-                    //tuboBarraVida.setScale(scale);
-                    //tuboBarraVida.setOrigin(origin);
                 }
 
 

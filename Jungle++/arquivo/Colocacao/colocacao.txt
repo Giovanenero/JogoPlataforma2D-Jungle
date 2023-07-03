@@ -1,10 +1,6 @@
-jogador1 0152 001348
-jogador2 0568 001348
-jogador3 0668 001348
-jogador4 0555 001348
-jogador5 1568 001348
-jogador6 1212 001348
-jogador7 0025 001348
-jogador8 0568 001348
-jogador9 6584 001348
-jogador10 0045 001348
+giovane 500 
+SemNome 700 
+lindao 950 
+teste 500 
+helloworld1 0 
+SemNome 0 

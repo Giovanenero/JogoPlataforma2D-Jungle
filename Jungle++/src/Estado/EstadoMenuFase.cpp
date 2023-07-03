@@ -12,14 +12,7 @@ namespace Jungle {
         EstadoMenuFase::EstadoMenuFase(const IDs::IDs ID_Estado, const IDs::IDs ID_Menu):
             Estado(ID_Estado), estadoJogar(nullptr), menuFase(nullptr)
         {
-            Estado* estadoAtual = pGEstado->getEstadoAtual();
-            if(estadoAtual->getID() != IDs::IDs::jogar_florestaBranca && estadoAtual->getID() != IDs::IDs::jogar_florestaVermelha){
-                std::cout << "ERRO::Estado::EstadoMenuPausa::Estado atual nao é uma fase!" << std::endl;
-                exit(1);
-            }
-            estadoJogar = static_cast<EstadoJogar*>(estadoAtual);
             menuFase = criarMenu(ID_Menu);
-            menuFase->setFase(estadoJogar->getFase());
         }
 
         EstadoMenuFase::~EstadoMenuFase(){
@@ -31,11 +24,18 @@ namespace Jungle {
 
         Menu::MenuPausa* EstadoMenuFase::criarMenu(const IDs::IDs ID){
             Menu::MenuPausa* menu = nullptr;
+            Estado* estadoAtual = pGEstado->getEstadoAtual();
+            if(estadoAtual->getID() != IDs::IDs::jogar_florestaBranca && estadoAtual->getID() != IDs::IDs::jogar_florestaVermelha){
+                std::cout << "ERRO::Estado::EstadoMenuPausa::Estado atual nao é uma fase!" << std::endl;
+                exit(1);
+            }
+            estadoJogar = static_cast<EstadoJogar*>(estadoAtual);
+            Fase::Fase* fase = estadoJogar->getFase();
             switch (ID)
             {
             case (IDs::IDs::menu_pausa):
             {
-                menu= new Menu::MenuPausa();
+                menu= new Menu::MenuPausa(fase);
                 if(menu == nullptr){
                     std::cout << "Jungle::EstadoMenuFase::nao foi possivel criar MenuPausa" << std::endl;
                     exit(1);
@@ -45,12 +45,13 @@ namespace Jungle {
                 break;
             case (IDs::IDs::menu_game_over):
             {
-                menu = static_cast<Menu::MenuPausa*>(new Menu::MenuGameOver());
-                if(menu == nullptr){
+                Menu::MenuGameOver* menuGameOver = new Menu::MenuGameOver(fase->getPontuacaoJogador(), fase);
+                if(menuGameOver == nullptr){
                     std::cout << "Jungle::EstadoMenuFase::nao foi possivel criar MenuGameOver" << std::endl;
                     exit(1);
                 }
-                menu->criarBotoes();
+                menuGameOver->criarBotoes();
+                menu = static_cast<Menu::MenuPausa*>(menuGameOver);
             }
                 break;
             }
@@ -59,6 +60,10 @@ namespace Jungle {
 
         void EstadoMenuFase::mudarEstadoObservador(){
             menuFase->mudarEstadoObservador();
+        }
+
+        Menu::MenuPausa* EstadoMenuFase::getMenuFase(){
+            return menuFase;
         }
 
         void EstadoMenuFase::executar(){

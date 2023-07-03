@@ -31,7 +31,7 @@ namespace Jungle {
             }
 
             void Personagem::atacar(const bool atacando){
-                andando = false;
+                //andando = false;
                 this->atacando = atacando;
             }
 

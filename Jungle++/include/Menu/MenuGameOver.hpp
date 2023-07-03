@@ -2,6 +2,7 @@
 
 #include "MenuPausa.hpp"
 #include "../Fase/Fase.hpp"
+#include <fstream>
 
 #define TAMANHO_BOTAO_MENU_GAME_OVER_X 350.0f
 #define TAMANHO_BOTAO_MENU_GAME_OVER_Y 80.0f
@@ -15,14 +16,17 @@ namespace Jungle {
             private:
                 sf::RectangleShape fundoCaracter;
                 Botao::Texto texto;
+                Botao::Texto pontuacao;
+                std::ofstream arquivoEntrada;
 
                 void atualizarFundo();
             public:
-                MenuGameOver(Fase::Fase* fase = nullptr);
+                MenuGameOver(const unsigned int pontuacaoJogador, Fase::Fase* fase = nullptr);
                 ~MenuGameOver();
                 void criarBotoes();
                 void addCaracter(char caracter);
                 void removerCaracter();
+                void salvarColocacao();
                 void executar();
         };
 

@@ -39,6 +39,18 @@ namespace Jungle {
                         pGEstado->removerEstado();
                     }
                         break;
+                    case (IDs::IDs::botao_salvar_colocacao):
+                    {
+                        Estado::Estado* estado = pGEstado->getEstadoAtual();
+                        if(estado->getID() == IDs::IDs::estado_menu_game_over){
+                            Estado::EstadoMenuFase* estadoMenuFase = dynamic_cast<Estado::EstadoMenuFase*>(estado);
+                            Menu::MenuPausa* menuFase = estadoMenuFase->getMenuFase();
+                            Menu::MenuGameOver* menuGameOver = dynamic_cast<Menu::MenuGameOver*>(menuFase);
+                            menuGameOver->salvarColocacao();
+                        }
+                        pGEstado->removerEstado(2);
+                    }
+                        break;
                 }
             } else if(menu->getID() == IDs::IDs::menu_opcao){
                 if(tecladoEspecial[tecla] == "Left"){
@@ -115,6 +127,18 @@ namespace Jungle {
                             case (IDs::IDs::botao_voltar):
                             {
                                 pGEstado->removerEstado();
+                            }
+                                break;
+                            case (IDs::IDs::botao_salvar_colocacao):
+                            {
+                                Estado::Estado* estado = pGEstado->getEstadoAtual();
+                                if(estado->getID() == IDs::IDs::estado_menu_game_over){
+                                    Estado::EstadoMenuFase* estadoMenuFase = dynamic_cast<Estado::EstadoMenuFase*>(estado);
+                                    Menu::MenuPausa* menuFase = estadoMenuFase->getMenuFase();
+                                    Menu::MenuGameOver* menuGameOver = dynamic_cast<Menu::MenuGameOver*>(menuFase);
+                                    menuGameOver->salvarColocacao();
+                                }
+                                pGEstado->removerEstado(2);
                             }
                                 break;
                         }

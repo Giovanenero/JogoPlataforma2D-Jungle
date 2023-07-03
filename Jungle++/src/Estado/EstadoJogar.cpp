@@ -23,7 +23,10 @@ namespace Jungle {
 
         void EstadoJogar::mudarEstadoObservador(){
             //desativa o observador do jogador
-            fase->getJogador()->mudarEstadoObservador();
+            Entidade::Personagem::Jogador::Jogador* jogador = fase->getJogador();
+            if(jogador){
+                fase->getJogador()->mudarEstadoObservador();
+            }
 
             //desativa o observador da fase
             fase->mudarEstadoObservador();

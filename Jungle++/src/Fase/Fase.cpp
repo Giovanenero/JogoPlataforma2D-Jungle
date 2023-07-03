@@ -8,7 +8,8 @@ namespace Jungle {
         Fase::Fase(const IDs::IDs ID_Fase, const IDs::IDs ID_Fundo):
             Ente(ID_Fase), fundo(ID_Fundo), listaPersonagens(), listaObstaculos(),
             pColisao(new Gerenciador::GerenciadorColisao(&listaPersonagens, &listaObstaculos)),
-            construtorEntidade(), observadorFase(new Observador::ObservadorFase(this))
+            construtorEntidade(), observadorFase(new Observador::ObservadorFase(this)),
+            pontuacaoJogador(0)
         {
             if(pColisao == nullptr){
                 std::cout << "Jungle::Fase::nao foi possivel criar um Gerenciador de Colisao" << std::endl;
@@ -77,10 +78,18 @@ namespace Jungle {
             listaObstaculos.desenharEntidades();
         }
 
+         const unsigned int Fase::getPontuacaoJogador() const {
+            return pontuacaoJogador;
+         }
+
         void Fase::executar(){
-            if(getJogador()){
+            Entidade::Personagem::Jogador::Jogador* jogador = getJogador();
+            if(jogador){
                 //atualiza fundo
                 fundo.executar();
+
+                //atualiza a pontuação do jogador
+                pontuacaoJogador = jogador->getPontos();
 
                 //atualiza e desenha entidades
                 listaPersonagens.executar();
