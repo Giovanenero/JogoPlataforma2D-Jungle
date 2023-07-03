@@ -35,7 +35,6 @@ namespace Jungle {
                     sf::Texture* textura = new sf::Texture(); 
                     textura->loadFromFile("Jungle++/img/Personagem/Vida/BarraVida.png");
                     barraVida.setTexture(textura);
-                    barraVida.setScale(sf::Vector2f(2.0f, 5.0f));
                 }
 
                 void Inimigo::atualizaMovimentoAleatorio(){
@@ -64,7 +63,6 @@ namespace Jungle {
                         } else if(tempoAtacar > tempoAnimacaoAtacar / 1.7f){
                             sf::Vector2f posEspada = (paraEsquerda ? sf::Vector2f(pos.x - espada->getTam().x / 2.0f, pos.y) : sf::Vector2f(pos.x + tam.x / 2.0f, pos.y));
                             espada->setPos(posEspada);
-                            pGrafico->desenhaElemento(espada->getCorpo());
                         }
                     } else if(levandoDano){
                         tempoAtacar = 0.0f;

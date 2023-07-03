@@ -1,11 +1,12 @@
 #pragma once
 
-//Construtor
-#include "..\Construtor\ConstrutorEstado.hpp"
-
 //Gerenciadores
 #include "GerenciadorGrafico.hpp"
 #include "GerenciadorMusica.hpp"
+
+#include "../Estado/EstadoJogar.hpp"
+#include "../Estado/EstadoMenuPrincipal.hpp"
+#include "../Estado/EstadoMenuFase.hpp"
 
 //Pilha
 #include <stack>
@@ -17,7 +18,6 @@ namespace Jungle {
         class GerenciadorEstado {
         private:
             std::stack<Estado::Estado*> pilhaEstados;
-            Construtor::ConstrutorEstado construtorEstado;
             static GerenciadorMusica* pMusica;
 
             //padrão de projeto singleton
@@ -31,6 +31,7 @@ namespace Jungle {
             static GerenciadorEstado* getGerenciadorEstado();
             void executar();
             void addEstado(const IDs::IDs ID);
+            void removerEstado(const int qtd);
             void removerEstado();
             Estado::Estado* getEstadoAtual();
         };

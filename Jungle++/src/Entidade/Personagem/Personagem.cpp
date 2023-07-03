@@ -117,7 +117,6 @@ namespace Jungle {
             void Personagem::atualizarBarraVida(){
                 barraVida.setPosition(sf::Vector2f(pos.x + tam.x / 2.0f - corpo.getSize().x / 2.0f, pos.y - 20.0f));
                 barraVida.setSize(sf::Vector2f((vida / 100.0f) * BARRA_VIDA_X, BARRA_VIDA_Y));
-                barraVida.setOrigin(sf::Vector2f(barraVida.getSize().x / 4.0f, 1.0f));
             }
 
             void Personagem::atualizarAnimacao(){

@@ -32,16 +32,19 @@ namespace IDs {
         botao_volume_menu,
         botao_esquerda,
         botao_direita,
+        botao_salvar_colocacao,
         menu_principal,
         menu_pausa,
         menu_opcao,
         menu_carregar_jogo,
         menu_colocacao,
+        menu_game_over,
         estado_menu_principal,
         estado_menu_pausa,
         estado_menu_opcaoPrincipal,
         estado_menu_carregar_jogo,
-        estado_menu_colocacao
+        estado_menu_colocacao,
+        estado_menu_game_over,
     };
 
 }

@@ -48,6 +48,15 @@ namespace Jungle {
                 texto.setOutlineThickness(tamBorda);
             }
 
+            void Texto::setString(std::string nome){
+                texto.setString(nome);
+                tam = sf::Vector2f(texto.getGlobalBounds().width, texto.getGlobalBounds().height);
+            }
+
+            const std::string Texto::getString() const {
+                return texto.getString();
+            }
+
         }
 
     }

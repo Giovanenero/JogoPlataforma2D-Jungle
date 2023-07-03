@@ -88,7 +88,9 @@ namespace Jungle {
         }
 
         void GerenciadorGrafico::fecharJanela(){
-            window->close();
+            if(window->isOpen()){
+                window->close();
+            }
         }
 
         const bool GerenciadorGrafico::verificaJanelaAberta(){

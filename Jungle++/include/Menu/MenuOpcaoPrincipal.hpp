@@ -1,26 +1,29 @@
 #pragma once 
 
-#include "MenuOpcao.hpp"
+#include "MenuPrincipal.hpp"
+#include "Botao\BotaoVolume.hpp"
 
+#define TAMANHO_BOTAO_MENU_OPCAO_X 350.0f
+#define TAMANHO_BOTAO_MENU_OPCAO_Y 80.0f
+
+#define VELOCIDADE_BOTAO_VOLUME 2.0f
 
 namespace Jungle {
 
-    namespace Observador {
-        class ObservadorMenuOpcao;
-    }
-
     namespace Menu {
 
-        class MenuOpcaoPrincipal: public MenuOpcao {
+        class MenuOpcaoPrincipal: public MenuPrincipal {
         private:
-            Parallax::Fundo fundo;
-            Observador::ObservadorMenuOpcao* observadorMenuOpcao;
-
-            void criarFundo();
-            void criarBotoes();
+            const float velocidadeBotao;
+            static Gerenciador::GerenciadorMusica* pMusica;
+            
+            void addBotao(const std::string info, const sf::Vector2f pos, const IDs::IDs ID, const sf::Color corSelecionado, const float posInicioFundo);
+            void atualizarVolume(const float volume, Botao::BotaoVolume* botaoVolume);
         public:
             MenuOpcaoPrincipal();
             ~MenuOpcaoPrincipal();
+            void criarBotoes();
+            void alterarVolume(const bool aumentando);
             void executar();
         };
 

@@ -3,34 +3,29 @@
 #include "Menu.hpp"
 #include "..\Fase\Fase.hpp"
 
-#define TAMANHO_BOTAO_X 350.0f
-#define TAMANHO_BOTAO_Y 50.0f
-
 namespace Jungle {
-
-    namespace Observador {
-        class ObservadorMenuPausa;
-    }
 
     namespace Menu {
 
         class MenuPausa : public Menu {
         private:
-            Fase::Fase* fase;
-            Observador::ObservadorMenuPausa* observadorMenuPausa;
-            sf::RectangleShape fundoEscuro;
             sf::RectangleShape fundoPainel;
+        
+        protected:
+            Fase::Fase* fase;
+            sf::RectangleShape fundoEscuro;
+            float posBotaoY;
             
-            void criarBotoes();
-            void atualizarFundo();
+            virtual void atualizarFundo();
             void atualizarNomeMenu();
             void atualizarBotoes();
         public:
             MenuPausa(Fase::Fase* fase = nullptr);
+            MenuPausa(const IDs::IDs ID, const std::string nome, Fase::Fase* fase = nullptr);
             ~MenuPausa();
+            virtual void criarBotoes();
             void setFase(Fase::Fase* fase);
-            void mudarEstadoObservador();
-            void executar();
+            virtual void executar();
         };
 
     }

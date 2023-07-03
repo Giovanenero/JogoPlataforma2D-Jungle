@@ -1,4 +1,5 @@
 #include "..\..\include\Menu\Menu.hpp"
+#include "..\..\include\Observador\ObservadorMenu.hpp"
 
 namespace Jungle {
 
@@ -7,7 +8,8 @@ namespace Jungle {
         Menu::Menu(const IDs::IDs ID, const sf::Vector2f tamBotao, const std::string nome, const unsigned int tamFonte):
             Ente(ID), listaBotaoTexto(), it(), tamBotao(tamBotao), 
             tamJanela(pGrafico->getTamJanela()), posFundo(sf::Vector2f(0.0f, 0.0f)),
-            titulo(pGrafico->carregarFonte("Jungle++/fonte/menu.ttf"), nome, tamFonte)
+            titulo(pGrafico->carregarFonte("Jungle++/fonte/menu.ttf"), nome, tamFonte),
+            observadorMenu(new Observador::ObservadorMenu(this))
         {
 
         }
@@ -20,6 +22,14 @@ namespace Jungle {
                 }
                 listaBotaoTexto.clear();
             }
+            if(observadorMenu){
+                delete(observadorMenu);
+                observadorMenu = nullptr;
+            }
+        }
+
+        void Menu::mudarEstadoObservador(){
+            observadorMenu->mudarEstadoAtivar();
         }
 
         void Menu::addBotao(const std::string info, const sf::Vector2f pos, const IDs::IDs ID, const sf::Color corSelecionado){

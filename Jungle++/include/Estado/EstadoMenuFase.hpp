@@ -13,15 +13,16 @@ namespace Jungle {
 
         class EstadoJogar;
 
-        class EstadoMenuPausa: public Estado {
+        class EstadoMenuFase: public Estado {
         private:
-            Menu::MenuPausa menuPausa;
+            Menu::MenuPausa* menuFase;
             EstadoJogar* estadoJogar;
             static Gerenciador::GerenciadorEstado* pGEstado;
             
+            Menu::MenuPausa* criarMenu(const IDs::IDs ID);
         public:
-            EstadoMenuPausa();
-            ~EstadoMenuPausa();
+            EstadoMenuFase(const IDs::IDs ID_Estado, const IDs::IDs ID_Menu);
+            ~EstadoMenuFase();
             void mudarEstadoObservador();
             void executar();
         };

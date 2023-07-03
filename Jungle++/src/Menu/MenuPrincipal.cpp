@@ -4,26 +4,22 @@ namespace Jungle {
 
     namespace Menu {
 
-        MenuPrincipal::MenuPrincipal():
-            Menu(IDs::IDs::menu_principal, sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), "JUNGLE++", 180), 
-            sair(false), observadorMenuPrincipal(new Observador::ObservadorMenuPrincipal(this)),
-            fundo(IDs::IDs::fundo_florestaNegra)
+        MenuPrincipal::MenuPrincipal(const IDs::IDs ID, std::string nome, const unsigned int tamFonte):
+            Menu(ID, sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), nome, tamFonte), 
+            sair(false), fundo(IDs::IDs::fundo_florestaNegra)
         {
-            if(observadorMenuPrincipal == nullptr){
+            if(observadorMenu == nullptr){
                 std::cout << "ERROR::Jungle::Menu::MenuPrincipal::nao foi possivel criar um Observador Menu Principal" << std::endl;
                 exit(1);
             }
             titulo.setPos(sf::Vector2f(tamJanela.x / 2.0f - titulo.getTam().x / 2.0f, 25.0f));
             titulo.setCorTexto(sf::Color{0,200,0});
+
             criarFundo();
-            criarBotoes();
         }
 
         MenuPrincipal::~MenuPrincipal(){
-            if(observadorMenuPrincipal){
-                delete(observadorMenuPrincipal);
-                observadorMenuPrincipal = nullptr;
-            }
+            
         }
 
         void MenuPrincipal::criarFundo(){
@@ -52,10 +48,6 @@ namespace Jungle {
 
         const bool MenuPrincipal::getSair() const{
             return sair;
-        }
-
-        void MenuPrincipal::mudarEstadoObservador(){
-            observadorMenuPrincipal->mudarEstadoAtivar();
         }
 
         void MenuPrincipal::executar(){

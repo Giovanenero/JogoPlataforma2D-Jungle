@@ -6,12 +6,20 @@
 #include "..\Parallax\Fundo.hpp"
 #include <list>
 
+#define TAMANHO_BOTAO_X 350.0f
+#define TAMANHO_BOTAO_Y 50.0f
+
 namespace Jungle {
+
+    namespace Observador {
+        class ObservadorMenu;
+    }
 
     namespace Menu {
 
         class Menu: public Ente {
         protected:
+            Observador::ObservadorMenu* observadorMenu;
             std::list<Botao::BotaoTexto*> listaBotaoTexto;
             std::list<Botao::BotaoTexto*>::iterator it;
             const sf::Vector2f tamBotao;
@@ -29,6 +37,7 @@ namespace Jungle {
             ~Menu();
             void addBotao(const std::string info, const sf::Vector2f pos, const IDs::IDs ID, const sf::Color corSelecionado);
             void desenhar();
+            void mudarEstadoObservador();
             void selecionaCima();
             void selecionaBaixo();
             virtual void selecionaEsquerda(){};

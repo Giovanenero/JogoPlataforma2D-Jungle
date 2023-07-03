@@ -1,24 +1,30 @@
 #include "..\..\include\Menu\MenuOpcaoPrincipal.hpp"
-#include "..\..\include\Observador\ObservadorMenuOpcao.hpp"
+//#include "..\..\include\Observador\ObservadorMenuOpcao.hpp"
 
 namespace Jungle {
 
     namespace Menu {
 
         MenuOpcaoPrincipal::MenuOpcaoPrincipal():
-            MenuOpcao(), fundo(IDs::IDs::fundo_florestaNegra), observadorMenuOpcao(new Observador::ObservadorMenuOpcao(this))
+            MenuPrincipal(IDs::IDs::menu_opcao, "Opcoes", 100),
+            velocidadeBotao(VELOCIDADE_BOTAO_VOLUME)
         {
             titulo.setCorTexto(sf::Color{0,255,0});
             titulo.setPos(sf::Vector2f(tamJanela.x / 2.0f - titulo.getTam().x / 2.0f, 25.0f));
-            criarFundo();
-            criarBotoes();
+            //criarFundo();
+            //criarBotoes();
         }
 
         MenuOpcaoPrincipal::~MenuOpcaoPrincipal(){
-            if(observadorMenuOpcao){
-                delete(observadorMenuOpcao);
-                observadorMenuOpcao = nullptr;
+            
+        }
+
+        void MenuOpcaoPrincipal::addBotao(const std::string info, const sf::Vector2f pos, const IDs::IDs ID, const sf::Color corSelecionado, const float posInicioFundo){
+            Botao::BotaoVolume* botaoVolume = new Botao::BotaoVolume(info, tamBotao, pos, ID, corSelecionado, posInicioFundo);
+            if(botaoVolume == nullptr){
+                throw("ERROR::Jungle::Menu::nao foi possivel criar um botao");
             }
+            listaBotaoTexto.push_back(static_cast<Botao::BotaoTexto*>(botaoVolume));
         }
 
         void MenuOpcaoPrincipal::criarBotoes(){
@@ -30,14 +36,33 @@ namespace Jungle {
             inicializarIterator();
         }
 
-        void MenuOpcaoPrincipal::criarFundo(){
-            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada1.png", 0.0f);
-            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada2.png", 0.05f);
-            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada3.png", 0.1f);
-            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada4.png", 0.15f);
-            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada5.png", 0.2f);
-            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada6.png", 0.4f);
-            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada7.png", 0.6f);
+        void MenuOpcaoPrincipal::alterarVolume(const bool aumentando){
+            if(getIDBotaoSelecionado() != IDs::IDs::botao_voltar){
+                std::list<Botao::BotaoTexto*>::iterator it_botao = listaBotaoTexto.begin();
+                while((*it_botao)->getID() != getIDBotaoSelecionado()){
+                    it_botao++;
+                }
+                Botao::BotaoVolume* botaoVolume = static_cast<Botao::BotaoVolume*>(*it_botao);
+                short aux = 1;
+                if(!aumentando){
+                    aux = -1;
+                }
+                atualizarVolume(velocidadeBotao * aux, botaoVolume);
+            }
+        }
+
+        void MenuOpcaoPrincipal::atualizarVolume(const float volume, Botao::BotaoVolume* botaoVolume){
+            if(botaoVolume->getID() == IDs::IDs::botao_volume_geral){
+                std::list<Botao::BotaoTexto*>::iterator aux = listaBotaoTexto.begin();
+                while (aux != listaBotaoTexto.end())
+                {
+                    botaoVolume = static_cast<Botao::BotaoVolume*>(*aux);
+                    botaoVolume->alterarVolume(volume);
+                    aux++;
+                }
+            } else {
+                botaoVolume->alterarVolume(volume);
+            }
         }
 
         void MenuOpcaoPrincipal::executar(){

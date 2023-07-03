@@ -5,13 +5,9 @@ namespace Jungle {
     namespace Menu {
 
         MenuColocacao::MenuColocacao():
-            Menu(IDs::IDs::menu_colocacao, sf::Vector2f(0.0f, 0.0f), "COLOCACAO", 100),
-            fundo(IDs::IDs::fundo_florestaNegra), arquivo(), vectorTexto()
+            MenuPrincipal(IDs::IDs::menu_colocacao, "COLOCACAO", 100),
+            arquivo(), vectorTexto()
         {
-            titulo.setCorTexto(sf::Color{0,255,0});
-            titulo.setPos(sf::Vector2f(tamJanela.x / 2.0f - titulo.getTam().x / 2.0f, 25.0f));
-            criarBotoes();
-            criarFundo();
             criarColocacao();
         }
 
@@ -76,6 +72,7 @@ namespace Jungle {
             inicializarIterator();
         }
 
+        /*
         void MenuColocacao::criarFundo(){
             fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada1.png", 0.0f);
             fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada2.png", 0.05f);
@@ -85,6 +82,7 @@ namespace Jungle {
             fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada6.png", 0.4f);
             fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada7.png", 0.6f);
         }
+        */
 
         void MenuColocacao::desenharColocacao(){
             for(int i = 0; i < vectorTexto.size(); i++){

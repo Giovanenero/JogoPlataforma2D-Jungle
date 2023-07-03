@@ -1,26 +1,30 @@
 #include "..\..\include\Menu\MenuPausa.hpp"
-#include "..\..\include\Observador\ObservadorMenuPausa.hpp"
+#include "..\..\include\Observador\ObservadorMenu.hpp"
 
 namespace Jungle {
 
     namespace Menu {
 
-        MenuPausa::MenuPausa(Fase::Fase* fase): 
-            Menu(IDs::IDs::menu_pausa, sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), "PAUSA", 100), fase(fase),
-            observadorMenuPausa(new Observador::ObservadorMenuPausa(this)), fundoEscuro(tamJanela),
-            fundoPainel(sf::Vector2f(tamJanela.x / 2.0f, tamJanela.y))
+        MenuPausa::MenuPausa(Fase::Fase* fase):
+            Menu(IDs::IDs::menu_pausa, sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), "PAUSA", 100),
+            fase(fase), fundoEscuro(tamJanela), fundoPainel(sf::Vector2f(tamJanela.x / 2.0f, tamJanela.y))
         {
             titulo.setCorTexto(sf::Color{255,0,0});
             fundoEscuro.setFillColor(sf::Color{0, 0, 0, 180});
             fundoPainel.setFillColor(sf::Color{0, 0, 0, 220});
-            criarBotoes();
+            //criarBotoes();
+        }
+
+        MenuPausa::MenuPausa(const IDs::IDs ID, const std::string nome, Fase::Fase* fase): 
+            Menu(ID, sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), nome, 100), fase(fase),
+            fundoEscuro(tamJanela)
+        {
+            titulo.setCorTexto(sf::Color{255,0,0});
+            fundoEscuro.setFillColor(sf::Color{0, 0, 0, 180});
         }
 
         MenuPausa::~MenuPausa(){
-            if(observadorMenuPausa){
-                delete(observadorMenuPausa);
-                observadorMenuPausa = nullptr;
-            }
+            
         }
 
         void MenuPausa::criarBotoes(){
@@ -28,15 +32,12 @@ namespace Jungle {
             addBotao("Salvar Jogada", sf::Vector2f(0.0f, 0.0f), IDs::IDs::botao_salvarJogada, sf::Color{255, 0, 0});
             addBotao("Opcao", sf::Vector2f(0.0f, 0.0f), IDs::IDs::botao_opcao, sf::Color{255, 0, 0});
             addBotao("Sair", sf::Vector2f(0.0f, 0.0f), IDs::IDs::botao_sair, sf::Color{255, 0, 0});
+            posBotaoY = 1.5f;
             inicializarIterator();
         }
 
         void MenuPausa::setFase(Fase::Fase* fase){
             this->fase = fase;
-        }
-
-        void MenuPausa::mudarEstadoObservador(){
-            observadorMenuPausa->mudarEstadoAtivar();
         }
 
         void MenuPausa::atualizarFundo(){
@@ -60,7 +61,7 @@ namespace Jungle {
             int i = 1;
             for(aux = listaBotaoTexto.begin(); aux != listaBotaoTexto.end(); aux++, i++){
                 Botao::BotaoTexto* botao = *aux;
-                botao->atualizarPosicaoCaixa(sf::Vector2f(posFundo.x - tamJanela.x / 4.6f, posFundo.y / 1.5f + (tamBotao.y + 20.f)* i));
+                botao->atualizarPosicaoCaixa(sf::Vector2f(posFundo.x - tamBotao.x / 2.0f, posFundo.y / posBotaoY + (tamBotao.y + 20.f) * i));
                 botao = nullptr;
             }
 

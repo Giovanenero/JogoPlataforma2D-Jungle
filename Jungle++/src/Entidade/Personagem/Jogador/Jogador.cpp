@@ -38,21 +38,21 @@ namespace Jungle {
                 }
 
                 void Jogador::inicializarBarraVida(){
-                    sf::Vector2f tamBarra = sf::Vector2f(BARRA_VIDA_JOGADOR_X, BARRA_VIDA_JOGADOR_Y);
-                    sf::Vector2f origin = sf::Vector2f(tamBarra.x / 7.0f, tamBarra.y / 3.2f);
-                    sf::Vector2f scale(sf::Vector2f(1.5f, 2.5f));
-                    barraVida.setSize(tamBarra);
-                    tuboBarraVida.setSize(tamBarra);
+                    sf::Vector2f tamTubo = sf::Vector2f(BARRA_VIDA_JOGADOR_X, BARRA_VIDA_JOGADOR_Y);
+                    sf::Vector2f tamVida = sf::Vector2f(BARRA_VIDA_JOGADOR_X * 61.54f, BARRA_VIDA_JOGADOR_Y * 25.0f);
+                    tuboBarraVida.setSize(tamTubo);
+                    //barraVida.setSize(sf::Vector2f(124.0f, 12.0f));
+                    barraVida.setSize(tamVida);
                     sf::Texture* texturaVida = new sf::Texture(); 
                     sf::Texture* texturaBarra = new sf::Texture();
                     texturaVida->loadFromFile("Jungle++/img/Personagem/Vida/BarraVida.png");
                     texturaBarra->loadFromFile("Jungle++/img/Personagem/Vida/Barra.png");
                     barraVida.setTexture(texturaVida);
                     tuboBarraVida.setTexture(texturaBarra);
-                    barraVida.setScale(scale);
-                    barraVida.setOrigin(origin);
-                    tuboBarraVida.setScale(scale);
-                    tuboBarraVida.setOrigin(origin);
+                    //barraVida.setScale(scale);
+                    //barraVida.setOrigin(origin);
+                    //tuboBarraVida.setScale(scale);
+                    //tuboBarraVida.setOrigin(origin);
                 }
 
 
@@ -95,12 +95,10 @@ namespace Jungle {
                     sf::Vector2f posJanela = pGrafico->getCamera().getCenter();
                     sf::Vector2f tamJanela = pGrafico->getTamJanela();
                     sf::Vector2f posBarra = sf::Vector2f(posJanela.x - tamJanela.x / 2.0f + 20.0f, posJanela.y - tamJanela.y / 2.0f + 20.0f);
-                    sf::Vector2f tamBarra = sf::Vector2f((vida / 100.0f) * BARRA_VIDA_JOGADOR_X, BARRA_VIDA_JOGADOR_Y);
-                    barraVida.setPosition(posBarra);
-                    barraVida.setSize(tamBarra);
-                    barraVida.setOrigin(sf::Vector2f(tamBarra.x / 7.0f, tamBarra.y / 3.2f));
+                    sf::Vector2f tamVida = sf::Vector2f(BARRA_VIDA_JOGADOR_X * 0.6154f, BARRA_VIDA_JOGADOR_Y * 0.25f);
                     tuboBarraVida.setPosition(posBarra);
-                    //barraVida.setOrigin(sf::Vector2f(barraVida.getSize().x / 4.0f, 1.0f));
+                    barraVida.setSize(sf::Vector2f(tamVida.x * (vida / 100.0f), tamVida.y));
+                    barraVida.setPosition(sf::Vector2f(posBarra.x + BARRA_VIDA_JOGADOR_X * 0.1923f, posBarra.y + BARRA_VIDA_JOGADOR_Y / 2.0f - barraVida.getSize().y / 2.0f));
                 }
 
                 void Jogador::atualizarAnimacao(){

@@ -1,22 +1,20 @@
 #pragma once
 
 #include "Observador.hpp"
-#include "..\Menu\Botao\Botao.hpp"
+#include "../Menu/Menu.hpp"
+#include "../Menu/Botao/Botao.hpp"
+#include "../Menu/MenuGameOver.hpp"
 
 namespace Jungle {
 
-    namespace Menu {
-        class MenuPrincipal;
-    }
-
     namespace Observador {
 
-        class ObservadorMenuPrincipal: public Observador {
+        class ObservadorMenu: public Observador {
         private:
-            Menu::MenuPrincipal* menuPrincipal;
+            Menu::Menu* menu;
         public:
-            ObservadorMenuPrincipal(Menu::MenuPrincipal* menuPrincipal);
-            ~ObservadorMenuPrincipal();
+            ObservadorMenu(Menu::Menu* menu);
+            ~ObservadorMenu();
             void teclaPressionada(const sf::Keyboard::Key tecla);
             void teclaSolta(const sf::Keyboard::Key tecla);
             void moveMouse(const sf::Vector2f posMouse);

@@ -2,31 +2,26 @@
 
 #include "Menu.hpp"
 #include "..\Parallax\Fundo.hpp"
-#include "..\Observador\ObservadorMenuPrincipal.hpp"
 
 #define CAMINHO_TEXTURA_MENU_PRINCIPAL "Jungle++/img/Menu/menuPrincipal.png"
-#define TAMANHO_BOTAO_X 350.0f
-#define TAMANHO_BOTAO_Y 50.0f
 
 namespace Jungle {
 
     namespace Menu {
 
         class MenuPrincipal: public Menu {
-        private:
+        protected:
             Parallax::Fundo fundo;
             bool sair;
-            Observador::ObservadorMenuPrincipal* observadorMenuPrincipal;
 
             void criarFundo();
-            void criarBotoes();
         public:
-            MenuPrincipal();
-            ~MenuPrincipal();
+            MenuPrincipal(const IDs::IDs ID = IDs::IDs::menu_principal, std::string nome = "JUNGLE++", const unsigned int tamFonte = 180);
+            virtual ~MenuPrincipal();
+            virtual void criarBotoes();
             void setSair(const bool sair = true);
             const bool getSair() const;
-            void mudarEstadoObservador();
-            void executar();
+            virtual void executar();
         };
 
     } 

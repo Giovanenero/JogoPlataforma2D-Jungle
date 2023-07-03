@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Menu.hpp"
+#include "MenuPrincipal.hpp"
 #include <vector> 
 #include <fstream>
 
@@ -12,20 +12,18 @@ namespace Jungle {
 
     namespace Menu {
 
-        class MenuColocacao: public Menu {
+        class MenuColocacao: public MenuPrincipal {
             private:
                 std::vector<Botao::Texto*> vectorTexto;
-                Parallax::Fundo fundo;
                 std::ifstream arquivo;
 
                 void criarTexto(std::string linha);
-                void criarBotoes();
-                void criarFundo();
                 void criarColocacao();
                 void desenharColocacao();
             public:
                 MenuColocacao();
                 ~MenuColocacao();
+                void criarBotoes();
                 void executar();
         };
 

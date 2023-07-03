@@ -28,6 +28,8 @@ namespace Jungle {
                 sf::Vector2f getTam();
                 void setCorTexto(const sf::Color corTexto);
                 void setTamanhoBorda(const float tamBorda);
+                void setString(std::string nome);
+                const std::string getString() const;
             };
 
         }

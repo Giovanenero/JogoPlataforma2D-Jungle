@@ -1,0 +1,86 @@
+#include "./../../include/Menu/MenuGameOver.hpp"
+
+namespace Jungle {
+
+    namespace Menu {
+
+        MenuGameOver::MenuGameOver(Fase::Fase* fase):
+            MenuPausa(IDs::IDs::menu_game_over, "FIM DE JOGO", fase), fundoCaracter(),
+            texto(pGrafico->carregarFonte(CAMINHO_FONTE_MENU_GAME_OVER), "", 35)
+        {
+            //sf::Texture textura = pGrafico->carregarTextura("Jungle++/img/Menu/caixaTexto.png");
+            sf::Texture* textura = new sf::Texture();
+            if(!textura->loadFromFile("Jungle++/img/Menu/caixaTexto.png")){
+                std::cout << "Jungle::Menu::MenuGameOver::nao foi possivel carregar textura" << std::endl;
+                exit(1);
+            }
+            fundoCaracter.setTexture(textura);
+            fundoCaracter.setSize(sf::Vector2f(350.0f, 70.0f));
+            fundoEscuro.setPosition(0.0, 0.0f);
+            fundoEscuro.setFillColor(sf::Color{0, 0, 0, 220});
+        }
+
+        MenuGameOver::~MenuGameOver(){
+            if(fundoCaracter.getTexture()){
+                delete(fundoCaracter.getTexture());
+            }
+        }
+
+        void MenuGameOver::criarBotoes(){
+            const float posBotaoX = tamJanela.x / 2.0f - tamBotao.x / 2.0f;
+            addBotao("Salvar Colocacao", sf::Vector2f(0.0f, 0.0f), IDs::IDs::botao_salvar_colocacao, sf::Color{255, 0, 0});
+            addBotao("Sair", sf::Vector2f(0.0f, 0.0f), IDs::IDs::botao_voltar, sf::Color{255, 0, 0});
+            posBotaoY = 0.8f;
+            inicializarIterator();
+        }
+
+        void MenuGameOver::addCaracter(char caracter){
+            std::string nome = texto.getString();
+            if(nome.length() <= 10){
+                nome += caracter;
+                texto.setString(nome);
+            }
+        }
+
+        void MenuGameOver::removerCaracter(){
+            std::string nome = texto.getString();
+            if(nome != ""){
+                nome = nome.substr(0, nome.length() - 1);
+                texto.setString(nome);
+            }
+        }
+
+        void MenuGameOver::atualizarFundo(){
+            atualizarPosicaoFundo();
+            sf::Vector2f posFundoEscuro = sf::Vector2f(posFundo.x - tamJanela.x / 2.0f, posFundo.y - tamJanela.y / 2.0f);
+            fundoEscuro.setPosition(posFundoEscuro);
+
+            pGrafico->desenhaElemento(fundoEscuro);
+        }
+
+        void MenuGameOver::executar(){
+            //desenha a fase
+            fase->desenhar();
+
+            //atualiza a posição e desenha o fundo escuro
+            atualizarFundo();
+
+            //atualiza a posição e desenha o titulo
+            atualizarNomeMenu();
+
+            //atualiza e desenha os botões
+            atualizarBotoes();
+
+            fundoCaracter.setPosition(sf::Vector2f(posFundo.x - fundoCaracter.getSize().x / 2.0f, posFundo.y - 50.0f));
+            sf::Vector2f posCaixa = fundoCaracter.getPosition();
+            sf::Vector2f tamCaixa = fundoCaracter.getSize();
+            texto.setPos(sf::Vector2f(posCaixa.x + tamCaixa.x / 2.0f - texto.getTam().x / 2.0f, posCaixa.y + tamCaixa.y / 2.0f - texto.getTam().y / 2.0f - 15.0f));
+            
+            //desenha a caixa de texto
+            pGrafico->desenhaElemento(fundoCaracter);
+            pGrafico->desenhaElemento(texto.getTexto());
+        }
+
+    }
+
+}

@@ -9,9 +9,6 @@
 #include "..\Fase\FlorestaBranca.hpp"
 #include "..\Fase\FlorestaVermelha.hpp"
 
-//Construtor
-#include "..\Construtor\ConstrutorEstado.hpp"
-
 namespace Jungle {
 
     namespace Estado {

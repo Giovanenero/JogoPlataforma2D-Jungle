@@ -1,4 +1,5 @@
-#include "..\..\include\Gerenciador\GerenciadorEstado.hpp"
+#include "../../include/Gerenciador/GerenciadorEstado.hpp"
+#include "../../include/Construtor/ConstrutorFase.hpp"
 
 namespace Jungle {
 
@@ -8,7 +9,7 @@ namespace Jungle {
         GerenciadorMusica* GerenciadorEstado::pMusica = GerenciadorMusica::getGerenciadorMusica();
 
         GerenciadorEstado::GerenciadorEstado():
-            pilhaEstados(), construtorEstado()
+            pilhaEstados()
         {
 
         }
@@ -57,8 +58,47 @@ namespace Jungle {
         }
 
         void GerenciadorEstado::addEstado(const IDs::IDs ID){
-            Estado::Estado* estado = construtorEstado.criarEstado(ID);
-            if(estado ==  nullptr){
+            Estado::Estado* estado = nullptr;
+            switch (ID)
+            {
+                case (IDs::IDs::estado_menu_principal):
+                {
+                    estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuPrincipal());
+                }
+                    break;
+                case (IDs::IDs::estado_menu_pausa):
+                {
+                    estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuFase(IDs::IDs::estado_menu_pausa, IDs::IDs::menu_pausa));
+                }
+                    break;
+                case (IDs::IDs::jogar_florestaBranca):
+                {
+                    Fase::Fase* fase = nullptr;
+                    Construtor::ConstrutorFase construtorFase;
+
+                    fase = construtorFase.criarFase(ID);
+                    
+                    estado = static_cast<Estado::Estado*>( new Estado::EstadoJogar(ID, fase));
+                }
+                    break;
+                case (IDs::IDs::estado_menu_colocacao):
+                {
+                    estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuPrincipal(IDs::IDs::estado_menu_colocacao, IDs::IDs::menu_colocacao));
+                }
+                    break;
+                case (IDs::IDs::estado_menu_opcaoPrincipal):
+                {
+                    estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuPrincipal(IDs::IDs::estado_menu_opcaoPrincipal, IDs::IDs::menu_opcao));
+                }
+                    break;
+                case (IDs::IDs::estado_menu_game_over):
+                {
+                    estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuFase(IDs::IDs::estado_menu_game_over, IDs::IDs::menu_game_over));
+                }
+                    break;
+            }
+
+            if(estado == nullptr){
                 std::cout << "ERROR::Jungle::Gerenciador::GerenciadorEstado::estado eh nullptr" << std::endl;
                 exit(1);
             }
@@ -71,10 +111,27 @@ namespace Jungle {
         }
 
         void GerenciadorEstado::removerEstado(){
-            if(pilhaEstados.top() != nullptr){
+            if(pilhaEstados.top() != nullptr && !pilhaEstados.empty()){
                 delete(pilhaEstados.top());
                 pilhaEstados.top() = nullptr;
                 pilhaEstados.pop();
+            }
+            if(!pilhaEstados.empty()){
+                pMusica->mudarMusica(pilhaEstados.top()->getID());
+                ativarObservadores();
+            } else {
+                GerenciadorGrafico* pGrafico = pGrafico->getGerenciadorGrafico();
+                pGrafico->fecharJanela();
+            }
+        }
+
+        void GerenciadorEstado::removerEstado(const int qtd){
+            int i = 0;
+            while(!pilhaEstados.empty() && i < qtd){
+                delete(pilhaEstados.top());
+                pilhaEstados.top() = nullptr;
+                pilhaEstados.pop();
+                i++;
             }
             if(!pilhaEstados.empty()){
                 pMusica->mudarMusica(pilhaEstados.top()->getID());
