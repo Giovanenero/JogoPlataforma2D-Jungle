@@ -11,13 +11,17 @@ namespace Jungle {
                 dt(0.0f), velFinal(sf::Vector2f(vel, 0.0f)), velMax(vel), atacando(false),
                 animacao(&corpo), tempoAnimacaoMorrer(tempoMorrer), tempoMorrer(0.0f),
                 vidaMaxima(100.0f), vida(100.0f), tempoAnimacaoTomarDano(tempoDano), tempoDano(0.0f),
-                morrendo(false), espada(nullptr)
+                morrendo(false), espada(nullptr), pontos(0)
             {
 
             }
 
             Personagem::~Personagem(){
 
+            }
+
+            const unsigned int Personagem::getPontos() const {
+                return pontos;
             }
 
             void Personagem::andar(const bool paraEsquerda){

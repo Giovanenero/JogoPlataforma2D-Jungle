@@ -20,8 +20,8 @@ namespace Jungle {
             EstadoJogar(const IDs::IDs ID, Fase::Fase* fase);
             ~EstadoJogar();
             Fase::Fase* getFase();
-            void executar();
             void mudarEstadoObservador();
+            void executar();
         };
 
     }

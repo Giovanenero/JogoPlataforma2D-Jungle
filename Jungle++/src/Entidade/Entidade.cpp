@@ -14,7 +14,7 @@ namespace Jungle {
             
         }
 
-        const sf::RectangleShape Entidade::getCorpo(){
+        const sf::RectangleShape Entidade::getCorpo() const{
             return corpo;
         }
 
@@ -28,11 +28,11 @@ namespace Jungle {
             this->tam = tam;
         }
 
-        sf::Vector2f Entidade::getPos(){
+        const sf::Vector2f Entidade::getPos() const{
             return pos;
         }
 
-        const sf::Vector2f Entidade::getTam(){
+        const sf::Vector2f Entidade::getTam() const{
             return tam;
         }
 

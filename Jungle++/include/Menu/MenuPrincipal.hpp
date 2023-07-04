@@ -12,15 +12,15 @@ namespace Jungle {
         class MenuPrincipal: public Menu {
         protected:
             Parallax::Fundo fundo;
-            bool sair;
 
+        private:
             void criarFundo();
+            
         public:
-            MenuPrincipal(const IDs::IDs ID = IDs::IDs::menu_principal, std::string nome = "JUNGLE++", const unsigned int tamFonte = 180);
+            MenuPrincipal();
+            MenuPrincipal(const IDs::IDs ID, std::string nome, const unsigned int tamFonte = 180);
             virtual ~MenuPrincipal();
             virtual void criarBotoes();
-            void setSair(const bool sair = true);
-            const bool getSair() const;
             virtual void executar();
         };
 

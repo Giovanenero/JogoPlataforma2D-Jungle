@@ -31,7 +31,6 @@ namespace Jungle {
                     bool noChao;
                     Observador::ObservadorJogador* observadorJogador;
                     sf::RectangleShape tuboBarraVida;
-                    unsigned int pontuacao;
 
                     void inicializarAnimacao();
                     void inicializarBarraVida();
@@ -40,14 +39,13 @@ namespace Jungle {
                 public:
                     Jogador(const sf::Vector2f pos, Item::Espada* espada);
                     ~Jogador();
-                    void atualizar();
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
                     const bool getNoChao() const;
                     void pular();
                     void podePular();
                     void mudarEstadoObservador();
-                    void addPontuacao(unsigned int pontos);
-                    unsigned int getPontos() const;
+                    void addPontuacao(const unsigned int pontos);
+                    void atualizar();
                     void desenhar();
                 };
 

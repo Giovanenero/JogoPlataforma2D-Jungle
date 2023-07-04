@@ -4,14 +4,19 @@ namespace Jungle {
 
     namespace Menu {
 
+        MenuPrincipal::MenuPrincipal():
+            Menu(IDs::IDs::menu_principal, sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), "JUNGLE++", 180),
+            fundo(IDs::IDs::fundo_florestaNegra)
+        {
+            titulo.setPos(sf::Vector2f(tamJanela.x / 2.0f - titulo.getTam().x / 2.0f, 25.0f));
+            titulo.setCorTexto(sf::Color{0,200,0});
+            criarFundo();
+        }
+
         MenuPrincipal::MenuPrincipal(const IDs::IDs ID, std::string nome, const unsigned int tamFonte):
             Menu(ID, sf::Vector2f(TAMANHO_BOTAO_X, TAMANHO_BOTAO_Y), nome, tamFonte), 
-            sair(false), fundo(IDs::IDs::fundo_florestaNegra)
+            fundo(IDs::IDs::fundo_florestaNegra)
         {
-            if(observadorMenu == nullptr){
-                std::cout << "ERROR::Jungle::Menu::MenuPrincipal::nao foi possivel criar um Observador Menu Principal" << std::endl;
-                exit(1);
-            }
             titulo.setPos(sf::Vector2f(tamJanela.x / 2.0f - titulo.getTam().x / 2.0f, 25.0f));
             titulo.setCorTexto(sf::Color{0,200,0});
 
@@ -40,14 +45,6 @@ namespace Jungle {
             addBotao("Opcao", sf::Vector2f(posBotaoX, tamJanela.y / 2.0f + tamBotao.y * 3.6f), IDs::IDs::botao_opcao, sf::Color{0, 255, 0});
             addBotao("Sair", sf::Vector2f(posBotaoX, tamJanela.y / 2.0f + tamBotao.y * 4.8f), IDs::IDs::botao_sair, sf::Color{0, 255, 0});
             inicializarIterator();
-        }
-
-        void MenuPrincipal::setSair(const bool sair){
-            this->sair = sair;
-        }
-
-        const bool MenuPrincipal::getSair() const{
-            return sair;
         }
 
         void MenuPrincipal::executar(){

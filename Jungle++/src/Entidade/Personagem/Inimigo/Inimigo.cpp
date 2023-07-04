@@ -8,9 +8,9 @@ namespace Jungle {
 
             namespace Inimigo {
 
-                Inimigo::Inimigo(const sf::Vector2f pos, const sf::Vector2f tam, Jogador::Jogador* jogador, const IDs::IDs ID, const float tempoMorrer, const unsigned int pontos, const float tempoAtacar):
+                Inimigo::Inimigo(const sf::Vector2f pos, const sf::Vector2f tam, Jogador::Jogador* jogador, const IDs::IDs ID, const float tempoMorrer, const float tempoAtacar):
                     Personagem(pos, tam, VELOCIDADE_INIMIGO, ID, tempoMorrer), jogador(jogador), 
-                    dtAux(0.0f), pontos(pontos), tempoAnimacaoAtacar(tempoAtacar), tempoAtacar(0.0f)
+                    dtAux(0.0f), tempoAnimacaoAtacar(tempoAtacar), tempoAtacar(0.0f)
                 {
                     srand(time(NULL));
                     moveAleatorio = rand()%3;
@@ -124,10 +124,6 @@ namespace Jungle {
                         }
                             break;
                     }
-                }
-
-                unsigned int Inimigo::getPontos() const{
-                    return pontos;
                 }
 
             }

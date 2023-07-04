@@ -14,10 +14,10 @@ namespace Jungle {
                         sf::Vector2f(TAMANHO_ESQUELO_X, TAMANHO_ESQUELO_Y), 
                         jogador, 
                         IDs::IDs::esqueleto, 
-                        TEMPO_ESQUELETO_MORRER, 
-                        PONTOS_ESQUELETO
+                        TEMPO_ESQUELETO_MORRER
                     )
                 {
+                    this->pontos = PONTOS_ESQUELETO;
                     inicializarAnimacao();
                 }
 

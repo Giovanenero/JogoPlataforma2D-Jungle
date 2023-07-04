@@ -36,16 +36,16 @@ namespace Jungle {
             Menu(const IDs::IDs ID, const sf::Vector2f tamBotao, const std::string nome, const unsigned int tamFonte);
             ~Menu();
             void addBotao(const std::string info, const sf::Vector2f pos, const IDs::IDs ID, const sf::Color corSelecionado);
-            void desenhar();
             void mudarEstadoObservador();
             void selecionaCima();
             void selecionaBaixo();
             virtual void selecionaEsquerda(){};
             virtual void selecionaDireita(){};
-            const IDs::IDs getIDBotaoSelecionado();
+            const IDs::IDs getIDBotaoSelecionado() const;
             void eventoMouse(const sf::Vector2f posMouse);
             const bool getMouseSelecionado() const;
             virtual void executar() = 0;
+            void desenhar();
         };
 
     }

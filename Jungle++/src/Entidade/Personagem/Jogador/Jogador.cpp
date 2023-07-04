@@ -14,8 +14,9 @@ namespace Jungle {
 
                 Jogador::Jogador(const sf::Vector2f pos, Item::Espada* espada):
                     Personagem(pos, sf::Vector2f(TAMANHO_JOGADOR_X, TAMANHO_JOGADOR_Y), VELOCIDADE_JOGADOR, IDs::IDs::jogador, TEMPO_JOGADOR_MORRER, TEMPO_JOGADOR_TOMARDANO), 
-                    noChao(false), observadorJogador(new Observador::ObservadorJogador(this)), pontuacao(0)
+                    noChao(false), observadorJogador(new Observador::ObservadorJogador(this))
                 {
+                    this->pontos = 0;
                     if(observadorJogador == nullptr){
                         std::cout << "ERROR::Entidade::Personagem::Jogador::Jogador::nao foi possivel criar um observador para o jogador" << std::endl;
                         exit(1);
@@ -170,12 +171,8 @@ namespace Jungle {
                     observadorJogador->mudarEstadoAtivar();
                 }
 
-                void Jogador::addPontuacao(unsigned int pontos){
-                    pontuacao += pontos;
-                }
-
-                unsigned int Jogador::getPontos() const {
-                    return pontuacao;
+                void Jogador::addPontuacao(const unsigned int pontos){
+                    this->pontos += pontos;
                 }
 
                 void Jogador::desenhar(){

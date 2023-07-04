@@ -11,7 +11,10 @@ namespace Jungle {
             titulo(pGrafico->carregarFonte("Jungle++/fonte/menu.ttf"), nome, tamFonte),
             observadorMenu(new Observador::ObservadorMenu(this))
         {
-
+            if(observadorMenu == nullptr){
+                std::cout << "ERROR::Jungle::Menu::MenuPrincipal::nao foi possivel criar um Observador Menu Principal" << std::endl;
+                exit(1);
+            }
         }
 
         Menu::~Menu(){
@@ -77,7 +80,7 @@ namespace Jungle {
             botao->setSelecionado(true);
         }
 
-        const IDs::IDs Menu::getIDBotaoSelecionado(){
+        const IDs::IDs Menu::getIDBotaoSelecionado() const{
             return (*it)->getID();
         }
 

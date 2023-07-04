@@ -25,8 +25,8 @@ namespace Jungle {
                 public:
                     Moeda(const sf::Vector2f pos, const IDs::IDs ID = IDs::IDs::moeda_amarela);
                     ~Moeda();
-                    void atualizar();
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
+                    void atualizar();
             };
 
         }
