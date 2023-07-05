@@ -72,18 +72,6 @@ namespace Jungle {
             inicializarIterator();
         }
 
-        /*
-        void MenuColocacao::criarFundo(){
-            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada1.png", 0.0f);
-            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada2.png", 0.05f);
-            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada3.png", 0.1f);
-            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada4.png", 0.15f);
-            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada5.png", 0.2f);
-            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada6.png", 0.4f);
-            fundo.addCamada("Jungle++/img/Fase/FlorestaNegra/camada7.png", 0.6f);
-        }
-        */
-
         void MenuColocacao::desenharColocacao(){
             for(int i = 0; i < vectorTexto.size(); i++){
                 Botao::Texto* texto = vectorTexto[i];

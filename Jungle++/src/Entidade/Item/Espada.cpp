@@ -7,18 +7,18 @@ namespace Jungle {
 
         namespace Item {
 
-            Espada::Espada(const IDs::IDs ID, Entidade* entidade):
-                Entidade(sf::Vector2f(0.0f, 0.0f), ID), dano(dano), entidade(entidade)
+            Espada::Espada(const IDs::IDs ID, Personagem::Personagem* personagem):
+                Entidade(sf::Vector2f(0.0f, 0.0f), ID), dano(dano), personagem(personagem)
             {
-
+                corpo.setFillColor(sf::Color::Transparent);
             }
 
             Espada::~Espada(){
 
             }
 
-            void Espada::setEntidade(Entidade* entidade){
-                this->entidade = entidade;
+            void Espada::setPersonagem(Personagem::Personagem* personagem){
+                this->personagem = personagem;
             }
 
             void Espada::setDano(const float dano){
@@ -27,6 +27,10 @@ namespace Jungle {
 
             const float Espada::getDano() const {
                 return dano;
+            }
+
+            void Espada::remover(){
+                podeRemover = true;
             }
 
             void Espada::colisao(Entidade* outraEntidade, sf::Vector2f ds){
@@ -44,7 +48,7 @@ namespace Jungle {
                             if(!esqueleto->getMorrer()){
                                 esqueleto->tomarDano(dano);
                                 if(esqueleto->getMorrer()){
-                                    Personagem::Jogador::Jogador* jogador = dynamic_cast<Personagem::Jogador::Jogador*>(entidade);
+                                    Personagem::Jogador::Jogador* jogador = dynamic_cast<Personagem::Jogador::Jogador*>(personagem);
                                     jogador->addPontuacao(esqueleto->getPontos());
                                     std::cout << jogador->getPontos() << std::endl;
                                 }
@@ -57,6 +61,10 @@ namespace Jungle {
 
             void Espada::atualizar(){
 
+            }
+
+            void Espada::desenhar(){
+                
             }
 
         }

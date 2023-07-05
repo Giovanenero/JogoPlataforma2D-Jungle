@@ -53,7 +53,7 @@ namespace Jungle {
                 (*it)->setSelecionado(true);
             } catch(const std::exception& e)
             {
-                std::cerr << e.what() << '\n';
+                std::cerr << e.what() << std::endl;
                 exit(1);
             }
         }

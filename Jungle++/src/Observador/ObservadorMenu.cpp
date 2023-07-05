@@ -19,24 +19,29 @@ namespace Jungle {
             if(tecladoEspecial[tecla] == "Enter"){
                 switch (menu->getIDBotaoSelecionado())
                 {
-                    case (IDs::IDs::botao_novoJogo):
-                    {
-                        pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
-                       }
-                        break;
                     case (IDs::IDs::botao_sair):
                     {  
                         pGEstado->removerEstado(2);
                     }
                         break;
-                    case (IDs::IDs::botao_opcao):
-                    {
-                        pGEstado->addEstado(IDs::IDs::estado_menu_opcaoPrincipal);
-                    }
-                        break;
                     case (IDs::IDs::botao_voltar):
                     {
                         pGEstado->removerEstado();
+                    }
+                        break;
+                    case (IDs::IDs::botao_novoJogo):
+                    {
+                        pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
+                    }
+                        break;
+                    case (IDs::IDs::botao_opcao):
+                    {
+                        Estado::Estado* estado = pGEstado->getEstadoAtual();
+                        if(estado->getID() == IDs::IDs::estado_menu_principal){
+                            pGEstado->addEstado(IDs::IDs::estado_menu_opcaoPrincipal);
+                        } else {
+                            //só pode ser o menu_pausar
+                        }
                     }
                         break;
                     case (IDs::IDs::botao_salvar_colocacao):
@@ -49,6 +54,13 @@ namespace Jungle {
                             menuGameOver->salvarColocacao();
                         }
                         pGEstado->removerEstado(2);
+                    }
+                        break;
+                    case (IDs::IDs::botao_colocacao):
+                    {
+                        //adiciona 2 vezes por conta do botao_voltar;
+                        pGEstado->addEstado(IDs::IDs::estado_menu_colocacao);
+                        pGEstado->addEstado(IDs::IDs::estado_menu_colocacao);
                     }
                         break;
                 }

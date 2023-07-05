@@ -2,7 +2,6 @@
 
 #include "..\Entidade.hpp"
 #include "..\..\Animador\Animacao.hpp"
-#include "../Item/Espada.hpp"
 
 #define GRAVIDADE 1.0f
 
@@ -12,6 +11,10 @@
 namespace Jungle {
 
     namespace Entidade {
+
+        namespace Item {
+            class Espada;
+        }
 
         namespace Personagem {
 

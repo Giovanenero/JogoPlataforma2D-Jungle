@@ -6,11 +6,16 @@ namespace Jungle {
     namespace Fase {
 
         Fase::Fase(const IDs::IDs ID_Fase, const IDs::IDs ID_Fundo):
-            Ente(ID_Fase), fundo(ID_Fundo), listaPersonagens(), listaObstaculos(),
-            pColisao(new Gerenciador::GerenciadorColisao(&listaPersonagens, &listaObstaculos)),
+            Ente(ID_Fase), fundo(ID_Fundo), listaPersonagens(new Lista::ListaEntidade()), listaObstaculos(new Lista::ListaEntidade()),
+            pColisao(new Gerenciador::GerenciadorColisao(listaPersonagens, listaObstaculos)),
             construtorEntidade(), observadorFase(new Observador::ObservadorFase(this)),
             pontuacaoJogador(0)
         {
+            if(listaPersonagens == nullptr || listaObstaculos == nullptr){
+                std::cout << "Jungle::Fase::nao foi possivel criar lista de entidades na fase" << std::endl;
+                exit(1);
+            }
+
             if(pColisao == nullptr){
                 std::cout << "Jungle::Fase::nao foi possivel criar um Gerenciador de Colisao" << std::endl;
                 exit(1);
@@ -18,13 +23,23 @@ namespace Jungle {
         }
 
         Fase::~Fase(){
-            if(pColisao){
+            if(pColisao != nullptr){
                 delete(pColisao);
                 pColisao = nullptr;
             }
-            if(observadorFase){
+            if(observadorFase != nullptr){
                 delete(observadorFase);
                 observadorFase = nullptr;
+            }
+
+            if(listaPersonagens != nullptr){
+                delete(listaPersonagens);
+                listaPersonagens = nullptr;
+            }
+
+            if(listaObstaculos != nullptr){
+                delete(listaObstaculos);
+                listaObstaculos = nullptr;
             }
         }
 
@@ -34,33 +49,33 @@ namespace Jungle {
             {
                 case ('e'):
                 {
-                    listaPersonagens.addEntidade(construtorEntidade.criarEsqueleto(posAux));
+                    listaPersonagens->addEntidade(construtorEntidade.criarEsqueleto(posAux));
                 }
                 break;
                 case('c'):
                 {
-                    listaObstaculos.addEntidade(construtorEntidade.criarCaixa(posAux));
+                    listaObstaculos->addEntidade(construtorEntidade.criarCaixa(posAux));
                 }
                 break;
                 case('#'):
                 {
-                    listaObstaculos.addEntidade(construtorEntidade.criarPlataforma(posAux));
+                    listaObstaculos->addEntidade(construtorEntidade.criarPlataforma(posAux));
                 }
                 break;
                 case('j'):{
-                    //listaPersonagens.addEntidade(construtorEntidade.criarJogador(posAux));
+                    //listaPersonagens->addEntidade(construtorEntidade.criarJogador(posAux));
                 }
                 break;
                 case('m'):{
-                    listaPersonagens.addEntidade(construtorEntidade.criarMinotauro(posAux));
+                    listaPersonagens->addEntidade(construtorEntidade.criarMinotauro(posAux));
                 }
                 break;
             }
         }
 
         Entidade::Personagem::Jogador::Jogador* Fase::getJogador(){
-            for(int i = 0; i < listaPersonagens.getTam(); i++){
-                Entidade::Entidade* ent = listaPersonagens.operator[](i);
+            for(int i = 0; i < listaPersonagens->getTam(); i++){
+                Entidade::Entidade* ent = listaPersonagens->operator[](i);
                 if(ent->getID() == IDs::IDs::jogador){
                     return dynamic_cast<Entidade::Personagem::Jogador::Jogador*>(ent);
                 }
@@ -74,8 +89,8 @@ namespace Jungle {
 
         void Fase::desenhar(){
             fundo.executar();
-            listaPersonagens.desenharEntidades();
-            listaObstaculos.desenharEntidades();
+            listaPersonagens->desenharEntidades();
+            listaObstaculos->desenharEntidades();
         }
 
          const unsigned int Fase::getPontuacaoJogador() const {
@@ -92,8 +107,8 @@ namespace Jungle {
                 pontuacaoJogador = jogador->getPontos();
 
                 //atualiza e desenha entidades
-                listaPersonagens.executar();
-                listaObstaculos.executar();
+                listaPersonagens->executar();
+                listaObstaculos->executar();
 
                 //verifica colisão
                 pColisao->executar();

@@ -12,7 +12,6 @@ namespace Jungle {
             {
                 caixa.setPosition(pos);
                 caixa.setSize(tam);
-                //caixa.setFillColor(sf::Color::Transparent);
             }
 
             Botao::~Botao(){

@@ -83,17 +83,17 @@ namespace Jungle {
                     break;
                 case (IDs::IDs::estado_menu_colocacao):
                 {
-                    estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuPrincipal(IDs::IDs::estado_menu_colocacao, IDs::IDs::menu_colocacao));
+                    estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuPrincipal(ID, IDs::IDs::menu_colocacao));
                 }
                     break;
                 case (IDs::IDs::estado_menu_opcaoPrincipal):
                 {
-                    estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuPrincipal(IDs::IDs::estado_menu_opcaoPrincipal, IDs::IDs::menu_opcao));
+                    estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuPrincipal(ID, IDs::IDs::menu_opcao));
                 }
                     break;
                 case (IDs::IDs::estado_menu_game_over):
                 {
-                    estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuFase(IDs::IDs::estado_menu_game_over, IDs::IDs::menu_game_over));
+                    estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuFase(ID, IDs::IDs::menu_game_over));
                 }
                     break;
             }
@@ -128,8 +128,11 @@ namespace Jungle {
         void GerenciadorEstado::removerEstado(const int qtd){
             int i = 0;
             while(!pilhaEstados.empty() && i < qtd){
-                delete(pilhaEstados.top());
-                pilhaEstados.top() = nullptr;
+                Estado::Estado* estado = pilhaEstados.top();
+                if(estado != nullptr){
+                    delete(estado);
+                    estado = nullptr; 
+                }
                 pilhaEstados.pop();
                 i++;
             }
@@ -150,7 +153,8 @@ namespace Jungle {
         void GerenciadorEstado::executar(){
             //executa o estado que está no topo da minha pilha
             if(!pilhaEstados.empty()){
-                pilhaEstados.top()->executar();
+                Estado::Estado* estado = pilhaEstados.top();
+                estado->executar();
             }
         }
 

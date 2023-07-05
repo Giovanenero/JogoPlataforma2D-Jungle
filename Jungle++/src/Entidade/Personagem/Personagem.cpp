@@ -1,4 +1,5 @@
 #include "..\..\..\include\Entidade\Personagem\Personagem.hpp"
+#include "../../../include/Entidade/Item/Espada.hpp"
 
 namespace Jungle {
 
@@ -88,7 +89,7 @@ namespace Jungle {
 
             void Personagem::setEspada(Item::Espada* espada){
                 this->espada = espada;
-                espada->setEntidade(static_cast<Entidade*>(this));
+                espada->setPersonagem(this);
                 espada->setTam(tam);
                 espada->setDano(20.0f);
             }
@@ -113,6 +114,9 @@ namespace Jungle {
                     if(vida <= 0.0f){
                         morrendo = true;
                         vida = 0.0f;
+                        if(espada != nullptr){
+                            espada->remover();
+                        }
                     }
                     tempoDano = 0.0f;
                 }

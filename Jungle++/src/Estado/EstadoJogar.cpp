@@ -11,7 +11,7 @@ namespace Jungle {
         }
 
         EstadoJogar::~EstadoJogar(){
-            if(fase){
+            if(fase != nullptr){
                 delete(fase);
                 fase = nullptr;
             }

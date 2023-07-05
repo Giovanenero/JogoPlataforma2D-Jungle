@@ -116,8 +116,11 @@ namespace Jungle {
                 Elemento<TL>* aux2 = nullptr;
                 int i = 0;
                 while(aux != nullptr && i < tam){
-                    delete(aux->getElemento());
-                    aux->setElemento(nullptr);
+                    TL* elemento = aux->getElemento();
+                    if(elemento != nullptr){
+                        delete(elemento);
+                        elemento = nullptr;
+                    }
                     aux2 = aux->getProx();
                     delete(aux);
                     aux = nullptr;

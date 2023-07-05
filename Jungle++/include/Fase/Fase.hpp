@@ -29,8 +29,8 @@ namespace Jungle {
         private:
             Observador::ObservadorFase* observadorFase; 
         protected:
-            Lista::ListaEntidade listaPersonagens;
-            Lista::ListaEntidade listaObstaculos;
+            Lista::ListaEntidade* listaPersonagens;
+            Lista::ListaEntidade* listaObstaculos;
             Construtor::ConstrutorEntidade construtorEntidade;
             Gerenciador::GerenciadorColisao* pColisao;
             Parallax::Fundo fundo;
