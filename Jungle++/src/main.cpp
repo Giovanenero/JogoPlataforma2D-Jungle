@@ -1,4 +1,4 @@
-#include "..\include\Principal.hpp"
+#include "../include/Principal.hpp"
 
 int main()
 {

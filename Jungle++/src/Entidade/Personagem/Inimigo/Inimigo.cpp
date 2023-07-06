@@ -1,4 +1,4 @@
-#include "..\..\..\..\include\Entidade\Personagem\Inimigo\Inimigo.hpp"
+#include "../../../../include/Entidade/Personagem/Inimigo/Inimigo.hpp"
 
 namespace Jungle {
 

@@ -1,6 +1,6 @@
 #pragma once 
 
-#include "..\Inimigo.hpp"
+#include "../Inimigo.hpp"
 
 namespace Jungle {
 

@@ -1,6 +1,6 @@
 #pragma once 
 
-#include "..\..\Jogador\Jogador.hpp"
+#include "../../Jogador/Jogador.hpp"
 #include "Chefao.hpp"
 
 #define TAMANHO_MINOTAURO_X 60.0f

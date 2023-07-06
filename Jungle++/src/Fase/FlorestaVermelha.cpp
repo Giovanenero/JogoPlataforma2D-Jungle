@@ -1,4 +1,4 @@
-#include "..\..\include\Fase\FlorestaVermelha.hpp"
+#include "../../include/Fase/FlorestaVermelha.hpp"
 
 Jungle::Fase::FlorestaVermelha::FlorestaVermelha():
     Fase(IDs::IDs::fase_florestaVermelha, IDs::IDs::fundo_florestaVermelha)

@@ -1,4 +1,4 @@
-#include "..\..\..\include\Entidade\Personagem\Personagem.hpp"
+#include "../../../include/Entidade/Personagem/Personagem.hpp"
 #include "../../../include/Entidade/Item/Espada.hpp"
 
 namespace Jungle {

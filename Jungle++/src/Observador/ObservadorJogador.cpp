@@ -1,4 +1,4 @@
-#include "..\..\include\Observador\ObservadorJogador.hpp"
+#include "../../include/Observador/ObservadorJogador.hpp"
 
 namespace Jungle {
 

@@ -8,7 +8,7 @@ namespace Jungle {
             MenuPausa(IDs::IDs::menu_game_over, "FIM DE JOGO", fase), fundoCaracter(),
             texto(pGrafico->carregarFonte(CAMINHO_FONTE_MENU_GAME_OVER), "", 35),
             pontuacao(pGrafico->carregarFonte(CAMINHO_FONTE_MENU_GAME_OVER), "Pontuacao: " +  std::to_string(pontuacaoJogador), 35),
-            arquivoEntrada()
+            arquivo()
         {
             //sf::Texture textura = pGrafico->carregarTextura("Jungle++/img/Menu/caixaTexto.png");
             sf::Texture* textura = new sf::Texture();
@@ -53,8 +53,8 @@ namespace Jungle {
         }
 
         void MenuGameOver::salvarColocacao(){
-            arquivoEntrada.open("Jungle++/arquivo/Colocacao/colocacao.txt", std::ios::app);
-            if(!arquivoEntrada.is_open()){
+            arquivo.open("Jungle++/arquivo/Colocacao/colocacao.txt", std::ios::app);
+            if(!arquivo.is_open()){
                 std::cout << "Jungle::Menu::MenuGameOver::nao foi possivel abrir arquivo" << std::endl;
                 exit(1);
             }
@@ -63,9 +63,9 @@ namespace Jungle {
                 nome = "SemNome";
             }
             std::string pontos = pontuacao.getString().substr(11, pontuacao.getString().length());
-            std::string linha = nome + " " + pontos + " \n";
-            arquivoEntrada << linha;
-            arquivoEntrada.close();
+            std::string linha = nome + " " + pontos + " " + "\n";
+            arquivo << linha;
+            arquivo.close();
         }
 
         void MenuGameOver::atualizarFundo(){

@@ -1,7 +1,7 @@
 #pragma once 
 
-#include "..\Gerenciador\GerenciadorGrafico.hpp"
-#include <SFML\Graphics.hpp>
+#include "../Gerenciador/GerenciadorGrafico.hpp"
+#include <SFML/Graphics.hpp>
 
 namespace Jungle {
 

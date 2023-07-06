@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Menu.hpp"
-#include "..\Fase\Fase.hpp"
+#include "../Fase/Fase.hpp"
 
 namespace Jungle {
 

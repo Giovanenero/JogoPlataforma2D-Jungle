@@ -1,7 +1,7 @@
 #pragma once 
 
 #include <iostream>
-#include "..\IDs.hpp"
+#include "../IDs.hpp"
 #include <SFML/Audio.hpp>
 #include <map>
 

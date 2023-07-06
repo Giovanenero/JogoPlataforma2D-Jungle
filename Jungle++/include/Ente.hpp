@@ -1,10 +1,10 @@
 #pragma once
 
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include <iostream>
 
 #include "IDs.hpp"
-#include "Gerenciador\GerenciadorGrafico.hpp"
+#include "Gerenciador/GerenciadorGrafico.hpp"
 
 namespace Jungle {
 

@@ -1,4 +1,4 @@
-#include "..\..\include\Gerenciador\GerenciadorColisao.hpp"
+#include "../../include/Gerenciador/GerenciadorColisao.hpp"
 
 namespace Jungle {
 

@@ -1,6 +1,6 @@
-#include "..\..\include\Estado\EstadoMenuFase.hpp"
-//#include "..\..\include\Estado\EstadoJogar.hpp"
-#include "..\..\include\Gerenciador\GerenciadorEstado.hpp"
+#include "../../include/Estado/EstadoMenuFase.hpp"
+//#include "../../include/Estado/EstadoJogar.hpp"
+#include "../../include/Gerenciador/GerenciadorEstado.hpp"
 #include "../../include/Menu/MenuGameOver.hpp"
 
 namespace Jungle {

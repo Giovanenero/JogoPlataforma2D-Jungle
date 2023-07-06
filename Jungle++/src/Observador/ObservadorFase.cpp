@@ -1,5 +1,5 @@
-#include "..\..\include\Observador\ObservadorFase.hpp"
-#include "..\..\include\Gerenciador\GerenciadorEstado.hpp"
+#include "../../include/Observador/ObservadorFase.hpp"
+#include "../../include/Gerenciador/GerenciadorEstado.hpp"
 
 namespace Jungle {
 

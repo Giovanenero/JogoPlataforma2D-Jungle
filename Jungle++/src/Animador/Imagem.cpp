@@ -1,4 +1,4 @@
-#include "..\..\include\Animador\Imagem.hpp"
+#include "../../include/Animador/Imagem.hpp"
 
 Jungle::Animador::Imagem::Imagem(const char* caminhoTextura, unsigned int qtdImagem, const float tempoTroca, const sf::Vector2f escala, const sf::Vector2f origin):
     pGrafico(pGrafico->getGerenciadorGrafico()), qtdImagem(qtdImagem), tempoTroca(tempoTroca),

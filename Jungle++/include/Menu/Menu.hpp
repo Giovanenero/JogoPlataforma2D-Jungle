@@ -1,9 +1,9 @@
 #pragma once 
 
-#include "..\Ente.hpp"
-#include "Botao\BotaoTexto.hpp"
-#include "Botao\Texto.hpp"
-#include "..\Parallax\Fundo.hpp"
+#include "../Ente.hpp"
+#include "Botao/BotaoTexto.hpp"
+#include "Botao/Texto.hpp"
+#include "../Parallax/Fundo.hpp"
 #include <list>
 
 #define TAMANHO_BOTAO_X 350.0f

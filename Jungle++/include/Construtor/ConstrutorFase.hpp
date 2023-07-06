@@ -1,8 +1,8 @@
 #pragma once
 
 //Fase
-#include "..\Fase\FlorestaBranca.hpp"
-#include "..\Fase\FlorestaVermelha.hpp"
+#include "../Fase/FlorestaBranca.hpp"
+#include "../Fase/FlorestaVermelha.hpp"
 
 namespace Jungle {
 

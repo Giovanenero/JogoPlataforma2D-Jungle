@@ -1,13 +1,13 @@
 #pragma once 
 
 //personagens
-#include "..\Entidade\Personagem\Jogador\Jogador.hpp"
-#include "..\Entidade\Personagem\Inimigo\Esqueleto.hpp"
-#include "..\Entidade\Personagem\Inimigo\Chefao\Minotauro.hpp"
+#include "../Entidade/Personagem/Jogador/Jogador.hpp"
+#include "../Entidade/Personagem/Inimigo/Esqueleto.hpp"
+#include "../Entidade/Personagem/Inimigo/Chefao/Minotauro.hpp"
 
 //obstaculos
-#include "..\Entidade\Obstaculo\Caixa.hpp"
-#include "..\Entidade\Obstaculo\Plataforma.hpp"
+#include "../Entidade/Obstaculo/Caixa.hpp"
+#include "../Entidade/Obstaculo/Plataforma.hpp"
 #include "../Entidade/Item/Espada.hpp"
 
 namespace Jungle {

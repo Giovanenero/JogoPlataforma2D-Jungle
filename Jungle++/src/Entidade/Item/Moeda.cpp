@@ -1,4 +1,4 @@
-#include "..\..\..\include\Entidade\Item\Moeda.hpp"
+#include "../../../include/Entidade/Item/Moeda.hpp"
 #include "../../../include/Entidade/Personagem/Jogador/Jogador.hpp"
 
 namespace Jungle {

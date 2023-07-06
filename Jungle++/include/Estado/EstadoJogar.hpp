@@ -3,11 +3,11 @@
 #include "Estado.hpp"
 
 //Gerenciador
-#include "..\Gerenciador\GerenciadorGrafico.hpp"
+#include "../Gerenciador/GerenciadorGrafico.hpp"
 
 //Fases
-#include "..\Fase\FlorestaBranca.hpp"
-#include "..\Fase\FlorestaVermelha.hpp"
+#include "../Fase/FlorestaBranca.hpp"
+#include "../Fase/FlorestaVermelha.hpp"
 
 namespace Jungle {
 

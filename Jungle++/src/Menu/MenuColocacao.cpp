@@ -52,23 +52,17 @@ namespace Jungle {
                 exit(1);
             }
             std::string linha;
-            const std::string espaco = " ";
             const int qtd = 7;
             int i = 0;
             while(std::getline(arquivo, linha) && i < qtd){
-                try {
-                    criarTexto(linha);
-                    //vectorTexto.push_back(texto);
-                } catch(const char* e) {
-                    std::cerr << "MenuColocacao: "<<  e << std::endl;
-                }
+                criarTexto(linha);
                 i++;
             }
+            arquivo.close();
         }
 
         void MenuColocacao::criarBotoes(){
-            const float posBotaoX = tamJanela.x / 2.0f - tamBotao.x / 2.0f;
-            addBotao("Voltar", sf::Vector2f(posBotaoX, tamJanela.y - tamJanela.y / 12.0f), IDs::IDs::botao_voltar, sf::Color{0, 255, 0});
+            addBotao("Voltar", sf::Vector2f(tamJanela.x / 2.0f - tamBotao.x / 2.0f, tamJanela.y - tamJanela.y / 12.0f), IDs::IDs::botao_voltar, sf::Color{0, 255, 0});
             inicializarIterator();
         }
 

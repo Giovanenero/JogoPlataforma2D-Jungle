@@ -1,7 +1,7 @@
 #pragma once 
 
 #include "BotaoTexto.hpp"
-#include "..\..\Gerenciador\GerenciadorMusica.hpp"
+#include "../../Gerenciador/GerenciadorMusica.hpp"
 
 #define TAMANHO_BARRA_VOLUME_X 300.0f
 #define TAMANHO_BARRA_VOLUME_Y 30.0f

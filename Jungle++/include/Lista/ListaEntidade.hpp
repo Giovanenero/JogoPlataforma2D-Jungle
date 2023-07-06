@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Lista.hpp"
-#include "..\Entidade\Entidade.hpp"
+#include "../Entidade/Entidade.hpp"
 
 namespace Jungle {
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Observador.hpp"
-#include "..\Entidade\Personagem\Jogador\Jogador.hpp"
+#include "../Entidade/Personagem/Jogador/Jogador.hpp"
 
 namespace Jungle {
 

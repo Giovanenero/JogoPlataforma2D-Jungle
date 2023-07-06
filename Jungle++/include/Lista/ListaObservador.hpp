@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Lista.hpp"
-#include "..\Observador\Observador.hpp"
-#include "SFML\Graphics.hpp"
+#include "../Observador/Observador.hpp"
+#include "SFML/Graphics.hpp"
 
 namespace Jungle {
 

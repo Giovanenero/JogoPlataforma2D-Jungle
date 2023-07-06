@@ -1,6 +1,6 @@
 #pragma once
 
-#include "..\Personagem.hpp"
+#include "../Personagem.hpp"
 #include "../../Item/Espada.hpp"
 
 #define VELOCIDADE_JOGADOR 200.0f
@@ -45,6 +45,7 @@ namespace Jungle {
                     void podePular();
                     void mudarEstadoObservador();
                     void addPontuacao(const unsigned int pontos);
+                    void setVida(const float vida);
                     void atualizar();
                     void desenhar();
                 };

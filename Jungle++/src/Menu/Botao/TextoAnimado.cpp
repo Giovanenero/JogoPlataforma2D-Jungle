@@ -1,4 +1,4 @@
-#include "..\..\..\include\Menu\Botao\TextoAnimado.hpp"
+#include "../../../include/Menu/Botao/TextoAnimado.hpp"
 
 namespace Jungle {
 

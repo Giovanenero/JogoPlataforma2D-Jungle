@@ -1,4 +1,4 @@
-#include "..\..\include\Parallax\Camada.hpp"
+#include "../../include/Parallax/Camada.hpp"
 
 namespace Jungle {
 

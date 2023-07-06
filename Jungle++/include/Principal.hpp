@@ -1,14 +1,14 @@
 #pragma once
 
 //Gerenciador
-#include "Gerenciador\GerenciadorGrafico.hpp"
-#include "Gerenciador\GerenciadorEvento.hpp"
+#include "Gerenciador/GerenciadorGrafico.hpp"
+#include "Gerenciador/GerenciadorEvento.hpp"
 
 //Fases
-#include "Fase\FlorestaBranca.hpp"
-#include "Fase\FlorestaVermelha.hpp"
+#include "Fase/FlorestaBranca.hpp"
+#include "Fase/FlorestaVermelha.hpp"
 
-#include "Gerenciador\GerenciadorEstado.hpp"
+#include "Gerenciador/GerenciadorEstado.hpp"
 
 #include <SFML/Audio.hpp>
 

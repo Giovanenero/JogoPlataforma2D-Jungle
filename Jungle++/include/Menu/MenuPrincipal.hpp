@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Menu.hpp"
-#include "..\Parallax\Fundo.hpp"
+#include "../Parallax/Fundo.hpp"
 
 #define CAMINHO_TEXTURA_MENU_PRINCIPAL "Jungle++/img/Menu/menuPrincipal.png"
 

@@ -1,4 +1,4 @@
-#include "..\..\include\Parallax\Fundo.hpp"
+#include "../../include/Parallax/Fundo.hpp"
 
 namespace Jungle {
 

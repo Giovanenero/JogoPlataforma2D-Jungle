@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Obstaculo.hpp"
-#include "..\Personagem\Personagem.hpp"
+#include "../Personagem/Personagem.hpp"
 
 #define CAMINHO_TEXTURA_PLATAFORMA "Jungle++/img/Obstaculo/plataforma.png"
 #define ESCALA_PLATAFORMA_X 1

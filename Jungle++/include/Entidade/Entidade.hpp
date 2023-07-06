@@ -1,6 +1,6 @@
 #pragma once
 
-#include "..\Ente.hpp"
+#include "../Ente.hpp"
 
 namespace Jungle {
 
@@ -25,6 +25,7 @@ namespace Jungle {
             virtual void atualizar() = 0;
             virtual void desenhar();
             const bool getRemover() const;
+            void remover();
         };
 
     }

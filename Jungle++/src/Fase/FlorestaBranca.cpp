@@ -1,4 +1,4 @@
-#include "..\..\include\Fase\FlorestaBranca.hpp"
+#include "../../include/Fase/FlorestaBranca.hpp"
 #include "../../include/Entidade/Item/Moeda.hpp"
 
 Jungle::Fase::FlorestaBranca::FlorestaBranca():
@@ -12,11 +12,11 @@ Jungle::Fase::FlorestaBranca::~FlorestaBranca(){
 }
 
 void Jungle::Fase::FlorestaBranca::criarFundo(){
-    fundo.addCamada("Jungle++/img/Fase/FLorestaBranca/camada1.png", 0.0f);
-    fundo.addCamada("Jungle++/img/Fase/FLorestaBranca/camada2.png", 0.1f);
-    fundo.addCamada("Jungle++/img/Fase/FLorestaBranca/camada3.png", 0.3f);
-    fundo.addCamada("Jungle++/img/Fase/FLorestaBranca/camada4.png", 0.5f);
-    fundo.addCamada("Jungle++/img/Fase/FLorestaBranca/camada5.png", 1.0f);
+    fundo.addCamada("Jungle++/img/Fase/FlorestaBranca/camada1.png", 0.0f);
+    fundo.addCamada("Jungle++/img/Fase/FlorestaBranca/camada2.png", 0.1f);
+    fundo.addCamada("Jungle++/img/Fase/FlorestaBranca/camada3.png", 0.3f);
+    fundo.addCamada("Jungle++/img/Fase/FlorestaBranca/camada4.png", 0.5f);
+    fundo.addCamada("Jungle++/img/Fase/FlorestaBranca/camada5.png", 1.0f);
 }
 
 void Jungle::Fase::FlorestaBranca::criarMapa(){
@@ -28,7 +28,9 @@ void Jungle::Fase::FlorestaBranca::criarMapa(){
     }
     Entidade::Item::Moeda* moeda1 = new Entidade::Item::Moeda(sf::Vector2f(300.0f, 500.0f));
     listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(moeda1));
-    Entidade::Item::Moeda* moeda2 = new Entidade::Item::Moeda(sf::Vector2f(1200.0f, 200.0f), IDs::IDs::moeda_cinza);
+    Entidade::Item::Moeda* moeda2 = new Entidade::Item::Moeda(sf::Vector2f(1200.0f, 80.0f), IDs::IDs::moeda_cinza);
+    Entidade::Item::Vida* vida = new Entidade::Item::Vida(sf::Vector2f(1400.0f, 350.0f));
+    listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(vida));
     listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(moeda2));
     listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(espada));
  

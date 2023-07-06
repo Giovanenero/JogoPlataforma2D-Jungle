@@ -1,11 +1,12 @@
 #pragma once
 
-#include "../Entidade.hpp"
+#include "../../Animador/Animacao.hpp"
+#include "../Personagem/Jogador/Jogador.hpp"
 
 #define TAMANHO_VIDA 50.0f
 #define CAMINHO_VIDA "Jungle++/img/Item/vida.png"
-#define VIDA_MAXIMA 100.0f
-#define VIDA_MINIMA 20.0f
+#define VIDA_MAXIMA 80
+#define VIDA_MINIMA 20
 
 namespace Jungle {
 
@@ -15,10 +16,17 @@ namespace Jungle {
 
             class Vida : public Entidade {
                 private:
+                    float vida;
+                    Animador::Animacao animacao;
+
+                    void inicializarAnimacao();
+                    void atualizarAnimacao();
                 public:
                     Vida(const sf::Vector2f pos);
                     ~Vida();
                     void atualizar();
+                    const float getVida() const;
+                    void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
             };
 
         }

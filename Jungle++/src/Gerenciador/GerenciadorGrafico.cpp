@@ -1,4 +1,4 @@
-#include "..\..\include\Gerenciador\GerenciadorGrafico.hpp"
+#include "../../include/Gerenciador/GerenciadorGrafico.hpp"
 
 
 namespace Jungle {

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "..\Entidade.hpp"
-#include "..\..\Animador\Animacao.hpp"
+#include "../Entidade.hpp"
+#include "../../Animador/Animacao.hpp"
 
 #define GRAVIDADE 1.0f
 

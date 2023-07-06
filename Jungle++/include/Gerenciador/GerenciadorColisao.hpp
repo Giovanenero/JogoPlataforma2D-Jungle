@@ -1,7 +1,7 @@
 #pragma once 
 
-#include <SFML\Graphics.hpp>
-#include "..\Lista\ListaEntidade.hpp"
+#include <SFML/Graphics.hpp>
+#include "../Lista/ListaEntidade.hpp"
 #include <cmath>
 
 namespace Jungle {

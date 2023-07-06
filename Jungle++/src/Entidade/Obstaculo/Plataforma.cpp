@@ -1,4 +1,4 @@
-#include "..\..\..\include\Entidade\Obstaculo\Plataforma.hpp"
+#include "../../../include/Entidade/Obstaculo/Plataforma.hpp"
 
 
 Jungle::Entidade::Obstaculo::Plataforma::Plataforma(sf::Vector2f pos):

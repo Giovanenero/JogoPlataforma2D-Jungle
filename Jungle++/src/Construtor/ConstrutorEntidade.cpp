@@ -1,5 +1,5 @@
-#include "..\..\include\Construtor\ConstrutorEntidade.hpp"
-#include "..\..\include\Fase\Fase.hpp"
+#include "../../include/Construtor/ConstrutorEntidade.hpp"
+#include "../../include/Fase/Fase.hpp"
 
 namespace Jungle {
 

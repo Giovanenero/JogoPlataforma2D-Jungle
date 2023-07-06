@@ -1,4 +1,4 @@
-#include "..\..\include\Estado\EstadoMenuPrincipal.hpp"
+#include "../../include/Estado/EstadoMenuPrincipal.hpp"
 
 namespace Jungle {
 

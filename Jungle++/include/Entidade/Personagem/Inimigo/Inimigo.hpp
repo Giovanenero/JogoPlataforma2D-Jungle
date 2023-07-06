@@ -1,7 +1,7 @@
 #pragma once
 
-#include "..\Personagem.hpp"
-#include "..\Jogador\Jogador.hpp"
+#include "../Personagem.hpp"
+#include "../Jogador/Jogador.hpp"
 #include  "../../Item/Espada.hpp"
 
 // usado p/ gerar números aleatórios

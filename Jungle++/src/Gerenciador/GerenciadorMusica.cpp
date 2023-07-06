@@ -1,4 +1,4 @@
-#include "..\..\include\Gerenciador\GerenciadorMusica.hpp"
+#include "../../include/Gerenciador/GerenciadorMusica.hpp"
 
 namespace Jungle {
 

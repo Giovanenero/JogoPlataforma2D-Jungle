@@ -1,6 +1,6 @@
 #pragma once
 
-#include "..\Menu\MenuPausa.hpp"
+#include "../Menu/MenuPausa.hpp"
 #include "Estado.hpp"
 
 namespace Jungle {

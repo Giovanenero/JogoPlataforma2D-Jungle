@@ -1,4 +1,4 @@
-#include "..\..\include\Animador\Animacao.hpp"
+#include "../../include/Animador/Animacao.hpp"
 
 Jungle::Animador::Animacao::Animacao(sf::RectangleShape* corpo):
     corpo(corpo), mapImagem(), imgAtual(""), relogio()

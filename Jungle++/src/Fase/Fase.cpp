@@ -1,5 +1,5 @@
-#include "..\..\include\Fase\Fase.hpp"
-#include "..\..\include\Observador\ObservadorFase.hpp"
+#include "../../include/Fase/Fase.hpp"
+#include "../../include/Observador/ObservadorFase.hpp"
 
 namespace Jungle {
 

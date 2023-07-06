@@ -1,4 +1,4 @@
-#include "..\..\..\include\Entidade\Item\Espada.hpp"
+#include "../../../include/Entidade/Item/Espada.hpp"
 #include "../../../include/Entidade/Personagem/Inimigo/Esqueleto.hpp"
 
 namespace Jungle {
@@ -27,10 +27,6 @@ namespace Jungle {
 
             const float Espada::getDano() const {
                 return dano;
-            }
-
-            void Espada::remover(){
-                podeRemover = true;
             }
 
             void Espada::colisao(Entidade* outraEntidade, sf::Vector2f ds){

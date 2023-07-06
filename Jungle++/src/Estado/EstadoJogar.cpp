@@ -1,4 +1,4 @@
-#include "..\..\include\Estado\EstadoJogar.hpp"
+#include "../../include/Estado/EstadoJogar.hpp"
 
 namespace Jungle {
 

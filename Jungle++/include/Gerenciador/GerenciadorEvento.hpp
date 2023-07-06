@@ -1,8 +1,8 @@
 #pragma once
 
 #include "GerenciadorGrafico.hpp"
-#include "..\Entidade\Personagem\Jogador\Jogador.hpp"
-#include "..\Lista\ListaObservador.hpp"
+#include "../Entidade/Personagem/Jogador/Jogador.hpp"
+#include "../Lista/ListaObservador.hpp"
 
 namespace Jungle {
 

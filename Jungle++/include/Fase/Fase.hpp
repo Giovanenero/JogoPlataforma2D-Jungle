@@ -1,19 +1,19 @@
 #pragma once
 
 //Classe Base
-#include "..\Ente.hpp"
+#include "../Ente.hpp"
 
 //Fundo efeito Parallax
-#include "..\Parallax\Fundo.hpp"
+#include "../Parallax/Fundo.hpp"
 
 //Gerenciadores
-#include "..\Gerenciador\GerenciadorColisao.hpp"
+#include "../Gerenciador/GerenciadorColisao.hpp"
 
 //Listas
-#include "..\Lista\ListaEntidade.hpp"
+#include "../Lista/ListaEntidade.hpp"
 
 //Construtor
-#include "..\Construtor\ConstrutorEntidade.hpp"
+#include "../Construtor/ConstrutorEntidade.hpp"
 
 #include <fstream>
 

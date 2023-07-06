@@ -1,5 +1,5 @@
-#include "..\..\include\Menu\MenuPausa.hpp"
-#include "..\..\include\Observador\ObservadorMenu.hpp"
+#include "../../include/Menu/MenuPausa.hpp"
+#include "../../include/Observador/ObservadorMenu.hpp"
 
 namespace Jungle {
 

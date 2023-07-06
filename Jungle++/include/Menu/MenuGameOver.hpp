@@ -17,7 +17,7 @@ namespace Jungle {
                 sf::RectangleShape fundoCaracter;
                 Botao::Texto texto;
                 Botao::Texto pontuacao;
-                std::ofstream arquivoEntrada;
+                std::ofstream arquivo;
 
                 void atualizarFundo();
             public:

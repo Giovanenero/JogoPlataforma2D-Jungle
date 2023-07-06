@@ -1,10 +1,10 @@
 #pragma once
 
-#include "..\Entidade.hpp"
-#include "..\Personagem\Jogador\Jogador.hpp"
-#include "..\Personagem\Inimigo\Inimigo.hpp"
+#include "../Entidade.hpp"
+#include "../Personagem/Jogador/Jogador.hpp"
+#include "../Personagem/Inimigo/Inimigo.hpp"
 
-#include "..\..\Animador\Animacao.hpp"
+#include "../../Animador/Animacao.hpp"
 
 namespace Jungle {
 

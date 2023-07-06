@@ -8,6 +8,7 @@ link:
 
 execute: 
 	.\main.exe
+	cls
 
 clear:
 	del *.o

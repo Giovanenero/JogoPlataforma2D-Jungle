@@ -1,6 +1,6 @@
-#include "..\..\include\Observador\Observador.hpp"
-#include "..\..\include\Gerenciador\GerenciadorEvento.hpp"
-#include "..\..\include\Gerenciador\GerenciadorEstado.hpp"
+#include "../../include/Observador/Observador.hpp"
+#include "../../include/Gerenciador/GerenciadorEvento.hpp"
+#include "../../include/Gerenciador/GerenciadorEstado.hpp"
 
 namespace Jungle { 
 

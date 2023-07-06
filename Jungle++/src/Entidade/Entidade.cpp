@@ -1,4 +1,4 @@
-#include "..\..\include\Entidade\Entidade.hpp"
+#include "../../include/Entidade/Entidade.hpp"
 
 namespace Jungle {
 
@@ -38,6 +38,10 @@ namespace Jungle {
 
         const bool Entidade::getRemover() const {
             return podeRemover;
+        }
+
+        void Entidade::remover(){
+            podeRemover = true;
         }
 
         void Entidade::desenhar(){

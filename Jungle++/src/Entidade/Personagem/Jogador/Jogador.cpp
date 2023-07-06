@@ -1,6 +1,7 @@
-#include "..\..\..\..\include\Entidade\Personagem\Jogador\Jogador.hpp"
-#include "..\..\..\..\include\Observador\ObservadorJogador.hpp"
+#include "../../../../include/Entidade/Personagem/Jogador/Jogador.hpp"
+#include "../../../../include/Observador/ObservadorJogador.hpp"
 #include "../../../../include/Entidade/Personagem/Inimigo/Inimigo.hpp"
+#include "../../../../include/Entidade/Item/Vida.hpp"
 
 #include <cmath>
 
@@ -148,6 +149,12 @@ namespace Jungle {
                             inimigo->atacar(true);
                         }
                             break;
+                        case (IDs::IDs::vida):
+                        {
+                            Item::Vida* vida = dynamic_cast<Item::Vida*>(outraEntidade);
+                            setVida(vida->getVida());
+                            vida->remover();
+                        }
                     }   
                 }
 
@@ -173,6 +180,13 @@ namespace Jungle {
 
                 void Jogador::addPontuacao(const unsigned int pontos){
                     this->pontos += pontos;
+                }
+
+                void Jogador::setVida(const float vida){
+                    this->vida += vida;
+                    if(this->vida > 100.0f){
+                        this->vida = 100.0f;
+                    }
                 }
 
                 void Jogador::desenhar(){
