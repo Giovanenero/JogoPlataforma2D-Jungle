@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Fase.hpp"
-#include "../Entidade/Item/Arma.hpp"
+#include "../Entidade/Item/Projetil.hpp"
 #include "../Entidade/Item/Vida.hpp"
 #include "../Entidade/Personagem/Inimigo/Alma.hpp"
 

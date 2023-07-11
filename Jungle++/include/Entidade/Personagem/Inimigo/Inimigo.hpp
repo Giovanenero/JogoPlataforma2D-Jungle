@@ -40,6 +40,7 @@ namespace Jungle {
                 public:
                     Inimigo(const sf::Vector2f pos, const sf::Vector2f tam, Jogador::Jogador* jogador, const IDs::IDs ID, const float tempoMorrer, const float tempoAtacar = 2.0f);
                     ~Inimigo();
+                    virtual void tomarDano(const float dano);
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
                     void atualizar();
                 };

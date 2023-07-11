@@ -53,7 +53,7 @@ namespace Jungle {
                 void atacar(const bool atacando);
                 void atualizarPosicao();
                 void atualizarTomarDano();
-                void tomarDano(const float dano);
+                virtual void tomarDano(const float dano);
                 const bool getMorrer() const;
                 virtual void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f)) = 0;
                 const unsigned int getPontos() const;

@@ -1,4 +1,5 @@
 #include "../../../include/Entidade/Obstaculo/Plataforma.hpp"
+#include "../../../include/Entidade/Item/Projetil.hpp"
 
 
 Jungle::Entidade::Obstaculo::Plataforma::Plataforma(sf::Vector2f pos):
@@ -21,6 +22,10 @@ void Jungle::Entidade::Obstaculo::Plataforma::colisao(Entidade* outraEntidade, s
         outraEntidade->getID() == IDs::IDs::minotauro || outraEntidade->getID() == IDs::IDs::alma
     ){
         colisaoObstaculo(ds, static_cast<Personagem::Personagem*>(outraEntidade));
+    } else if(outraEntidade->getID() == IDs::IDs::projetil_inimigo){
+        Item::Projetil* projetil = dynamic_cast<Item::Projetil*>(outraEntidade);
+        projetil->setColidiu(true);
+        projetil->setVelocidade(sf::Vector2f(0.0f, 0.0f));
     }
     //colisaoObstaculo(ds, static_cast<Personagem::Personagem*>(outraEntidade));
 }

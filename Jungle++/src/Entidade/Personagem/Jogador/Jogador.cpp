@@ -2,6 +2,7 @@
 #include "../../../../include/Observador/ObservadorJogador.hpp"
 #include "../../../../include/Entidade/Personagem/Inimigo/Inimigo.hpp"
 #include "../../../../include/Entidade/Item/Vida.hpp"
+#include "../../../../include/Entidade/Item/Projetil.hpp"
 
 #include <cmath>
 
@@ -143,7 +144,6 @@ namespace Jungle {
                             if(pos.x < posInimigo.x){
                                 ds.x *= -1;
                             }
-                            //inimigo->setPos(sf::Vector2f(posInimigo.x + ds.x, posInimigo.y));
                             //bate no jogador
                             inimigo->parar();
                             inimigo->atacar(true);
@@ -155,6 +155,14 @@ namespace Jungle {
                             setVida(vida->getVida());
                             vida->remover();
                         }
+                            break;
+                        case(IDs::IDs::projetil_inimigo):
+                        {
+                            Item::Projetil* projetil = dynamic_cast<Item::Projetil*>(outraEntidade);
+                            tomarDano(projetil->getDano());
+                            projetil->setColidiu(true);
+                        }
+                            break;
                     }   
                 }
 

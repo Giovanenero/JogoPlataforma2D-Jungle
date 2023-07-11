@@ -122,6 +122,22 @@ namespace Jungle {
                     }
                 }
 
+                void Inimigo::tomarDano(const float dano){
+                    if(!levandoDano){
+                        levandoDano = true;
+                        andando = false;
+                        vida -= dano;
+                        if(vida <= 0.0f){
+                            morrendo = true;
+                            vida = 0.0f;
+                            if(arma != nullptr){
+                                arma->remover();
+                            }
+                        }
+                        tempoDano = 0.0f;
+                    }
+                }
+
                 void Inimigo::colisao(Entidade* outraEntidade, sf::Vector2f ds){
                     switch(outraEntidade->getID()){
                         case (IDs::IDs::jogador):

@@ -19,7 +19,7 @@ namespace Jungle {
                     void setDano(const float dano);
                     const float getDano() const;
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
-                    void desenhar();
+                    virtual void desenhar();
                     virtual void atualizar();
             };
 

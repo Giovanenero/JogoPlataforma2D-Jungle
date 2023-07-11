@@ -52,15 +52,20 @@ void Jungle::Fase::FlorestaBranca::criarMapa(){
         listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(espadaInimigo));
         listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(esq));
     }
+
+    Entidade::Personagem::Inimigo::Alma* alma1 = new Entidade::Personagem::Inimigo::Alma(sf::Vector2f(200.0f, 500.0f), jogador);
+    Entidade::Item::Projetil* proj1 = new Entidade::Item::Projetil();
+    alma1->setArma(static_cast<Entidade::Item::Arma*>(proj1));
+    proj1->inicializarAnimacao();
+    listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(proj1));
+    listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(alma1));
+
+
     listaObstaculos->addEntidade(construtorEntidade.criarPlataforma(sf::Vector2f(500.0f, 400.0f)));
     listaObstaculos->addEntidade(construtorEntidade.criarPlataforma(sf::Vector2f(900.0f, 400.0f)));
     listaObstaculos->addEntidade(construtorEntidade.criarPlataforma(sf::Vector2f(1200.0f, 400.0f)));
     listaObstaculos->addEntidade(construtorEntidade.criarPlataforma(sf::Vector2f(1100.0f, 250.0f)));
     listaObstaculos->addEntidade(construtorEntidade.criarCaixa(sf::Vector2f(400.0f, 500.0f)));
     listaObstaculos->addEntidade(construtorEntidade.criarCaixa(sf::Vector2f(1000.0f, 350.0f)));
-
-
-    Entidade::Personagem::Inimigo::Alma* alma1 = new Entidade::Personagem::Inimigo::Alma(sf::Vector2f(200.0f, 500.0f), jogador);
-    listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(alma1));
 }
 
