@@ -12,6 +12,7 @@ namespace Jungle {
             Gerenciador::GerenciadorGrafico* pGrafico;
             sf::Texture textura;
             sf::IntRect tamanho;
+            const bool horizontal;
             const sf::Vector2f escala;
             const unsigned int qtdImagem;
             unsigned int imgAtual;
@@ -19,7 +20,7 @@ namespace Jungle {
             float tempoTotal;
             const sf::Vector2f origin;
         public:
-            Imagem(const char* caminhoTextura, const unsigned int qtdImagem, const float tempoTroca, const sf::Vector2f escala, const sf::Vector2f origin);
+            Imagem(const char* caminhoTextura, const unsigned int qtdImagem, const float tempoTroca, const sf::Vector2f escala, const sf::Vector2f origin, const bool horizontal);
             ~Imagem();
             void atualizar(const bool paraEsquerda, const float dt);
             void resetar();

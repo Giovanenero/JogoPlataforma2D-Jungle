@@ -1,5 +1,5 @@
 #include "../../../include/Entidade/Personagem/Personagem.hpp"
-#include "../../../include/Entidade/Item/Espada.hpp"
+#include "../../../include/Entidade/Item/Arma.hpp"
 
 namespace Jungle {
 
@@ -12,7 +12,7 @@ namespace Jungle {
                 dt(0.0f), velFinal(sf::Vector2f(vel, 0.0f)), velMax(vel), atacando(false),
                 animacao(&corpo), tempoAnimacaoMorrer(tempoMorrer), tempoMorrer(0.0f),
                 vidaMaxima(100.0f), vida(100.0f), tempoAnimacaoTomarDano(tempoDano), tempoDano(0.0f),
-                morrendo(false), espada(nullptr), pontos(0)
+                morrendo(false), arma(nullptr), pontos(0)
             {
 
             }
@@ -87,15 +87,17 @@ namespace Jungle {
                 return morrendo;
             }
 
-            void Personagem::setEspada(Item::Espada* espada){
-                this->espada = espada;
-                espada->setPersonagem(this);
-                espada->setTam(tam);
-                espada->setDano(20.0f);
+            void Personagem::setArma(Item::Arma* arma){
+                this->arma = arma;
+                arma->setPersonagem(this);
+                arma->setTam(tam);
+                arma->setDano(20.0f);
             }
 
-            void Personagem::guardarEspada(){
-                espada->setPos(sf::Vector2f(-1000.0f, -1000.0f));
+            void Personagem::guardarArma(){
+                if(arma != nullptr){
+                    arma->setPos(sf::Vector2f(-1000.0f, -1000.0f));
+                }
             }
 
             void Personagem::atualizarTomarDano(){
@@ -114,8 +116,8 @@ namespace Jungle {
                     if(vida <= 0.0f){
                         morrendo = true;
                         vida = 0.0f;
-                        if(espada != nullptr){
-                            espada->remover();
+                        if(arma != nullptr){
+                            arma->remover();
                         }
                     }
                     tempoDano = 0.0f;
@@ -125,25 +127,6 @@ namespace Jungle {
             void Personagem::atualizarBarraVida(){
                 barraVida.setPosition(sf::Vector2f(pos.x + tam.x / 2.0f - corpo.getSize().x / 2.0f, pos.y - 20.0f));
                 barraVida.setSize(sf::Vector2f((vida / 100.0f) * BARRA_VIDA_X, BARRA_VIDA_Y));
-            }
-
-            void Personagem::atualizarAnimacao(){
-                if(morrendo){
-                    animacao.atualizar(paraEsquerda, "MORRE");
-                    tempoMorrer += pGrafico->getTempo();
-                    if(tempoMorrer > tempoAnimacaoMorrer){
-                        podeRemover = true;
-                        tempoMorrer = 0.0f;
-                    }
-                } else if(levandoDano){
-                    animacao.atualizar(paraEsquerda, "TOMADANO");
-                } else if(atacando){
-                    animacao.atualizar(paraEsquerda, "ATACA");
-                } else if(andando){
-                    animacao.atualizar(paraEsquerda, "ANDA");
-                } else {
-                    animacao.atualizar(paraEsquerda, "PARADO");
-                }
             }
 
             void Personagem::desenhar(){

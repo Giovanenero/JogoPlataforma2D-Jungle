@@ -13,7 +13,7 @@ namespace Jungle {
     namespace Entidade {
 
         namespace Item {
-            class Espada;
+            class Arma;
         }
 
         namespace Personagem {
@@ -23,7 +23,7 @@ namespace Jungle {
                 sf::Vector2f velFinal;
                 Animador::Animacao animacao;
                 sf::RectangleShape barraVida;
-                Item::Espada* espada;
+                Item::Arma* arma;
                 const float velMax;
                 bool andando;
                 bool paraEsquerda;
@@ -39,7 +39,7 @@ namespace Jungle {
                 float dt;
                 unsigned int pontos;
 
-                virtual void atualizarAnimacao();
+                virtual void atualizarAnimacao() = 0;
                 virtual void atualizarBarraVida();
                 virtual void inicializarBarraVida() = 0;
                 virtual void inicializarAnimacao() = 0;
@@ -57,8 +57,8 @@ namespace Jungle {
                 const bool getMorrer() const;
                 virtual void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f)) = 0;
                 const unsigned int getPontos() const;
-                void guardarEspada();
-                void setEspada(Item::Espada* espada);
+                void guardarArma();
+                void setArma(Item::Arma* arma);
                 virtual void desenhar();
                 virtual void atualizar() = 0;
             };

@@ -1,12 +1,17 @@
 #include "../../include/Animador/Imagem.hpp"
 
-Jungle::Animador::Imagem::Imagem(const char* caminhoTextura, unsigned int qtdImagem, const float tempoTroca, const sf::Vector2f escala, const sf::Vector2f origin):
+Jungle::Animador::Imagem::Imagem(const char* caminhoTextura, unsigned int qtdImagem, const float tempoTroca, const sf::Vector2f escala, const sf::Vector2f origin, const bool horizontal):
     pGrafico(pGrafico->getGerenciadorGrafico()), qtdImagem(qtdImagem), tempoTroca(tempoTroca),
     tempoTotal(0.0f), tamanho(0,0,0,0), imgAtual(0), textura(pGrafico->carregarTextura(caminhoTextura)),
-    escala(escala), origin(origin)
+    escala(escala), origin(origin), horizontal(horizontal)
 {
-    tamanho.width = textura.getSize().x / (float)qtdImagem;
-    tamanho.height = textura.getSize().y;
+    if(horizontal){
+        tamanho.width = textura.getSize().x / (float)qtdImagem;
+        tamanho.height = textura.getSize().y;
+    } else {
+        tamanho.width = textura.getSize().x;
+        tamanho.height = textura.getSize().y / (float)qtdImagem;
+    }
 }
 
 Jungle::Animador::Imagem::~Imagem(){
@@ -22,12 +27,23 @@ void Jungle::Animador::Imagem::atualizar(const bool paraEsquerda, const float dt
             imgAtual = 0;
         }
     }
+    
     if(paraEsquerda){
-        tamanho.left = (imgAtual + 1) * abs(tamanho.width);
         tamanho.width = -abs(tamanho.width);
+        if(horizontal){
+            tamanho.left = (imgAtual + 1) * abs(tamanho.width);
+        } else {
+            tamanho.top = imgAtual * tamanho.height;
+            tamanho.left = abs(tamanho.width);
+        }
     } else {
-        tamanho.left = imgAtual * tamanho.width;
         tamanho.width = abs(tamanho.width);
+        if(horizontal){
+            tamanho.left = imgAtual * tamanho.width;
+        } else {
+            tamanho.top = imgAtual * tamanho.height;
+            tamanho.left = 0.0f;
+        }
     }
 }
 

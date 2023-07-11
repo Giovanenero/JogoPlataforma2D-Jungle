@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Personagem.hpp"
-#include "../../Item/Espada.hpp"
+#include "../../Item/Arma.hpp"
 
 #define VELOCIDADE_JOGADOR 200.0f
 #define TAMANHO_PULO 0.1f
@@ -37,7 +37,7 @@ namespace Jungle {
                     void atualizarAnimacao();
                     void atualizarBarraVida();
                 public:
-                    Jogador(const sf::Vector2f pos, Item::Espada* espada);
+                    Jogador(const sf::Vector2f pos, Item::Arma* arma);
                     ~Jogador();
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
                     const bool getNoChao() const;

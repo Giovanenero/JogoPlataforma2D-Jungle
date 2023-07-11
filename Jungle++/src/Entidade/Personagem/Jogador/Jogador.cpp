@@ -13,7 +13,7 @@ namespace Jungle {
 
             namespace Jogador {
 
-                Jogador::Jogador(const sf::Vector2f pos, Item::Espada* espada):
+                Jogador::Jogador(const sf::Vector2f pos, Item::Arma* arma):
                     Personagem(pos, sf::Vector2f(TAMANHO_JOGADOR_X, TAMANHO_JOGADOR_Y), VELOCIDADE_JOGADOR, IDs::IDs::jogador, TEMPO_JOGADOR_MORRER, TEMPO_JOGADOR_TOMARDANO), 
                     noChao(false), observadorJogador(new Observador::ObservadorJogador(this))
                 {
@@ -25,8 +25,8 @@ namespace Jungle {
                     inicializarAnimacao();
                     inicializarBarraVida();
                     
-                    setEspada(espada);
-                    espada->setDano(DANO);
+                    setArma(arma);
+                    arma->setDano(DANO);
                 }
 
                 Jogador::~Jogador(){
@@ -74,12 +74,12 @@ namespace Jungle {
                     atualizarPosicao();
 
                     if(atacando){
-                        sf::Vector2f tamEspada = espada->getTam();
+                        sf::Vector2f tamEspada = arma->getTam();
                         const float posY = pos.y;
                         sf::Vector2f posEspada = (paraEsquerda ? sf::Vector2f(pos.x - tamEspada.x, pos.y) : sf::Vector2f(pos.x + tam.x, pos.y));
-                        espada->setPos(posEspada);
+                        arma->setPos(posEspada);
                     } else {
-                        guardarEspada();
+                        guardarArma();
                     }
 
                     atualizarAnimacao();
@@ -131,8 +131,8 @@ namespace Jungle {
                         case(IDs::IDs::espada_inimigo):
                         {
                             //std::cout << "Tomar dano do inimigo" << std::endl;
-                            Item::Espada* espada = dynamic_cast<Item::Espada*>(outraEntidade);
-                            tomarDano(espada->getDano());
+                            Item::Arma* arma = dynamic_cast<Item::Arma*>(outraEntidade);
+                            tomarDano(arma->getDano());
                         }
                             break;
                         case(IDs::IDs::esqueleto):

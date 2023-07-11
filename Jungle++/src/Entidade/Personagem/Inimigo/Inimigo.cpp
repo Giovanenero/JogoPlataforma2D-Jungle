@@ -10,7 +10,7 @@ namespace Jungle {
 
                 Inimigo::Inimigo(const sf::Vector2f pos, const sf::Vector2f tam, Jogador::Jogador* jogador, const IDs::IDs ID, const float tempoMorrer, const float tempoAtacar):
                     Personagem(pos, tam, VELOCIDADE_INIMIGO, ID, tempoMorrer), jogador(jogador), 
-                    dtAux(0.0f), tempoAnimacaoAtacar(tempoAtacar), tempoAtacar(0.0f)
+                    tempoMover(0.0f), tempoAnimacaoAtacar(tempoAtacar), tempoAtacar(0.0f)
                 {
                     srand(time(NULL));
                     moveAleatorio = rand()%3;
@@ -38,7 +38,7 @@ namespace Jungle {
                 }
 
                 void Inimigo::atualizaMovimentoAleatorio(){
-                    if(dtAux > 1.0f){
+                    if(tempoMover > TEMPO_MOVER_ALEATORIO){
                         moveAleatorio = rand()%3;
                         if(moveAleatorio == 0){
                             parar();
@@ -47,7 +47,7 @@ namespace Jungle {
                         } else {
                             andar(false);
                         }
-                        dtAux = 0.0f;
+                        tempoMover = 0.0f;
                     } 
                 }
 
@@ -56,18 +56,18 @@ namespace Jungle {
                         tempoAtacar += pGrafico->getTempo();
                         if(tempoAtacar > tempoAnimacaoAtacar){
                             atacando = false;
-                            guardarEspada();
+                            guardarArma();
                             tempoAtacar = 0.0f;
                         } else if(tempoAtacar > tempoAnimacaoAtacar / 1.5f){
-                            guardarEspada();
+                            guardarArma();
                         } else if(tempoAtacar > tempoAnimacaoAtacar / 1.7f){
-                            sf::Vector2f posEspada = (paraEsquerda ? sf::Vector2f(pos.x - espada->getTam().x / 2.0f, pos.y) : sf::Vector2f(pos.x + tam.x / 2.0f, pos.y));
-                            espada->setPos(posEspada);
+                            sf::Vector2f posEspada = (paraEsquerda ? sf::Vector2f(pos.x - arma->getTam().x / 2.0f, pos.y) : sf::Vector2f(pos.x + tam.x / 2.0f, pos.y));
+                            arma->setPos(posEspada);
                         }
                     } else if(levandoDano){
                         tempoAtacar = 0.0f;
                         atacando = false;
-                        guardarEspada();
+                        guardarArma();
                     }
                 }
 
@@ -85,20 +85,41 @@ namespace Jungle {
                             atualizaMovimentoAleatorio();
                         }
                     } else {
-                        dtAux = 0.0f;
+                        tempoMover = 0.0f;
                     }
                 }
 
                 void Inimigo::atualizar(){
                     moveInimigo();
+
                     atualizarPosicao();
-                    dtAux += pGrafico->getTempo();
+
+                    tempoMover += pGrafico->getTempo();
 
                     atualizarTempoAtacar();
 
                     atualizarAnimacao();
 
                     atualizarBarraVida();
+                }
+
+                void Inimigo::atualizarAnimacao(){
+                    if(morrendo){
+                        animacao.atualizar(paraEsquerda, "MORRE");
+                        tempoMorrer += pGrafico->getTempo();
+                        if(tempoMorrer > tempoAnimacaoMorrer){
+                            podeRemover = true;
+                            tempoMorrer = 0.0f;
+                        }
+                    } else if(levandoDano){
+                        animacao.atualizar(paraEsquerda, "TOMADANO");
+                    } else if(atacando){
+                        animacao.atualizar(paraEsquerda, "ATACA");
+                    } else if(andando){
+                        animacao.atualizar(paraEsquerda, "ANDA");
+                    } else {
+                        animacao.atualizar(paraEsquerda, "PARADO");
+                    }
                 }
 
                 void Inimigo::colisao(Entidade* outraEntidade, sf::Vector2f ds){

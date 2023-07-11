@@ -18,9 +18,9 @@ namespace Jungle {
                     void setPersonagem(Personagem::Personagem* personagem);
                     void setDano(const float dano);
                     const float getDano() const;
-                    void atualizar();
-                    void desenhar();
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
+                    void desenhar();
+                    virtual void atualizar();
             };
 
         }

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Arma.hpp"
-#include "../Animador/Animacao.hpp"
+#include "../../Animador/Animacao.hpp"
 
 namespace Jungle {
 
@@ -11,9 +11,13 @@ namespace Jungle {
 
             class Projetil: public Arma {
                 private:
+                    Animador::Animacao animacao;
+
+                    void inicializarAnimacao();
                 public:
-                    Projetil();
+                    Projetil(Personagem::Personagem* personagem = nullptr);
                     ~Projetil();
+                    void atualizar();
             };
 
         }

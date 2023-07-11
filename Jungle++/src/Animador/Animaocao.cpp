@@ -39,7 +39,7 @@ void Jungle::Animador::Animacao::atualizar(const bool paraEsquerda, std::string 
     corpo->setScale(escala.x, escala.y);
 }
 
-void Jungle::Animador::Animacao::addAnimacao(const char* caminhoTextura, std::string nomeAnimacao, const unsigned int qtdImagem, const float tempoTroda, const sf::Vector2f escala, const sf::Vector2f origin){
-    Imagem* img = new Imagem(caminhoTextura, qtdImagem, tempoTroda, escala, origin);
+void Jungle::Animador::Animacao::addAnimacao(const char* caminhoTextura, std::string nomeAnimacao, const unsigned int qtdImagem, const float tempoTroda, const sf::Vector2f escala, const sf::Vector2f origin, const bool horizontal){
+    Imagem* img = new Imagem(caminhoTextura, qtdImagem, tempoTroda, escala, origin, horizontal);
     mapImagem.insert(std::pair<std::string, Imagem*>(nomeAnimacao, img));
 }

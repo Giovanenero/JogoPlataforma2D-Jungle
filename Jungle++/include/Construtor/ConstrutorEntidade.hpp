@@ -8,7 +8,7 @@
 //obstaculos
 #include "../Entidade/Obstaculo/Caixa.hpp"
 #include "../Entidade/Obstaculo/Plataforma.hpp"
-#include "../Entidade/Item/Espada.hpp"
+#include "../Entidade/Item/Arma.hpp"
 
 namespace Jungle {
 
@@ -24,7 +24,7 @@ namespace Jungle {
             ~ConstrutorEntidade();
             Entidade::Entidade* criarMinotauro(const sf::Vector2f pos);
             Entidade::Entidade* criarEsqueleto(const sf::Vector2f pos);
-            Entidade::Entidade* criarJogador(const sf::Vector2f pos, Entidade::Item::Espada* espada);
+            Entidade::Entidade* criarJogador(const sf::Vector2f pos, Entidade::Item::Arma* arma);
             Entidade::Entidade* criarPlataforma(const sf::Vector2f pos);
             Entidade::Entidade* criarCaixa(const sf::Vector2f pos);
 

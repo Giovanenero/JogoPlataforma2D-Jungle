@@ -21,8 +21,8 @@ void Jungle::Fase::FlorestaBranca::criarFundo(){
 
 void Jungle::Fase::FlorestaBranca::criarMapa(){
     //teste...
-    Entidade::Item::Espada* espada = new Entidade::Item::Espada(IDs::IDs::espada_jogador);
-    if(espada == nullptr){
+    Entidade::Item::Arma* arma = new Entidade::Item::Arma(IDs::IDs::espada_jogador);
+    if(arma == nullptr){
         std::cout << "Jungle::Construtor::ConstrutorFase::nao foi possivel criar uma Espada" << std::endl;
         exit(1);
     }
@@ -32,22 +32,25 @@ void Jungle::Fase::FlorestaBranca::criarMapa(){
     Entidade::Item::Vida* vida = new Entidade::Item::Vida(sf::Vector2f(1400.0f, 350.0f));
     listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(vida));
     listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(moeda2));
-    listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(espada));
- 
-    Entidade::Entidade* jogador = construtorEntidade.criarJogador(sf::Vector2f(100.0f, 400.0f), espada);
-    espada->setPersonagem(dynamic_cast<Entidade::Personagem::Personagem*>(jogador));
-    listaPersonagens->addEntidade(jogador);
+    listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(arma));
+    
+    Entidade::Personagem::Jogador::Jogador* jogador = new Entidade::Personagem::Jogador::Jogador(sf::Vector2f(100.0f, 400.0f), arma);
+
+    //Entidade::Entidade* jogador = construtorEntidade.criarJogador(sf::Vector2f(100.0f, 400.0f), arma);
+    arma->setPersonagem(static_cast<Entidade::Personagem::Personagem*>(jogador));
+    listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(jogador));
     
     for(int i = -2; i < 8; i++){
         listaObstaculos->addEntidade(construtorEntidade.criarPlataforma(sf::Vector2f(i * 300.0f, 550.0f)));
     }
 
     for(int i = 0; i < 6; i++){
-        Entidade::Item::Espada* espadaInimigo = new Entidade::Item::Espada(IDs::IDs::espada_inimigo);
-        Entidade::Personagem::Inimigo::Esqueleto* esqueleto = dynamic_cast<Entidade::Personagem::Inimigo::Esqueleto*>(construtorEntidade.criarEsqueleto(sf::Vector2f(400.0f * (i + 0.5f), 0.0f))); 
-        esqueleto->setEspada(espadaInimigo);
+        Entidade::Item::Arma* espadaInimigo = new Entidade::Item::Arma(IDs::IDs::espada_inimigo);
+        //Entidade::Personagem::Inimigo::Esqueleto* esqueleto = dynamic_cast<Entidade::Personagem::Inimigo::Esqueleto*>(construtorEntidade.criarEsqueleto(sf::Vector2f(400.0f * (i + 0.5f), 0.0f))); 
+        Entidade::Personagem::Inimigo::Esqueleto* esq = new Entidade::Personagem::Inimigo::Esqueleto(sf::Vector2f(400.0f * (i + 0.5f), 0.0f), jogador);
+        esq->setArma(espadaInimigo);
         listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(espadaInimigo));
-        listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(esqueleto));
+        listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(esq));
     }
     listaObstaculos->addEntidade(construtorEntidade.criarPlataforma(sf::Vector2f(500.0f, 400.0f)));
     listaObstaculos->addEntidade(construtorEntidade.criarPlataforma(sf::Vector2f(900.0f, 400.0f)));
@@ -55,5 +58,9 @@ void Jungle::Fase::FlorestaBranca::criarMapa(){
     listaObstaculos->addEntidade(construtorEntidade.criarPlataforma(sf::Vector2f(1100.0f, 250.0f)));
     listaObstaculos->addEntidade(construtorEntidade.criarCaixa(sf::Vector2f(400.0f, 500.0f)));
     listaObstaculos->addEntidade(construtorEntidade.criarCaixa(sf::Vector2f(1000.0f, 350.0f)));
+
+
+    Entidade::Personagem::Inimigo::Alma* alma1 = new Entidade::Personagem::Inimigo::Alma(sf::Vector2f(200.0f, 500.0f), jogador);
+    listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(alma1));
 }
 

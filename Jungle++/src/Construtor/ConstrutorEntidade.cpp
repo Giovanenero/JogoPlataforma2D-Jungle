@@ -55,8 +55,8 @@ namespace Jungle {
             return static_cast<Entidade::Entidade*>(esqueleto);
         }
         
-        Entidade::Entidade* ConstrutorEntidade::criarJogador(const sf::Vector2f pos, Entidade::Item::Espada* espada){
-            Entidade::Personagem::Jogador::Jogador* jogador = new Entidade::Personagem::Jogador::Jogador(pos, espada);
+        Entidade::Entidade* ConstrutorEntidade::criarJogador(const sf::Vector2f pos, Entidade::Item::Arma* arma){
+            Entidade::Personagem::Jogador::Jogador* jogador = new Entidade::Personagem::Jogador::Jogador(pos, arma);
             if(jogador == nullptr){
                 std::cout << "Jungle::Construtor::ConstrutorFase::nao foi possivel criar um Jogador" << std::endl;
                 exit(1);

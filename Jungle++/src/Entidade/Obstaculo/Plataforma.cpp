@@ -14,12 +14,13 @@ Jungle::Entidade::Obstaculo::Plataforma::~Plataforma(){
 }
 
 void Jungle::Entidade::Obstaculo::Plataforma::colisao(Entidade* outraEntidade, sf::Vector2f ds){
-    sf::Vector2f posOutro = outraEntidade->getPos();
-    sf::Vector2f tamOutro = outraEntidade->getTam();
+    //sf::Vector2f posOutro = outraEntidade->getPos();
+    //sf::Vector2f tamOutro = outraEntidade->getTam();
 
     if(outraEntidade->getID() == IDs::IDs::jogador || outraEntidade->getID() == IDs::IDs::esqueleto ||
-        outraEntidade->getID() == IDs::IDs::minotauro
+        outraEntidade->getID() == IDs::IDs::minotauro || outraEntidade->getID() == IDs::IDs::alma
     ){
         colisaoObstaculo(ds, static_cast<Personagem::Personagem*>(outraEntidade));
     }
+    //colisaoObstaculo(ds, static_cast<Personagem::Personagem*>(outraEntidade));
 }
