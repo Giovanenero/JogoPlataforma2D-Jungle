@@ -1,8 +1,8 @@
 #pragma once
 
 #include "MenuPrincipal.hpp"
+#include "../Gerenciador/GerenciadorArquivo.hpp"
 #include <vector> 
-#include <fstream>
 
 #define CAMINHO_ARQUIVO_COLOCACAO "Jungle++/arquivo/Colocacao/colocacao.txt"
 #define QUANTIDADE_PALAVRAS 2
@@ -15,7 +15,7 @@ namespace Jungle {
         class MenuColocacao: public MenuPrincipal {
             private:
                 std::vector<Botao::Texto*> vectorTexto;
-                std::ifstream arquivo;
+                Gerenciador::GerenciadorArquivo gerenciadorArquivo;
 
                 void criarTexto(std::string linha);
                 void criarColocacao();

@@ -63,6 +63,11 @@ namespace Jungle {
                         pGEstado->addEstado(IDs::IDs::estado_menu_colocacao);
                     }
                         break;
+                    case (IDs::IDs::botao_salvar_jogada):
+                    {
+                        pGEstado->addEstado(IDs::IDs::estado_menu_salvar_jogada);
+                    }
+                        break;
                 }
             } else if(menu->getID() == IDs::IDs::menu_opcao){
                 if(tecladoEspecial[tecla] == "Left"){
@@ -128,7 +133,12 @@ namespace Jungle {
                                 break;
                             case (IDs::IDs::botao_opcao):
                             {
-                                pGEstado->addEstado(IDs::IDs::estado_menu_opcaoPrincipal);
+                                Estado::Estado* estado = pGEstado->getEstadoAtual();
+                                if(estado->getID() == IDs::IDs::estado_menu_principal){
+                                    pGEstado->addEstado(IDs::IDs::estado_menu_opcaoPrincipal);
+                                } else {
+                                    //só pode ser o menu_pausar
+                                }
                             }
                                 break;
                             case (IDs::IDs::botao_colocacao):
@@ -151,6 +161,11 @@ namespace Jungle {
                                     menuGameOver->salvarColocacao();
                                 }
                                 pGEstado->removerEstado(2);
+                            }
+                                break;
+                            case (IDs::IDs::botao_salvar_jogada):
+                            {
+                                pGEstado->addEstado(IDs::IDs::estado_menu_salvar_jogada);
                             }
                                 break;
                         }

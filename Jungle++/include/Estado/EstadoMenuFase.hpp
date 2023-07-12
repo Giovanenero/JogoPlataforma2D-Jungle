@@ -16,10 +16,11 @@ namespace Jungle {
         class EstadoMenuFase: public Estado {
         private:
             Menu::MenuPausa* menuFase;
-            EstadoJogar* estadoJogar;
+            Fase::Fase* fase;
             static Gerenciador::GerenciadorEstado* pGEstado;
             
             Menu::MenuPausa* criarMenu(const IDs::IDs ID);
+            Fase::Fase* getFase();
         public:
             EstadoMenuFase(const IDs::IDs ID_Estado, const IDs::IDs ID_Menu);
             ~EstadoMenuFase();

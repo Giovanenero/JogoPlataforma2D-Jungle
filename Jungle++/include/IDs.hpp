@@ -25,7 +25,6 @@ namespace IDs {
         jogar_florestaBranca,
         botao_novoJogo,
         botao_carregarJogo,
-        botao_salvarJogada,
         botao_colocacao,
         botao_opcao,
         botao_sair,
@@ -36,8 +35,11 @@ namespace IDs {
         botao_esquerda,
         botao_direita,
         botao_salvar_colocacao,
+        botao_salvar_jogada,
+        botao_salvar,
         menu_principal,
         menu_pausa,
+        menu_salvar_jogada,
         menu_opcao,
         menu_carregar_jogo,
         menu_colocacao,
@@ -48,6 +50,7 @@ namespace IDs {
         estado_menu_carregar_jogo,
         estado_menu_colocacao,
         estado_menu_game_over,
+        estado_menu_salvar_jogada,
     };
 
 }

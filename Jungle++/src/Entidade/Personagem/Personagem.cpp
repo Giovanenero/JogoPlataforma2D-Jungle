@@ -92,6 +92,7 @@ namespace Jungle {
                 arma->setPersonagem(this);
                 arma->setTam(tam);
                 arma->setDano(20.0f);
+                guardarArma();
             }
 
             void Personagem::guardarArma(){

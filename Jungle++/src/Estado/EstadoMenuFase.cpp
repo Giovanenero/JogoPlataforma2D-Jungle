@@ -1,7 +1,7 @@
 #include "../../include/Estado/EstadoMenuFase.hpp"
-//#include "../../include/Estado/EstadoJogar.hpp"
 #include "../../include/Gerenciador/GerenciadorEstado.hpp"
 #include "../../include/Menu/MenuGameOver.hpp"
+#include "../../include/Menu/MenuSalvarJogada.hpp"
 
 namespace Jungle {
 
@@ -10,7 +10,7 @@ namespace Jungle {
     namespace Estado {
 
         EstadoMenuFase::EstadoMenuFase(const IDs::IDs ID_Estado, const IDs::IDs ID_Menu):
-            Estado(ID_Estado), estadoJogar(nullptr), menuFase(nullptr)
+            Estado(ID_Estado), fase(nullptr), menuFase(nullptr)
         {
             menuFase = criarMenu(ID_Menu);
         }
@@ -22,15 +22,24 @@ namespace Jungle {
             }
         }
 
+        Fase::Fase* EstadoMenuFase::getFase(){
+            return fase;
+        }
+
         Menu::MenuPausa* EstadoMenuFase::criarMenu(const IDs::IDs ID){
             Menu::MenuPausa* menu = nullptr;
             Estado* estadoAtual = pGEstado->getEstadoAtual();
-            if(estadoAtual->getID() != IDs::IDs::jogar_florestaBranca && estadoAtual->getID() != IDs::IDs::jogar_florestaVermelha){
-                std::cout << "ERRO::Estado::EstadoMenuPausa::Estado atual nao é uma fase!" << std::endl;
+            if(estadoAtual->getID() == IDs::IDs::jogar_florestaBranca || estadoAtual->getID() == IDs::IDs::jogar_florestaVermelha){
+                EstadoJogar* estadoJogar = static_cast<EstadoJogar*>(estadoAtual);
+                fase = estadoJogar->getFase();
+            } else if(estadoAtual->getID() == IDs::IDs::estado_menu_pausa){
+                EstadoMenuFase* estadoMenuPausa = static_cast<EstadoMenuFase*>(estadoAtual);
+                fase = estadoMenuPausa->getFase();
+            }
+            if(fase == nullptr){
+                std::cout << "ERRO::EstadoMenuFase::nao foi possivel ter o ponteiro da fase" << std::endl;
                 exit(1);
             }
-            estadoJogar = static_cast<EstadoJogar*>(estadoAtual);
-            Fase::Fase* fase = estadoJogar->getFase();
             switch (ID)
             {
             case (IDs::IDs::menu_pausa):
@@ -54,6 +63,16 @@ namespace Jungle {
                 menu = static_cast<Menu::MenuPausa*>(menuGameOver);
             }
                 break;
+            case (IDs::IDs::menu_salvar_jogada):
+            {
+                Menu::MenuSalvarJogada* menuSalvarJogada = new Menu::MenuSalvarJogada(fase);
+                if(menuSalvarJogada == nullptr){
+                    std::cout << "Jungle::EstadoMenuFase::nao foi possivel criar MenuSalvarJogada" << std::endl;
+                    exit(1);
+                }
+                menuSalvarJogada->criarBotoes();
+                menu = static_cast<Menu::MenuPausa*>(menuSalvarJogada);
+            }
             }
             return menu;
         }

@@ -54,6 +54,17 @@ namespace Jungle {
                 velocidade = paraEsquerda ? sf::Vector2f(velocidade.x * -1, velocidade.y) : velocidade;
             }
 
+            void Projetil::verificaSaiuTela(){
+                sf::Vector2f posCentro = pGrafico->getCamera().getCenter();
+                sf::Vector2f tamJanela = pGrafico->getTamJanela();
+                if(pos.x < posCentro.x - tamJanela.x / 2.0f || pos.x > posCentro.x + tamJanela.x / 2.0f ||
+                    pos.y < posCentro.y - tamJanela.y / 2.0f || pos.y > posCentro.y + tamJanela.y / 2.0f
+                ){
+                    setVelocidade(sf::Vector2f(0.0f, 0.0f));
+                    setColidiu(true);
+                }
+            }
+
             void Projetil::atualizarPosicao(){
                 const float tempo = pGrafico->getTempo();
                 sf::Vector2f posFinal(0.0f, 0.0f);
@@ -65,15 +76,6 @@ namespace Jungle {
                 posFinal.y = pos.y + velocidade.y * tempo + (-GRAVIDADE * (tempo * tempo))/2;
 
                 setPos(posFinal);
-
-                sf::Vector2f posCentro = pGrafico->getCamera().getCenter();
-                sf::Vector2f tamJanela = pGrafico->getTamJanela();
-                if(pos.x < posCentro.x - tamJanela.x / 2.0f || pos.x > posCentro.x + tamJanela.x / 2.0f ||
-                    pos.y < posCentro.y - tamJanela.y / 2.0f || pos.y > posCentro.y + tamJanela.y / 2.0f
-                ){
-                    setVelocidade(sf::Vector2f(0.0f, 0.0f));
-                    setColidiu(true);
-                }
             }
 
             void Projetil::atualizarAnimacao(){
@@ -87,6 +89,7 @@ namespace Jungle {
             void Projetil::atualizar(){
                 if(!colidiu){
                     atualizarPosicao();
+                    verificaSaiuTela();
                     atualizarAnimacao();
                     desenhar();
                 }

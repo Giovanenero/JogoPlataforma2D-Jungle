@@ -16,8 +16,6 @@ namespace Jungle {
             sf::RectangleShape fundoEscuro;
             float posBotaoY;
             
-            virtual void atualizarFundo();
-            void atualizarNomeMenu();
             void atualizarBotoes();
         public:
             MenuPausa(Fase::Fase* fase = nullptr);

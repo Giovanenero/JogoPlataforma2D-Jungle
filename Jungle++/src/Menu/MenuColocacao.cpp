@@ -6,7 +6,7 @@ namespace Jungle {
 
         MenuColocacao::MenuColocacao():
             MenuPrincipal(IDs::IDs::menu_colocacao, "COLOCACAO", 100),
-            arquivo(), vectorTexto()
+            vectorTexto(), gerenciadorArquivo() //arquivo()
         {
             criarColocacao();
         }
@@ -46,19 +46,10 @@ namespace Jungle {
         }
 
         void MenuColocacao::criarColocacao(){
-            arquivo.open(CAMINHO_ARQUIVO_COLOCACAO);
-            if(!arquivo.is_open()){
-                std::cerr << "ERRO: leitura de arquivo " << CAMINHO_ARQUIVO_COLOCACAO << std::endl;
-                exit(1);
+            std::vector<std::string> linhas = gerenciadorArquivo.lerArquivo(CAMINHO_ARQUIVO_COLOCACAO);
+            for(int i = 0; i < linhas.size() && i < 7; i++){
+                criarTexto(linhas.at(i));
             }
-            std::string linha;
-            const int qtd = 7;
-            int i = 0;
-            while(std::getline(arquivo, linha) && i < qtd){
-                criarTexto(linha);
-                i++;
-            }
-            arquivo.close();
         }
 
         void MenuColocacao::criarBotoes(){

@@ -20,6 +20,7 @@ namespace Jungle {
 
                     void atualizarAnimacao();
                     void atualizarPosicao();
+                    void verificaSaiuTela();
                 public:
                     Projetil(Personagem::Personagem* personagem = nullptr);
                     ~Projetil();
