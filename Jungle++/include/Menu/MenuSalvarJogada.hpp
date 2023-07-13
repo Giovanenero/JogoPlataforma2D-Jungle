@@ -10,8 +10,8 @@ namespace Jungle {
         class MenuSalvarJogada : public MenuPausa {
             private:
                 Gerenciador::GerenciadorArquivo gerenciadorArquivo;
-                std::list<sf::RectangleShape> listaCards;
-                std::list<sf::RectangleShape>::iterator it;
+                std::list<sf::RectangleShape*> listaCards;
+                std::list<sf::RectangleShape*>::iterator itCards;
 
                 void inicializarCards();
             public:
@@ -19,6 +19,8 @@ namespace Jungle {
                 ~MenuSalvarJogada();
                 void criarBotoes();
                 void salvarJogada();
+                void selecionaEsquerda();
+                void selecionaDireita();
                 void executar();
         };
 

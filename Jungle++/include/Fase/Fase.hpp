@@ -47,6 +47,8 @@ namespace Jungle {
             Entidade::Personagem::Jogador::Jogador* getJogador();
             void mudarEstadoObservador();
             const unsigned int getPontuacaoJogador() const;
+            Lista::ListaEntidade* getListaPersonagem();
+            Lista::ListaEntidade* getListaObstaculo();
         };
 
     }

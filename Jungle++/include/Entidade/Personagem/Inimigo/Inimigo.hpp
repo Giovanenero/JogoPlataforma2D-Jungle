@@ -42,6 +42,7 @@ namespace Jungle {
                     ~Inimigo();
                     virtual void tomarDano(const float dano);
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
+                    virtual const std::string salvar() = 0;
                     void atualizar();
                 };
 

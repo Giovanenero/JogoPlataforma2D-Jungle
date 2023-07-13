@@ -21,6 +21,7 @@ namespace Jungle {
                 public:
                     Esqueleto(const sf::Vector2f pos, Jogador::Jogador* jogador);
                     ~Esqueleto();
+                    const std::string salvar();
                 };
 
             }

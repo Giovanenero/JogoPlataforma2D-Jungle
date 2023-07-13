@@ -46,6 +46,7 @@ namespace Jungle {
                     void mudarEstadoObservador();
                     void addPontuacao(const unsigned int pontos);
                     void setVida(const float vida);
+                    const std::string salvar();
                     void atualizar();
                     void desenhar();
                 };

@@ -97,6 +97,14 @@ namespace Jungle {
             return pontuacaoJogador;
          }
 
+         Lista::ListaEntidade* Fase::getListaPersonagem(){
+            return listaPersonagens;
+         }
+
+        Lista::ListaEntidade* Fase::getListaObstaculo(){
+            return listaObstaculos;
+        }
+
         void Fase::executar(){
             Entidade::Personagem::Jogador::Jogador* jogador = getJogador();
             if(jogador){

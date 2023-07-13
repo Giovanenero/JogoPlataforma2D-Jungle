@@ -61,7 +61,7 @@ namespace Jungle {
             tecladoEspecial.insert(std::pair<sf::Keyboard::Key, std::string>(sf::Keyboard::BackSpace, "BackSpace"));
             tecladoEspecial.insert(std::pair<sf::Keyboard::Key, std::string>(sf::Keyboard::Escape, "Escape"));
             tecladoEspecial.insert(std::pair<sf::Keyboard::Key, std::string>(sf::Keyboard::Delete, "Delete"));
-            tecladoEspecial.insert(std::pair<sf::Keyboard::Key, std::string>(sf::Keyboard::Left, "EsquLefterda"));
+            tecladoEspecial.insert(std::pair<sf::Keyboard::Key, std::string>(sf::Keyboard::Left, "Left"));
             tecladoEspecial.insert(std::pair<sf::Keyboard::Key, std::string>(sf::Keyboard::Right, "Right"));
             tecladoEspecial.insert(std::pair<sf::Keyboard::Key, std::string>(sf::Keyboard::Down, "Down"));
             tecladoEspecial.insert(std::pair<sf::Keyboard::Key, std::string>(sf::Keyboard::Up, "Up"));

@@ -29,6 +29,7 @@ namespace Jungle {
                     void setVelocidade(const sf::Vector2f velocidade);
                     void setColidiu(const bool colidiu);
                     const bool getColidiu() const;
+                    const std::string salvar();
                     void desenhar();
                     void atualizar();
             };

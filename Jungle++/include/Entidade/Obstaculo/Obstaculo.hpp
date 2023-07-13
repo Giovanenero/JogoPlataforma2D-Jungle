@@ -21,6 +21,7 @@ namespace Jungle {
                 virtual void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f)) = 0;
                 void atualizar();
                 virtual void colisaoObstaculo(sf::Vector2f ds, Personagem::Personagem* pPersonagem);
+                const std::string salvar();
             };
 
         }

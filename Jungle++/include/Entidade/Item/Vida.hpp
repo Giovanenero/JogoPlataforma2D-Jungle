@@ -27,6 +27,7 @@ namespace Jungle {
                     void atualizar();
                     const float getVida() const;
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
+                    const std::string salvar();
             };
 
         }

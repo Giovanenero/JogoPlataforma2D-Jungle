@@ -19,11 +19,13 @@ namespace Jungle {
             
             void addBotao(const std::string info, const sf::Vector2f pos, const IDs::IDs ID, const sf::Color corSelecionado, const float posInicioFundo);
             void atualizarVolume(const float volume, Botao::BotaoVolume* botaoVolume);
+            void alterarVolume(const bool aumentando);
         public:
             MenuOpcaoPrincipal();
             ~MenuOpcaoPrincipal();
             void criarBotoes();
-            void alterarVolume(const bool aumentando);
+            void selecionaEsquerda();
+            void selecionaDireita();
             void executar();
         };
 

@@ -32,6 +32,20 @@ namespace Jungle {
                 }
             }
 
+            const std::string Moeda::salvar(){
+                std::string linha = "";
+                //salvando atributos da entidade
+                linha += std::to_string(static_cast<int>(ID)) + ' ';
+                linha += std::to_string(pos.x) + ' ';
+                linha += std::to_string(pos.y) + ' ';
+                linha += std::to_string(tam.x) + ' ';
+                linha += std::to_string(tam.y) + ' ';
+                //salvando atributos da moeda
+                linha += std::to_string(pontos) + ' ';
+                linha += tipo;
+                return linha;
+            }
+
             void Moeda::atualizar(){
                 animacao.atualizar(false, tipo);
                 desenhar();

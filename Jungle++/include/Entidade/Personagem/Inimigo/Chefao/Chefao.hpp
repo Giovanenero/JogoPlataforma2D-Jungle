@@ -20,6 +20,7 @@ namespace Jungle {
                     public:
                         Chefao(const sf::Vector2f pos, const sf::Vector2f tam, Jogador::Jogador* jogador, const IDs::IDs ID);
                         ~Chefao();
+                        const std::string salvar(){return "";}
                     };
 
                 }

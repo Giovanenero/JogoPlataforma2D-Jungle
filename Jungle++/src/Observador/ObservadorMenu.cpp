@@ -69,14 +69,10 @@ namespace Jungle {
                     }
                         break;
                 }
-            } else if(menu->getID() == IDs::IDs::menu_opcao){
-                if(tecladoEspecial[tecla] == "Left"){
-                    Menu::MenuOpcaoPrincipal* menuOpcao = dynamic_cast<Menu::MenuOpcaoPrincipal*>(menu);
-                    menuOpcao->alterarVolume(false);
-                } else if(tecladoEspecial[tecla] == "Right"){
-                    Menu::MenuOpcaoPrincipal* menuOpcao = dynamic_cast<Menu::MenuOpcaoPrincipal*>(menu);
-                    menuOpcao->alterarVolume(true);
-                }
+            } else if(tecladoEspecial[tecla] == "Left"){
+                menu->selecionaEsquerda();
+            } else if(tecladoEspecial[tecla] == "Right"){
+                menu->selecionaDireita();
             }
         }
         
@@ -168,6 +164,16 @@ namespace Jungle {
                                 pGEstado->addEstado(IDs::IDs::estado_menu_salvar_jogada);
                             }
                                 break;
+                            case (IDs::IDs::botao_salvar):
+                            {
+                                Estado::Estado* estado = pGEstado->getEstadoAtual();
+                                if(estado->getID() == IDs::IDs::estado_menu_salvar_jogada){
+                                    Estado::EstadoMenuFase* estadoMenuFase = dynamic_cast<Estado::EstadoMenuFase*>(estado);
+                                    Menu::MenuPausa* menuFase = estadoMenuFase->getMenuFase();
+                                    Menu::MenuSalvarJogada* menuSalvarJogada = dynamic_cast<Menu::MenuSalvarJogada*>(menuFase);
+                                    menuSalvarJogada->salvarJogada();
+                                }
+                            }
                         }
                             break;
                     }

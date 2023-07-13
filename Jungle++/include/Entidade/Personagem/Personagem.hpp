@@ -59,6 +59,7 @@ namespace Jungle {
                 const unsigned int getPontos() const;
                 void guardarArma();
                 void setArma(Item::Arma* arma);
+                virtual const std::string salvar() = 0;
                 virtual void desenhar();
                 virtual void atualizar() = 0;
             };

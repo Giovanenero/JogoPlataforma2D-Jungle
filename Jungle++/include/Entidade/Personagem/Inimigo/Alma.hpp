@@ -32,6 +32,7 @@ namespace Jungle {
                         Alma(const sf::Vector2f pos, Jogador::Jogador* pJogador, Item::Arma* arma = nullptr);
                         ~Alma();
                         void tomarDano(const float dano);
+                        const std::string salvar();
                 };
 
             }

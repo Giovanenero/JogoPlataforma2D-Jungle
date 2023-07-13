@@ -66,30 +66,6 @@ namespace Jungle {
                     animacao.addAnimacao("Jungle++/img/Personagem/Jogador/tomaDano.png", "TOMADANO", 1, 0.5f, sf::Vector2f(6,2), origin);
                 }
 
-                void Jogador::atualizar(){
-                    /**
-                        * @ return void 
-                        * 
-                        * Faz o movimeto do jogador e atualiza animação
-                    */
-                    atualizarPosicao();
-
-                    if(atacando){
-                        sf::Vector2f tamEspada = arma->getTam();
-                        const float posY = pos.y;
-                        sf::Vector2f posEspada = (paraEsquerda ? sf::Vector2f(pos.x - tamEspada.x, pos.y) : sf::Vector2f(pos.x + tam.x, pos.y));
-                        arma->setPos(posEspada);
-                    } else {
-                        guardarArma();
-                    }
-
-                    atualizarAnimacao();
-
-                    pGrafico->atualizarCamera(sf::Vector2f(pos.x, 300.0f));
-
-                    atualizarBarraVida();
-                }
-
                 void Jogador::atualizarBarraVida(){
                     sf::Vector2f posJanela = pGrafico->getCamera().getCenter();
                     sf::Vector2f tamJanela = pGrafico->getTamJanela();
@@ -197,10 +173,61 @@ namespace Jungle {
                     }
                 }
 
+                const std::string Jogador::salvar(){
+                    std::string linha = "";
+                    //salvando atributos da entidade
+                    linha += std::to_string(static_cast<int>(ID)) + ' ';
+                    linha += std::to_string(pos.x) + ' ';
+                    linha += std::to_string(pos.y) + ' ';
+                    linha += std::to_string(tam.x) + ' ';
+                    linha += std::to_string(tam.y) + ' ';
+                    //salvando atributos do personagem
+                    linha += std::to_string(velFinal.x) + ' ';
+                    linha += std::to_string(velFinal.y) + ' ';
+                    linha += std::to_string(andando) + ' ';
+                    linha += std::to_string(paraEsquerda) + ' ';
+                    linha += std::to_string(levandoDano) + ' ';
+                    linha += std::to_string(atacando) + ' ';
+                    linha += std::to_string(morrendo) + ' ';
+                    linha += std::to_string(vida) + ' ';
+                    linha += std::to_string(tempoDano) + ' ';
+                    linha += std::to_string(tempoMorrer) + ' ';
+                    linha += std::to_string(dt) + ' ';
+                    linha += std::to_string(pontos) + ' ';
+                    //salvando atributos do jogador
+                    linha += std::to_string(noChao);
+                    return linha;
+
+                }
+
                 void Jogador::desenhar(){
                     pGrafico->desenhaElemento(corpo);
                     pGrafico->desenhaElemento(tuboBarraVida);
                     pGrafico->desenhaElemento(barraVida);
+                }
+
+                void Jogador::atualizar(){
+                    /**
+                        * @ return void 
+                        * 
+                        * Faz o movimeto do jogador e atualiza animação
+                    */
+                    atualizarPosicao();
+
+                    if(atacando){
+                        sf::Vector2f tamEspada = arma->getTam();
+                        const float posY = pos.y;
+                        sf::Vector2f posEspada = (paraEsquerda ? sf::Vector2f(pos.x - tamEspada.x, pos.y) : sf::Vector2f(pos.x + tam.x, pos.y));
+                        arma->setPos(posEspada);
+                    } else {
+                        guardarArma();
+                    }
+
+                    atualizarAnimacao();
+
+                    pGrafico->atualizarCamera(sf::Vector2f(pos.x, 300.0f));
+
+                    atualizarBarraVida();
                 }
 
             }

@@ -38,6 +38,19 @@ namespace Jungle {
                 }
             }
 
+            const std::string Vida::salvar(){
+                std::string linha = "";
+                //salvando atributos da entidade
+                linha += std::to_string(static_cast<int>(ID)) + ' ';
+                linha += std::to_string(pos.x) + ' ';
+                linha += std::to_string(pos.y) + ' ';
+                linha += std::to_string(tam.x) + ' ';
+                linha += std::to_string(tam.y) + ' ';
+                //salvando atributos da vida
+                linha += std::to_string(vida);
+                return linha;
+            }
+
             void Vida::atualizar(){
                 atualizarAnimacao();
 

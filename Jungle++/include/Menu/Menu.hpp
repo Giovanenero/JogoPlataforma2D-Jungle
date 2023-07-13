@@ -39,8 +39,8 @@ namespace Jungle {
             void mudarEstadoObservador();
             void selecionaCima();
             void selecionaBaixo();
-            virtual void selecionaEsquerda(){};
-            virtual void selecionaDireita(){};
+            virtual void selecionaEsquerda(){}
+            virtual void selecionaDireita(){}
             const IDs::IDs getIDBotaoSelecionado() const;
             void eventoMouse(const sf::Vector2f posMouse);
             const bool getMouseSelecionado() const;
