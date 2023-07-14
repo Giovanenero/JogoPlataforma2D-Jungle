@@ -82,6 +82,18 @@ namespace Jungle {
                         }
                     }
                         break;
+                    case (IDs::IDs::botao_carregar_jogo):
+                    {
+                        pGEstado->addEstado(IDs::IDs::estado_menu_carregar_jogo);
+                        //arrumar bug do evento
+                        //pGEstado->addEstado(IDs::IDs::estado_menu_colocacao);
+                    }
+                        break;
+                    case (IDs::IDs::botao_carregar):
+                    {
+                        //terminar..
+                    }
+                        break;
                 }
             } else if(tecladoEspecial[tecla] == "Left"){
                 menu->selecionaEsquerda();

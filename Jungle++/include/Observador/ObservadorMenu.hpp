@@ -5,6 +5,7 @@
 #include "../Menu/Botao/Botao.hpp"
 #include "../Menu/MenuGameOver.hpp"
 #include "../Menu/MenuSalvarJogada.hpp"
+#include "../Menu/MenuCarregarJogo.hpp"
 
 namespace Jungle {
 

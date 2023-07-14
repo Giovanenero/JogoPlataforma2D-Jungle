@@ -1,13 +1,13 @@
 #pragma once
 
-#include "MenuPausa.hpp"
+#include "MenuPrincipal.hpp"
 #include "../Gerenciador/GerenciadorArquivo.hpp"
 
 namespace Jungle {
 
     namespace Menu {
 
-        class MenuSalvarJogada : public MenuPausa {
+        class MenuCarregarJogo : public MenuPrincipal{
             private:
                 Gerenciador::GerenciadorArquivo gerenciadorArquivo;
                 std::list<Card*> listaCards;
@@ -15,12 +15,11 @@ namespace Jungle {
 
                 void inicializarCards();
             public:
-                MenuSalvarJogada(Fase::Fase* fase = nullptr);
-                ~MenuSalvarJogada();
-                void criarBotoes();
-                void salvarJogada();
+                MenuCarregarJogo();
+                ~MenuCarregarJogo();
                 void selecionaEsquerda();
                 void selecionaDireita();
+                virtual void criarBotoes();
                 void executar();
         };
 

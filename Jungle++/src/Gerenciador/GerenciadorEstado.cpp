@@ -100,6 +100,12 @@ namespace Jungle {
                 {
                     estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuFase(ID, IDs::IDs::menu_salvar_jogada));
                 }
+                    break;
+                case (IDs::IDs::estado_menu_carregar_jogo):
+                {
+                    estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuPrincipal(ID, IDs::IDs::menu_carregar_jogo));
+                }
+                    break;
             }
 
             if(estado == nullptr){

@@ -45,6 +45,11 @@ namespace Jungle {
                 menuPrincipal = static_cast<Menu::MenuPrincipal*>(new Menu::MenuOpcaoPrincipal());
             }
                 break;
+            case (IDs::IDs::menu_carregar_jogo):
+            {
+                menuPrincipal = static_cast<Menu::MenuPrincipal*>(new Menu::MenuCarregarJogo());
+            }
+                break;
             }
             return menuPrincipal;
         }

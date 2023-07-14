@@ -3,6 +3,7 @@
 #include "../Menu/MenuPrincipal.hpp"
 #include "../Menu/MenuColocacao.hpp"
 #include "../Menu/MenuOpcaoPrincipal.hpp"
+#include "../Menu/MenuCarregarJogo.hpp"
 #include "Estado.hpp"
 
 namespace Jungle {

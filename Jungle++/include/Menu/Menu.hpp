@@ -1,6 +1,7 @@
 #pragma once 
 
 #include "../Ente.hpp"
+#include "Card.hpp"
 #include "Botao/BotaoTexto.hpp"
 #include "Botao/Texto.hpp"
 #include "../Parallax/Fundo.hpp"

@@ -10,12 +10,12 @@ namespace Jungle {
 
     }   
 
-Jungle::Ente::~Ente(){
+    Ente::~Ente(){
 
-}
+    }
 
-const IDs::IDs Jungle::Ente::getID() const {
-    return ID;
-}
+    const IDs::IDs Ente::getID() const {
+        return ID;
+    }
 
 }

@@ -5,7 +5,6 @@
 
 #include <SFML/Graphics.hpp>
 
-
 #include <iostream>
 
 namespace Jungle {

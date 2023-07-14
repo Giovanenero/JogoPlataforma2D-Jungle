@@ -41,6 +41,7 @@ namespace Jungle {
                 std::string caminhoArquivo = "Jungle++/arquivo/SalvarJogada/salvar" + std::to_string(i + 1) + ".txt";
                 std::string caminhoImagem = "Jungle++/img/Captura/salvar" + std::to_string(i + 1) + ".png";
                 Card* card = new Card(pos, caminhoArquivo, caminhoImagem);
+                card->setColor(sf::Color(180,0,0));
                 listaCards.push_back(card);
             }
             itCards = listaCards.begin();
@@ -135,61 +136,6 @@ namespace Jungle {
                 card->desenhar();
                 aux++;
             }
-        }
-
-        MenuSalvarJogada::Card::Card(const sf::Vector2f pos, const std::string caminhoArquivo, const std::string caminhoImage):
-            caminhoArquivo(caminhoArquivo), caminhoImage(caminhoImage), textura(nullptr), corpo(nullptr)
-        {
-            sf::Vector2f tamJanela = pGrafico->getTamJanela();
-            corpo = new sf::RectangleShape(sf::Vector2f(tamJanela.x / 5.0f, tamJanela.x / 5.0f - 20.0f));
-            textura = new sf::Texture();
-            if(textura->loadFromFile(caminhoImage)){
-                //std::cout << "MenuSalvarJogada::nao foi possivel encontrar o caminho da textura " << caminhoImage << std::endl;
-                //exit(1);
-                //caminho de textura auxliar
-                corpo->setTexture(textura);
-            } else {
-                corpo->setFillColor(sf::Color::Black);
-            }
-            corpo->setPosition(pos);
-            corpo->setOutlineThickness(10);
-            corpo->setOutlineColor(sf::Color::Transparent);
-        }
-
-        MenuSalvarJogada::Card::~Card(){
-            if(textura != nullptr){
-                delete(textura);
-                textura = nullptr;
-            }
-            if(corpo != nullptr){
-                delete(corpo);
-                corpo = nullptr;
-            }
-        }
-
-        void MenuSalvarJogada::Card::setCorpo(sf::RectangleShape* corpo){
-            this->corpo = corpo;
-        }
-
-        const std::string MenuSalvarJogada::Card::getCaminhoArquivo() const{
-            return caminhoArquivo;
-        }
-        
-        const std::string MenuSalvarJogada::Card::getCaminhoImage() const{
-            return caminhoImage;
-        }
-
-        void MenuSalvarJogada::Card::setSelecionado(const bool selecionado){
-            this->selecionado = selecionado;
-            corpo->setOutlineColor(selecionado ? sf::Color::Green : sf::Color::Transparent);
-        }
-        
-        const bool MenuSalvarJogada::Card::getSelecionado() const{
-            return selecionado;
-        }
-
-        void MenuSalvarJogada::Card::desenhar(){
-            pGrafico->desenhaElemento(*corpo);
         }
 
     }
