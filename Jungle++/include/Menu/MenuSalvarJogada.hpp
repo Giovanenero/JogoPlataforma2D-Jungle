@@ -9,9 +9,26 @@ namespace Jungle {
 
         class MenuSalvarJogada : public MenuPausa {
             private:
+                class Card {
+                    private:
+                        sf::Texture* textura;
+                        sf::RectangleShape* corpo;
+                        const std::string caminhoArquivo;
+                        const std::string caminhoImage;
+                        bool selecionado;
+                    public:
+                        Card(const sf::Vector2f pos, const std::string caminhoArquivo, const std::string caminhoImage);
+                        ~Card();
+                        void setCorpo(sf::RectangleShape* corpo);
+                        const std::string getCaminhoArquivo() const;
+                        const std::string getCaminhoImage() const;
+                        void setSelecionado(const bool selecionado);
+                        const bool getSelecionado() const;
+                        void desenhar();
+                };
                 Gerenciador::GerenciadorArquivo gerenciadorArquivo;
-                std::list<sf::RectangleShape*> listaCards;
-                std::list<sf::RectangleShape*>::iterator itCards;
+                std::list<Card*> listaCards;
+                std::list<Card*>::iterator itCards;
 
                 void inicializarCards();
             public:

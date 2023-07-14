@@ -17,6 +17,7 @@ namespace Jungle {
         
         void ObservadorMenu::teclaPressionada(const sf::Keyboard::Key tecla){
             if(tecladoEspecial[tecla] == "Enter"){
+                IDs::IDs IDEstadoAtual = pGEstado->getEstadoAtual()->getID();
                 switch (menu->getIDBotaoSelecionado())
                 {
                     case (IDs::IDs::botao_sair):
@@ -36,8 +37,7 @@ namespace Jungle {
                         break;
                     case (IDs::IDs::botao_opcao):
                     {
-                        Estado::Estado* estado = pGEstado->getEstadoAtual();
-                        if(estado->getID() == IDs::IDs::estado_menu_principal){
+                        if(IDEstadoAtual == IDs::IDs::estado_menu_principal){
                             pGEstado->addEstado(IDs::IDs::estado_menu_opcaoPrincipal);
                         } else {
                             //só pode ser o menu_pausar
@@ -46,9 +46,8 @@ namespace Jungle {
                         break;
                     case (IDs::IDs::botao_salvar_colocacao):
                     {
-                        Estado::Estado* estado = pGEstado->getEstadoAtual();
-                        if(estado->getID() == IDs::IDs::estado_menu_game_over){
-                            Estado::EstadoMenuFase* estadoMenuFase = dynamic_cast<Estado::EstadoMenuFase*>(estado);
+                        if(IDEstadoAtual == IDs::IDs::estado_menu_game_over){
+                            Estado::EstadoMenuFase* estadoMenuFase = dynamic_cast<Estado::EstadoMenuFase*>(pGEstado->getEstadoAtual());
                             Menu::MenuPausa* menuFase = estadoMenuFase->getMenuFase();
                             Menu::MenuGameOver* menuGameOver = dynamic_cast<Menu::MenuGameOver*>(menuFase);
                             menuGameOver->salvarColocacao();
@@ -60,12 +59,27 @@ namespace Jungle {
                     {
                         //adiciona 2 vezes por conta do botao_voltar;
                         pGEstado->addEstado(IDs::IDs::estado_menu_colocacao);
+                        //arrumar o bug do evento
                         pGEstado->addEstado(IDs::IDs::estado_menu_colocacao);
                     }
                         break;
-                    case (IDs::IDs::botao_salvar_jogada):
+                    case(IDs::IDs::botao_salvar_jogada):
                     {
                         pGEstado->addEstado(IDs::IDs::estado_menu_salvar_jogada);
+                        //arrumar o bug do evento
+                        pGEstado->addEstado(IDs::IDs::estado_menu_colocacao);
+                    }
+                        break;
+                    case(IDs::IDs::botao_salvar):
+                    {
+                        Estado::Estado* estado = pGEstado->getEstadoAtual();
+                        if(estado->getID() == IDs::IDs::estado_menu_salvar_jogada){
+                            Estado::EstadoMenuFase* estadoMenuFase = dynamic_cast<Estado::EstadoMenuFase*>(estado);
+                            Menu::MenuPausa* menuFase = estadoMenuFase->getMenuFase();
+                            Menu::MenuSalvarJogada* menuSalvarJogada = dynamic_cast<Menu::MenuSalvarJogada*>(menuFase);
+                            menuSalvarJogada->salvarJogada();
+                            pGEstado->removerEstado();
+                        }
                     }
                         break;
                 }
@@ -172,8 +186,10 @@ namespace Jungle {
                                     Menu::MenuPausa* menuFase = estadoMenuFase->getMenuFase();
                                     Menu::MenuSalvarJogada* menuSalvarJogada = dynamic_cast<Menu::MenuSalvarJogada*>(menuFase);
                                     menuSalvarJogada->salvarJogada();
+                                    pGEstado->removerEstado();
                                 }
                             }
+                                break;
                         }
                             break;
                     }

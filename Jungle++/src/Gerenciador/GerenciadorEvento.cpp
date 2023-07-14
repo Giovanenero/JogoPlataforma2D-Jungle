@@ -48,7 +48,7 @@ namespace Jungle {
         void GerenciadorEvento::executar(){
             sf::Event evento;
             while(pGrafico->getWindow()->pollEvent(evento)){
-                if(evento.type == sf::Event::KeyPressed){ 
+                if(evento.type == sf::Event::KeyPressed){
                     listaObservador->notificarTeclaPressionada(evento.key.code);
                 } else if(evento.type == sf::Event::KeyReleased){
                     listaObservador->notificarTeclaSolta(evento.key.code);

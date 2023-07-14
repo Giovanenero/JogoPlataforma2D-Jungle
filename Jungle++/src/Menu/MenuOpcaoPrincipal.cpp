@@ -9,11 +9,8 @@ namespace Jungle {
             MenuPrincipal(IDs::IDs::menu_opcao, "Opcoes", 100),
             velocidadeBotao(VELOCIDADE_BOTAO_VOLUME)
         {
-            atualizarPosicaoFundo();
             titulo.setCorTexto(sf::Color{0,255,0});
             titulo.setPos(sf::Vector2f(tamJanela.x / 2.0f - titulo.getTam().x / 2.0f, 25.0f));
-            //criarFundo();
-            //criarBotoes();
         }
 
         MenuOpcaoPrincipal::~MenuOpcaoPrincipal(){

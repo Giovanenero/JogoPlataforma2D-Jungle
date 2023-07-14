@@ -69,6 +69,10 @@ namespace Jungle {
             fecharArquivoGravar();
         }
 
+        void GerenciadorArquivo::removeArquivo(const char* caminhoArquivo){
+            remove(caminhoArquivo);
+        }
+
     }
 
 }

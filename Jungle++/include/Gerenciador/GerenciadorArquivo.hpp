@@ -24,6 +24,7 @@ namespace Jungle {
                 std::vector<std::string> lerArquivo(const char* caminhoArquivo);
                 void gravarConteudo(const char* caminhoArquivo, std::vector<std::string> linhas);
                 void gravarConteudo(const char* caminhoArquivo, std::string linha);
+                void removeArquivo(const char* caminhoArquivo);
         };
 
     }

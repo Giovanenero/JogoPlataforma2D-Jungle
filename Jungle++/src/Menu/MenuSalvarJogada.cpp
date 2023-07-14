@@ -20,12 +20,12 @@ namespace Jungle {
         }
 
         MenuSalvarJogada::~MenuSalvarJogada(){
-            std::list<sf::RectangleShape*>::iterator aux = listaCards.begin();
+            std::list<Card*>::iterator aux = listaCards.begin();
             while(aux != listaCards.end()){
-                sf::RectangleShape* corpo = *aux;
-                if(corpo != nullptr){
-                    delete(corpo);
-                    corpo = nullptr;
+                Card* card = *aux;
+                if(card != nullptr){
+                    delete(card);
+                    card = nullptr;
                 }
             }
             listaCards.clear();
@@ -34,24 +34,20 @@ namespace Jungle {
         void MenuSalvarJogada::inicializarCards(){
             float espaco = (tamJanela.x / 5.0f) / 5.0f;
             for(int i = 0; i < 4; i++){
-                sf::RectangleShape* corpo = new sf::RectangleShape(sf::Vector2f(tamJanela.x / 5.0f, tamJanela.x / 5.0f - 20.0f));
-                //corpo.setPosition(sf::Vector2f((tamJanela.x / 5.0f) * i - posFundo.x + espaco / 2.0f, 200.0f - posFundo.y));
-                corpo->setPosition(sf::Vector2f(
+                sf::Vector2f pos(sf::Vector2f(
                     posFundo.x - tamJanela.x / 2.0f + (tamJanela.x / 5.0f) * i + (espaco) * (i + 1), 
                     posFundo.y - tamJanela.y / 2.0f + 180.0f
                 ));
-                corpo->setOutlineThickness(10);
-                corpo->setOutlineThickness(sf::Color::Transparent);
-                corpo->setFillColor(sf::Color::Green);
-                listaCards.push_back(corpo);
+                std::string caminhoArquivo = "Jungle++/arquivo/SalvarJogada/salvar" + std::to_string(i + 1) + ".txt";
+                std::string caminhoImagem = "Jungle++/img/Captura/salvar" + std::to_string(i + 1) + ".png";
+                Card* card = new Card(pos, caminhoArquivo, caminhoImagem);
+                listaCards.push_back(card);
             }
             itCards = listaCards.begin();
-            sf::RectangleShape* corpo = *itCards;
-            corpo->setOutlineColor(sf::Color::Blue);
+            (*itCards)->setSelecionado(true);
         }
 
         void MenuSalvarJogada::salvarJogada(){
-            //terminar...
             Lista::ListaEntidade* pListaPersonagem = fase->getListaPersonagem();
             Lista::ListaEntidade* pListaObstaculo = fase->getListaObstaculo();
 
@@ -72,31 +68,41 @@ namespace Jungle {
                     linhasObstaculo.push_back(linha);
                 }
             }
-            gerenciadorArquivo.gravarConteudo("Jungle++/arquivo/SalvarJogada/salvar1.txt", linhasPersonagem);
-            gerenciadorArquivo.gravarConteudo("Jungle++/arquivo/SalvarJogada/salvar1.txt", linhasObstaculo);
+            
+            const std::string caminhoArquivo = (*itCards)->getCaminhoArquivo();
+            const std::string caminhoImagem = (*itCards)->getCaminhoImage();
+
+            gerenciadorArquivo.removeArquivo(caminhoArquivo.c_str());
+            gerenciadorArquivo.gravarConteudo(caminhoArquivo.c_str(), linhasPersonagem);
+            gerenciadorArquivo.gravarConteudo(caminhoArquivo.c_str(), linhasObstaculo);
+
+            fase->desenhar();
+
+            //salva a imagem no card
+            sf::RenderWindow* window = pGrafico->getWindow();
+            sf::Texture textura;
+            textura.create(window->getSize().x , window->getSize().y);
+            textura.update(*(static_cast<sf::Window*>(window)));
+            sf::Image imagem = textura.copyToImage();
+            imagem.saveToFile(caminhoImagem);
         }
 
         void MenuSalvarJogada::selecionaEsquerda(){
-            sf::RectangleShape* corpo = *itCards;
-            corpo->setOutlineColor(sf::Color::Transparent);
+            (*itCards)->setSelecionado(false);
             if(itCards == listaCards.begin()){
                 itCards = listaCards.end();
             }
             itCards--;
-            corpo = *itCards;
-            corpo->setOutlineColor(sf::Color::Blue);
+            (*itCards)->setSelecionado(true);
         }
 
         void MenuSalvarJogada::selecionaDireita(){
-            sf::RectangleShape* corpo = *itCards;
-            corpo->setOutlineColor(sf::Color::Transparent);
+            (*itCards)->setSelecionado(false);
             itCards++;
             if(itCards == listaCards.end()){
                 itCards = listaCards.begin();
             }
-            corpo = *itCards;
-            corpo->setOutlineThickness(10);
-            corpo->setOutlineColor(sf::Color::Blue);
+            (*itCards)->setSelecionado(true);
         }
 
         void MenuSalvarJogada::criarBotoes(){
@@ -123,12 +129,67 @@ namespace Jungle {
             //desenha os botões
             desenhar();
 
-            std::list<sf::RectangleShape*>::iterator aux = listaCards.begin();
+            std::list<Card*>::iterator aux = listaCards.begin();
             while(aux != listaCards.end()){
-                sf::RectangleShape* corpo = *aux;
-                pGrafico->desenhaElemento(*corpo);
+                Card* card = *aux;
+                card->desenhar();
                 aux++;
             }
+        }
+
+        MenuSalvarJogada::Card::Card(const sf::Vector2f pos, const std::string caminhoArquivo, const std::string caminhoImage):
+            caminhoArquivo(caminhoArquivo), caminhoImage(caminhoImage), textura(nullptr), corpo(nullptr)
+        {
+            sf::Vector2f tamJanela = pGrafico->getTamJanela();
+            corpo = new sf::RectangleShape(sf::Vector2f(tamJanela.x / 5.0f, tamJanela.x / 5.0f - 20.0f));
+            textura = new sf::Texture();
+            if(textura->loadFromFile(caminhoImage)){
+                //std::cout << "MenuSalvarJogada::nao foi possivel encontrar o caminho da textura " << caminhoImage << std::endl;
+                //exit(1);
+                //caminho de textura auxliar
+                corpo->setTexture(textura);
+            } else {
+                corpo->setFillColor(sf::Color::Black);
+            }
+            corpo->setPosition(pos);
+            corpo->setOutlineThickness(10);
+            corpo->setOutlineColor(sf::Color::Transparent);
+        }
+
+        MenuSalvarJogada::Card::~Card(){
+            if(textura != nullptr){
+                delete(textura);
+                textura = nullptr;
+            }
+            if(corpo != nullptr){
+                delete(corpo);
+                corpo = nullptr;
+            }
+        }
+
+        void MenuSalvarJogada::Card::setCorpo(sf::RectangleShape* corpo){
+            this->corpo = corpo;
+        }
+
+        const std::string MenuSalvarJogada::Card::getCaminhoArquivo() const{
+            return caminhoArquivo;
+        }
+        
+        const std::string MenuSalvarJogada::Card::getCaminhoImage() const{
+            return caminhoImage;
+        }
+
+        void MenuSalvarJogada::Card::setSelecionado(const bool selecionado){
+            this->selecionado = selecionado;
+            corpo->setOutlineColor(selecionado ? sf::Color::Green : sf::Color::Transparent);
+        }
+        
+        const bool MenuSalvarJogada::Card::getSelecionado() const{
+            return selecionado;
+        }
+
+        void MenuSalvarJogada::Card::desenhar(){
+            pGrafico->desenhaElemento(*corpo);
         }
 
     }
