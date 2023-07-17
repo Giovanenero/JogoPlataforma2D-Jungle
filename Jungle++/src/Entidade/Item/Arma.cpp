@@ -9,9 +9,31 @@ namespace Jungle {
         namespace Item {
 
             Arma::Arma(const IDs::IDs ID, Personagem::Personagem* personagem):
-                Entidade(sf::Vector2f(0.0f, 0.0f), ID), dano(0.0f), personagem(personagem)
+                Entidade(sf::Vector2f(-1000.0f, -1000.0f), ID), dano(0.0f), personagem(personagem)
             {
                 //corpo.setFillColor(sf::Color::Transparent);
+            }
+
+            Arma::Arma(const IDs::IDs ID, const std::vector<std::string> atributos):
+                Entidade(sf::Vector2f(-1000.0f, -1000.0f), ID), dano(0.0f), personagem(nullptr)
+            {
+                try {
+                    const sf::Vector2f posAtual = sf::Vector2f(std::stof(atributos[1]), std::stof(atributos[2]));
+                    const sf::Vector2f tamAtual = sf::Vector2f(std::stof(atributos[3]), std::stof(atributos[4]));
+                    const float danoAtual = std::stof(atributos[5]);
+
+                    setPos(posAtual);
+                    setTam(tamAtual);
+                    this->dano = danoAtual;
+                }
+                catch(const std::exception& e) {
+                    std::cerr << e.what() << std::endl;
+                    //Generalizando a posição, tamanho e dano se algo der errado;
+                    setPos(sf::Vector2f(-1000.0f, -1000.0f));
+                    setTam(sf::Vector2f(50.0f, 90.0f));
+                    dano = 20.0f;
+                }
+                
             }
 
             Arma::~Arma(){

@@ -14,6 +14,7 @@ namespace Jungle {
                     Personagem::Personagem* personagem;
                 public:
                     Arma(const IDs::IDs ID, Personagem::Personagem* personagem = nullptr);
+                    Arma(const IDs::IDs ID, const std::vector<std::string> atributos);
                     ~Arma();
                     void setPersonagem(Personagem::Personagem* personagem);
                     void setDano(const float dano);

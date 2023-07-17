@@ -23,6 +23,7 @@ namespace Jungle {
             ~MenuPausa();
             virtual void criarBotoes();
             void setFase(Fase::Fase* fase);
+            Fase::Fase* getFase();
             virtual void executar();
         };
 

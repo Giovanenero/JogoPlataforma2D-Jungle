@@ -41,7 +41,7 @@ namespace Jungle {
                 std::string caminhoArquivo = "Jungle++/arquivo/SalvarJogada/salvar" + std::to_string(i + 1) + ".txt";
                 std::string caminhoImagem = "Jungle++/img/Captura/salvar" + std::to_string(i + 1) + ".png";
                 Card* card = new Card(pos, caminhoArquivo, caminhoImagem);
-                card->setColor(sf::Color(180,0,0));
+                card->setColor(sf::Color(255,0,0));
                 listaCards.push_back(card);
             }
             itCards = listaCards.begin();

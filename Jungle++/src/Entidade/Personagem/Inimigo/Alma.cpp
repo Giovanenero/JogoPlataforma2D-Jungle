@@ -28,6 +28,63 @@ namespace Jungle {
                     }
                 }
 
+                Alma::Alma(const std::vector<std::string> atributos, Jogador::Jogador* pJogador):
+                    Inimigo(
+                        sf::Vector2f(0.0f, 0.0f), 
+                        sf::Vector2f(TAMANHO_ALMA_X, TAMANHO_ALMA_Y), 
+                        pJogador, 
+                        IDs::IDs::alma, 
+                        TEMPO_ALMA_MORRER, 
+                        TEMPO_ALMA_ATACAR
+                    ), invisivel(false), tempoInvisivel(0.0f)
+                {
+                    try {
+                        const sf::Vector2f posAtual = sf::Vector2f(std::stof(atributos[1]), std::stof(atributos[2]));
+                        const sf::Vector2f tamAtual = sf::Vector2f(std::stof(atributos[3]), std::stof(atributos[4]));
+                        const sf::Vector2f velFinalAtual = sf::Vector2f(std::stof(atributos[5]), std::stof(atributos[6]));
+                        const bool andandoAtual = atributos[7] == "1";
+                        const bool paraEsquerdaAtual = atributos[8] == "1";
+                        const bool levandoDanoAtual = atributos[9] == "1";
+                        const bool atacandoAtual = atributos[10] == "1";
+                        const bool morrendoAtual = atributos[11] == "1";
+                        const float vidaAtual = std::stof(atributos[12]);
+                        const float tempoDanoAtual = std::stof(atributos[13]);
+                        const float tempoMorrerAtual = std::stof(atributos[14]);
+                        const float dtAtual = std::stof(atributos[15]);
+                        const short moveAleatorioAtual = std::stol(atributos[16]);
+                        const float tempoMoverAtual = std::stof(atributos[17]);
+                        const float tempoAtacarAtual = std::stof(atributos[18]);
+                        const bool invisivelAtual = atributos[19] == "1";
+                        const float tempoInvisivelAtual = std::stof(atributos[20]);
+
+                        this->pontos = PONTOS_ALMA;
+                        setPos(posAtual);
+                        setTam(tamAtual);
+                        setVelFinal(velFinalAtual);
+                        this->andando = andandoAtual;
+                        this->paraEsquerda = paraEsquerdaAtual;
+                        this->levandoDano = levandoDanoAtual;
+                        this->atacando = atacandoAtual;
+                        this->morrendo = morrendoAtual;
+                        this->vida = vidaAtual;
+                        this->tempoDano = tempoDanoAtual;
+                        this->tempoMorrer = tempoMorrerAtual;
+                        this->dt = dtAtual;
+                        this->moveAleatorio = moveAleatorioAtual;
+                        this->tempoMover = tempoMoverAtual;
+                        this->tempoAtacar = tempoAtacarAtual;
+                        this->invisivel = invisivelAtual;
+                        this->tempoInvisivel = tempoInvisivelAtual;
+
+                        inicializarAnimacao();
+                    }
+                    catch(const std::exception& e) {
+                        std::cerr << e.what() << std::endl;
+                        podeRemover = true;
+                    }
+                    
+                }
+
                 Alma::~Alma(){
 
                 }

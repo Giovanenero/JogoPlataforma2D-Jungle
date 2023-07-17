@@ -18,6 +18,7 @@ namespace Jungle {
             class Plataforma : public Obstaculo {
             public:
                 Plataforma(sf::Vector2f pos);
+                Plataforma(const std::vector<std::string> atributos);
                 ~Plataforma();
                 void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
             };

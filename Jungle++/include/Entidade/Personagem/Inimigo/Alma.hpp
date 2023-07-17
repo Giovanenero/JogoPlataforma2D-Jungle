@@ -30,6 +30,7 @@ namespace Jungle {
                         void atualizarTempoAtacar();
                     public:
                         Alma(const sf::Vector2f pos, Jogador::Jogador* pJogador, Item::Arma* arma = nullptr);
+                        Alma(const std::vector<std::string> atributos, Jogador::Jogador* pJogador);
                         ~Alma();
                         void tomarDano(const float dano);
                         const std::string salvar();

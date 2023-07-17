@@ -5,8 +5,9 @@
 #include "GerenciadorMusica.hpp"
 
 #include "../Estado/EstadoJogar.hpp"
-#include "../Estado/EstadoMenuPrincipal.hpp"
-#include "../Estado/EstadoMenuFase.hpp"
+#include "../Estado/EstadoMenu.hpp"
+//#include "../Estado/EstadoMenuPrincipal.hpp"
+//#include "../Estado/EstadoMenuFase.hpp"
 
 //Pilha
 #include <stack>

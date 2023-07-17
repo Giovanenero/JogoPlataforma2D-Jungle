@@ -4,8 +4,8 @@ namespace Jungle {
 
     namespace Estado {
 
-        EstadoJogar::EstadoJogar(const IDs::IDs ID, Fase::Fase* fase):
-            Estado(ID), fase(fase)
+        EstadoJogar::EstadoJogar(const IDs::IDs ID):
+            Estado(ID), fase(nullptr)
         {
 
         }
@@ -15,6 +15,19 @@ namespace Jungle {
                 delete(fase);
                 fase = nullptr;
             }
+        }
+
+        void EstadoJogar::criarFase(const IDs::IDs ID, const char* caminhoArquivo){
+            if(ID == IDs::IDs::jogar_florestaBranca){
+                fase = static_cast<Fase::Fase*>(new Fase::FlorestaBranca(caminhoArquivo));
+                if(fase == nullptr){
+                    std::cout << "Jungle::Construtor::ConstrutorFase::nao foi possivel criar Fase Floresta Branca" << std::endl;
+                    exit(1);
+                }
+            } else {
+                //terminar... outra fase
+            }
+
         }
 
         Fase::Fase* EstadoJogar::getFase(){

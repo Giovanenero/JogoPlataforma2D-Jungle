@@ -23,6 +23,7 @@ namespace Jungle {
                     void verificaSaiuTela();
                 public:
                     Projetil(Personagem::Personagem* personagem = nullptr);
+                    Projetil(const std::vector<std::string> atributos, Personagem::Personagem* personagem = nullptr);
                     ~Projetil();
                     void inicializarAnimacao();
                     void setSentido(const bool paraEsquerda);

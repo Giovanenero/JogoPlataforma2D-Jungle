@@ -45,6 +45,10 @@ namespace Jungle {
             this->fase = fase;
         }
 
+        Fase::Fase* MenuPausa::getFase(){
+            return fase;
+        }
+
         void MenuPausa::atualizarBotoes(){
             std::list<Botao::BotaoTexto*>::iterator aux;
             int i = 1;

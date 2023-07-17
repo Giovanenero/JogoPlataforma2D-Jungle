@@ -59,6 +59,24 @@ namespace Jungle {
 
         void GerenciadorEstado::addEstado(const IDs::IDs ID){
             Estado::Estado* estado = nullptr;
+            //estado = dynamic_cast<Estado::Estado*>(new Estado::EstadoMenu(ID));
+            if(
+                ID == IDs::IDs::estado_menu_carregar_jogo ||
+                ID == IDs::IDs::estado_menu_colocacao ||
+                ID == IDs::IDs::estado_menu_game_over ||
+                ID == IDs::IDs::estado_menu_opcaoPrincipal ||
+                ID == IDs::IDs::estado_menu_pausa ||
+                ID == IDs::IDs::estado_menu_principal ||
+                ID == IDs::IDs::estado_menu_salvar_jogada
+            ){
+                estado = static_cast<Estado::Estado*>(new Estado::EstadoMenu(ID));
+            } else if(
+                ID == IDs::IDs::jogar_florestaBranca ||
+                ID == IDs::IDs::jogar_florestaVermelha
+            ){
+                estado = static_cast<Estado::Estado*>(new Estado::EstadoJogar(ID));
+            }
+            /*
             switch (ID)
             {
                 case (IDs::IDs::estado_menu_principal):
@@ -107,6 +125,8 @@ namespace Jungle {
                 }
                     break;
             }
+            */
+
 
             if(estado == nullptr){
                 std::cout << "ERROR::Jungle::Gerenciador::GerenciadorEstado::estado eh nullptr" << std::endl;
@@ -156,7 +176,10 @@ namespace Jungle {
         }
 
         Estado::Estado* GerenciadorEstado::getEstadoAtual() {
-            return pilhaEstados.top();
+            if(!pilhaEstados.empty()){
+                return pilhaEstados.top();
+            }
+            return nullptr;
         }
 
 

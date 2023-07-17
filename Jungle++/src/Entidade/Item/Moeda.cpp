@@ -15,6 +15,26 @@ namespace Jungle {
                 inicializarAnimacao();
             }
 
+            Moeda::Moeda(const std::vector<std::string> atributos, const IDs::IDs ID):
+                Entidade(sf::Vector2f(TAMANHO_MOEDA, TAMANHO_MOEDA), ID, sf::Vector2f(0.0f, 0.0f)), 
+                pontos(ID == IDs::IDs::moeda_amarela ? PONTOS_MOEDA_AMARELA : PONTOS_MOEDA_CINZA),
+                animacao(&corpo), tipo(ID == IDs::IDs::moeda_amarela ? "MOEDA_AMARELA" : "MOEDA_CINZA")
+            {
+                try {
+                    sf::Vector2f posAtual = sf::Vector2f(std::stof(atributos[1]), std::stof(atributos[2]));
+                    sf::Vector2f tamAtual = sf::Vector2f(std::stof(atributos[3]), std::stof(atributos[4]));
+
+                    setPos(posAtual);
+                    setTam(tamAtual);
+
+                    inicializarAnimacao();
+                } catch(const std::exception& e) {
+                    std::cerr << e.what() << std::endl;
+                    podeRemover = true;
+                }
+                
+            }
+
             Moeda::~Moeda(){
 
             }
@@ -30,6 +50,10 @@ namespace Jungle {
                     pJogador->addPontuacao(pontos);
                     podeRemover = true;
                 }
+            }
+
+            const unsigned int Moeda::getPontos() const{
+                return pontos;
             }
 
             const std::string Moeda::salvar(){

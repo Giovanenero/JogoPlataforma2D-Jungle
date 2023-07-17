@@ -4,18 +4,18 @@ namespace IDs {
 
     enum class IDs {
         vazio = 0,
-        jogador,
-        espada_jogador,
-        espada_inimigo,
-        projetil_inimigo,
-        esqueleto,
-        minotauro,
-        alma,
-        plataforma,
-        caixa,
-        moeda_amarela,
-        moeda_cinza,
-        vida,
+        jogador, //1
+        espada_jogador, //2
+        espada_inimigo, //3
+        projetil_inimigo, //4
+        esqueleto, //5
+        minotauro, //6
+        alma, //7
+        plataforma, //8
+        caixa, //9
+        moeda_amarela, //10
+        moeda_cinza, //11
+        vida, //12
         fundo_florestaNegra,
         fundo_florestaBranca,
         fase_florestaBranca,

@@ -15,6 +15,36 @@ namespace Jungle {
                 }
             }
 
+            Projetil::Projetil(const std::vector<std::string> atributos, Personagem::Personagem* personagem):
+                Arma(IDs::IDs::projetil_inimigo, personagem), animacao(&corpo),
+                velocidade(sf::Vector2f(0.0f, 0.0f)), colidiu(true), paraEsquerda(false)
+            {
+                try {
+                    const sf::Vector2f posAtual = sf::Vector2f(std::stof(atributos[1]), std::stof(atributos[2]));
+                    const sf::Vector2f tamAtual = sf::Vector2f(std::stof(atributos[3]), std::stof(atributos[4]));
+                    const float danoAtual = std::stof(atributos[5]);
+                    const bool paraEsquerdaAtual = atributos[6] == "1";
+                    const sf::Vector2f velocidadeAtual = sf::Vector2f(std::stof(atributos[7]), std::stof(atributos[8]));
+                    const bool colidiuAtual = atributos[9] == "1";
+
+                    setPos(posAtual);
+                    setTam(tamAtual);
+                    this->dano = danoAtual;
+                    this->paraEsquerda = paraEsquerdaAtual;
+                    this->velocidade = velocidadeAtual;
+                    this->colidiu = colidiuAtual;
+
+                    if(personagem != nullptr){
+                        personagem->setArma(static_cast<Arma*>(this));
+                        inicializarAnimacao();
+                    }
+                } catch(const std::exception& e) {
+                    std::cerr << e.what() << std::endl;
+                    podeRemover = true;
+                }
+                
+            }
+
             Projetil::~Projetil(){
 
             }

@@ -38,6 +38,7 @@ namespace Jungle {
                     void atualizarBarraVida();
                 public:
                     Jogador(const sf::Vector2f pos, Item::Arma* arma);
+                    Jogador(const std::vector<std::string> atributos);
                     ~Jogador();
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
                     const bool getNoChao() const;

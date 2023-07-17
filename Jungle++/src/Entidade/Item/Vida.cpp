@@ -17,6 +17,26 @@ namespace Jungle {
                 inicializarAnimacao();
             }
 
+            Vida::Vida(const std::vector<std::string> atributos):
+                Entidade(sf::Vector2f(0.0f, 0.0f), IDs::IDs::vida, sf::Vector2f(0.0f, 0.0f)), animacao(&corpo)
+            {
+                try {
+                    const sf::Vector2f posAtual = sf::Vector2f(std::stof(atributos[1]), std::stof(atributos[2]));
+                    const sf::Vector2f tamAtual = sf::Vector2f(std::stof(atributos[3]), std::stof(atributos[4]));
+                    const float vidaAtual = std::stof(atributos[5]);
+
+                    setPos(posAtual);
+                    setTam(tamAtual);
+                    this->vida = vidaAtual;
+
+                    inicializarAnimacao();
+                }
+                catch(const std::exception& e) {
+                    std::cerr << e.what() << std::endl;
+                    podeRemover = true;
+                }
+            }
+
             Vida::~Vida(){
 
             }

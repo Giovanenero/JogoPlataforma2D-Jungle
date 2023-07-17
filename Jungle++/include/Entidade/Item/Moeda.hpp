@@ -23,10 +23,12 @@ namespace Jungle {
 
                     void inicializarAnimacao();
                 public:
-                    Moeda(const sf::Vector2f pos, const IDs::IDs ID = IDs::IDs::moeda_amarela);
+                    Moeda(const sf::Vector2f pos, const IDs::IDs ID);
+                    Moeda(const std::vector<std::string> atributos, const IDs::IDs ID);
                     ~Moeda();
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
                     void atualizar();
+                    const unsigned int getPontos() const;
                     const std::string salvar();
             };
 

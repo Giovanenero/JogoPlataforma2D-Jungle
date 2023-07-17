@@ -23,6 +23,7 @@ namespace Jungle {
                     void atualizarAnimacao();
                 public:
                     Vida(const sf::Vector2f pos);
+                    Vida(const std::vector<std::string> atributos);
                     ~Vida();
                     void atualizar();
                     const float getVida() const;

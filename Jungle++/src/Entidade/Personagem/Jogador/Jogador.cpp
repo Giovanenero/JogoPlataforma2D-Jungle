@@ -3,6 +3,7 @@
 #include "../../../../include/Entidade/Personagem/Inimigo/Inimigo.hpp"
 #include "../../../../include/Entidade/Item/Vida.hpp"
 #include "../../../../include/Entidade/Item/Projetil.hpp"
+#include "../../../../include/Entidade/Item/Moeda.hpp"
 
 #include <cmath>
 
@@ -28,6 +29,53 @@ namespace Jungle {
                     
                     setArma(arma);
                     arma->setDano(DANO);
+                }
+
+                Jogador::Jogador(const std::vector<std::string> atributos):
+                    Personagem(pos, sf::Vector2f(TAMANHO_JOGADOR_X, TAMANHO_JOGADOR_Y), VELOCIDADE_JOGADOR, IDs::IDs::jogador, TEMPO_JOGADOR_MORRER, TEMPO_JOGADOR_TOMARDANO), 
+                    noChao(false), observadorJogador(new Observador::ObservadorJogador(this))
+                {
+                    try {
+                        const sf::Vector2f posAtual = sf::Vector2f(std::stof(atributos[1]), std::stof(atributos[2]));
+                        const sf::Vector2f tamAtual = sf::Vector2f(std::stof(atributos[3]), std::stof(atributos[4]));
+                        const sf::Vector2f velFinalAtual = sf::Vector2f(std::stof(atributos[5]), std::stof(atributos[6]));
+                        const bool andandoAtual = atributos[7] == "1";
+                        const bool paraEsquerdaAtual = atributos[8] == "1";
+                        const bool levandoDanoAtual = atributos[9] == "1";
+                        const bool atacandoAtual = atributos[10] == "1";
+                        const bool morrendoAtual = atributos[11] == "1";
+                        const float vidaAtual = std::stof(atributos[12]);
+                        const float tempoDanoAtual = std::stof(atributos[13]);
+                        const float tempoMorrerAtual = std::stof(atributos[14]);
+                        const float dtAtual = std::stof(atributos[15]);
+                        const unsigned int pontosAtual = std::stoi(atributos[16]);
+                        const bool noChaoAtual = atributos[17] == "1";
+
+                        setPos(posAtual);
+                        setTam(tamAtual);
+                        setVelFinal(velFinalAtual);
+                        this->andando = andandoAtual;
+                        this->paraEsquerda = paraEsquerdaAtual;
+                        this->levandoDano = levandoDanoAtual;
+                        this->atacando = atacandoAtual;
+                        this->morrendo = morrendoAtual;
+                        setVida(vidaAtual);
+                        this->tempoDano = tempoDanoAtual;
+                        this->tempoMorrer = tempoMorrerAtual;
+                        this->dt = dtAtual;
+                        this->pontos = pontosAtual;
+                        this->noChao = noChaoAtual;
+
+                        inicializarAnimacao();
+                        inicializarBarraVida();
+
+                        //setArma(arma);
+                        //arma->setDano(DANO);
+                    }
+                    catch(const std::exception& e) {
+                        std::cerr << e.what() << std::endl;
+                        exit(1);
+                    }
                 }
 
                 Jogador::~Jogador(){
@@ -137,6 +185,20 @@ namespace Jungle {
                             Item::Projetil* projetil = dynamic_cast<Item::Projetil*>(outraEntidade);
                             tomarDano(projetil->getDano());
                             projetil->setColidiu(true);
+                        }
+                            break;
+                        case(IDs::IDs::moeda_amarela):
+                        {
+                            Item::Moeda* moeda = dynamic_cast<Item::Moeda*>(outraEntidade);
+                            pontos += moeda->getPontos();
+                            moeda->remover();
+                        }
+                            break;
+                        case(IDs::IDs::moeda_cinza):
+                        {
+                            Item::Moeda* moeda = dynamic_cast<Item::Moeda*>(outraEntidade);
+                            pontos += moeda->getPontos();
+                            moeda->remover();
                         }
                             break;
                     }   
