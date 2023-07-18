@@ -20,7 +20,7 @@ namespace Jungle {
                 void selecionaEsquerda();
                 void selecionaDireita();
                 const std::string getCaminhoArquivoSelecionado() const;
-                virtual void criarBotoes();
+                void criarBotoes();
                 void executar();
         };
 

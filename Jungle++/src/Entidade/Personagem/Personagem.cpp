@@ -75,7 +75,7 @@ namespace Jungle {
                 desenhar();
             }
 
-            void Personagem::setVelFinal(sf::Vector2f velFinal){
+            void Personagem::setVelFinal(const sf::Vector2f velFinal){
                 this->velFinal = velFinal;
             }
 

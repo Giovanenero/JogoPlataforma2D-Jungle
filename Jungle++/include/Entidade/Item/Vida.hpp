@@ -25,10 +25,10 @@ namespace Jungle {
                     Vida(const sf::Vector2f pos);
                     Vida(const std::vector<std::string> atributos);
                     ~Vida();
-                    void atualizar();
                     const float getVida() const;
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
                     const std::string salvar();
+                    void atualizar();
             };
 
         }
