@@ -27,8 +27,10 @@ namespace Jungle {
                     inicializarAnimacao();
                     inicializarBarraVida();
                     
-                    setArma(arma);
-                    arma->setDano(DANO);
+                    if(arma != nullptr){
+                        setArma(arma);
+                        arma->setDano(DANO);
+                    }
                 }
 
                 Jogador::Jogador(const std::vector<std::string> atributos):
@@ -50,6 +52,9 @@ namespace Jungle {
                         const float dtAtual = std::stof(atributos[15]);
                         const unsigned int pontosAtual = std::stoi(atributos[16]);
                         const bool noChaoAtual = atributos[17] == "1";
+                        const std::string imgAtual = atributos[18];
+                        const unsigned int quadroAtual = std::stoi(atributos[19]);
+                        const float tempoTotalAtual = std::stof(atributos[20]);
 
                         setPos(posAtual);
                         setTam(tamAtual);
@@ -68,6 +73,9 @@ namespace Jungle {
 
                         inicializarAnimacao();
                         inicializarBarraVida();
+                        animacao.setImgAtual(imgAtual);
+                        animacao.setQuadroAtual(quadroAtual);
+                        animacao.setTempoTotal(tempoTotalAtual);
 
                         //setArma(arma);
                         //arma->setDano(DANO);
@@ -257,9 +265,11 @@ namespace Jungle {
                     linha += std::to_string(dt) + ' ';
                     linha += std::to_string(pontos) + ' ';
                     //salvando atributos do jogador
-                    linha += std::to_string(noChao);
+                    linha += std::to_string(noChao) + ' ';
+                    linha += animacao.getImgAtual() + ' ';
+                    linha += std::to_string(animacao.getQuadroAtual()) + ' ';
+                    linha += std::to_string(animacao.getTempoTotal());
                     return linha;
-
                 }
 
                 void Jogador::desenhar(){

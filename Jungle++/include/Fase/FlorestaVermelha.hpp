@@ -10,7 +10,7 @@ namespace Jungle {
         public:
             FlorestaVermelha();
             ~FlorestaVermelha();
-            void recuperarJogada(const char* caminhoArquivo);
+            void recuperarJogada(const std::string caminhoArquivo);
             void criarFundo();
             void criarMapa();
         };

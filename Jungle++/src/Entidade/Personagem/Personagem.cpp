@@ -91,7 +91,7 @@ namespace Jungle {
                 this->arma = arma;
                 arma->setPersonagem(this);
                 arma->setTam(tam);
-                arma->setDano(20.0f);
+                arma->setDano(arma->getDano() == 0.0f ? 20.0f : arma->getDano());
                 //guardarArma();
             }
 

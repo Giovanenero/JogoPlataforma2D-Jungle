@@ -26,6 +26,9 @@ namespace Jungle {
                     const bool paraEsquerdaAtual = atributos[6] == "1";
                     const sf::Vector2f velocidadeAtual = sf::Vector2f(std::stof(atributos[7]), std::stof(atributos[8]));
                     const bool colidiuAtual = atributos[9] == "1";
+                    const std::string imgAtual = atributos[10];
+                    const unsigned int quadroAtual = std::stoi(atributos[11]);
+                    const float tempoTotalAtual = std::stof(atributos[12]);
 
                     setPos(posAtual);
                     setTam(tamAtual);
@@ -37,9 +40,12 @@ namespace Jungle {
                     if(personagem != nullptr){
                         personagem->setArma(static_cast<Arma*>(this));
                         inicializarAnimacao();
+                        animacao.setImgAtual(imgAtual);
+                        animacao.setQuadroAtual(quadroAtual);
+                        animacao.setTempoTotal(tempoTotalAtual);
                     }
                 } catch(const std::exception& e) {
-                    std::cerr << e.what() << std::endl;
+                    std::cerr << "ERRO::projetil::" << e.what() << std::endl;
                     podeRemover = true;
                 }
                 
@@ -57,6 +63,7 @@ namespace Jungle {
                         case (IDs::IDs::alma):
                         {
                             animacao.addAnimacao("Jungle++/img/Personagem/Inimigo/Alma/ProjetilAlma.png" , "ATACA", 4, 0.12f, sf::Vector2f(5.0f, 5.0f), sf::Vector2f(tam.x / 2.0f, tam.y / 2.2f), false);
+                            animacao.setImgAtual("ATACA");
                         }
                             break;
                     }
@@ -130,7 +137,10 @@ namespace Jungle {
                 linha += std::to_string(paraEsquerda) + ' ';
                 linha += std::to_string(velocidade.x) + ' ';
                 linha += std::to_string(velocidade.y) + ' ';
-                linha += std::to_string(colidiu);
+                linha += std::to_string(colidiu) + ' ';
+                linha += animacao.getImgAtual() + ' ';
+                linha += std::to_string(animacao.getQuadroAtual()) + ' ';
+                linha += std::to_string(animacao.getTempoTotal());
                 return linha;
             }
 

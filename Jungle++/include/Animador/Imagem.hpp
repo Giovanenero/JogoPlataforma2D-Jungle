@@ -24,6 +24,10 @@ namespace Jungle {
             ~Imagem();
             void atualizar(const bool paraEsquerda, const float dt);
             void resetar();
+            const unsigned int getQuadroAtual() const;
+            void setQuadroAtual(const unsigned int imgAtual);
+            const float getTempoTotal() const;
+            void setTempoTotal(const float tempoTotal);
             const sf::IntRect getTamanho() const;
             const sf::Texture* getTextura() const;
             const sf::Vector2f getEscala() const;

@@ -17,14 +17,14 @@ namespace Jungle {
             }
         }
 
-        void EstadoJogar::criarFase(const IDs::IDs ID, const char* caminhoArquivo){
+        void EstadoJogar::criarFase(const std::string caminhoArquivo){
             if(ID == IDs::IDs::jogar_florestaBranca){
                 fase = static_cast<Fase::Fase*>(new Fase::FlorestaBranca(caminhoArquivo));
                 if(fase == nullptr){
                     std::cout << "Jungle::Construtor::ConstrutorFase::nao foi possivel criar Fase Floresta Branca" << std::endl;
                     exit(1);
                 }
-            } else {
+            } else if(ID == IDs::IDs::jogar_florestaVermelha){
                 //terminar... outra fase
             }
 

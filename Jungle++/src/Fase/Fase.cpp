@@ -66,8 +66,8 @@ namespace Jungle {
                 exit(1);
             }
             esqueleto->setArma(espadaInimigo);
-            listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(espadaInimigo));
             listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(esqueleto));
+            listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(espadaInimigo));
         }
 
         void Fase::criarEsqueleto(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma, Entidade::Personagem::Jogador::Jogador* pJogador){

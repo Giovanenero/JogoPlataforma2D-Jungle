@@ -23,16 +23,21 @@ namespace Jungle {
                 try {
                     sf::Vector2f posAtual = sf::Vector2f(std::stof(atributos[1]), std::stof(atributos[2]));
                     sf::Vector2f tamAtual = sf::Vector2f(std::stof(atributos[3]), std::stof(atributos[4]));
+                    const std::string imgAtual = atributos[5];
+                    const unsigned int quadroAtual = std::stoi(atributos[6]);
+                    const float tempoTotalAtual = std::stof(atributos[7]);
 
                     setPos(posAtual);
                     setTam(tamAtual);
 
                     inicializarAnimacao();
+                    animacao.setImgAtual(imgAtual);
+                    animacao.setQuadroAtual(quadroAtual);
+                    animacao.setTempoTotal(tempoTotalAtual);
                 } catch(const std::exception& e) {
-                    std::cerr << e.what() << std::endl;
+                    std::cerr << "ERRO::Moeda::" << e.what() << std::endl;
                     podeRemover = true;
-                }
-                
+                }   
             }
 
             Moeda::~Moeda(){
@@ -42,6 +47,7 @@ namespace Jungle {
             void Moeda::inicializarAnimacao(){
                 const char* caminhoTextura = ID == IDs::IDs::moeda_amarela ? CAMINHO_MOEDA_AMARELA : CAMINHO_MOEDA_CINZA; 
                 animacao.addAnimacao(caminhoTextura , tipo, 8, 0.12f, sf::Vector2f(1.0f, 1.0f));
+                animacao.setImgAtual(tipo);
             }
 
             void Moeda::colisao(Entidade* outraEntidade, sf::Vector2f ds){
@@ -65,8 +71,9 @@ namespace Jungle {
                 linha += std::to_string(tam.x) + ' ';
                 linha += std::to_string(tam.y) + ' ';
                 //salvando atributos da moeda
-                linha += std::to_string(pontos) + ' ';
-                linha += tipo;
+                linha += animacao.getImgAtual() + ' ';
+                linha += std::to_string(animacao.getQuadroAtual()) + ' ';
+                linha += std::to_string(animacao.getTempoTotal());
                 return linha;
             }
 

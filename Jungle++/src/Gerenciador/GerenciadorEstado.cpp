@@ -76,58 +76,6 @@ namespace Jungle {
             ){
                 estado = static_cast<Estado::Estado*>(new Estado::EstadoJogar(ID));
             }
-            /*
-            switch (ID)
-            {
-                case (IDs::IDs::estado_menu_principal):
-                {
-                    estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuPrincipal());
-                }
-                    break;
-                case (IDs::IDs::estado_menu_pausa):
-                {
-                    estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuFase(IDs::IDs::estado_menu_pausa, IDs::IDs::menu_pausa));
-                }
-                    break;
-                case (IDs::IDs::jogar_florestaBranca):
-                {
-                    Fase::Fase* fase = nullptr;
-                    Construtor::ConstrutorFase construtorFase;
-
-                    fase = construtorFase.criarFase(ID);
-                    
-                    estado = static_cast<Estado::Estado*>( new Estado::EstadoJogar(ID, fase));
-                }
-                    break;
-                case (IDs::IDs::estado_menu_colocacao):
-                {
-                    estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuPrincipal(ID, IDs::IDs::menu_colocacao));
-                }
-                    break;
-                case (IDs::IDs::estado_menu_opcaoPrincipal):
-                {
-                    estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuPrincipal(ID, IDs::IDs::menu_opcao));
-                }
-                    break;
-                case (IDs::IDs::estado_menu_game_over):
-                {
-                    estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuFase(ID, IDs::IDs::menu_game_over));
-                }
-                    break;
-                case (IDs::IDs::estado_menu_salvar_jogada):
-                {
-                    estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuFase(ID, IDs::IDs::menu_salvar_jogada));
-                }
-                    break;
-                case (IDs::IDs::estado_menu_carregar_jogo):
-                {
-                    estado = static_cast<Estado::Estado*>(new Estado::EstadoMenuPrincipal(ID, IDs::IDs::menu_carregar_jogo));
-                }
-                    break;
-            }
-            */
-
-
             if(estado == nullptr){
                 std::cout << "ERROR::Jungle::Gerenciador::GerenciadorEstado::estado eh nullptr" << std::endl;
                 exit(1);

@@ -10,9 +10,9 @@ namespace Jungle {
     namespace Fase {
 
         class FlorestaBranca : public Fase  {
-            void recuperarJogada(const char* caminhoArquivo);
+            void recuperarJogada(const std::string caminhoArquivo);
         public:
-            FlorestaBranca(const char* caminhoArquivo = "");
+            FlorestaBranca(const std::string caminhoArquivo = "");
             ~FlorestaBranca();
             void criarFundo();
             void criarMapa();

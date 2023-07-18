@@ -24,15 +24,21 @@ namespace Jungle {
                     const sf::Vector2f posAtual = sf::Vector2f(std::stof(atributos[1]), std::stof(atributos[2]));
                     const sf::Vector2f tamAtual = sf::Vector2f(std::stof(atributos[3]), std::stof(atributos[4]));
                     const float vidaAtual = std::stof(atributos[5]);
+                    const std::string imgAtual = atributos[6];
+                    const unsigned int quadroAtual = std::stoi(atributos[7]);
+                    const float tempoTotalAtual = std::stof(atributos[8]);
 
                     setPos(posAtual);
                     setTam(tamAtual);
                     this->vida = vidaAtual;
 
                     inicializarAnimacao();
+                    animacao.setImgAtual(imgAtual);
+                    animacao.setQuadroAtual(quadroAtual);
+                    animacao.setTempoTotal(tempoTotalAtual);
                 }
                 catch(const std::exception& e) {
-                    std::cerr << e.what() << std::endl;
+                    std::cerr << "ERRO::Vida::" << e.what() << std::endl;
                     podeRemover = true;
                 }
             }
@@ -67,7 +73,10 @@ namespace Jungle {
                 linha += std::to_string(tam.x) + ' ';
                 linha += std::to_string(tam.y) + ' ';
                 //salvando atributos da vida
-                linha += std::to_string(vida);
+                linha += std::to_string(vida) + ' ';
+                linha += animacao.getImgAtual() + ' ';
+                linha += std::to_string(animacao.getQuadroAtual()) + ' ';
+                linha += std::to_string(animacao.getTempoTotal());
                 return linha;
             }
 

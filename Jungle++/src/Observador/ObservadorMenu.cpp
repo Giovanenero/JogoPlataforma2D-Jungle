@@ -34,7 +34,7 @@ namespace Jungle {
                     {
                         pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
                         Estado::EstadoJogar* estadoJogar = dynamic_cast<Estado::EstadoJogar*>(pGEstado->getEstadoAtual());
-                        estadoJogar->criarFase(IDs::IDs::jogar_florestaBranca);
+                        estadoJogar->criarFase();
                     }
                         break;
                     case (IDs::IDs::botao_opcao):
@@ -53,9 +53,6 @@ namespace Jungle {
                             Estado::EstadoMenu* estadoMenuFase = dynamic_cast<Estado::EstadoMenu*>(estado);
                             Menu::MenuGameOver* menuGameOver = dynamic_cast<Menu::MenuGameOver*>(estadoMenuFase->getMenu());
                             menuGameOver->salvarColocacao();
-                            //Menu::MenuPausa* menuFase = estadoMenuFase->getMenuFase();
-                            //Menu::MenuGameOver* menuGameOver = dynamic_cast<Menu::MenuGameOver*>(menuFase);
-                            //menuGameOver->salvarColocacao();
                         }
                         pGEstado->removerEstado(2);
                     }
@@ -90,12 +87,23 @@ namespace Jungle {
                     {
                         pGEstado->addEstado(IDs::IDs::estado_menu_carregar_jogo);
                         //arrumar bug do evento
-                        //pGEstado->addEstado(IDs::IDs::estado_menu_colocacao);
+                        pGEstado->addEstado(IDs::IDs::estado_menu_colocacao);
                     }
                         break;
                     case (IDs::IDs::botao_carregar):
                     {
-                        //terminar..
+                        Estado::Estado* estado = pGEstado->getEstadoAtual();
+                        if(estado->getID() == IDs::IDs::estado_menu_carregar_jogo){
+                            Estado::EstadoMenu* estadoMenu = dynamic_cast<Estado::EstadoMenu*>(estado);
+                            Menu::MenuCarregarJogo* menuCarregarJogo = dynamic_cast<Menu::MenuCarregarJogo*>(estadoMenu->getMenu());
+                            const std::string caminhoArquivo = menuCarregarJogo->getCaminhoArquivoSelecionado();
+                            if(caminhoArquivo != ""){
+                                pGEstado->removerEstado();
+                                pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
+                                Estado::EstadoJogar* estadoJogar = dynamic_cast<Estado::EstadoJogar*>(pGEstado->getEstadoAtual());
+                                estadoJogar->criarFase(caminhoArquivo);
+                            }
+                        }
                     }
                         break;
                 }
@@ -150,6 +158,8 @@ namespace Jungle {
                             {
                                 //pGEstado->addEstado(IDs::IDs::estado_menu_carregar_jogo);
                                 pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
+                                Estado::EstadoJogar* estadoJogar = dynamic_cast<Estado::EstadoJogar*>(pGEstado->getEstadoAtual());
+                                estadoJogar->criarFase();
                             }
                                 break;
                             case (IDs::IDs::botao_sair):
@@ -184,10 +194,6 @@ namespace Jungle {
                                     Estado::EstadoMenu* estadoMenuFase = dynamic_cast<Estado::EstadoMenu*>(estado);
                                     Menu::MenuGameOver* menuGameOver = dynamic_cast<Menu::MenuGameOver*>(estadoMenuFase->getMenu());
                                     menuGameOver->salvarColocacao();
-                                    //Estado::EstadoMenuFase* estadoMenuFase = dynamic_cast<Estado::EstadoMenuFase*>(estado);
-                                    //Menu::MenuPausa* menuFase = estadoMenuFase->getMenuFase();
-                                    //Menu::MenuGameOver* menuGameOver = dynamic_cast<Menu::MenuGameOver*>(menuFase);
-                                    //menuGameOver->salvarColocacao();
                                 }
                                 pGEstado->removerEstado(2);
                             }
@@ -204,10 +210,6 @@ namespace Jungle {
                                     Estado::EstadoMenu* estadoMenu = dynamic_cast<Estado::EstadoMenu*>(estado);
                                     Menu::MenuSalvarJogada* menuSalvarJogada = dynamic_cast<Menu::MenuSalvarJogada*>(estadoMenu->getMenu());
                                     menuSalvarJogada->salvarJogada();
-                                    //Estado::EstadoMenuFase* estadoMenuFase = dynamic_cast<Estado::EstadoMenuFase*>(estado);
-                                    //Menu::MenuPausa* menuFase = estadoMenuFase->getMenuFase();
-                                    //Menu::MenuSalvarJogada* menuSalvarJogada = dynamic_cast<Menu::MenuSalvarJogada*>(menuFase);
-                                    //menuSalvarJogada->salvarJogada();
                                     pGEstado->removerEstado();
                                 }
                             }
@@ -215,18 +217,21 @@ namespace Jungle {
                             case (IDs::IDs::botao_carregar_jogo):
                             {
                                 pGEstado->addEstado(IDs::IDs::estado_menu_carregar_jogo);
-                                //arrumar bug do evento
-                                //pGEstado->addEstado(IDs::IDs::estado_menu_colocacao);
                             }
                                 break;
                             case (IDs::IDs::botao_carregar):
                             {
-                                //terminar..
                                 Estado::Estado* estado = pGEstado->getEstadoAtual();
                                 if(estado->getID() == IDs::IDs::estado_menu_carregar_jogo){
-                                    //Estado::EstadoMenu* estadoMenu = new Estado::EstadoMenu(IDs::IDs::estado_menu_carregar_jogo);
-                                    //Estado::EstadoMenuFase* estadoMenu = dynamic_cast<Estado::EstadoMenuFase*>(estado);
-                                    //Menu::MenuCarregarJogo* menuCarregarJogo = dynamic_cast<Menu::MenuCarregarJogo*>(estadoMenu->getMenuFase());
+                                    Estado::EstadoMenu* estadoMenu = dynamic_cast<Estado::EstadoMenu*>(estado);
+                                    Menu::MenuCarregarJogo* menuCarregarJogo = dynamic_cast<Menu::MenuCarregarJogo*>(estadoMenu->getMenu());
+                                    const std::string caminhoArquivo = menuCarregarJogo->getCaminhoArquivoSelecionado();
+                                    if(caminhoArquivo != ""){
+                                        pGEstado->removerEstado();
+                                        pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
+                                        Estado::EstadoJogar* estadoJogar = dynamic_cast<Estado::EstadoJogar*>(pGEstado->getEstadoAtual());
+                                        estadoJogar->criarFase(caminhoArquivo);
+                                    }
                                 }
                             }
                                 break;

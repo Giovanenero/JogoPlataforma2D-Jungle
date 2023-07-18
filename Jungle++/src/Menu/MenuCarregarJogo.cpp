@@ -50,6 +50,11 @@ namespace Jungle {
             (*itCards)->setSelecionado(true);
         }
 
+        const std::string MenuCarregarJogo::getCaminhoArquivoSelecionado() const{
+            Card* card = (*itCards);
+            return card->getExiste() ? card->getCaminhoArquivo() : "";
+        }
+
         void MenuCarregarJogo::criarBotoes(){
             const float posBotaoX = tamJanela.x / 2.0f - tamBotao.x / 2.0f;
             addBotao("Carregar", sf::Vector2f(posBotaoX, tamJanela.y / 2.0f + tamBotao.y * 3.6f), IDs::IDs::botao_carregar, sf::Color{0, 255, 0});

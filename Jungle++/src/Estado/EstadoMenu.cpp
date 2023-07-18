@@ -59,7 +59,6 @@ namespace Jungle {
                     fase = estadoMenu->getFase();
                 }
             }
-            std::cout << "a " << std::endl;
             switch (ID)
             {
                 case (IDs::IDs::estado_menu_principal):

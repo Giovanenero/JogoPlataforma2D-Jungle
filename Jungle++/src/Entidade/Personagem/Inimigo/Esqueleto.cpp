@@ -47,6 +47,9 @@ namespace Jungle {
                         const short moveAleatorioAtual = std::stol(atributos[16]);
                         const float tempoMoverAtual = std::stof(atributos[17]);
                         const float tempoAtacarAtual = std::stof(atributos[18]);
+                        const std::string imgAtual = atributos[19];
+                        const unsigned int quadroAtual = std::stoi(atributos[20]);
+                        const float tempoTotalAtual = std::stof(atributos[21]);
 
                         setPos(posAtual);
                         setTam(tamAtual);
@@ -65,6 +68,9 @@ namespace Jungle {
                         this->tempoAtacar = tempoAtacarAtual;
 
                         inicializarAnimacao();
+                        animacao.setImgAtual(imgAtual);
+                        animacao.setQuadroAtual(quadroAtual);
+                        animacao.setTempoTotal(tempoTotalAtual);
                     }
                     catch(const std::exception& e)
                     {
@@ -101,7 +107,10 @@ namespace Jungle {
                     //salvando atributos do inimigo
                     linha += std::to_string(moveAleatorio) + ' ';
                     linha += std::to_string(tempoMover) + ' ';
-                    linha += std::to_string(tempoAtacar);
+                    linha += std::to_string(tempoAtacar) + ' ';
+                    linha += animacao.getImgAtual() + ' ';
+                    linha += std::to_string(animacao.getQuadroAtual()) + ' ';
+                    linha += std::to_string(animacao.getTempoTotal());
                     //salvando atributos do esqueleto
                     //ainda n tem
                     return linha;

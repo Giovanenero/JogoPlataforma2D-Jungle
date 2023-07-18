@@ -56,6 +56,9 @@ namespace Jungle {
                         const float tempoAtacarAtual = std::stof(atributos[18]);
                         const bool invisivelAtual = atributos[19] == "1";
                         const float tempoInvisivelAtual = std::stof(atributos[20]);
+                        const std::string imgAtual = atributos[21];
+                        const unsigned int quadroAtual = std::stoi(atributos[22]);
+                        const float tempoTotalAtual = std::stof(atributos[23]);
 
                         this->pontos = PONTOS_ALMA;
                         setPos(posAtual);
@@ -77,9 +80,12 @@ namespace Jungle {
                         this->tempoInvisivel = tempoInvisivelAtual;
 
                         inicializarAnimacao();
+                        animacao.setImgAtual(imgAtual);
+                        animacao.setQuadroAtual(quadroAtual);
+                        animacao.setTempoTotal(tempoTotalAtual);
                     }
                     catch(const std::exception& e) {
-                        std::cerr << e.what() << std::endl;
+                        std::cerr << "ERRO::Alma::" << e.what() << std::endl;
                         podeRemover = true;
                     }
                     
@@ -204,7 +210,10 @@ namespace Jungle {
                     linha += std::to_string(tempoAtacar) + ' ';
                     //salvando atributos da alma
                     linha += std::to_string(invisivel) + ' ';
-                    linha += std::to_string(tempoInvisivel);
+                    linha += std::to_string(tempoInvisivel) + ' ';
+                    linha += animacao.getImgAtual() + ' ';
+                    linha += std::to_string(animacao.getQuadroAtual()) + ' ';
+                    linha += std::to_string(animacao.getTempoTotal());
                     //ainda n tem
                     return linha;
                 }

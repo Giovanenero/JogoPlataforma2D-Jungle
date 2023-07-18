@@ -4,11 +4,15 @@ namespace Jungle {
 
     namespace Fase {
 
-        FlorestaBranca::FlorestaBranca(const char* caminhoArquivo):
+        FlorestaBranca::FlorestaBranca(const std::string caminhoArquivo):
             Fase(IDs::IDs::fase_florestaBranca, IDs::IDs::fundo_florestaBranca)
         {
+            criarFundo();
             if(caminhoArquivo != ""){
+                std::cout << caminhoArquivo << std::endl;
                 recuperarJogada(caminhoArquivo);
+            } else {
+                criarMapa();
             }
         }
 
@@ -16,8 +20,8 @@ namespace Jungle {
 
         }
 
-        void FlorestaBranca::recuperarJogada(const char* caminhoArquivo){
-            std::vector<std::string> linhas = GArquivo.lerArquivo(caminhoArquivo);
+        void FlorestaBranca::recuperarJogada(const std::string caminhoArquivo){
+            std::vector<std::string> linhas = GArquivo.lerArquivo(caminhoArquivo.c_str());
             int i = 2;
             Entidade::Personagem::Jogador::Jogador* pJogador = criarJogador(getAtributosEntidade(linhas[0]), getAtributosEntidade(linhas[1]));
             while(i < linhas.size()){

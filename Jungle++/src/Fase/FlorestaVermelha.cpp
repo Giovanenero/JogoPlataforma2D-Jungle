@@ -14,7 +14,7 @@ namespace Jungle {
 
         }
 
-        void FlorestaVermelha::recuperarJogada(const char* caminhoArquivo){
+        void FlorestaVermelha::recuperarJogada(const std::string caminhoArquivo){
             //terminar...
         }
 

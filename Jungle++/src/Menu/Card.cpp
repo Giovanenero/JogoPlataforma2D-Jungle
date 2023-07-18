@@ -8,7 +8,7 @@ namespace Jungle {
             
         Card::Card(const sf::Vector2f pos, const std::string caminhoArquivo, const std::string caminhoImage):
             caminhoArquivo(caminhoArquivo), caminhoImage(caminhoImage), textura(nullptr), corpo(nullptr),
-            cor(sf::Color(0, 255, 0))
+            cor(sf::Color(0, 255, 0)), existe(false)
         {
             sf::Vector2f tamJanela = pGrafico->getTamJanela();
             corpo = new sf::RectangleShape(sf::Vector2f(tamJanela.x / 5.0f, tamJanela.x / 5.0f - 20.0f));
@@ -18,6 +18,7 @@ namespace Jungle {
                 //exit(1);
                 //caminho de textura auxliar
                 corpo->setTexture(textura);
+                existe = true;
             } else {
                 corpo->setFillColor(sf::Color::Black);
             }
@@ -56,6 +57,10 @@ namespace Jungle {
             
         const bool Card::getSelecionado() const{
             return selecionado;
+        }
+
+        const bool Card::getExiste() const{
+            return existe;
         }
 
         void Card::desenhar(){

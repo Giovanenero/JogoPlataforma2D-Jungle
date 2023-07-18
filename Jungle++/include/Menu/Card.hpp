@@ -14,6 +14,7 @@ namespace Jungle {
                 const std::string caminhoImage;
                 sf::Color cor;
                 bool selecionado;
+                bool existe;
             
                 static Gerenciador::GerenciadorGrafico* pGrafico;
             public:
@@ -24,6 +25,7 @@ namespace Jungle {
                 void setColor(sf::Color cor);
                 void setSelecionado(const bool selecionado);
                 const bool getSelecionado() const;
+                const bool getExiste() const;
                 void desenhar();
         };
 

@@ -73,7 +73,7 @@ namespace Jungle {
             Entidade::Personagem::Jogador::Jogador* getJogador();
             void mudarEstadoObservador();
             const unsigned int getPontuacaoJogador() const;
-            virtual void recuperarJogada(const char* caminhoArquivo) = 0;
+            virtual void recuperarJogada(const std::string caminhoArquivo) = 0;
             Lista::ListaEntidade* getListaPersonagem();
             Lista::ListaEntidade* getListaObstaculo();
         };
