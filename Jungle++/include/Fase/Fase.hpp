@@ -13,8 +13,6 @@
 //Listas
 #include "../Lista/ListaEntidade.hpp"
 
-//Construtor
-#include "../Construtor/ConstrutorEntidade.hpp"
 #include "../Entidade/Personagem/Inimigo/Esqueleto.hpp"
 #include "../Entidade/Personagem/Inimigo/Alma.hpp"
 #include "../Entidade/Item/Projetil.hpp"
@@ -40,7 +38,6 @@ namespace Jungle {
             Lista::ListaEntidade* listaPersonagens;
             Lista::ListaEntidade* listaObstaculos;
             Gerenciador::GerenciadorArquivo GArquivo;
-            Construtor::ConstrutorEntidade construtorEntidade;
             Gerenciador::GerenciadorColisao* pColisao;
             Parallax::Fundo fundo;
             unsigned int pontuacaoJogador;
@@ -66,7 +63,6 @@ namespace Jungle {
             ~Fase();
             virtual void criarFundo() = 0;
             virtual void criarMapa() = 0;
-            //arrumar..
             void criarEntidade(char letra, const sf::Vector2i pos);
             void executar();
             void desenhar();

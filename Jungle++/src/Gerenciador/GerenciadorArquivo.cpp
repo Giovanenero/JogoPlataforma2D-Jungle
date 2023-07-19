@@ -58,7 +58,7 @@ namespace Jungle {
             abrirArquivoGravar(caminhoArquivo);
             std::string linha = "";
             for(int i = 0; i < linhas.size(); i++){
-                arquivoGravar << linhas[i] << " " << "\n";
+                arquivoGravar << linhas[i] << " " << std::endl;
             }
             fecharArquivoGravar();
         }

@@ -1,5 +1,4 @@
 #include "../../include/Gerenciador/GerenciadorEstado.hpp"
-#include "../../include/Construtor/ConstrutorFase.hpp"
 
 namespace Jungle {
 

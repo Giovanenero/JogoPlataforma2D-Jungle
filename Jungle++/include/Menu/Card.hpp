@@ -22,7 +22,7 @@ namespace Jungle {
                 ~Card();
                 const std::string getCaminhoArquivo() const;
                 const std::string getCaminhoImage() const;
-                void setColor(sf::Color cor);
+                void setColor(const sf::Color cor);
                 void setSelecionado(const bool selecionado);
                 const bool getSelecionado() const;
                 const bool getExiste() const;

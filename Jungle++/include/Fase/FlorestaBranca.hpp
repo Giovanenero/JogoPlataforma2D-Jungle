@@ -10,6 +10,7 @@ namespace Jungle {
     namespace Fase {
 
         class FlorestaBranca : public Fase  {
+        private:
             void recuperarJogada(const std::string caminhoArquivo);
         public:
             FlorestaBranca(const std::string caminhoArquivo = "");

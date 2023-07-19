@@ -9,7 +9,7 @@ namespace Jungle {
             Ente(ID), listaBotaoTexto(), it(), tamBotao(tamBotao), 
             tamJanela(pGrafico->getTamJanela()), posFundo(sf::Vector2f(0.0f, 0.0f)),
             titulo(pGrafico->carregarFonte("Jungle++/fonte/menu.ttf"), nome, tamFonte),
-            observadorMenu(new Observador::ObservadorMenu(this))
+            observadorMenu(new Observador::ObservadorMenu(this)), mouseSelecionado(false)
         {
             if(observadorMenu == nullptr){
                 std::cout << "ERROR::Jungle::Menu::MenuPrincipal::nao foi possivel criar um Observador Menu Principal" << std::endl;

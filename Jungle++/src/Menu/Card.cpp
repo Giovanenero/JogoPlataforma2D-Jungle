@@ -46,7 +46,7 @@ namespace Jungle {
             return caminhoImage;
         }
 
-        void Card::setColor(sf::Color cor){
+        void Card::setColor(const sf::Color cor){
             this->cor = cor;
         }
 

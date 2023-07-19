@@ -27,7 +27,7 @@ namespace Jungle {
             const sf::Vector2f tamJanela;
             sf::Vector2f posFundo;
             Botao::Texto titulo;
-            bool mouseSelecionado = false;
+            bool mouseSelecionado;
 
             void atualizarPosicaoFundo();
             virtual void criarFundo(){};

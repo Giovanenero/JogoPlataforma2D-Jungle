@@ -7,10 +7,11 @@ namespace Jungle {
     namespace Fase {
 
         class FlorestaVermelha : public Fase {
+        private:
+            void recuperarJogada(const std::string caminhoArquivo);
         public:
             FlorestaVermelha();
             ~FlorestaVermelha();
-            void recuperarJogada(const std::string caminhoArquivo);
             void criarFundo();
             void criarMapa();
         };

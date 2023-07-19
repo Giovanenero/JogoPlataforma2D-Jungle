@@ -99,7 +99,7 @@ namespace Jungle {
             criarAlma(sf::Vector2f(200.0f, 500.0f), pJogador);
 
             for(int i = -2; i < 8; i++){
-                listaObstaculos->addEntidade(construtorEntidade.criarPlataforma(sf::Vector2f(i * 300.0f, 550.0f)));
+                criarPlataforma(sf::Vector2f(i * 300.0f, 550.0f));
             }
         }
 

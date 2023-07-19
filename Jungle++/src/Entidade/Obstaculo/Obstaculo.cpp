@@ -57,7 +57,7 @@ namespace Jungle {
                 linha += std::to_string(pos.x) + ' ';
                 linha += std::to_string(pos.y) + ' ';
                 linha += std::to_string(tam.x) + ' ';
-                linha += std::to_string(tam.y) + ' ';
+                linha += std::to_string(tam.y);
                 return linha;
             }
 
