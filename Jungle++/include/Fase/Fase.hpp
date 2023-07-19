@@ -21,7 +21,11 @@
 #include "../Entidade/Obstaculo/Plataforma.hpp"
 #include "../Entidade/Obstaculo/Caixa.hpp"
 
+#include "../Menu/Botao/Texto.hpp"
+
 #include <fstream>
+
+#define CAMINHO_FONTE_FASE "Jungle++/fonte/menu.ttf"
 
 namespace Jungle {
 
@@ -33,7 +37,10 @@ namespace Jungle {
 
         class Fase : public Ente {
         private:
-            Observador::ObservadorFase* observadorFase; 
+            Observador::ObservadorFase* observadorFase;
+            float tempo;
+            Menu::Botao::Texto textoPontuacao;
+            Menu::Botao::Texto textoTempo;
         protected:
             Lista::ListaEntidade* listaPersonagens;
             Lista::ListaEntidade* listaObstaculos;
@@ -41,6 +48,7 @@ namespace Jungle {
             Gerenciador::GerenciadorColisao* pColisao;
             Parallax::Fundo fundo;
             unsigned int pontuacaoJogador;
+            unsigned int tempoJogo;
 
             void criarEsqueleto(const sf::Vector2f pos, Entidade::Personagem::Jogador::Jogador* pJogador);
             void criarEsqueleto(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma, Entidade::Personagem::Jogador::Jogador* pJogador);
@@ -72,6 +80,9 @@ namespace Jungle {
             virtual void recuperarJogada(const std::string caminhoArquivo) = 0;
             Lista::ListaEntidade* getListaPersonagem();
             Lista::ListaEntidade* getListaObstaculo();
+            void setPontuacao(const unsigned int pontuacaoJogador);
+            void atualizarTempo();
+            void atualizarPontuacao();
         };
 
     }

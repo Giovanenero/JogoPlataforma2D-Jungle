@@ -1,4 +1,5 @@
 #include "../../include/Observador/ObservadorJogador.hpp"
+#include "../../include/Estado/EstadoJogar.hpp"
 
 namespace Jungle {
 
@@ -34,6 +35,20 @@ namespace Jungle {
                 pJogador->parar();
             } else if(teclado[tecla] == 'w' || teclado[tecla] == 's'){
                 pJogador->atacar(false);
+            }
+        }
+
+        void ObservadorJogador::atualizarPontuacao(const unsigned int pontos){
+            Estado::Estado* estado = pGEstado->getEstadoAtual();
+            if(estado->getID() == IDs::IDs::jogar_florestaBranca || estado->getID() == IDs::IDs::jogar_florestaVermelha){
+                Estado::EstadoJogar* estadoJogar = dynamic_cast<Estado::EstadoJogar*>(estado);
+                Fase::Fase* fase = estadoJogar->getFase();
+                if(fase == nullptr){
+                    std::cout << "ObservadorJogador::Fase eh nullptr" << std::endl;
+                    exit(1);
+                }
+                fase->setPontuacao(pontos);
+
             }
         }
 

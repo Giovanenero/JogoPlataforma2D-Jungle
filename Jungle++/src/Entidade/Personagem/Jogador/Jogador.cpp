@@ -234,6 +234,7 @@ namespace Jungle {
 
                 void Jogador::addPontuacao(const unsigned int pontos){
                     this->pontos += pontos;
+                    observadorJogador->atualizarPontuacao(this->pontos);
                 }
 
                 void Jogador::setVida(const float vida){

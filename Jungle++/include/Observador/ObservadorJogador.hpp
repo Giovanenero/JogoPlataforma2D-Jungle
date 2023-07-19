@@ -2,6 +2,7 @@
 
 #include "Observador.hpp"
 #include "../Entidade/Personagem/Jogador/Jogador.hpp"
+#include "../Gerenciador/GerenciadorEstado.hpp"
 
 namespace Jungle {
 
@@ -15,6 +16,7 @@ namespace Jungle {
             ~ObservadorJogador();
             void teclaPressionada(const sf::Keyboard::Key tecla);
             void teclaSolta(const sf::Keyboard::Key tecla);
+            void atualizarPontuacao(const unsigned int pontos);
         };
 
     }

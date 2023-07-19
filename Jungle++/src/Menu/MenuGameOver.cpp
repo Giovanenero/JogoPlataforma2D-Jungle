@@ -4,12 +4,17 @@ namespace Jungle {
 
     namespace Menu {
 
-        MenuGameOver::MenuGameOver(const unsigned int pontuacaoJogador, Fase::Fase* fase):
+        MenuGameOver::MenuGameOver(Fase::Fase* fase):
             MenuPausa(IDs::IDs::menu_game_over, "FIM DE JOGO", fase), fundoCaracter(),
             texto(pGrafico->carregarFonte(CAMINHO_FONTE_MENU_GAME_OVER), "", 35),
-            pontuacao(pGrafico->carregarFonte(CAMINHO_FONTE_MENU_GAME_OVER), "Pontuacao: " +  std::to_string(pontuacaoJogador), 35),
+            pontuacao(pGrafico->carregarFonte(CAMINHO_FONTE_MENU_GAME_OVER), "", 35),
             gerenciadorArquivo() //arquivo()
         {
+            if(fase == nullptr){
+                std::cout << "MenuGameOver::Fase eh nullptr" << std::endl;
+                exit(1);
+            }
+            pontuacao.setString("Pontuacao: " +  std::to_string(fase->getPontuacaoJogador()));
             sf::Texture* textura = new sf::Texture();
             if(!textura->loadFromFile("Jungle++/img/Menu/caixaTexto.png")){
                 std::cout << "Jungle::Menu::MenuGameOver::nao foi possivel carregar textura" << std::endl;

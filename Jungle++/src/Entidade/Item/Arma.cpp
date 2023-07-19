@@ -69,7 +69,6 @@ namespace Jungle {
                                 if(esqueleto->getMorrer()){
                                     Personagem::Jogador::Jogador* jogador = dynamic_cast<Personagem::Jogador::Jogador*>(personagem);
                                     jogador->addPontuacao(esqueleto->getPontos());
-                                    std::cout << jogador->getPontos() << std::endl;
                                 }
                             }
                         }
@@ -82,7 +81,6 @@ namespace Jungle {
                                 if(alma->getMorrer()){
                                     Personagem::Jogador::Jogador* jogador = dynamic_cast<Personagem::Jogador::Jogador*>(personagem);
                                     jogador->addPontuacao(alma->getPontos());
-                                    std::cout << jogador->getPontos() << std::endl;
                                 }
                             }
                         }

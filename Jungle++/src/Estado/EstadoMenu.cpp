@@ -141,7 +141,7 @@ namespace Jungle {
                         std::cout << "ERRO::EstadoMenuFase::nao foi possivel ter o ponteiro da fase" << std::endl;
                         exit(1);
                     }
-                    Menu::MenuGameOver* menuGameOver = new Menu::MenuGameOver(fase->getPontuacaoJogador(), fase);
+                    Menu::MenuGameOver* menuGameOver = new Menu::MenuGameOver(fase);
                     if(menuGameOver == nullptr){
                         std::cout << "EstadoMenu::nao foi possivel criar menu salvar jogada" << std::endl;
                         exit(1);

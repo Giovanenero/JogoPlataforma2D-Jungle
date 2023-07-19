@@ -21,7 +21,7 @@ namespace Jungle {
 
                 void ajustarTexto();
             public:
-                MenuGameOver(const unsigned int pontuacaoJogador, Fase::Fase* fase = nullptr);
+                MenuGameOver(Fase::Fase* fase);
                 ~MenuGameOver();
                 void criarBotoes();
                 void addCaracter(char caracter);

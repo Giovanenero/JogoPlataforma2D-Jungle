@@ -8,7 +8,10 @@ namespace Jungle {
         Fase::Fase(const IDs::IDs ID_Fase, const IDs::IDs ID_Fundo):
             Ente(ID_Fase), fundo(ID_Fundo), listaPersonagens(new Lista::ListaEntidade()), listaObstaculos(new Lista::ListaEntidade()),
             pColisao(new Gerenciador::GerenciadorColisao(listaPersonagens, listaObstaculos)),
-            observadorFase(new Observador::ObservadorFase(this)), pontuacaoJogador(0), GArquivo()
+            observadorFase(new Observador::ObservadorFase(this)), pontuacaoJogador(0), GArquivo(),
+            tempoJogo(0), tempo(0.0f),
+            textoPontuacao(pGrafico->carregarFonte(CAMINHO_FONTE_FASE), "Pontos: 0", 30),
+            textoTempo(pGrafico->carregarFonte(CAMINHO_FONTE_FASE), "Tempo 00:00", 30)
         {
             if(listaPersonagens == nullptr || listaObstaculos == nullptr){
                 std::cout << "Jungle::Fase::nao foi possivel criar lista de entidades na fase" << std::endl;
@@ -238,6 +241,8 @@ namespace Jungle {
 
         void Fase::desenhar(){
             fundo.executar();
+            pGrafico->desenhaElemento(textoPontuacao.getTexto());
+            pGrafico->desenhaElemento(textoTempo.getTexto());
             listaPersonagens->desenharEntidades();
             listaObstaculos->desenharEntidades();
         }
@@ -254,14 +259,60 @@ namespace Jungle {
             return listaObstaculos;
         }
 
+        void Fase::setPontuacao(const unsigned int pontuacaoJogador){
+            this->pontuacaoJogador = pontuacaoJogador;
+            textoPontuacao.setString("Pontos " + std::to_string(pontuacaoJogador));
+        }
+
+        void Fase::atualizarTempo(){
+            //atualiza posição e o tempo
+            tempo += pGrafico->getTempo();
+            if(tempo >= 1.0f){
+                tempo = 0.0f;
+                std::string stringCortada = textoTempo.getString().substr(6);
+                std::string novaString = "Tempo ";
+                //int doisPontos = stringCortada.find(":");
+                int minutos = std::stoi(stringCortada.substr(0, 2));
+                int segundos = std::stoi(stringCortada.substr(3, 5));
+                if(segundos >= 59){
+                    minutos++;
+                    segundos = 0;
+                    //novaString += std::to_string(minutos)
+                } else {
+                    segundos++;
+                }
+                if(minutos < 10){
+                    novaString += "0" + std::to_string(minutos);
+                } else {
+                    novaString += std::to_string(minutos);
+                }
+                if(segundos < 10){
+                    novaString += ":0" + std::to_string(segundos);
+                } else {
+                    novaString += ":" + std::to_string(segundos);
+                }
+                textoTempo.setString(novaString);
+            }
+            sf::Vector2f posFundo(pGrafico->getCamera().getCenter());
+            textoTempo.setPos(sf::Vector2f(posFundo.x - textoTempo.getTam().x / 2.0f + 20.0f, posFundo.y - pGrafico->getTamJanela().y / 2.0f + 10.0f));
+            pGrafico->desenhaElemento(textoTempo.getTexto());
+        }
+        
+        void Fase::atualizarPontuacao(){
+            sf::Vector2f posFundo(pGrafico->getCamera().getCenter());
+            sf::Vector2f tamJanela(pGrafico->getTamJanela());
+            textoPontuacao.setPos(sf::Vector2f(posFundo.x + tamJanela.x / 2.0f - textoPontuacao.getTam().x - 20.0f , posFundo.y - tamJanela.y / 2.0f + 10.0f));
+            pGrafico->desenhaElemento(textoPontuacao.getTexto());
+        }
+
         void Fase::executar(){
             Entidade::Personagem::Jogador::Jogador* jogador = getJogador();
             if(jogador){
                 //atualiza fundo
                 fundo.executar();
 
-                //atualiza a pontuação do jogador
-                pontuacaoJogador = jogador->getPontos();
+                atualizarTempo();
+                atualizarPontuacao();
 
                 //atualiza e desenha entidades
                 listaPersonagens->executar();
