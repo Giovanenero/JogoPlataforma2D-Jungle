@@ -8,8 +8,7 @@ namespace Jungle {
         Fase::Fase(const IDs::IDs ID_Fase, const IDs::IDs ID_Fundo):
             Ente(ID_Fase), fundo(ID_Fundo), listaPersonagens(new Lista::ListaEntidade()), listaObstaculos(new Lista::ListaEntidade()),
             pColisao(new Gerenciador::GerenciadorColisao(listaPersonagens, listaObstaculos)),
-            observadorFase(new Observador::ObservadorFase(this)), pontuacaoJogador(0), GArquivo(),
-            tempoJogo(0), tempo(0.0f),
+            observadorFase(new Observador::ObservadorFase(this)), pontuacaoJogador(0), GArquivo(), tempo(0.0f),
             textoPontuacao(pGrafico->carregarFonte(CAMINHO_FONTE_FASE), "Pontos: 0", 30),
             textoTempo(pGrafico->carregarFonte(CAMINHO_FONTE_FASE), "Tempo 00:00", 30)
         {
@@ -303,6 +302,14 @@ namespace Jungle {
             sf::Vector2f tamJanela(pGrafico->getTamJanela());
             textoPontuacao.setPos(sf::Vector2f(posFundo.x + tamJanela.x / 2.0f - textoPontuacao.getTam().x - 20.0f , posFundo.y - tamJanela.y / 2.0f + 10.0f));
             pGrafico->desenhaElemento(textoPontuacao.getTexto());
+        }
+
+        const std::string Fase::salvar(){
+            std::string linha = "";
+            linha += std::to_string(static_cast<int>(ID)) + ' ';
+            linha += std::to_string(this->pontuacaoJogador) + ' ';
+            linha += textoTempo.getString();
+            return linha;
         }
 
         void Fase::executar(){

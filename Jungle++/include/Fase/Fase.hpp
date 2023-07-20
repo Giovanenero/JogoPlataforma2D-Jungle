@@ -40,15 +40,14 @@ namespace Jungle {
             Observador::ObservadorFase* observadorFase;
             float tempo;
             Menu::Botao::Texto textoPontuacao;
-            Menu::Botao::Texto textoTempo;
         protected:
             Lista::ListaEntidade* listaPersonagens;
             Lista::ListaEntidade* listaObstaculos;
             Gerenciador::GerenciadorArquivo GArquivo;
             Gerenciador::GerenciadorColisao* pColisao;
             Parallax::Fundo fundo;
+            Menu::Botao::Texto textoTempo;
             unsigned int pontuacaoJogador;
-            unsigned int tempoJogo;
 
             void criarEsqueleto(const sf::Vector2f pos, Entidade::Personagem::Jogador::Jogador* pJogador);
             void criarEsqueleto(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma, Entidade::Personagem::Jogador::Jogador* pJogador);
@@ -77,12 +76,13 @@ namespace Jungle {
             Entidade::Personagem::Jogador::Jogador* getJogador();
             void mudarEstadoObservador();
             const unsigned int getPontuacaoJogador() const;
-            virtual void recuperarJogada(const std::string caminhoArquivo) = 0;
+            virtual void recuperarJogada(const std::string arquivoEntidades, const std::vector<std::string> vectorInfoFase) = 0;
             Lista::ListaEntidade* getListaPersonagem();
             Lista::ListaEntidade* getListaObstaculo();
             void setPontuacao(const unsigned int pontuacaoJogador);
             void atualizarTempo();
             void atualizarPontuacao();
+            const std::string salvar();
         };
 
     }

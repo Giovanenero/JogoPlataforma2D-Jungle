@@ -38,9 +38,10 @@ namespace Jungle {
                     posFundo.x - tamJanela.x / 2.0f + (tamJanela.x / 5.0f) * i + (espaco) * (i + 1), 
                     posFundo.y - tamJanela.y / 2.0f + 180.0f
                 ));
-                std::string caminhoArquivo = "Jungle++/arquivo/SalvarJogada/salvar" + std::to_string(i + 1) + ".txt";
-                std::string caminhoImagem = "Jungle++/img/Captura/salvar" + std::to_string(i + 1) + ".png";
-                Card* card = new Card(pos, caminhoArquivo, caminhoImagem);
+                std::string caminhoArquivoEntidades = "Jungle++/arquivo/SalvarJogada/SalvarEntidades/salvar" + std::to_string(i + 1) + ".txt";
+                std::string caminhoArquivoFase = "Jungle++/arquivo/SalvarJogada/SalvarFase/salvar" + std::to_string(i + 1) + ".txt";
+                std::string caminhoImagem = "Jungle++/arquivo/SalvarJogada/SalvarImagem/salvar" + std::to_string(i + 1) + ".png";
+                Card* card = new Card(pos, caminhoArquivoEntidades, caminhoArquivoFase, caminhoImagem);
                 card->setColor(sf::Color(255,0,0));
                 listaCards.push_back(card);
             }
@@ -70,12 +71,15 @@ namespace Jungle {
                 }
             }
             
-            const std::string caminhoArquivo = (*itCards)->getCaminhoArquivo();
+            const std::string caminhoArquivoEntidades = (*itCards)->getCaminhoArquivoEntidades();
+            const std::string caminhoArquivoFase = (*itCards)->getCaminhoArquivoFase();
             const std::string caminhoImagem = (*itCards)->getCaminhoImage();
 
-            gerenciadorArquivo.removeArquivo(caminhoArquivo.c_str());
-            gerenciadorArquivo.gravarConteudo(caminhoArquivo.c_str(), linhasPersonagem);
-            gerenciadorArquivo.gravarConteudo(caminhoArquivo.c_str(), linhasObstaculo);
+            gerenciadorArquivo.removeArquivo(caminhoArquivoEntidades.c_str());
+            gerenciadorArquivo.removeArquivo(caminhoArquivoFase.c_str());
+            gerenciadorArquivo.gravarConteudo(caminhoArquivoEntidades.c_str(), linhasPersonagem);
+            gerenciadorArquivo.gravarConteudo(caminhoArquivoEntidades.c_str(), linhasObstaculo);
+            gerenciadorArquivo.gravarConteudo(caminhoArquivoFase.c_str(), fase->salvar());
 
             fase->desenhar();
 

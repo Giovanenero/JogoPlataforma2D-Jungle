@@ -96,13 +96,52 @@ namespace Jungle {
                         if(estado->getID() == IDs::IDs::estado_menu_carregar_jogo){
                             Estado::EstadoMenu* estadoMenu = dynamic_cast<Estado::EstadoMenu*>(estado);
                             Menu::MenuCarregarJogo* menuCarregarJogo = dynamic_cast<Menu::MenuCarregarJogo*>(estadoMenu->getMenu());
-                            const std::string caminhoArquivo = menuCarregarJogo->getCaminhoArquivoSelecionado();
-                            if(caminhoArquivo != ""){
+                            const std::string caminhoArquivoEntidades = menuCarregarJogo->getArquivoEntidadesSelecionado();
+                            const std::string caminhoArquivoFase = menuCarregarJogo->getArquivoFaseSelecionado();
+                            if(caminhoArquivoEntidades != "" && caminhoArquivoFase != ""){
                                 pGEstado->removerEstado();
-                                pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
+                                Gerenciador::GerenciadorArquivo GArquivo;
+                                std::vector<std::string> vectorInfoFase = GArquivo.lerArquivo(caminhoArquivoFase.c_str());
+                                std::string espaco = " ";
+                                size_t pos = 0;
+                                std::vector<std::string> aux;
+                                while((pos = vectorInfoFase[0].find(espaco)) != std::string::npos){
+                                    aux.push_back(vectorInfoFase[0].substr(0, pos));
+                                    vectorInfoFase[0].erase(0, pos + espaco.length());
+                                }
+                                vectorInfoFase = aux;
+                                switch (std::stoi(vectorInfoFase[0]))
+                                {
+                                    case (15):
+                                    {
+                                        pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
+                                    }
+                                        break;
+                                    case (17):
+                                    {
+                                        pGEstado->addEstado(IDs::IDs::jogar_florestaVermelha);
+                                    }
+                                        break;
+                                    default:
+                                    {
+                                        std::cout << "ObservadorMenu::nao foi possivel criar uma fase" << std::endl;
+                                        exit(1);
+                                    }
+                                        break;
+                                }
                                 Estado::EstadoJogar* estadoJogar = dynamic_cast<Estado::EstadoJogar*>(pGEstado->getEstadoAtual());
-                                estadoJogar->criarFase(caminhoArquivo);
+                                estadoJogar->criarFase(caminhoArquivoEntidades, vectorInfoFase);
                             }
+                        }
+                    }
+                        break;
+                    case(IDs::IDs::botao_remover):
+                    {
+                        Estado::Estado* estado = pGEstado->getEstadoAtual();
+                        if(estado->getID() == IDs::IDs::estado_menu_carregar_jogo){
+                            Estado::EstadoMenu* estadoMenu = dynamic_cast<Estado::EstadoMenu*>(estado);
+                            Menu::MenuCarregarJogo* menuCarregarJogo = dynamic_cast<Menu::MenuCarregarJogo*>(estadoMenu->getMenu());
+                            menuCarregarJogo->deletarArquivos();
                         }
                     }
                         break;
@@ -225,13 +264,52 @@ namespace Jungle {
                                 if(estado->getID() == IDs::IDs::estado_menu_carregar_jogo){
                                     Estado::EstadoMenu* estadoMenu = dynamic_cast<Estado::EstadoMenu*>(estado);
                                     Menu::MenuCarregarJogo* menuCarregarJogo = dynamic_cast<Menu::MenuCarregarJogo*>(estadoMenu->getMenu());
-                                    const std::string caminhoArquivo = menuCarregarJogo->getCaminhoArquivoSelecionado();
-                                    if(caminhoArquivo != ""){
+                                    const std::string caminhoArquivoEntidades = menuCarregarJogo->getArquivoEntidadesSelecionado();
+                                    const std::string caminhoArquivoFase = menuCarregarJogo->getArquivoFaseSelecionado();
+                                    if(caminhoArquivoEntidades != "" && caminhoArquivoFase != ""){
                                         pGEstado->removerEstado();
-                                        pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
+                                        Gerenciador::GerenciadorArquivo GArquivo;
+                                        std::vector<std::string> vectorInfoFase = GArquivo.lerArquivo(caminhoArquivoFase.c_str());
+                                        std::string espaco = " ";
+                                        size_t pos = 0;
+                                        std::vector<std::string> aux;
+                                        while((pos = vectorInfoFase[0].find(espaco)) != std::string::npos){
+                                            aux.push_back(vectorInfoFase[0].substr(0, pos));
+                                            vectorInfoFase[0].erase(0, pos + espaco.length());
+                                        }
+                                        vectorInfoFase = aux;
+                                        switch (std::stoi(vectorInfoFase[0]))
+                                        {
+                                            case (15):
+                                            {
+                                                pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
+                                            }
+                                                break;
+                                            case (17):
+                                            {
+                                                pGEstado->addEstado(IDs::IDs::jogar_florestaVermelha);
+                                            }
+                                                break;
+                                            default:
+                                            {
+                                                std::cout << "ObservadorMenu::nao foi possivel criar uma fase" << std::endl;
+                                                exit(1);
+                                            }
+                                                break;
+                                        }
                                         Estado::EstadoJogar* estadoJogar = dynamic_cast<Estado::EstadoJogar*>(pGEstado->getEstadoAtual());
-                                        estadoJogar->criarFase(caminhoArquivo);
+                                        estadoJogar->criarFase(caminhoArquivoEntidades, vectorInfoFase);
                                     }
+                                }
+                            }
+                                break;
+                            case(IDs::IDs::botao_remover):
+                            {
+                                Estado::Estado* estado = pGEstado->getEstadoAtual();
+                                if(estado->getID() == IDs::IDs::estado_menu_carregar_jogo){
+                                    Estado::EstadoMenu* estadoMenu = dynamic_cast<Estado::EstadoMenu*>(estado);
+                                    Menu::MenuCarregarJogo* menuCarregarJogo = dynamic_cast<Menu::MenuCarregarJogo*>(estadoMenu->getMenu());
+                                    menuCarregarJogo->deletarArquivos();
                                 }
                             }
                                 break;

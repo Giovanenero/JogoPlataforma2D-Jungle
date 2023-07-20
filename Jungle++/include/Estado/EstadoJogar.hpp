@@ -19,7 +19,7 @@ namespace Jungle {
         public:
             EstadoJogar(const IDs::IDs ID);
             ~EstadoJogar();
-            void criarFase(const std::string caminhoArquivo = "");
+            void criarFase(const std::string arquivoEntidades = "", std::vector<std::string> vectorInfoFase = {});
             Fase::Fase* getFase();
             void mudarEstadoObservador();
             void executar();

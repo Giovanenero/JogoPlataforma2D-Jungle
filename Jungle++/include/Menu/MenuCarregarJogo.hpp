@@ -19,7 +19,9 @@ namespace Jungle {
                 ~MenuCarregarJogo();
                 void selecionaEsquerda();
                 void selecionaDireita();
-                const std::string getCaminhoArquivoSelecionado() const;
+                void deletarArquivos();
+                const std::string getArquivoEntidadesSelecionado() const;
+                const std::string getArquivoFaseSelecionado() const;
                 void criarBotoes();
                 void executar();
         };

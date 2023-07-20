@@ -198,14 +198,14 @@ namespace Jungle {
                         case(IDs::IDs::moeda_amarela):
                         {
                             Item::Moeda* moeda = dynamic_cast<Item::Moeda*>(outraEntidade);
-                            pontos += moeda->getPontos();
+                            addPontuacao(moeda->getPontos());
                             moeda->remover();
                         }
                             break;
                         case(IDs::IDs::moeda_cinza):
                         {
                             Item::Moeda* moeda = dynamic_cast<Item::Moeda*>(outraEntidade);
-                            pontos += moeda->getPontos();
+                            addPontuacao(moeda->getPontos());
                             moeda->remover();
                         }
                             break;

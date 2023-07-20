@@ -53,7 +53,7 @@ namespace Jungle {
             void Moeda::colisao(Entidade* outraEntidade, sf::Vector2f ds){
                 if(outraEntidade->getID() == IDs::IDs::jogador){
                     Personagem::Jogador::Jogador* pJogador = dynamic_cast<Personagem::Jogador::Jogador*>(outraEntidade);
-                    pJogador->addPontuacao(pontos);
+                    pJogador->addPontuacao(this->pontos);
                     podeRemover = true;
                 }
             }

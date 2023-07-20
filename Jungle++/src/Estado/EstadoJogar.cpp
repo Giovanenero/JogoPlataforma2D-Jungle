@@ -17,9 +17,9 @@ namespace Jungle {
             }
         }
 
-        void EstadoJogar::criarFase(const std::string caminhoArquivo){
+        void EstadoJogar::criarFase(const std::string arquivoEntidades, std::vector<std::string> vectorInfoFase){
             if(ID == IDs::IDs::jogar_florestaBranca){
-                fase = static_cast<Fase::Fase*>(new Fase::FlorestaBranca(caminhoArquivo));
+                fase = static_cast<Fase::Fase*>(new Fase::FlorestaBranca(arquivoEntidades, vectorInfoFase));
                 if(fase == nullptr){
                     std::cout << "Jungle::Construtor::ConstrutorFase::nao foi possivel criar Fase Floresta Branca" << std::endl;
                     exit(1);

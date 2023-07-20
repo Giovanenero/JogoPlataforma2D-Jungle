@@ -4,13 +4,12 @@ namespace Jungle {
 
     namespace Fase {
 
-        FlorestaBranca::FlorestaBranca(const std::string caminhoArquivo):
+        FlorestaBranca::FlorestaBranca(const std::string arquivoEntidades, const std::vector<std::string> vectorInfoFase):
             Fase(IDs::IDs::fase_florestaBranca, IDs::IDs::fundo_florestaBranca)
         {
             criarFundo();
-            if(caminhoArquivo != ""){
-                std::cout << caminhoArquivo << std::endl;
-                recuperarJogada(caminhoArquivo);
+            if(arquivoEntidades != "" && vectorInfoFase.size() > 0){
+                recuperarJogada(arquivoEntidades, vectorInfoFase);
             } else {
                 criarMapa();
             }
@@ -20,62 +19,69 @@ namespace Jungle {
 
         }
 
-        void FlorestaBranca::recuperarJogada(const std::string caminhoArquivo){
-            std::vector<std::string> linhas = GArquivo.lerArquivo(caminhoArquivo.c_str());
-            int i = 2;
-            Entidade::Personagem::Jogador::Jogador* pJogador = criarJogador(getAtributosEntidade(linhas[0]), getAtributosEntidade(linhas[1]));
-            while(i < linhas.size()){
-                std::string linha = linhas[i];
-                int id =  std::stoi(linha.substr(0, linha.find(" ")));
-                const std::vector<std::string> atributos = getAtributosEntidade(linhas[i]);
-                switch (id)
-                {
-                    case (5):
+        void FlorestaBranca::recuperarJogada(const std::string arquivoEntidades, const std::vector<std::string> vectorInfoFase){
+            try {
+                setPontuacao(std::stoi(vectorInfoFase[1]));
+                this->textoTempo.setString(vectorInfoFase[2] + " " + vectorInfoFase[3]);
+                std::vector<std::string> linhas = GArquivo.lerArquivo(arquivoEntidades.c_str());
+                int i = 2;
+                Entidade::Personagem::Jogador::Jogador* pJogador = criarJogador(getAtributosEntidade(linhas[0]), getAtributosEntidade(linhas[1]));
+                while(i < linhas.size()){
+                    std::string linha = linhas[i];
+                    int id =  std::stoi(linha.substr(0, linha.find(" ")));
+                    const std::vector<std::string> atributos = getAtributosEntidade(linhas[i]);
+                    switch (id)
                     {
-                        //criar esqueleto com espada
-                        criarEsqueleto(atributos, getAtributosEntidade(linhas[i + 1]), pJogador);
-                        i++;
+                        case (5):
+                        {
+                            //criar esqueleto com espada
+                            criarEsqueleto(atributos, getAtributosEntidade(linhas[i + 1]), pJogador);
+                            i++;
+                        }
+                            break;
+                        case (7):
+                        {
+                            //criar alma com projetil
+                            criarAlma(atributos, getAtributosEntidade(linhas[i + 1]), pJogador);
+                            i++;
+                        }
+                            break;
+                        case (8):
+                        {
+                            //cria plataforma
+                            criarPlataforma(atributos);
+                        }
+                            break;
+                        case (9):
+                        {
+                            //criar caixa
+                            criarCaixa(atributos);
+                        }
+                            break;
+                        case (10):
+                        {
+                            //criar moeda amarela
+                            criarMoeda(atributos, IDs::IDs::moeda_amarela);
+                        }
+                            break;
+                        case (11):
+                        {
+                            //criar moeda cinza
+                            criarMoeda(atributos, IDs::IDs::moeda_cinza);
+                        }
+                            break;
+                        case (12):
+                        {
+                            //criar vida
+                            criarVida(atributos);
+                        }
+                            break;
                     }
-                        break;
-                    case (7):
-                    {
-                        //criar alma com projetil
-                        criarAlma(atributos, getAtributosEntidade(linhas[i + 1]), pJogador);
-                        i++;
-                    }
-                        break;
-                    case (8):
-                    {
-                        //cria plataforma
-                        criarPlataforma(atributos);
-                    }
-                        break;
-                    case (9):
-                    {
-                        //criar caixa
-                        criarCaixa(atributos);
-                    }
-                        break;
-                    case (10):
-                    {
-                        //criar moeda amarela
-                        criarMoeda(atributos, IDs::IDs::moeda_amarela);
-                    }
-                        break;
-                    case (11):
-                    {
-                        //criar moeda cinza
-                        criarMoeda(atributos, IDs::IDs::moeda_cinza);
-                    }
-                        break;
-                    case (12):
-                    {
-                        //criar vida
-                        criarVida(atributos);
-                    }
-                        break;
+                    i++;
                 }
-                i++;
+            } catch(const std::exception& e) {
+                std::cerr << e.what() << std::endl;
+                exit(1);
             }
         }
 

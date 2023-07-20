@@ -16,13 +16,13 @@ namespace IDs {
         moeda_amarela, //10
         moeda_cinza, //11
         vida, //12
-        fundo_florestaNegra,
-        fundo_florestaBranca,
-        fase_florestaBranca,
-        fundo_florestaVermelha,
-        fase_florestaVermelha,
-        jogar_florestaVermelha,
-        jogar_florestaBranca,
+        fundo_florestaNegra, //13
+        fundo_florestaBranca, //14
+        fase_florestaBranca, //15
+        fundo_florestaVermelha, //16
+        fase_florestaVermelha, //17
+        jogar_florestaVermelha, //18
+        jogar_florestaBranca, //19
         botao_novoJogo,
         botao_carregar_jogo,
         botao_colocacao,
@@ -38,6 +38,7 @@ namespace IDs {
         botao_salvar_jogada,
         botao_salvar,
         botao_carregar,
+        botao_remover,
         menu_principal,
         menu_pausa,
         menu_salvar_jogada,

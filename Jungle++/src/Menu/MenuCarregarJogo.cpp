@@ -22,9 +22,10 @@ namespace Jungle {
                     (tamJanela.x / 5.0f) * i + (espaco) * (i + 1), 
                     180.0f
                 ));
-                std::string caminhoArquivo = "Jungle++/arquivo/SalvarJogada/salvar" + std::to_string(i + 1) + ".txt";
-                std::string caminhoImagem = "Jungle++/img/Captura/salvar" + std::to_string(i + 1) + ".png";
-                Card* card = new Card(pos, caminhoArquivo, caminhoImagem);
+                std::string caminhoArquivoEntidades = "Jungle++/arquivo/SalvarJogada/SalvarEntidades/salvar" + std::to_string(i + 1) + ".txt";
+                std::string caminhoArquivoFase = "Jungle++/arquivo/SalvarJogada/SalvarFase/salvar" + std::to_string(i + 1) + ".txt";
+                std::string caminhoImagem = "Jungle++/arquivo/SalvarJogada/SalvarImagem/salvar" + std::to_string(i + 1) + ".png";
+                Card* card = new Card(pos, caminhoArquivoEntidades, caminhoArquivoFase, caminhoImagem);
                 card->setColor(sf::Color(0,255,0));
                 listaCards.push_back(card);
             }
@@ -50,14 +51,30 @@ namespace Jungle {
             (*itCards)->setSelecionado(true);
         }
 
-        const std::string MenuCarregarJogo::getCaminhoArquivoSelecionado() const{
+        void MenuCarregarJogo::deletarArquivos(){
             Card* card = (*itCards);
-            return card->getExiste() ? card->getCaminhoArquivo() : "";
+            if(card->getExiste()){
+                gerenciadorArquivo.removeArquivo(card->getCaminhoArquivoEntidades().c_str());
+                gerenciadorArquivo.removeArquivo(card->getCaminhoArquivoFase().c_str());
+                gerenciadorArquivo.removeArquivo(card->getCaminhoImage().c_str());
+                card->deletar();
+            }
+        }
+
+        const std::string MenuCarregarJogo::getArquivoEntidadesSelecionado() const{
+            Card* card = (*itCards);
+            return card->getExiste() ? card->getCaminhoArquivoEntidades() : "";
+        }
+
+        const std::string MenuCarregarJogo::getArquivoFaseSelecionado() const{
+            Card* card = (*itCards);
+            return card->getExiste() ? card->getCaminhoArquivoFase() : "";
         }
 
         void MenuCarregarJogo::criarBotoes(){
             const float posBotaoX = tamJanela.x / 2.0f - tamBotao.x / 2.0f;
-            addBotao("Carregar", sf::Vector2f(posBotaoX, tamJanela.y / 2.0f + tamBotao.y * 3.6f), IDs::IDs::botao_carregar, sf::Color{0, 255, 0});
+            addBotao("Carregar", sf::Vector2f(posBotaoX, tamJanela.y / 2.0f + tamBotao.y * 2.4f), IDs::IDs::botao_carregar, sf::Color{0, 255, 0});
+            addBotao("Remover", sf::Vector2f(posBotaoX, tamJanela.y / 2.0f + tamBotao.y * 3.6f), IDs::IDs::botao_remover, sf::Color{0, 255, 0});
             addBotao("Voltar", sf::Vector2f(posBotaoX, tamJanela.y / 2.0f + tamBotao.y * 4.8f), IDs::IDs::botao_voltar, sf::Color{0, 255, 0});
             inicializarIterator();
         }

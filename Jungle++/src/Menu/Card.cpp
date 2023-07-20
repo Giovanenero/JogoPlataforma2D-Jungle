@@ -1,4 +1,5 @@
 #include "../../include/Menu/Card.hpp"
+#include "../../include/Gerenciador/GerenciadorArquivo.hpp"
 
 namespace Jungle {
 
@@ -6,19 +7,37 @@ namespace Jungle {
 
         Gerenciador::GerenciadorGrafico* Card::pGrafico = Gerenciador::GerenciadorGrafico::getGerenciadorGrafico();
             
-        Card::Card(const sf::Vector2f pos, const std::string caminhoArquivo, const std::string caminhoImage):
-            caminhoArquivo(caminhoArquivo), caminhoImage(caminhoImage), textura(nullptr), corpo(nullptr),
+        Card::Card(const sf::Vector2f pos, const std::string caminhoArquivoEntidades, const std::string caminhoArquivoFase, const std::string caminhoImage):
+            caminhoArquivoEntidades(caminhoArquivoEntidades), caminhoArquivoFase(caminhoArquivoFase),
+            textoInfo(pGrafico->carregarFonte(CAMINHO_FONTE_CARD), "", 25), caminhoImage(caminhoImage),
+            textura(nullptr), corpo(nullptr), selecionado(false),
             cor(sf::Color(0, 255, 0)), existe(false)
         {
             sf::Vector2f tamJanela = pGrafico->getTamJanela();
             corpo = new sf::RectangleShape(sf::Vector2f(tamJanela.x / 5.0f, tamJanela.x / 5.0f - 20.0f));
             textura = new sf::Texture();
             if(textura->loadFromFile(caminhoImage)){
-                //std::cout << "MenuSalvarJogada::nao foi possivel encontrar o caminho da textura " << caminhoImage << std::endl;
-                //exit(1);
-                //caminho de textura auxliar
                 corpo->setTexture(textura);
                 existe = true;
+                Gerenciador::GerenciadorArquivo GArquivo;
+                std::vector<std::string> vectorInfoFase = GArquivo.lerArquivo(caminhoArquivoFase.c_str());
+                std::string espaco = " ";
+                size_t posAux = 0;
+                std::vector<std::string> aux;
+                while((posAux = vectorInfoFase[0].find(espaco)) != std::string::npos){
+                    aux.push_back(vectorInfoFase[0].substr(0, posAux));
+                    vectorInfoFase[0].erase(0, posAux + espaco.length());
+                }
+                vectorInfoFase = aux;
+                textoInfo.setString(
+                    "Pontos: " + vectorInfoFase[1] + '\n' + 
+                    vectorInfoFase[2] + ' ' + vectorInfoFase[3]
+                );
+                textoInfo.setPos(sf::Vector2f(
+                    pos.x + corpo->getSize().x / 2.0f - textoInfo.getTam().x / 2.0f, 
+                    pos.y + corpo->getSize().y + 10.0f
+                ));
+                textoInfo.setTamanhoBorda(2);
             } else {
                 corpo->setFillColor(sf::Color::Black);
             }
@@ -38,8 +57,12 @@ namespace Jungle {
             }
         }
 
-        const std::string Card::getCaminhoArquivo() const{
-            return caminhoArquivo;
+        const std::string Card::getCaminhoArquivoEntidades() const{
+            return caminhoArquivoEntidades;
+        }
+
+        const std::string Card::getCaminhoArquivoFase() const{
+            return caminhoArquivoFase;
         }
             
         const std::string Card::getCaminhoImage() const{
@@ -63,8 +86,22 @@ namespace Jungle {
             return existe;
         }
 
+        void Card::deletar(){
+            if(textura){
+                delete(textura);
+                textura = nullptr;
+            }
+            corpo->setTexture(nullptr);
+            corpo->setFillColor(sf::Color::Black);
+            textoInfo.setString("");
+            existe = false;
+        }
+
         void Card::desenhar(){
             pGrafico->desenhaElemento(*corpo);
+            if(selecionado){
+                pGrafico->desenhaElemento(textoInfo.getTexto());
+            }
         }
 
     }
