@@ -17,6 +17,7 @@ namespace Jungle {
                         int mudarAtaque;
 
                         virtual void inicializarAnimacao() = 0;
+                        void inicializarNivel(){}
                     public:
                         Chefao(const sf::Vector2f pos, const sf::Vector2f tam, Jogador::Jogador* jogador, const IDs::IDs ID);
                         ~Chefao();

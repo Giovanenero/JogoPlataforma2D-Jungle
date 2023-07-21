@@ -9,8 +9,8 @@ namespace Jungle {
             Ente(ID_Fase), fundo(ID_Fundo), listaPersonagens(new Lista::ListaEntidade()), listaObstaculos(new Lista::ListaEntidade()),
             pColisao(new Gerenciador::GerenciadorColisao(listaPersonagens, listaObstaculos)),
             observadorFase(new Observador::ObservadorFase(this)), pontuacaoJogador(0), GArquivo(), tempo(0.0f),
-            textoPontuacao(pGrafico->carregarFonte(CAMINHO_FONTE_FASE), "Pontos: 0", 30),
-            textoTempo(pGrafico->carregarFonte(CAMINHO_FONTE_FASE), "Tempo 00:00", 30)
+            textoPontuacao(pGrafico->carregarFonte(CAMINHO_FONTE_FASE), "Pontos: 000", 32),
+            textoTempo(pGrafico->carregarFonte(CAMINHO_FONTE_FASE), "Tempo 00:00", 32)
         {
             if(listaPersonagens == nullptr || listaObstaculos == nullptr){
                 std::cout << "Jungle::Fase::nao foi possivel criar lista de entidades na fase" << std::endl;
@@ -21,6 +21,8 @@ namespace Jungle {
                 std::cout << "Jungle::Fase::nao foi possivel criar um Gerenciador de Colisao" << std::endl;
                 exit(1);
             }
+            textoPontuacao.setTamanhoBorda(2);
+            textoTempo.setTamanhoBorda(2);
         }
 
         Fase::~Fase(){
@@ -55,8 +57,8 @@ namespace Jungle {
             return atributos;
         }
 
-        void Fase::criarEsqueleto(const sf::Vector2f pos, Entidade::Personagem::Jogador::Jogador* pJogador){
-            Entidade::Personagem::Inimigo::Esqueleto* esqueleto = new Entidade::Personagem::Inimigo::Esqueleto(pos, pJogador);
+        void Fase::criarEsqueleto(const sf::Vector2f pos, const int nivel, Entidade::Personagem::Jogador::Jogador* pJogador){
+            Entidade::Personagem::Inimigo::Esqueleto* esqueleto = new Entidade::Personagem::Inimigo::Esqueleto(pos, nivel, pJogador);
             if(esqueleto == nullptr){
                 std::cout << "Fase::nao foi possivel criar esqueleto" << std::endl;
                 exit(1);
@@ -87,10 +89,10 @@ namespace Jungle {
             listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(espadaEsqueleto));
         }
 
-        void Fase::criarAlma(const sf::Vector2f pos, Entidade::Personagem::Jogador::Jogador* pJogador){
-            Entidade::Personagem::Inimigo::Alma* alma = new Entidade::Personagem::Inimigo::Alma(pos, pJogador);
+        void Fase::criarAlma(const sf::Vector2f pos, const int nivel, Entidade::Personagem::Jogador::Jogador* pJogador){
+            Entidade::Personagem::Inimigo::Alma* alma = new Entidade::Personagem::Inimigo::Alma(pos, nivel, pJogador);
             Entidade::Item::Projetil* projetil = new Entidade::Item::Projetil();
-            projetil->setPersonagem(static_cast<Entidade::Personagem::Personagem*>(alma));
+            //projetil->setPersonagem(static_cast<Entidade::Personagem::Personagem*>(alma));
             alma->setArma(static_cast<Entidade::Item::Projetil*>(projetil));
             projetil->inicializarAnimacao();
             listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(alma));
@@ -307,7 +309,9 @@ namespace Jungle {
         const std::string Fase::salvar(){
             std::string linha = "";
             linha += std::to_string(static_cast<int>(ID)) + ' ';
+            linha += '\n';
             linha += std::to_string(this->pontuacaoJogador) + ' ';
+            linha += '\n';
             linha += textoTempo.getString();
             return linha;
         }

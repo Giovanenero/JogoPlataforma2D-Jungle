@@ -81,7 +81,7 @@ namespace Jungle {
 
         void MenuCarregarJogo::executar(){
             //conteúdo do efeito Parallax
-            posFundo = sf::Vector2f(posFundo.x + 0.05f, posFundo.y);
+            posFundo = sf::Vector2f(posFundo.x + pGrafico->getTempo() * 80.0f, posFundo.y);
             pGrafico->atualizarCamera(sf::Vector2f(posFundo.x + tamJanela.x / 2.0f, posFundo.y + tamJanela.y / 2.0f));
             fundo.executar();
             pGrafico->resetarJanela();

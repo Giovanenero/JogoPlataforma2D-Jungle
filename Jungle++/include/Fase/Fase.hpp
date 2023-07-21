@@ -25,7 +25,7 @@
 
 #include <fstream>
 
-#define CAMINHO_FONTE_FASE "Jungle++/fonte/menu.ttf"
+#define CAMINHO_FONTE_FASE "Jungle++/fonte/menuColocacao.ttf"
 
 namespace Jungle {
 
@@ -49,9 +49,9 @@ namespace Jungle {
             Menu::Botao::Texto textoTempo;
             unsigned int pontuacaoJogador;
 
-            void criarEsqueleto(const sf::Vector2f pos, Entidade::Personagem::Jogador::Jogador* pJogador);
+            void criarEsqueleto(const sf::Vector2f pos, const int nivel, Entidade::Personagem::Jogador::Jogador* pJogador);
             void criarEsqueleto(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma, Entidade::Personagem::Jogador::Jogador* pJogador);
-            void criarAlma(const sf::Vector2f pos, Entidade::Personagem::Jogador::Jogador* pJogador);
+            void criarAlma(const sf::Vector2f pos, const int nivel, Entidade::Personagem::Jogador::Jogador* pJogador);
             void criarAlma(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma, Entidade::Personagem::Jogador::Jogador* pJogador);
             void criarPlataforma(const sf::Vector2f pos);
             void criarPlataforma(const std::vector<std::string> atributos);

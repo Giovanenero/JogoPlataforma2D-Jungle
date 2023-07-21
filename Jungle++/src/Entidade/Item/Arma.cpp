@@ -42,6 +42,7 @@ namespace Jungle {
 
             void Arma::setPersonagem(Personagem::Personagem* personagem){
                 this->personagem = personagem;
+                dano = personagem->getForca();
             }
 
             void Arma::setDano(const float dano){
@@ -69,6 +70,7 @@ namespace Jungle {
                                 if(esqueleto->getMorrer()){
                                     Personagem::Jogador::Jogador* jogador = dynamic_cast<Personagem::Jogador::Jogador*>(personagem);
                                     jogador->addPontuacao(esqueleto->getPontos());
+                                    jogador->addExperiencia(esqueleto->getExperiencia());
                                 }
                             }
                         }
@@ -81,6 +83,7 @@ namespace Jungle {
                                 if(alma->getMorrer()){
                                     Personagem::Jogador::Jogador* jogador = dynamic_cast<Personagem::Jogador::Jogador*>(personagem);
                                     jogador->addPontuacao(alma->getPontos());
+                                    jogador->addExperiencia(alma->getExperiencia());
                                 }
                             }
                         }

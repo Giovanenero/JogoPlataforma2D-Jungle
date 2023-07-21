@@ -12,9 +12,10 @@ namespace Jungle {
                 dt(0.0f), velFinal(sf::Vector2f(vel, 0.0f)), velMax(vel), atacando(false),
                 animacao(&corpo), tempoAnimacaoMorrer(tempoMorrer), tempoMorrer(0.0f),
                 vidaMaxima(100.0f), vida(100.0f), tempoAnimacaoTomarDano(tempoDano), tempoDano(0.0f),
-                morrendo(false), arma(nullptr), pontos(0)
+                morrendo(false), arma(nullptr), pontos(0), nivel(),
+                textoNivel(pGrafico->carregarFonte("Jungle++/fonte/menuColocacao.ttf"), "", 15)
             {
-
+                
             }
 
             Personagem::~Personagem(){
@@ -89,16 +90,14 @@ namespace Jungle {
 
             void Personagem::setArma(Item::Arma* arma){
                 this->arma = arma;
-                arma->setPersonagem(this);
-                arma->setTam(tam);
-                arma->setDano(arma->getDano() == 0.0f ? 20.0f : arma->getDano());
-                //guardarArma();
+                this->arma->setPersonagem(this);
+                this->arma->setTam(tam);
+                this->arma->setDano(nivel.getForca());
+                this->arma->setPos(sf::Vector2f(-1000.0f, -1000.0f));
             }
 
-            void Personagem::guardarArma(){
-                if(arma != nullptr){
-                    arma->setPos(sf::Vector2f(-1000.0f, -1000.0f));
-                }
+            const float Personagem::getForca() const{
+                return nivel.getForca();
             }
 
             void Personagem::atualizarTomarDano(){
@@ -113,7 +112,9 @@ namespace Jungle {
                 if(!levandoDano){
                     levandoDano = true;
                     andando = false;
-                    vida -= dano;
+                    vida -= dano * (dano / (dano + nivel.getDefesa()));
+                    std::cout << "Dano: " << dano << std::endl;
+                    std::cout << "Defesa: " << nivel.getDefesa() << std::endl << std::endl;
                     if(vida <= 0.0f){
                         morrendo = true;
                         vida = 0.0f;
@@ -126,13 +127,16 @@ namespace Jungle {
             }
 
             void Personagem::atualizarBarraVida(){
-                barraVida.setPosition(sf::Vector2f(pos.x + tam.x / 2.0f - corpo.getSize().x / 2.0f, pos.y - 20.0f));
+                sf::Vector2f posBarraVida(sf::Vector2f(pos.x + tam.x / 2.0f - corpo.getSize().x / 2.0f, pos.y - 20.0f)); 
+                barraVida.setPosition(posBarraVida);
                 barraVida.setSize(sf::Vector2f((vida / 100.0f) * BARRA_VIDA_X, BARRA_VIDA_Y));
+                textoNivel.setPos(sf::Vector2f(posBarraVida.x - textoNivel.getTam().x, posBarraVida.y - textoNivel.getTam().y / 2.0f));
             }
 
             void Personagem::desenhar(){
                 pGrafico->desenhaElemento(corpo);
                 pGrafico->desenhaElemento(barraVida);
+                pGrafico->desenhaElemento(textoNivel.getTexto());
             }
 
         }

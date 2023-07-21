@@ -30,6 +30,7 @@ namespace Jungle {
                     float tempoMover;
                     const float tempoAnimacaoAtacar;
                     float tempoAtacar;
+                    const float experiencia;
 
                     virtual void moveInimigo();
                     void atualizaMovimentoAleatorio();
@@ -37,12 +38,14 @@ namespace Jungle {
                     void inicializarBarraVida();
                     virtual void atualizarTempoAtacar();
                     virtual void atualizarAnimacao();
+                    virtual void inicializarNivel() = 0;
                 public:
-                    Inimigo(const sf::Vector2f pos, const sf::Vector2f tam, Jogador::Jogador* jogador, const IDs::IDs ID, const float tempoMorrer, const float tempoAtacar = 2.0f);
+                    Inimigo(const sf::Vector2f pos, const sf::Vector2f tam, Jogador::Jogador* jogador, const IDs::IDs ID, const float tempoMorrer, const float tempoAtacar, const float experiencia);
                     ~Inimigo();
                     virtual void tomarDano(const float dano);
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
                     virtual const std::string salvar() = 0;
+                    const float getExperiencia() const;
                     void atualizar();
                 };
 

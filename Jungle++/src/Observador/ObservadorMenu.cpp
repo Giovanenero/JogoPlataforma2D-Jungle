@@ -102,14 +102,6 @@ namespace Jungle {
                                 pGEstado->removerEstado();
                                 Gerenciador::GerenciadorArquivo GArquivo;
                                 std::vector<std::string> vectorInfoFase = GArquivo.lerArquivo(caminhoArquivoFase.c_str());
-                                std::string espaco = " ";
-                                size_t pos = 0;
-                                std::vector<std::string> aux;
-                                while((pos = vectorInfoFase[0].find(espaco)) != std::string::npos){
-                                    aux.push_back(vectorInfoFase[0].substr(0, pos));
-                                    vectorInfoFase[0].erase(0, pos + espaco.length());
-                                }
-                                vectorInfoFase = aux;
                                 switch (std::stoi(vectorInfoFase[0]))
                                 {
                                     case (15):
@@ -270,14 +262,6 @@ namespace Jungle {
                                         pGEstado->removerEstado();
                                         Gerenciador::GerenciadorArquivo GArquivo;
                                         std::vector<std::string> vectorInfoFase = GArquivo.lerArquivo(caminhoArquivoFase.c_str());
-                                        std::string espaco = " ";
-                                        size_t pos = 0;
-                                        std::vector<std::string> aux;
-                                        while((pos = vectorInfoFase[0].find(espaco)) != std::string::npos){
-                                            aux.push_back(vectorInfoFase[0].substr(0, pos));
-                                            vectorInfoFase[0].erase(0, pos + espaco.length());
-                                        }
-                                        vectorInfoFase = aux;
                                         switch (std::stoi(vectorInfoFase[0]))
                                         {
                                             case (15):

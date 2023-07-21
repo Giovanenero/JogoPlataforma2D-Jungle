@@ -9,23 +9,21 @@ namespace Jungle {
 
             namespace Inimigo {
 
-                Alma::Alma(const sf::Vector2f pos, Jogador::Jogador* pJogador, Item::Arma* arma):
+                Alma::Alma(const sf::Vector2f pos, const int nivel, Jogador::Jogador* pJogador, Item::Arma* arma):
                     Inimigo(
                         pos, 
                         sf::Vector2f(TAMANHO_ALMA_X, TAMANHO_ALMA_Y), 
                         pJogador, 
                         IDs::IDs::alma, 
                         TEMPO_ALMA_MORRER, 
-                        TEMPO_ALMA_ATACAR
+                        TEMPO_ALMA_ATACAR,
+                        EXPERIENCIA_ALMA * nivel * 0.5f
                     ), invisivel(false), tempoInvisivel(0.0f)
                 {
+                    this->nivel.setNivel(nivel);
                     this->pontos = PONTOS_ALMA;
                     inicializarAnimacao();
-
-                    if(arma != nullptr){
-                        setArma(arma);
-                        arma->setDano(35.0f);
-                    }
+                    inicializarNivel();
                 }
 
                 Alma::Alma(const std::vector<std::string> atributos, Jogador::Jogador* pJogador):
@@ -35,7 +33,8 @@ namespace Jungle {
                         pJogador, 
                         IDs::IDs::alma, 
                         TEMPO_ALMA_MORRER, 
-                        TEMPO_ALMA_ATACAR
+                        TEMPO_ALMA_ATACAR,
+                        EXPERIENCIA_ALMA
                     ), invisivel(false), tempoInvisivel(0.0f)
                 {
                     try {
@@ -51,14 +50,16 @@ namespace Jungle {
                         const float tempoDanoAtual = std::stof(atributos[13]);
                         const float tempoMorrerAtual = std::stof(atributos[14]);
                         const float dtAtual = std::stof(atributos[15]);
-                        const short moveAleatorioAtual = std::stol(atributos[16]);
-                        const float tempoMoverAtual = std::stof(atributos[17]);
-                        const float tempoAtacarAtual = std::stof(atributos[18]);
-                        const bool invisivelAtual = atributos[19] == "1";
-                        const float tempoInvisivelAtual = std::stof(atributos[20]);
-                        const std::string imgAtual = atributos[21];
-                        const unsigned int quadroAtual = std::stoi(atributos[22]);
-                        const float tempoTotalAtual = std::stof(atributos[23]);
+                        const float nivelAtual = std::stoi(atributos[16]);
+                        const float experienciaAtual = std::stof(atributos[17]);
+                        const short moveAleatorioAtual = std::stol(atributos[18]);
+                        const float tempoMoverAtual = std::stof(atributos[19]);
+                        const float tempoAtacarAtual = std::stof(atributos[20]);
+                        const bool invisivelAtual = atributos[21] == "1";
+                        const float tempoInvisivelAtual = std::stof(atributos[22]);
+                        const std::string imgAtual = atributos[23];
+                        const unsigned int quadroAtual = std::stoi(atributos[24]);
+                        const float tempoTotalAtual = std::stof(atributos[25]);
 
                         this->pontos = PONTOS_ALMA;
                         setPos(posAtual);
@@ -73,6 +74,9 @@ namespace Jungle {
                         this->tempoDano = tempoDanoAtual;
                         this->tempoMorrer = tempoMorrerAtual;
                         this->dt = dtAtual;
+                        inicializarNivel();
+                        nivel.setNivel(nivelAtual);
+                        nivel.addExp(experienciaAtual);
                         this->moveAleatorio = moveAleatorioAtual;
                         this->tempoMover = tempoMoverAtual;
                         this->tempoAtacar = tempoAtacarAtual;
@@ -92,7 +96,9 @@ namespace Jungle {
                 }
 
                 Alma::~Alma(){
-
+                    if(arma != nullptr){
+                        arma->remover();
+                    }
                 }
 
                 void Alma::inicializarAnimacao(){
@@ -105,13 +111,12 @@ namespace Jungle {
 
                 void Alma::tomarDano(const float dano){
                     if(!levandoDano && !invisivel){
-                        vida -= dano;
+                        vida -= dano * (dano / (dano + nivel.getDefesa()));
+                        std::cout << "Dano: " << dano << std::endl;
+                        std::cout << "Defesa: " << nivel.getDefesa() << std::endl << std::endl;
                         if(vida <= 0.0f){
                             morrendo = true;
                             vida = 0.0f;
-                            if(arma != nullptr){
-                                arma->remover();
-                            }
                         } else {
                             levandoDano = true;
                             invisivel = true;
@@ -168,7 +173,7 @@ namespace Jungle {
                             Item::Projetil* projetil = dynamic_cast<Item::Projetil*>(arma);
                             projetil->setPos(sf::Vector2f(pos.x + tam.x / 2.0f, pos.y + tam.y / 5.0f));
                             projetil->setColidiu(false);
-                            projetil->setVelocidade(sf::Vector2f(110.0f, 1.0f));
+                            projetil->setVelocidade(sf::Vector2f(170.0f, 5.0f));
                             projetil->setSentido(paraEsquerda);
                             atacando = false;
                             tempoAtacar = 0.0f;
@@ -181,6 +186,18 @@ namespace Jungle {
                             invisivel = false;
                             corpo.setFillColor(sf::Color(255, 255, 255, 255));
                         }
+                    }
+                }
+
+                void Alma::inicializarNivel(){
+                    textoNivel.setString("Lv." + std::to_string(nivel.getNivel()));
+                    textoNivel.setTamanhoBorda(2);
+                    nivel.setForca(FORCA_ALMA);
+                    nivel.setDefesa(DEFESA_ALMA);
+                    nivel.setVitalidade(VITALIDADE_ALMA);
+                    if(arma != nullptr){
+                        setArma(arma);
+                        arma->setDano(this->nivel.getForca());
                     }
                 }
 
@@ -204,6 +221,8 @@ namespace Jungle {
                     linha += std::to_string(tempoDano) + ' ';
                     linha += std::to_string(tempoMorrer) + ' ';
                     linha += std::to_string(dt) + ' ';
+                    linha += std::to_string(nivel.getNivel()) + ' ';
+                    linha += std::to_string(nivel.getExp()) + ' ';
                     //salvando atributos do inimigo
                     linha += std::to_string(moveAleatorio) + ' ';
                     linha += std::to_string(tempoMover) + ' ';
@@ -223,8 +242,19 @@ namespace Jungle {
                         animacao.atualizar(paraEsquerda, "MORRE");
                         tempoMorrer += pGrafico->getTempo();
                         if(tempoMorrer > tempoAnimacaoMorrer){
-                            podeRemover = true;
-                            tempoMorrer = 0.0f;
+                            if(arma != nullptr){
+                                Item::Projetil* projetil = dynamic_cast<Item::Projetil*>(arma);
+                                if(projetil->getColidiu()){
+                                    arma->remover();
+                                    arma = nullptr;
+                                    podeRemover = true;
+                                }
+                                //tempoMorrer = 0.0f;
+                             else {
+                                podeRemover = true;
+                             }}
+                            corpo.setFillColor(sf::Color::Transparent);
+                            textoNivel.setCorTexto(sf::Color::Transparent);
                         }
                     } else if(atacando){
                         animacao.atualizar(paraEsquerda, "ATACA");

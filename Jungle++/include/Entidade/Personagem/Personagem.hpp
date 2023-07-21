@@ -2,6 +2,8 @@
 
 #include "../Entidade.hpp"
 #include "../../Animador/Animacao.hpp"
+#include "Nivel.hpp"
+#include "../../Menu/Botao/Texto.hpp"
 
 #define GRAVIDADE 1.0f
 
@@ -23,6 +25,8 @@ namespace Jungle {
                 sf::Vector2f velFinal;
                 Animador::Animacao animacao;
                 sf::RectangleShape barraVida;
+                Menu::Botao::Texto textoNivel;
+                Nivel nivel;
                 Item::Arma* arma;
                 const float velMax;
                 bool andando;
@@ -43,6 +47,7 @@ namespace Jungle {
                 virtual void atualizarBarraVida();
                 virtual void inicializarBarraVida() = 0;
                 virtual void inicializarAnimacao() = 0;
+                virtual void inicializarNivel() = 0;
             public:
                 Personagem(const sf::Vector2f pos, const sf::Vector2f tam, const float vel, const IDs::IDs ID, const float tempoMorrer, const float tempoDano = 1.0f);
                 virtual ~Personagem();
@@ -57,8 +62,8 @@ namespace Jungle {
                 const bool getMorrer() const;
                 virtual void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f)) = 0;
                 const unsigned int getPontos() const;
-                void guardarArma();
                 void setArma(Item::Arma* arma);
+                const float getForca() const;
                 virtual const std::string salvar() = 0;
                 virtual void desenhar();
                 virtual void atualizar() = 0;

@@ -8,9 +8,10 @@ namespace Jungle {
 
             namespace Inimigo {
 
-                Inimigo::Inimigo(const sf::Vector2f pos, const sf::Vector2f tam, Jogador::Jogador* jogador, const IDs::IDs ID, const float tempoMorrer, const float tempoAtacar):
+                Inimigo::Inimigo(const sf::Vector2f pos, const sf::Vector2f tam, Jogador::Jogador* jogador, const IDs::IDs ID, const float tempoMorrer, const float tempoAtacar, const float experiencia):
                     Personagem(pos, tam, VELOCIDADE_INIMIGO, ID, tempoMorrer), jogador(jogador), 
-                    tempoMover(0.0f), tempoAnimacaoAtacar(tempoAtacar), tempoAtacar(0.0f)
+                    tempoMover(0.0f), tempoAnimacaoAtacar(tempoAtacar), tempoAtacar(0.0f),
+                    experiencia(experiencia)
                 {
                     srand(time(NULL));
                     moveAleatorio = rand()%3;
@@ -56,10 +57,10 @@ namespace Jungle {
                         tempoAtacar += pGrafico->getTempo();
                         if(tempoAtacar > tempoAnimacaoAtacar){
                             atacando = false;
-                            guardarArma();
+                            arma->setPos(sf::Vector2f(-1000.0f, -1000.0f));
                             tempoAtacar = 0.0f;
                         } else if(tempoAtacar > tempoAnimacaoAtacar / 1.5f){
-                            guardarArma();
+                            arma->setPos(sf::Vector2f(-1000.0f, -1000.0f));
                         } else if(tempoAtacar > tempoAnimacaoAtacar / 1.7f){
                             sf::Vector2f posEspada = (paraEsquerda ? sf::Vector2f(pos.x - arma->getTam().x / 2.0f, pos.y) : sf::Vector2f(pos.x + tam.x / 2.0f, pos.y));
                             arma->setPos(posEspada);
@@ -67,7 +68,7 @@ namespace Jungle {
                     } else if(levandoDano){
                         tempoAtacar = 0.0f;
                         atacando = false;
-                        guardarArma();
+                        arma->setPos(sf::Vector2f(-1000.0f, -1000.0f));
                     }
                 }
 
@@ -87,6 +88,10 @@ namespace Jungle {
                     } else {
                         tempoMover = 0.0f;
                     }
+                }
+
+                const float Inimigo::getExperiencia() const{
+                    return experiencia;
                 }
 
                 void Inimigo::atualizar(){
@@ -110,6 +115,9 @@ namespace Jungle {
                         if(tempoMorrer > tempoAnimacaoMorrer){
                             podeRemover = true;
                             tempoMorrer = 0.0f;
+                            if(arma != nullptr){
+                                arma->remover();
+                            }
                         }
                     } else if(levandoDano){
                         animacao.atualizar(paraEsquerda, "TOMADANO");
@@ -126,13 +134,12 @@ namespace Jungle {
                     if(!levandoDano){
                         levandoDano = true;
                         andando = false;
-                        vida -= dano;
+                        vida -= dano * (dano / (dano + nivel.getDefesa()));
+                        std::cout << "Dano: " << dano << std::endl;
+                        std::cout << "Defesa: " << nivel.getDefesa() << std::endl << std::endl;
                         if(vida <= 0.0f){
                             morrendo = true;
                             vida = 0.0f;
-                            if(arma != nullptr){
-                                arma->remover();
-                            }
                         }
                         tempoDano = 0.0f;
                     }

@@ -8,17 +8,21 @@ namespace Jungle {
 
             namespace Inimigo {
 
-                Esqueleto::Esqueleto(const sf::Vector2f pos, Jogador::Jogador* jogador):
+                Esqueleto::Esqueleto(const sf::Vector2f pos, const int nivel, Jogador::Jogador* jogador):
                     Inimigo(
                         pos, 
                         sf::Vector2f(TAMANHO_ESQUELO_X, TAMANHO_ESQUELO_Y), 
                         jogador, 
                         IDs::IDs::esqueleto, 
-                        TEMPO_ESQUELETO_MORRER
+                        TEMPO_ESQUELETO_MORRER,
+                        2.0f,
+                        EXPERIENCIA_ESQUELETO * nivel * 0.5f
                     )
                 {
+                    this->nivel.setNivel(nivel);
                     this->pontos = PONTOS_ESQUELETO;
                     inicializarAnimacao();
+                    inicializarNivel();
                 }
 
                 Esqueleto::Esqueleto(const std::vector<std::string> atributos, Jogador::Jogador* jogador):
@@ -27,7 +31,9 @@ namespace Jungle {
                         sf::Vector2f(TAMANHO_ESQUELO_X, TAMANHO_ESQUELO_Y), 
                         jogador, 
                         IDs::IDs::esqueleto, 
-                        TEMPO_ESQUELETO_MORRER
+                        TEMPO_ESQUELETO_MORRER,
+                        2.0f,
+                        EXPERIENCIA_ESQUELETO
                     )
                 {
                     this->pontos = PONTOS_ESQUELETO;
@@ -44,12 +50,14 @@ namespace Jungle {
                         const float tempoDanoAtual = std::stof(atributos[13]);
                         const float tempoMorrerAtual = std::stof(atributos[14]);
                         const float dtAtual = std::stof(atributos[15]);
-                        const short moveAleatorioAtual = std::stol(atributos[16]);
-                        const float tempoMoverAtual = std::stof(atributos[17]);
-                        const float tempoAtacarAtual = std::stof(atributos[18]);
-                        const std::string imgAtual = atributos[19];
-                        const unsigned int quadroAtual = std::stoi(atributos[20]);
-                        const float tempoTotalAtual = std::stof(atributos[21]);
+                        const float nivelAtual = std::stoi(atributos[16]);
+                        const float experienciaAtual = std::stof(atributos[17]);
+                        const short moveAleatorioAtual = std::stol(atributos[18]);
+                        const float tempoMoverAtual = std::stof(atributos[19]);
+                        const float tempoAtacarAtual = std::stof(atributos[20]);
+                        const std::string imgAtual = atributos[21];
+                        const unsigned int quadroAtual = std::stoi(atributos[22]);
+                        const float tempoTotalAtual = std::stof(atributos[23]);
 
                         setPos(posAtual);
                         setTam(tamAtual);
@@ -63,6 +71,9 @@ namespace Jungle {
                         this->tempoDano = tempoDanoAtual;
                         this->tempoMorrer = tempoMorrerAtual;
                         this->dt = dtAtual;
+                        inicializarNivel();
+                        nivel.setNivel(nivelAtual);
+                        nivel.addExp(experienciaAtual);
                         this->moveAleatorio = moveAleatorioAtual;
                         this->tempoMover = tempoMoverAtual;
                         this->tempoAtacar = tempoAtacarAtual;
@@ -104,6 +115,8 @@ namespace Jungle {
                     linha += std::to_string(tempoDano) + ' ';
                     linha += std::to_string(tempoMorrer) + ' ';
                     linha += std::to_string(dt) + ' ';
+                    linha += std::to_string(nivel.getNivel()) + ' ';
+                    linha += std::to_string(nivel.getExp()) + ' ';
                     //salvando atributos do inimigo
                     linha += std::to_string(moveAleatorio) + ' ';
                     linha += std::to_string(tempoMover) + ' ';
@@ -123,6 +136,15 @@ namespace Jungle {
                     animacao.addAnimacao("Jungle++/img/Personagem/Inimigo/Esqueleto/Morre.png", "MORRE", 15, 0.10f, sf::Vector2f(1.5f, 1.10f), origin);
                     animacao.addAnimacao("Jungle++/img/Personagem/Inimigo/Esqueleto/tomaDano.png", "TOMADANO", 8, 0.15f, sf::Vector2f(1.2f, 1.10f), origin);
                     animacao.addAnimacao("Jungle++/img/Personagem/Inimigo/Esqueleto/Ataca.png", "ATACA", 18, 0.15f, sf::Vector2f(1.95f, 1.3f), sf::Vector2f(tam.x / 3.0f, tam.y / 4.0f));
+                }
+
+                void Esqueleto::inicializarNivel(){
+                    textoNivel.setString("Lv." + std::to_string(nivel.getNivel()));
+                    textoNivel.setTamanhoBorda(2);
+                    if(arma != nullptr){
+                        setArma(arma);
+                        arma->setDano(this->nivel.getForca());
+                    }
                 }
 
             }

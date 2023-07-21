@@ -26,10 +26,11 @@ namespace Jungle {
                     }
                     inicializarAnimacao();
                     inicializarBarraVida();
+                    inicializarNivel();
                     
                     if(arma != nullptr){
                         setArma(arma);
-                        arma->setDano(DANO);
+                        arma->setDano(nivel.getForca());
                     }
                 }
 
@@ -51,10 +52,12 @@ namespace Jungle {
                         const float tempoMorrerAtual = std::stof(atributos[14]);
                         const float dtAtual = std::stof(atributos[15]);
                         const unsigned int pontosAtual = std::stoi(atributos[16]);
-                        const bool noChaoAtual = atributos[17] == "1";
-                        const std::string imgAtual = atributos[18];
-                        const unsigned int quadroAtual = std::stoi(atributos[19]);
-                        const float tempoTotalAtual = std::stof(atributos[20]);
+                        const float nivelAtual = std::stoi(atributos[17]);
+                        const float experienciaAtual = std::stof(atributos[18]);
+                        const bool noChaoAtual = atributos[19] == "1";
+                        const std::string imgAtual = atributos[20];
+                        const unsigned int quadroAtual = std::stoi(atributos[21]);
+                        const float tempoTotalAtual = std::stof(atributos[22]);
 
                         setPos(posAtual);
                         setTam(tamAtual);
@@ -64,11 +67,14 @@ namespace Jungle {
                         this->levandoDano = levandoDanoAtual;
                         this->atacando = atacandoAtual;
                         this->morrendo = morrendoAtual;
-                        setVida(vidaAtual);
+                        this->vida = vidaAtual;
                         this->tempoDano = tempoDanoAtual;
                         this->tempoMorrer = tempoMorrerAtual;
                         this->dt = dtAtual;
                         this->pontos = pontosAtual;
+                        inicializarNivel();
+                        nivel.setNivel(nivelAtual);
+                        nivel.addExp(experienciaAtual);
                         this->noChao = noChaoAtual;
 
                         inicializarAnimacao();
@@ -155,6 +161,13 @@ namespace Jungle {
                     }
                 }
 
+                void Jogador::inicializarNivel(){
+                    textoNivel.setString(std::to_string(nivel.getNivel()));
+                    nivel.setForca(FORCA_JOGADOR);
+                    nivel.setDefesa(DEFESA_JOGADOR);
+                    nivel.setVitalidade(VITALIDADE_JOGADOR);
+                }
+
                 void Jogador::colisao(Entidade* outraEntidade, sf::Vector2f ds){
                     switch(outraEntidade->getID()){
                         case(IDs::IDs::plataforma):
@@ -237,6 +250,10 @@ namespace Jungle {
                     observadorJogador->atualizarPontuacao(this->pontos);
                 }
 
+                void Jogador::addExperiencia(const float experiencia){
+                    nivel.addExp(experiencia);
+                }
+
                 void Jogador::setVida(const float vida){
                     this->vida += vida;
                     if(this->vida > 100.0f){
@@ -265,6 +282,8 @@ namespace Jungle {
                     linha += std::to_string(tempoMorrer) + ' ';
                     linha += std::to_string(dt) + ' ';
                     linha += std::to_string(pontos) + ' ';
+                    linha += std::to_string(nivel.getNivel()) + ' ';
+                    linha += std::to_string(nivel.getExp()) + ' ';
                     //salvando atributos do jogador
                     linha += std::to_string(noChao) + ' ';
                     linha += animacao.getImgAtual() + ' ';
@@ -293,7 +312,7 @@ namespace Jungle {
                         sf::Vector2f posEspada = (paraEsquerda ? sf::Vector2f(pos.x - tamEspada.x, pos.y) : sf::Vector2f(pos.x + tam.x, pos.y));
                         arma->setPos(posEspada);
                     } else {
-                        guardarArma();
+                        arma->setPos(sf::Vector2f(-1000.0f, -1000.0f));
                     }
 
                     atualizarAnimacao();

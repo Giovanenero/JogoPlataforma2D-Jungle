@@ -22,7 +22,7 @@ namespace Jungle {
         void FlorestaBranca::recuperarJogada(const std::string arquivoEntidades, const std::vector<std::string> vectorInfoFase){
             try {
                 setPontuacao(std::stoi(vectorInfoFase[1]));
-                this->textoTempo.setString(vectorInfoFase[2] + " " + vectorInfoFase[3]);
+                this->textoTempo.setString(vectorInfoFase[2]);
                 std::vector<std::string> linhas = GArquivo.lerArquivo(arquivoEntidades.c_str());
                 int i = 2;
                 Entidade::Personagem::Jogador::Jogador* pJogador = criarJogador(getAtributosEntidade(linhas[0]), getAtributosEntidade(linhas[1]));
@@ -99,10 +99,14 @@ namespace Jungle {
             criarMoeda(sf::Vector2f(1200.0f, 80.0f), IDs::IDs::moeda_cinza);
             criarVida(sf::Vector2f(1400.0f, 350.0f));
 
-            for(int i = 0; i < 6; i++){
-                criarEsqueleto(sf::Vector2f(400.0f * (i + 0.5f), 0.0f), pJogador);
+            for(int i = 0; i < 3; i++){
+                criarEsqueleto(sf::Vector2f(400.0f * (i + 0.5f), 0.0f), 1, pJogador);
             }
-            criarAlma(sf::Vector2f(200.0f, 500.0f), pJogador);
+            for(int i = 0; i < 3; i++){
+                criarEsqueleto(sf::Vector2f(400.0f * (2 + i + 0.5f), 0.0f), 3, pJogador);
+            }
+            criarAlma(sf::Vector2f(200.0f, 500.0f), 2, pJogador);
+            criarAlma(sf::Vector2f(500.0f, 500.0f), 4, pJogador);
 
             for(int i = -2; i < 8; i++){
                 criarPlataforma(sf::Vector2f(i * 300.0f, 550.0f));
