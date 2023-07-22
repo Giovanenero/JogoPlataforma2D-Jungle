@@ -326,8 +326,8 @@ namespace Jungle {
                 atualizarPontuacao();
 
                 //atualiza e desenha entidades
-                listaPersonagens->executar();
                 listaObstaculos->executar();
+                listaPersonagens->executar();
 
                 //verifica colisão
                 pColisao->executar();

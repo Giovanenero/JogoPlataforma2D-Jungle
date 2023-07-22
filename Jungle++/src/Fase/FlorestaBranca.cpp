@@ -94,6 +94,9 @@ namespace Jungle {
         }
 
         void FlorestaBranca::criarMapa(){
+            for(int i = -2; i < 8; i++){
+                criarPlataforma(sf::Vector2f(i * 300.0f, 550.0f));
+            }
             Entidade::Personagem::Jogador::Jogador* pJogador = criarJogador(sf::Vector2f(100.0f, 400.0f));
             criarMoeda(sf::Vector2f(300.0f, 500.0f), IDs::IDs::moeda_amarela);
             criarMoeda(sf::Vector2f(1200.0f, 80.0f), IDs::IDs::moeda_cinza);
@@ -107,10 +110,6 @@ namespace Jungle {
             }
             criarAlma(sf::Vector2f(200.0f, 500.0f), 2, pJogador);
             criarAlma(sf::Vector2f(500.0f, 500.0f), 4, pJogador);
-
-            for(int i = -2; i < 8; i++){
-                criarPlataforma(sf::Vector2f(i * 300.0f, 550.0f));
-            }
         }
 
     }
