@@ -30,11 +30,7 @@ namespace Jungle {
         }
 
         void GerenciadorColisao::executar(){
-            /**
-             * @ return void
-             * 
-             * verifica colisao entre Personagens e Personagens e Obstáculos 
-             */
+            //verifica colisao entre Personagens e Personagens e Obstáculos 
             for(int i = 0; i < listaPersonagem->getTam() - 1; i++){
                 Entidade::Entidade* ent1 = listaPersonagem->operator[](i);
                 for(int j = i + 1; j < listaPersonagem->getTam(); j++){
@@ -46,20 +42,42 @@ namespace Jungle {
                 }
             }
 
+            //verifica colisao entre Personagens e Obstáculos 
             for(int i = 0; i < listaPersonagem->getTam(); i++){
                 Entidade::Entidade* ent1 = listaPersonagem->operator[](i);
                 for(int j = 0; j < listaObstaculo->getTam(); j++){
                     Entidade::Entidade* ent2 = listaObstaculo->operator[](j);
                     sf::Vector2f ds = calculaColisao(ent1, ent2);
                     if(ds.x < 0.0f && ds.y < 0.0f){
-                        if(ent2->getID() == IDs::IDs::plataforma || ent2->getID() == IDs::IDs::caixa){
+                        /*
+                        if(
+                            ent2->getID() == IDs::IDs::plataforma_movel ||
+                            ent2->getID() == IDs::IDs::plataforma       || 
+                            ent2->getID() == IDs::IDs::caixa            ||
+                        ){
                             ent2->colisao(ent1, ds);
                         } else {
                             // outro obstáculo 
                         }
+                        */
+                       ent2->colisao(ent1, ds);
                     }
                 }
             }
+
+            //verifica colisao entre Obstáculos 
+            /*
+            for(int i = 0; i < listaObstaculo->getTam(); i++){
+                Entidade::Entidade* ent1 = listaObstaculo->operator[](i);
+                for(int j = i + 1; j < listaObstaculo->getTam(); j++){
+                    Entidade::Entidade* ent2 = listaObstaculo->operator[](j);
+                    sf::Vector2f ds = calculaColisao(ent1, ent2);
+                    if(ds.x < 0.0f && ds.y < 0.0f){
+                        ent2->colisao(ent1, ds);
+                    }
+                }
+            }
+            */
         }
 
     }

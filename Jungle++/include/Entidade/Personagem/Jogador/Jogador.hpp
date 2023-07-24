@@ -54,6 +54,7 @@ namespace Jungle {
                     ~Jogador();
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
                     const bool getNoChao() const;
+                    const bool getAndando() const;
                     void pular();
                     void podePular();
                     void mudarEstadoObservador();

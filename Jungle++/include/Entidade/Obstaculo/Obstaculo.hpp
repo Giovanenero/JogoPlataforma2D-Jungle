@@ -15,11 +15,13 @@ namespace Jungle {
             class Obstaculo : public Entidade {
             protected:
                 sf::Texture textura;
+
+                virtual void inicializarAnimacao() = 0;
             public:
-                Obstaculo(const sf::Vector2f pos, const sf::Vector2f tam, const IDs::IDs ID, const char* caminhoTextura);
+                Obstaculo(const sf::Vector2f pos, const sf::Vector2f tam, const IDs::IDs ID);
                 ~Obstaculo();
                 virtual void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f)) = 0;
-                void atualizar();
+                virtual void atualizar();
                 virtual void colisaoObstaculo(sf::Vector2f ds, Personagem::Personagem* pPersonagem);
                 const std::string salvar();
             };

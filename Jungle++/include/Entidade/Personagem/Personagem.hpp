@@ -50,7 +50,7 @@ namespace Jungle {
                 virtual void inicializarNivel() = 0;
                 virtual void atualizarNivel();
             public:
-                Personagem(const sf::Vector2f pos, const sf::Vector2f tam, const float vel, const IDs::IDs ID, const float tempoMorrer, const float tempoDano = 1.0f);
+                Personagem(const sf::Vector2f pos, const sf::Vector2f tam, const float vel, const IDs::IDs ID, const float tempoMorrer, const float tempoDano = 0.6f);
                 virtual ~Personagem();
                 void setVelFinal(const sf::Vector2f velFinal);
                 const sf::Vector2f getVelFinal() const;

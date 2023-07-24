@@ -18,6 +18,8 @@ namespace Jungle {
             class Caixa : public Obstaculo {
             private:
                 const float lentidao;
+
+                void inicializarAnimacao();
             public:
                 Caixa(sf::Vector2f pos);
                 Caixa(const std::vector<std::string> atributos);

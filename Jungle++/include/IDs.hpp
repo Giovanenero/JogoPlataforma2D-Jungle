@@ -53,6 +53,7 @@ namespace IDs {
         estado_menu_colocacao,
         estado_menu_game_over,
         estado_menu_salvar_jogada,
+        plataforma_movel
     };
 
 }

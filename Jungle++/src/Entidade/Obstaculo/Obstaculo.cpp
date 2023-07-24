@@ -6,11 +6,10 @@ namespace Jungle {
 
         namespace Obstaculo {
 
-            Obstaculo::Obstaculo(const sf::Vector2f pos, const sf::Vector2f tam, const IDs::IDs ID, const char* caminhoTextura):
+            Obstaculo::Obstaculo(const sf::Vector2f pos, const sf::Vector2f tam, const IDs::IDs ID):
                 Entidade(tam, ID, pos)
             {
-                textura = pGrafico->carregarTextura(caminhoTextura);
-                corpo.setTexture(&textura);
+                
             }
 
             Obstaculo::~Obstaculo(){

@@ -88,13 +88,10 @@ namespace Jungle {
                         animacao.setImgAtual(imgAtual);
                         animacao.setQuadroAtual(quadroAtual);
                         animacao.setTempoTotal(tempoTotalAtual);
-
-                        //setArma(arma);
-                        //arma->setDano(DANO);
                     }
                     catch(const std::exception& e) {
                         std::cerr << e.what() << std::endl;
-                        exit(1);
+                        podeRemover = true;
                     }
                 }
 
@@ -154,9 +151,9 @@ namespace Jungle {
 
 
                 void Jogador::inicializarAnimacao(){
-                    const sf::Vector2f origin = sf::Vector2f(tam.x / 2.5f, tam.y / 2.0f);
+                    const sf::Vector2f origin = sf::Vector2f(tam.x / 2.5f, tam.y / 2.2f);
                     animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Anda.png", "ANDA", 10, 0.12f, sf::Vector2f(6,2), origin);
-                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Ataca.png", "ATACA", 10, 0.1f, sf::Vector2f(6,2), origin);
+                    animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Ataca.png", "ATACA", 10, 0.065f, sf::Vector2f(6,2), origin);
                     animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Parado.png", "PARADO", 10, 0.15f, sf::Vector2f(6,2), origin);
                     animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Pula.png", "PULA", 3, 0.15f, sf::Vector2f(6,2), origin);
                     animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Cai.png", "CAI", 3, 0.15f, sf::Vector2f(6,2), origin);
@@ -230,6 +227,7 @@ namespace Jungle {
                         {
                             
                         }
+                            break;
                         case(IDs::IDs::espada_inimigo):
                         {
                             //std::cout << "Tomar dano do inimigo" << std::endl;
@@ -291,6 +289,10 @@ namespace Jungle {
 
                 const bool Jogador::getNoChao() const {
                     return noChao;
+                }
+
+                const bool Jogador::getAndando() const{
+                    return andando;
                 }
 
                 void Jogador::podePular(){

@@ -116,12 +116,13 @@ namespace Jungle {
             listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(projetil));
         }
 
-        void Fase::criarPlataforma(const sf::Vector2f pos){
-            Entidade::Obstaculo::Plataforma* plataforma = new Entidade::Obstaculo::Plataforma(pos);
+        void Fase::criarPlataforma(const sf::Vector2f pos, const sf::Vector2f tam, const IDs::IDs ID, const bool ehFlutuante){
+            Entidade::Obstaculo::Plataforma* plataforma = new Entidade::Obstaculo::Plataforma(IDs::IDs::plataforma, pos, tam, ehFlutuante);
             if(plataforma == nullptr){
                 std::cout << "Fase::nao foi possivel criar plataforma" << std::endl;
                 exit(1);
             }
+            plataforma->inicializarAnimacao();
             listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(plataforma));
         }
 
@@ -131,6 +132,7 @@ namespace Jungle {
                 std::cout << "Fase::nao foi possivel criar plataforma" << std::endl;
                 exit(1);
             }
+            plataforma->inicializarAnimacao();
             listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(plataforma));
         }
 

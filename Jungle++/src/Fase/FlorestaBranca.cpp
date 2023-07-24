@@ -95,8 +95,17 @@ namespace Jungle {
 
         void FlorestaBranca::criarMapa(){
             for(int i = -2; i < 8; i++){
-                criarPlataforma(sf::Vector2f(i * 300.0f, 550.0f));
+                criarPlataforma(sf::Vector2f(i * 350.0f, 550.0f), sf::Vector2f(350.0f, 50.0f), IDs::IDs::plataforma, false);
             }
+            criarPlataforma(sf::Vector2f(1300.0f, 290.0f), sf::Vector2f(80.0f, 40.0f), IDs::IDs::plataforma, true);
+            Entidade::Obstaculo::PlataformaMovel* plataformaMovel = new Entidade::Obstaculo::PlataformaMovel(IDs::IDs::plataforma_movel, sf::Vector2f(500.0f, 420.0f), 800.0f, sf::Vector2f(80.0f, 40.0f), true, true);
+            if(plataformaMovel == nullptr){
+                std::cout << "Fase::nao foi possivel criar plataformaMovel" << std::endl;
+                exit(1);
+            }
+            plataformaMovel->inicializarAnimacao();
+            listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(plataformaMovel));
+
             Entidade::Personagem::Jogador::Jogador* pJogador = criarJogador(sf::Vector2f(100.0f, 400.0f));
             criarMoeda(sf::Vector2f(300.0f, 500.0f), IDs::IDs::moeda_amarela);
             criarMoeda(sf::Vector2f(1200.0f, 80.0f), IDs::IDs::moeda_cinza);

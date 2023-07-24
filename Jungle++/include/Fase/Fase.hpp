@@ -18,7 +18,7 @@
 #include "../Entidade/Item/Projetil.hpp"
 #include "../Entidade/Item/Moeda.hpp"
 #include "../Entidade/Item/Vida.hpp"
-#include "../Entidade/Obstaculo/Plataforma.hpp"
+#include "../Entidade/Obstaculo/PlataformaMovel.hpp"
 #include "../Entidade/Obstaculo/Caixa.hpp"
 
 #include "../Menu/Botao/Texto.hpp"
@@ -53,7 +53,7 @@ namespace Jungle {
             void criarEsqueleto(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma, Entidade::Personagem::Jogador::Jogador* pJogador);
             void criarAlma(const sf::Vector2f pos, const int nivel, Entidade::Personagem::Jogador::Jogador* pJogador);
             void criarAlma(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma, Entidade::Personagem::Jogador::Jogador* pJogador);
-            void criarPlataforma(const sf::Vector2f pos);
+            void criarPlataforma(const sf::Vector2f pos, const sf::Vector2f tam, const IDs::IDs ID, const bool ehFlutuante);
             void criarPlataforma(const std::vector<std::string> atributos);
             void criarCaixa(const sf::Vector2f pos);
             void criarCaixa(const std::vector<std::string> atributos);

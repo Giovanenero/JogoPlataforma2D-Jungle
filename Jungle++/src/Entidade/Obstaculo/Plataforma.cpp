@@ -8,16 +8,14 @@ namespace Jungle {
 
         namespace Obstaculo {
 
-            Plataforma::Plataforma(sf::Vector2f pos):
-                Obstaculo(pos, sf::Vector2f(TAMANHO_PLATAFORMA_X, TAMANHO_PLATAFORMA_Y), IDs::IDs::plataforma, CAMINHO_TEXTURA_PLATAFORMA)
+            Plataforma::Plataforma(const IDs::IDs ID, sf::Vector2f pos, const sf::Vector2f tam, const bool ehFlutuante):
+                Obstaculo(pos, tam, ID), ehFlutuante(ehFlutuante)
             {
-                //textura = pGrafico->carregarTextura(CAMINHO_TEXTURA_PLATAFORMA);
-                //corpo.setTexture(&textura);
-                //corpo.setFillColor(sf::Color::Green);
+                //inicializarAnimacao();
             }
 
             Plataforma::Plataforma(const std::vector<std::string> atributos):
-                Obstaculo(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(TAMANHO_PLATAFORMA_X, TAMANHO_PLATAFORMA_Y), IDs::IDs::plataforma, CAMINHO_TEXTURA_PLATAFORMA)
+                Obstaculo(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(0.0f, 0.0f), IDs::IDs::plataforma)
             {
                 try {
                     sf::Vector2f posAtual = sf::Vector2f(std::stof(atributos[1]), std::stof(atributos[2]));
@@ -25,6 +23,8 @@ namespace Jungle {
 
                     setPos(posAtual);
                     setTam(tamAtual);
+
+                    //inicializarAnimacao();
                 }
                 catch(const std::exception& e) {
                     std::cerr << e.what() << std::endl;
@@ -37,12 +37,17 @@ namespace Jungle {
 
             }
 
-            void Plataforma::colisao(Entidade* outraEntidade, sf::Vector2f ds){
-                //sf::Vector2f posOutro = outraEntidade->getPos();
-                //sf::Vector2f tamOutro = outraEntidade->getTam();
+            void Plataforma::inicializarAnimacao(){
+                textura = pGrafico->carregarTextura(ehFlutuante ? CAMINHO_TEXTURA_PLATAFORMA_FLUTUANTE : CAMINHO_TEXTURA_PLATAFORMA);
+                corpo.setTexture(&textura);
+            }
 
-                if(outraEntidade->getID() == IDs::IDs::jogador || outraEntidade->getID() == IDs::IDs::esqueleto ||
-                    outraEntidade->getID() == IDs::IDs::minotauro || outraEntidade->getID() == IDs::IDs::alma
+            void Plataforma::colisao(Entidade* outraEntidade, sf::Vector2f ds){
+                if(
+                    outraEntidade->getID() == IDs::IDs::esqueleto   ||
+                    outraEntidade->getID() == IDs::IDs::minotauro   || 
+                    outraEntidade->getID() == IDs::IDs::alma        ||
+                    outraEntidade->getID() == IDs::IDs::jogador
                 ){
                     colisaoObstaculo(ds, static_cast<Personagem::Personagem*>(outraEntidade));
                 } else if(outraEntidade->getID() == IDs::IDs::projetil_inimigo){
@@ -50,7 +55,6 @@ namespace Jungle {
                     projetil->setColidiu(true);
                     projetil->setVelocidade(sf::Vector2f(0.0f, 0.0f));
                 }
-                //colisaoObstaculo(ds, static_cast<Personagem::Personagem*>(outraEntidade));
             }
 
         }

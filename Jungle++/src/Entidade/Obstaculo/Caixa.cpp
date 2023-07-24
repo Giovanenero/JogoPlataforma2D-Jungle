@@ -7,13 +7,13 @@ namespace Jungle {
         namespace Obstaculo {
 
             Caixa::Caixa(sf::Vector2f pos):
-                Obstaculo(pos, sf::Vector2f(TAMANHO_CAIXA_X, TAMANHO_CAIXA_Y), IDs::IDs::caixa, CAMINHO_TEXTURA_CAIXA), lentidao(0.25f)
+                Obstaculo(pos, sf::Vector2f(TAMANHO_CAIXA_X, TAMANHO_CAIXA_Y), IDs::IDs::caixa), lentidao(0.25f)
             {
-                //terminar...
+                inicializarAnimacao();
             }
 
             Caixa::Caixa(const std::vector<std::string> atributos):
-                Obstaculo(pos, sf::Vector2f(TAMANHO_CAIXA_X, TAMANHO_CAIXA_Y), IDs::IDs::caixa, CAMINHO_TEXTURA_CAIXA), lentidao(0.25f)
+                Obstaculo(pos, sf::Vector2f(TAMANHO_CAIXA_X, TAMANHO_CAIXA_Y), IDs::IDs::caixa), lentidao(0.25f)
             {
                 try {
                     sf::Vector2f posAtual = sf::Vector2f(std::stof(atributos[1]), std::stof(atributos[2]));
@@ -21,6 +21,8 @@ namespace Jungle {
 
                     setPos(posAtual);
                     setTam(tamAtual);
+
+                    inicializarAnimacao();
                 }
                 catch(const std::exception& e) {
                     std::cerr << e.what() << std::endl;
@@ -31,6 +33,11 @@ namespace Jungle {
 
             Caixa::~Caixa(){
 
+            }
+
+            void Caixa::inicializarAnimacao(){
+                textura = pGrafico->carregarTextura(CAMINHO_TEXTURA_CAIXA);
+                corpo.setTexture(&textura);
             }
 
             void Caixa::colisao(Entidade* outraEntidade, sf::Vector2f ds){

@@ -23,17 +23,17 @@ namespace Jungle {
                 pJogador->andar(false);
             } else if(teclado[tecla] == 'w'){
                 pJogador->pular();
-            } else if(teclado[tecla] == 's'){
+            } else if(teclado[tecla] == 'x'){
                 if(pJogador->getNoChao()){
-                        pJogador->atacar(true);
-                    }
+                    pJogador->atacar(true);
+                }
             }
         }
 
         void ObservadorJogador::teclaSolta(const sf::Keyboard::Key tecla){
             if(teclado[tecla] == 'a' || teclado[tecla] == 'd'){
                 pJogador->parar();
-            } else if(teclado[tecla] == 'w' || teclado[tecla] == 's'){
+            } else if(teclado[tecla] == 'w' || teclado[tecla] == 'x'){
                 pJogador->atacar(false);
             }
         }

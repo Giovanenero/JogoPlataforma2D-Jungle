@@ -102,7 +102,7 @@ namespace Jungle {
                 }
 
                 void Alma::inicializarAnimacao(){
-                    const sf::Vector2f origin = sf::Vector2f(tam.x / 4.0f, tam.y / 4.0f);
+                    const sf::Vector2f origin = sf::Vector2f(tam.x / 4.0f, tam.y / 4.4f);
                     animacao.addAnimacao("Jungle++/img/Personagem/Inimigo/Alma/Parado.png", "PARADO", 5, 0.12f, sf::Vector2f(2.5f, 1.5f), origin, false);
                     animacao.addAnimacao("Jungle++/img/Personagem/Inimigo/Alma/Anda.png", "ANDA", 8, 0.15f, sf::Vector2f(2.5f, 1.5f), origin, false);
                     animacao.addAnimacao("Jungle++/img/Personagem/Inimigo/Alma/Morre.png", "MORRE", 8, 0.2f, sf::Vector2f(2.5f, 1.5f), origin, false);
@@ -171,7 +171,7 @@ namespace Jungle {
                             Item::Projetil* projetil = dynamic_cast<Item::Projetil*>(arma);
                             projetil->setPos(sf::Vector2f(pos.x + tam.x / 2.0f, pos.y + tam.y / 5.0f));
                             projetil->setColidiu(false);
-                            projetil->setVelocidade(sf::Vector2f(170.0f, 5.0f));
+                            projetil->setVelocidade(sf::Vector2f(250.0f, 5.0f));
                             projetil->setSentido(paraEsquerda);
                             atacando = false;
                             tempoAtacar = 0.0f;
