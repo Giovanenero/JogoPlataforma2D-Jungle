@@ -17,7 +17,8 @@ namespace Jungle {
 
                 Jogador::Jogador(const sf::Vector2f pos, Item::Arma* arma):
                     Personagem(pos, sf::Vector2f(TAMANHO_JOGADOR_X, TAMANHO_JOGADOR_Y), VELOCIDADE_JOGADOR, IDs::IDs::jogador, TEMPO_JOGADOR_MORRER, TEMPO_JOGADOR_TOMARDANO), 
-                    noChao(false), observadorJogador(new Observador::ObservadorJogador(this))
+                    noChao(false), observadorJogador(new Observador::ObservadorJogador(this)),
+                    textoExp(pGrafico->carregarFonte("Jungle++/fonte/menuColocacao.ttf"), "", 20)
                 {
                     this->pontos = 0;
                     if(observadorJogador == nullptr){
@@ -26,7 +27,9 @@ namespace Jungle {
                     }
                     inicializarAnimacao();
                     inicializarBarraVida();
+                    inicializarBarraXP();
                     inicializarNivel();
+                    inicializarExp();
                     
                     if(arma != nullptr){
                         setArma(arma);
@@ -36,7 +39,8 @@ namespace Jungle {
 
                 Jogador::Jogador(const std::vector<std::string> atributos):
                     Personagem(pos, sf::Vector2f(TAMANHO_JOGADOR_X, TAMANHO_JOGADOR_Y), VELOCIDADE_JOGADOR, IDs::IDs::jogador, TEMPO_JOGADOR_MORRER, TEMPO_JOGADOR_TOMARDANO), 
-                    noChao(false), observadorJogador(new Observador::ObservadorJogador(this))
+                    noChao(false), observadorJogador(new Observador::ObservadorJogador(this)),
+                    textoExp(pGrafico->carregarFonte("Jungle++/fonte/menuColocacao.ttf"), "", 20)
                 {
                     try {
                         const sf::Vector2f posAtual = sf::Vector2f(std::stof(atributos[1]), std::stof(atributos[2]));
@@ -79,6 +83,8 @@ namespace Jungle {
 
                         inicializarAnimacao();
                         inicializarBarraVida();
+                        inicializarBarraXP();
+                        inicializarExp();
                         animacao.setImgAtual(imgAtual);
                         animacao.setQuadroAtual(quadroAtual);
                         animacao.setTempoTotal(tempoTotalAtual);
@@ -100,6 +106,18 @@ namespace Jungle {
                     if(tuboBarraVida.getTexture()){
                         delete(tuboBarraVida.getTexture());
                     }
+
+                    if(barraVida.getTexture()){
+                        delete(barraVida.getTexture());
+                    }
+
+                    if(tuboBarraXP.getTexture()){
+                        delete(tuboBarraXP.getTexture());
+                    }
+
+                    if(barraXP.getTexture()){
+                        delete(barraXP.getTexture());
+                    }
                 }
 
                 void Jogador::inicializarBarraVida(){
@@ -108,10 +126,30 @@ namespace Jungle {
                     barraVida.setSize(tamTubo);
                     sf::Texture* texturaVida = new sf::Texture(); 
                     sf::Texture* texturaBarra = new sf::Texture();
-                    texturaVida->loadFromFile("Jungle++/img/Personagem/Vida/BarraVidaJogador.png");
-                    texturaBarra->loadFromFile("Jungle++/img/Personagem/Vida/Barra.png");
+                    texturaVida->loadFromFile("Jungle++/img/Personagem/Vida/VidaJogador.png");
+                    texturaBarra->loadFromFile("Jungle++/img/Personagem/Vida/BarraVida.png");
                     barraVida.setTexture(texturaVida);
                     tuboBarraVida.setTexture(texturaBarra);
+                }
+
+                void Jogador::inicializarBarraXP(){
+                    sf::Vector2f tamTubo = sf::Vector2f(BARRA_VIDA_JOGADOR_X, BARRA_VIDA_JOGADOR_Y);
+                    tuboBarraXP.setSize(tamTubo);
+                    sf::Texture* texturaXP = new sf::Texture(); 
+                    sf::Texture* texturaBarra = new sf::Texture();
+                    texturaXP->loadFromFile("Jungle++/img/Personagem/Vida/XPJogador.png");
+                    texturaBarra->loadFromFile("Jungle++/img/Personagem/Vida/BarraXP.png");
+                    barraXP.setTexture(texturaXP);
+                    tuboBarraXP.setTexture(texturaBarra);
+                }
+
+                void Jogador::inicializarExp(){
+                    std::string expAtual = std::to_string(nivel.getExp());
+                    expAtual = expAtual.substr(0, expAtual.find(".") + 2);
+                    std::string expProxNivel = std::to_string(nivel.getExpProxNivel());
+                    expProxNivel = expProxNivel.substr(0, expProxNivel.find(".") + 2);
+                    textoExp.setString(expAtual + "/" + expProxNivel);
+                    textoExp.setTamanhoBorda(2);
                 }
 
 
@@ -131,9 +169,22 @@ namespace Jungle {
                     sf::Vector2f tamJanela = pGrafico->getTamJanela();
                     sf::Vector2f posBarra = sf::Vector2f(posJanela.x - tamJanela.x / 2.0f + 10.0f, posJanela.y + tamJanela.y / 2.0f - 30.0f);
                     tuboBarraVida.setPosition(posBarra);
-                    barraVida.setSize(sf::Vector2f(BARRA_VIDA_JOGADOR_X * (vida / 100.0f), BARRA_VIDA_JOGADOR_Y));
-                    barraVida.setPosition(posBarra);
-                    textoNivel.setPos(sf::Vector2f(posBarra.x + 5.0f, posBarra.y - textoNivel.getTam().y - 5.0f));
+                    barraVida.setSize(sf::Vector2f((BARRA_VIDA_JOGADOR_X - 40.0f) * (vida / 100.0f), BARRA_VIDA_JOGADOR_Y - 13.0f));
+                    barraVida.setPosition(sf::Vector2f(posBarra.x + 7.0f, posBarra.y + tuboBarraVida.getSize().y / 2.0f - barraVida.getSize().y / 2.0f));
+                }
+
+                void Jogador::atualizarBarraXP(){
+                    sf::Vector2f posJanela = pGrafico->getCamera().getCenter();
+                    sf::Vector2f tamJanela = pGrafico->getTamJanela();
+                    sf::Vector2f posBarra = sf::Vector2f(posJanela.x + tamJanela.x / 2.0f - tuboBarraXP.getSize().x - 10.0f, posJanela.y + tamJanela.y / 2.0f - 30.0f);
+                    tuboBarraXP.setPosition(posBarra);
+                    barraXP.setSize(sf::Vector2f((BARRA_VIDA_JOGADOR_X - 40.0f) * (nivel.getExp() / nivel.getExpProxNivel()), BARRA_VIDA_JOGADOR_Y - 13.0f));
+                    barraXP.setPosition(sf::Vector2f(posBarra.x + tuboBarraXP.getSize().x - barraXP.getSize().x - 7.0f, posBarra.y + tuboBarraXP.getSize().y / 2.0f - barraXP.getSize().y / 2.0f));
+                }
+
+                void Jogador::atualizarExp(){
+                    sf::Vector2f posBarraXP(tuboBarraXP.getPosition());
+                    textoExp.setPos(sf::Vector2f(posBarraXP.x + tuboBarraXP.getSize().x - textoExp.getTam().x - 5.0f, posBarraXP.y - textoExp.getTam().y - 12.0f));
                 }
 
                 void Jogador::atualizarAnimacao(){
@@ -160,11 +211,17 @@ namespace Jungle {
                 }
 
                 void Jogador::inicializarNivel(){
+                    textoNivel.setTamFonte(20);
                     textoNivel.setString("Lv." + std::to_string(nivel.getNivel()));
                     textoNivel.setTamanhoBorda(2);
                     nivel.setForca(FORCA_JOGADOR);
                     nivel.setDefesa(DEFESA_JOGADOR);
                     nivel.setVitalidade(VITALIDADE_JOGADOR);
+                }
+                
+                void Jogador::atualizarNivel(){
+                    sf::Vector2f posBarra = tuboBarraVida.getPosition();
+                    textoNivel.setPos(sf::Vector2f(posBarra.x + 5.0f, posBarra.y - textoNivel.getTam().y - 12.0f));
                 }
 
                 void Jogador::colisao(Entidade* outraEntidade, sf::Vector2f ds){
@@ -252,6 +309,7 @@ namespace Jungle {
                 void Jogador::addExperiencia(const float experiencia){
                     nivel.addExp(experiencia);
                     textoNivel.setString("Lv." + std::to_string(nivel.getNivel()));
+                    inicializarExp();      
                 }
 
                 void Jogador::setVida(const float vida){
@@ -297,6 +355,9 @@ namespace Jungle {
                     pGrafico->desenhaElemento(tuboBarraVida);
                     pGrafico->desenhaElemento(barraVida);
                     pGrafico->desenhaElemento(textoNivel.getTexto());
+                    pGrafico->desenhaElemento(tuboBarraXP);
+                    pGrafico->desenhaElemento(barraXP);
+                    pGrafico->desenhaElemento(textoExp.getTexto());
                 }
 
                 void Jogador::atualizar(){
@@ -305,6 +366,8 @@ namespace Jungle {
                         * 
                         * Faz o movimeto do jogador e atualiza animação
                     */
+                    pGrafico->atualizarCamera(sf::Vector2f(pos.x, 300.0f));
+
                     atualizarPosicao();
 
                     if(atacando){
@@ -318,9 +381,13 @@ namespace Jungle {
 
                     atualizarAnimacao();
 
-                    pGrafico->atualizarCamera(sf::Vector2f(pos.x, 300.0f));
-
                     atualizarBarraVida();
+
+                    atualizarBarraXP();
+
+                    atualizarNivel();
+
+                    atualizarExp();
                 }
 
             }

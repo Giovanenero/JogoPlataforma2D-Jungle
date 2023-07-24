@@ -244,8 +244,8 @@ namespace Jungle {
             fundo.executar();
             pGrafico->desenhaElemento(textoPontuacao.getTexto());
             pGrafico->desenhaElemento(textoTempo.getTexto());
-            listaPersonagens->desenharEntidades();
             listaObstaculos->desenharEntidades();
+            listaPersonagens->desenharEntidades();
         }
 
          const unsigned int Fase::getPontuacaoJogador() const {
@@ -302,7 +302,7 @@ namespace Jungle {
         void Fase::atualizarPontuacao(){
             sf::Vector2f posFundo(pGrafico->getCamera().getCenter());
             sf::Vector2f tamJanela(pGrafico->getTamJanela());
-            textoPontuacao.setPos(sf::Vector2f(posFundo.x + tamJanela.x / 2.0f - textoPontuacao.getTam().x - 20.0f , posFundo.y - tamJanela.y / 2.0f + 10.0f));
+            textoPontuacao.setPos(sf::Vector2f(posFundo.x - tamJanela.x / 2.0f + 20.0f , posFundo.y - tamJanela.y / 2.0f + 10.0f));
             pGrafico->desenhaElemento(textoPontuacao.getTexto());
         }
 

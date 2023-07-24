@@ -34,7 +34,7 @@ namespace Jungle {
                 void Inimigo::inicializarBarraVida(){
                     barraVida.setSize((sf::Vector2f(BARRA_VIDA_X, BARRA_VIDA_Y)));
                     sf::Texture* textura = new sf::Texture(); 
-                    textura->loadFromFile("Jungle++/img/Personagem/Vida/BarraVida.png");
+                    textura->loadFromFile("Jungle++/img/Personagem/Vida/VidaInimigo.png");
                     barraVida.setTexture(textura);
                 }
 
@@ -106,6 +106,8 @@ namespace Jungle {
                     atualizarAnimacao();
 
                     atualizarBarraVida();
+
+                    atualizarNivel();
                 }
 
                 void Inimigo::atualizarAnimacao(){
@@ -135,8 +137,6 @@ namespace Jungle {
                         levandoDano = true;
                         andando = false;
                         vida -= dano * (dano / (dano + nivel.getDefesa()));
-                        std::cout << "Dano: " << dano << std::endl;
-                        std::cout << "Defesa: " << nivel.getDefesa() << std::endl << std::endl;
                         if(vida <= 0.0f){
                             morrendo = true;
                             vida = 0.0f;

@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <math.h>
+#include <iomanip>
 
 namespace Jungle {
 
@@ -25,6 +26,7 @@ namespace Jungle {
                     const int getNivel() const;
                     void addExp(const float experiencia);
                     const float getExp() const;
+                    const float getExpProxNivel() const;
                     const float getForca() const;
                     const float getDefesa() const;
                     const float getVitalidade() const;

@@ -46,6 +46,7 @@ namespace Jungle {
 
             void Texto::setTamanhoBorda(const float tamBorda){
                 texto.setOutlineThickness(tamBorda);
+                tam = sf::Vector2f(texto.getGlobalBounds().width, texto.getGlobalBounds().height);
             }
 
             void Texto::setString(std::string nome){
@@ -55,6 +56,11 @@ namespace Jungle {
 
             const std::string Texto::getString() const {
                 return texto.getString();
+            }
+            
+            void Texto::setTamFonte(const unsigned int tamFonte){
+                texto.setCharacterSize(tamFonte);
+                tam = sf::Vector2f(texto.getGlobalBounds().width, texto.getGlobalBounds().height);
             }
 
         }

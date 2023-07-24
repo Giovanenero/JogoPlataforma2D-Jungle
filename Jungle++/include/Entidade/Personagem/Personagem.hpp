@@ -48,6 +48,7 @@ namespace Jungle {
                 virtual void inicializarBarraVida() = 0;
                 virtual void inicializarAnimacao() = 0;
                 virtual void inicializarNivel() = 0;
+                virtual void atualizarNivel();
             public:
                 Personagem(const sf::Vector2f pos, const sf::Vector2f tam, const float vel, const IDs::IDs ID, const float tempoMorrer, const float tempoDano = 1.0f);
                 virtual ~Personagem();

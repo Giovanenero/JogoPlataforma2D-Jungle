@@ -30,6 +30,7 @@ namespace Jungle {
                 void setTamanhoBorda(const float tamBorda);
                 void setString(std::string nome);
                 const std::string getString() const;
+                void setTamFonte(const unsigned int tamFonte);
             };
 
         }

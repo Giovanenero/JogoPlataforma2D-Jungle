@@ -113,8 +113,6 @@ namespace Jungle {
                     levandoDano = true;
                     andando = false;
                     vida -= dano * (dano / (dano + nivel.getDefesa()));
-                    std::cout << "Dano: " << dano << std::endl;
-                    std::cout << "Defesa: " << nivel.getDefesa() << std::endl << std::endl;
                     if(vida <= 0.0f){
                         morrendo = true;
                         vida = 0.0f;
@@ -130,6 +128,10 @@ namespace Jungle {
                 sf::Vector2f posBarraVida(sf::Vector2f(pos.x + tam.x / 2.0f - corpo.getSize().x / 2.0f, pos.y - 20.0f)); 
                 barraVida.setPosition(posBarraVida);
                 barraVida.setSize(sf::Vector2f((vida / 100.0f) * BARRA_VIDA_X, BARRA_VIDA_Y));
+            }
+
+            void Personagem::atualizarNivel(){
+                sf::Vector2f posBarraVida = barraVida.getPosition();
                 textoNivel.setPos(sf::Vector2f(posBarraVida.x - textoNivel.getTam().x, posBarraVida.y - textoNivel.getTam().y / 2.0f));
             }
 

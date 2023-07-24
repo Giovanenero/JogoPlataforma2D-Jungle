@@ -10,7 +10,7 @@ namespace Jungle {
                 nivel(1), experiencia(0.0f), proximoNivel(100.0f), forca(20.0f),
                 defesa(20.0f), vitalidade(20.0f)
             {
-
+                
             }
 
             Nivel::Nivel(const float forca, const float defesa, const float vitalidade):
@@ -47,6 +47,10 @@ namespace Jungle {
                     setNivel(nivel + 1);
                     this->experiencia = restoExp;
                 }
+            }
+
+            const float Nivel::getExpProxNivel() const{
+                return proximoNivel;
             }
             
             const float Nivel::getExp() const{

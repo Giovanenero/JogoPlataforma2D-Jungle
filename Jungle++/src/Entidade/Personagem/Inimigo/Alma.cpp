@@ -112,8 +112,6 @@ namespace Jungle {
                 void Alma::tomarDano(const float dano){
                     if(!levandoDano && !invisivel){
                         vida -= dano * (dano / (dano + nivel.getDefesa()));
-                        std::cout << "Dano: " << dano << std::endl;
-                        std::cout << "Defesa: " << nivel.getDefesa() << std::endl << std::endl;
                         if(vida <= 0.0f){
                             morrendo = true;
                             vida = 0.0f;

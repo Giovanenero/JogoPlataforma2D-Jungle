@@ -34,12 +34,20 @@ namespace Jungle {
                     bool noChao;
                     Observador::ObservadorJogador* observadorJogador;
                     sf::RectangleShape tuboBarraVida;
+                    sf::RectangleShape tuboBarraXP;
+                    sf::RectangleShape barraXP;
+                    Menu::Botao::Texto textoExp;
 
                     void inicializarAnimacao();
                     void inicializarBarraVida();
                     void atualizarAnimacao();
                     void atualizarBarraVida();
                     void inicializarNivel();
+                    void inicializarBarraXP();
+                    void atualizarNivel();
+                    void atualizarBarraXP();
+                    void inicializarExp();
+                    void atualizarExp();
                 public:
                     Jogador(const sf::Vector2f pos, Item::Arma* arma);
                     Jogador(const std::vector<std::string> atributos);
