@@ -37,15 +37,25 @@ namespace Jungle {
             }
 
             void Texto::setPos(const sf::Vector2f pos){
+                this->pos = pos;
                 texto.setPosition(pos);
             }
 
-            sf::Vector2f Texto::getTam(){
+            const sf::Vector2f Texto::getPos() const{
+                return pos;
+            }
+
+            const sf::Vector2f Texto::getTam() const{
                 return tam;
             }
 
             void Texto::setTamanhoBorda(const float tamBorda){
                 texto.setOutlineThickness(tamBorda);
+                tam = sf::Vector2f(texto.getGlobalBounds().width, texto.getGlobalBounds().height);
+            }
+
+            void Texto::setEspacamento(const float tamEspaco){
+                texto.setLetterSpacing(tamEspaco);
                 tam = sf::Vector2f(texto.getGlobalBounds().width, texto.getGlobalBounds().height);
             }
 

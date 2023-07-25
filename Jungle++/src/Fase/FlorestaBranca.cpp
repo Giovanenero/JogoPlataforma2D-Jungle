@@ -107,20 +107,18 @@ namespace Jungle {
             for(int i = 0; i < 4; i++){
                 criarPlataforma(sf::Vector2f(1450.0f + i * 350.0f, 150.0f), sf::Vector2f(350.0f, 50.0f), false, 0.0f, false);
             }
-
-            Entidade::Item::Chave* chave = new Entidade::Item::Chave(sf::Vector2f(200.0f, 500.0f), sf::Vector2f(50.0f, 50.0f));
-            Entidade::Obstaculo::Porta* porta = new Entidade::Obstaculo::Porta(sf::Vector2f(400.0f, 450.0f), sf::Vector2f(75.0f, 100.0f), chave);
+            Entidade::Item::Chave* chave = new Entidade::Item::Chave(sf::Vector2f(200.0f, 500.0f), sf::Vector2f(40.0f, 40.0f));
+            Entidade::Obstaculo::Porta* porta = new Entidade::Obstaculo::Porta(sf::Vector2f(400.0f, 450.0f), sf::Vector2f(85.0f, 100.0f), chave);
             chave->setPorta(porta);
             listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(porta));
             listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(chave));
-
-            std::cout << "aaa ";
 
             Entidade::Personagem::Jogador::Jogador* pJogador = criarJogador(sf::Vector2f(100.0f, 400.0f));
             criarMoeda(sf::Vector2f(300.0f, 500.0f), IDs::IDs::moeda_amarela);
             criarMoeda(sf::Vector2f(1200.0f, 80.0f), IDs::IDs::moeda_cinza);
             criarVida(sf::Vector2f(1400.0f, 350.0f));
 
+            /*
             for(int i = 0; i < 3; i++){
                 criarEsqueleto(sf::Vector2f(400.0f * (i + 0.5f), 0.0f), 1, pJogador);
             }
@@ -129,6 +127,7 @@ namespace Jungle {
             }
             criarAlma(sf::Vector2f(200.0f, 500.0f), 2, pJogador);
             criarAlma(sf::Vector2f(500.0f, 500.0f), 4, pJogador);
+            */
         }
 
     }

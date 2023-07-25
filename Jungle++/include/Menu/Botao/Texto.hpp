@@ -15,6 +15,7 @@ namespace Jungle {
             protected:
                 sf::Text texto;
                 sf::Vector2f tam;
+                sf::Vector2f pos;
                 unsigned int tamFonte;
                 sf::Color corTexto;
                 sf::Color corBorda;
@@ -25,9 +26,11 @@ namespace Jungle {
                 virtual ~Texto();
                 const sf::Text getTexto() const;
                 void setPos(const sf::Vector2f pos);
-                sf::Vector2f getTam();
+                const sf::Vector2f getPos() const;
+                const sf::Vector2f getTam() const;
                 void setCorTexto(const sf::Color corTexto);
                 void setTamanhoBorda(const float tamBorda);
+                void setEspacamento(const float tamEspaco);
                 void setString(std::string nome);
                 const std::string getString() const;
                 void setTamFonte(const unsigned int tamFonte);

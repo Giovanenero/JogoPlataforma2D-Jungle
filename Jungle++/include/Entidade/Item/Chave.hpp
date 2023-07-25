@@ -17,11 +17,14 @@ namespace Jungle {
                 private:
                     Obstaculo::Porta* porta;
                     Animador::Animacao animacao;
+                    bool coletou;
                 public:
                     Chave(const sf::Vector2f pos, const sf::Vector2f tam);
                     ~Chave();
                     void setPorta(Obstaculo::Porta* porta);
                     Obstaculo::Porta* getPorta();
+                    void setColetou(const bool coletou);
+                    const bool getColetou() const;
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
                     const std::string salvar();
                     void atualizar();

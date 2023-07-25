@@ -4,6 +4,7 @@
 #include "../../../../include/Entidade/Item/Vida.hpp"
 #include "../../../../include/Entidade/Item/Projetil.hpp"
 #include "../../../../include/Entidade/Item/Moeda.hpp"
+#include "../../../../include/Entidade/Obstaculo/Porta.hpp"
 
 #include <cmath>
 
@@ -18,7 +19,8 @@ namespace Jungle {
                 Jogador::Jogador(const sf::Vector2f pos, Item::Arma* arma):
                     Personagem(pos, sf::Vector2f(TAMANHO_JOGADOR_X, TAMANHO_JOGADOR_Y), VELOCIDADE_JOGADOR, IDs::IDs::jogador, TEMPO_JOGADOR_MORRER, TEMPO_JOGADOR_TOMARDANO), 
                     noChao(false), observadorJogador(new Observador::ObservadorJogador(this)),
-                    textoExp(pGrafico->carregarFonte("Jungle++/fonte/menuColocacao.ttf"), "", 20)
+                    textoExp(pGrafico->carregarFonte("Jungle++/fonte/menuColocacao.ttf"), "", 20),
+                    vectorChaves(), colidindoPorta(false), abrirPorta(false)
                 {
                     this->pontos = 0;
                     if(observadorJogador == nullptr){
@@ -40,7 +42,8 @@ namespace Jungle {
                 Jogador::Jogador(const std::vector<std::string> atributos):
                     Personagem(pos, sf::Vector2f(TAMANHO_JOGADOR_X, TAMANHO_JOGADOR_Y), VELOCIDADE_JOGADOR, IDs::IDs::jogador, TEMPO_JOGADOR_MORRER, TEMPO_JOGADOR_TOMARDANO), 
                     noChao(false), observadorJogador(new Observador::ObservadorJogador(this)),
-                    textoExp(pGrafico->carregarFonte("Jungle++/fonte/menuColocacao.ttf"), "", 20)
+                    textoExp(pGrafico->carregarFonte("Jungle++/fonte/menuColocacao.ttf"), "", 20),
+                    vectorChaves()
                 {
                     try {
                         const sf::Vector2f posAtual = sf::Vector2f(std::stof(atributos[1]), std::stof(atributos[2]));
@@ -184,6 +187,17 @@ namespace Jungle {
                     textoExp.setPos(sf::Vector2f(posBarraXP.x + tuboBarraXP.getSize().x - textoExp.getTam().x - 5.0f, posBarraXP.y - textoExp.getTam().y - 12.0f));
                 }
 
+                void Jogador::atualizarChaves(){
+                    sf::Vector2f posFundo = pGrafico->getCamera().getCenter();
+                    sf::Vector2f tamJanela = pGrafico->getTamJanela();
+                    posFundo.x += (tamJanela.x / 2.0f - 20.0f);
+                    posFundo.y += (-tamJanela.y / 2.0f + 20.0f);
+                    for(int i = 0; i < vectorChaves.size(); i++){
+                        Item::Chave* chave = vectorChaves[i];
+                        chave->setPos(sf::Vector2f(posFundo.x - (chave->getTam().x + 15.0f) * (i + 1), posFundo.y));
+                    }
+                }
+
                 void Jogador::atualizarAnimacao(){
                     if(morrendo){
                         animacao.atualizar(paraEsquerda, "MORRE");
@@ -276,6 +290,20 @@ namespace Jungle {
                             moeda->remover();
                         }
                             break;
+                        case(IDs::IDs::porta):
+                        {
+                            Obstaculo::Porta* porta = dynamic_cast<Obstaculo::Porta*>(outraEntidade);
+                            porta->colidindoJogador(this);
+                        }
+                            break;
+                        case(IDs::IDs::chave):
+                        {
+                            Item::Chave* chave = dynamic_cast<Item::Chave*>(outraEntidade);
+                            if(!chave->getColetou()){
+                                addChave(chave);
+                            }
+                            colidindoPorta = true;
+                        }
                     }   
                 }
 
@@ -295,12 +323,38 @@ namespace Jungle {
                     return andando;
                 }
 
+                void Jogador::setColidindoPorta(const bool colidindoPorta){
+                    this->colidindoPorta = colidindoPorta;
+                }
+                
+                const bool Jogador::getColidindoPorta() const{
+                    return colidindoPorta;
+                }
+
+                void Jogador::setAbrirPorta(const bool abrirPorta){
+                    this->abrirPorta = abrirPorta;
+                }
+                
+                const bool Jogador::getAbrirPorta() const{
+                    return abrirPorta;
+                }
+
                 void Jogador::podePular(){
                     noChao = true;
                 }
 
                 void Jogador::mudarEstadoObservador(){
                     observadorJogador->mudarEstadoAtivar();
+                }
+
+                void Jogador::addChave(Item::Chave* chave){
+                    vectorChaves.push_back(chave);
+                    chave->setTam(sf::Vector2f(40.0f, 40.0f));
+                    chave->setColetou(true);
+                }
+
+                std::vector<Item::Chave*> Jogador::getChaves(){
+                    return vectorChaves;
                 }
 
                 void Jogador::addPontuacao(const unsigned int pontos){
@@ -390,6 +444,10 @@ namespace Jungle {
                     atualizarNivel();
 
                     atualizarExp();
+
+                    atualizarChaves();
+
+                    colidindoPorta = false;
                 }
 
             }
