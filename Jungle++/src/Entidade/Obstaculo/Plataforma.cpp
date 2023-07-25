@@ -20,11 +20,13 @@ namespace Jungle {
                 try {
                     sf::Vector2f posAtual = sf::Vector2f(std::stof(atributos[1]), std::stof(atributos[2]));
                     sf::Vector2f tamAtual = sf::Vector2f(std::stof(atributos[3]), std::stof(atributos[4]));
+                    const bool ehFlutuanteAtual = atributos[5] == "1";
 
                     setPos(posAtual);
                     setTam(tamAtual);
+                    this->ehFlutuante = ehFlutuanteAtual;
 
-                    //inicializarAnimacao();
+                    inicializarAnimacao();
                 }
                 catch(const std::exception& e) {
                     std::cerr << e.what() << std::endl;
@@ -35,6 +37,19 @@ namespace Jungle {
 
             Plataforma::~Plataforma(){
 
+            }
+
+            const std::string Plataforma::salvar(){
+                std::string linha = "";
+                //salvando atributos da entidade
+                linha += std::to_string(static_cast<int>(ID)) + ' ';
+                linha += std::to_string(pos.x) + ' ';
+                linha += std::to_string(pos.y) + ' ';
+                linha += std::to_string(tam.x) + ' ';
+                linha += std::to_string(tam.y) + ' ';
+                //salvando atributos da Plataforma
+                linha += std::to_string(ehFlutuante);
+                return linha;
             }
 
             void Plataforma::inicializarAnimacao(){

@@ -12,9 +12,9 @@ namespace Jungle {
 
             class PlataformaMovel : public Plataforma {
                 private:
-                    const bool horizontal;
-                    const float posFinal;
-                    const float posInicial;
+                    bool horizontal;
+                    float posFinal;
+                    float posInicial;
                     bool paraEsquerda;
                     bool paraBaixo;
                     const sf::Vector2f velocidade;
@@ -23,10 +23,12 @@ namespace Jungle {
 
                     void atualizarPosicao();
                 public:
-                    PlataformaMovel(const IDs::IDs ID, const sf::Vector2f pos, const float distancia, const sf::Vector2f tam, const bool ehFlutuante, const bool horizontal);
+                    PlataformaMovel(const sf::Vector2f pos, const float distancia, const sf::Vector2f tam, const bool ehFlutuante, const bool horizontal);
+                    PlataformaMovel(const std::vector<std::string> atributos);
                     ~PlataformaMovel();
                     void inicializarAnimacao();
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
+                    const std::string salvar();
                     void atualizar();
             };
 

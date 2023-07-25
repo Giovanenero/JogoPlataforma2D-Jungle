@@ -19,14 +19,15 @@ namespace Jungle {
         namespace Obstaculo {
 
             class Plataforma : public Obstaculo {
-            private:
-                bool ehFlutuante;
-            public:
-                Plataforma(const IDs::IDs ID, const sf::Vector2f pos, const sf::Vector2f tam, const bool ehFlutuante);
-                Plataforma(const std::vector<std::string> atributos);
-                ~Plataforma();
-                virtual void inicializarAnimacao();
-                virtual void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
+                protected:
+                    bool ehFlutuante;
+                public:
+                    Plataforma(const IDs::IDs ID, const sf::Vector2f pos, const sf::Vector2f tam, const bool ehFlutuante);
+                    Plataforma(const std::vector<std::string> atributos);
+                    ~Plataforma();
+                    virtual void inicializarAnimacao();
+                    virtual void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
+                    virtual const std::string salvar();
             };
 
         }

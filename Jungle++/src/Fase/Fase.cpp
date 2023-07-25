@@ -116,8 +116,13 @@ namespace Jungle {
             listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(projetil));
         }
 
-        void Fase::criarPlataforma(const sf::Vector2f pos, const sf::Vector2f tam, const IDs::IDs ID, const bool ehFlutuante){
-            Entidade::Obstaculo::Plataforma* plataforma = new Entidade::Obstaculo::Plataforma(IDs::IDs::plataforma, pos, tam, ehFlutuante);
+        void Fase::criarPlataforma(const sf::Vector2f pos, const sf::Vector2f tam, const bool ehFlutuante, const float distancia, const bool horizontal){
+            Entidade::Obstaculo::Plataforma* plataforma = nullptr;
+            if(distancia != 0.0f){
+                plataforma = static_cast<Entidade::Obstaculo::Plataforma*>(new Entidade::Obstaculo::PlataformaMovel(pos, distancia, tam, ehFlutuante, horizontal));
+            } else {
+                plataforma = new Entidade::Obstaculo::Plataforma(IDs::IDs::plataforma, pos, tam, ehFlutuante);
+            }
             if(plataforma == nullptr){
                 std::cout << "Fase::nao foi possivel criar plataforma" << std::endl;
                 exit(1);
@@ -126,13 +131,17 @@ namespace Jungle {
             listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(plataforma));
         }
 
-        void Fase::criarPlataforma(const std::vector<std::string> atributos){
-            Entidade::Obstaculo::Plataforma* plataforma = new Entidade::Obstaculo::Plataforma(atributos);
+        void Fase::criarPlataforma(const std::vector<std::string> atributos, const IDs::IDs ID){
+            Entidade::Obstaculo::Plataforma* plataforma = nullptr;
+            if(ID == IDs::IDs::plataforma){
+                plataforma = new Entidade::Obstaculo::Plataforma(atributos);
+            } else {
+                plataforma = static_cast<Entidade::Obstaculo::Plataforma*>(new Entidade::Obstaculo::PlataformaMovel(atributos));
+            }
             if(plataforma == nullptr){
                 std::cout << "Fase::nao foi possivel criar plataforma" << std::endl;
                 exit(1);
             }
-            plataforma->inicializarAnimacao();
             listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(plataforma));
         }
 

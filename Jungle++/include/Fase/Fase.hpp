@@ -53,8 +53,8 @@ namespace Jungle {
             void criarEsqueleto(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma, Entidade::Personagem::Jogador::Jogador* pJogador);
             void criarAlma(const sf::Vector2f pos, const int nivel, Entidade::Personagem::Jogador::Jogador* pJogador);
             void criarAlma(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma, Entidade::Personagem::Jogador::Jogador* pJogador);
-            void criarPlataforma(const sf::Vector2f pos, const sf::Vector2f tam, const IDs::IDs ID, const bool ehFlutuante);
-            void criarPlataforma(const std::vector<std::string> atributos);
+            void criarPlataforma(const sf::Vector2f pos, const sf::Vector2f tam, const bool ehFlutuante, const float distancia, const bool horizontal);
+            void criarPlataforma(const std::vector<std::string> atributos, const IDs::IDs ID);
             void criarCaixa(const sf::Vector2f pos);
             void criarCaixa(const std::vector<std::string> atributos);
             void criarMoeda(const sf::Vector2f pos, const IDs::IDs ID);
