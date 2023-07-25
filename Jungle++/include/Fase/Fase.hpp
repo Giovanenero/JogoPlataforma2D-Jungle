@@ -20,6 +20,8 @@
 #include "../Entidade/Item/Vida.hpp"
 #include "../Entidade/Obstaculo/PlataformaMovel.hpp"
 #include "../Entidade/Obstaculo/Caixa.hpp"
+#include "../Entidade/Obstaculo/Porta.hpp"
+#include "../Entidade/Item/Chave.hpp"
 
 #include "../Menu/Botao/Texto.hpp"
 
