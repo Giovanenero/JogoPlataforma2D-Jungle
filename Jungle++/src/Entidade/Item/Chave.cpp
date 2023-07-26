@@ -9,10 +9,36 @@ namespace Jungle {
         namespace Item {
 
             Chave::Chave(const sf::Vector2f pos, const sf::Vector2f tam):
-                Entidade(tam, IDs::IDs::caixa, pos), animacao(&corpo), porta(nullptr),
+                Entidade(tam, IDs::IDs::chave, pos), animacao(&corpo), porta(nullptr),
                 coletou(false)
             {
                 animacao.addAnimacao("Jungle++/img/Item/chave.png", "CHAVE", 5, 0.3f, sf::Vector2f(1.2f, 1.2f), sf::Vector2f(tam.x / 4.0f, tam.y / 5.5f));
+            }
+
+            Chave::Chave(const std::vector<std::string> atributos):
+                Entidade(sf::Vector2f(0.0f, 0.0f), IDs::IDs::chave, sf::Vector2f(0.0f, 0.0f)),
+                animacao(&corpo), porta(nullptr)
+            {
+                try {
+                    const sf::Vector2f posAtual = sf::Vector2f(std::stof(atributos[1]), std::stof(atributos[2]));
+                    const sf::Vector2f tamAtual = sf::Vector2f(std::stof(atributos[3]), std::stof(atributos[4]));
+                    const std::string imgAtual = atributos[5];
+                    const unsigned int quadroAtual = std::stoi(atributos[6]);
+                    const float tempoTotalAtual = std::stof(atributos[7]);
+                    const bool coletouAtual = atributos[8] == "1";
+
+                    setPos(posAtual);
+                    setTam(tamAtual);
+                    animacao.addAnimacao("Jungle++/img/Item/chave.png", "CHAVE", 5, 0.3f, sf::Vector2f(1.2f, 1.2f), sf::Vector2f(tam.x / 4.0f, tam.y / 5.5f));
+                    animacao.setImgAtual(imgAtual);
+                    animacao.setQuadroAtual(quadroAtual);
+                    animacao.setTempoTotal(tempoTotalAtual);
+                    this->coletou = coletouAtual;
+                } catch(const std::exception& e){
+                    std::cerr << e.what() << std::endl;
+                    podeRemover = true;
+                }
+                
             }
             
             Chave::~Chave(){
@@ -36,7 +62,6 @@ namespace Jungle {
             }
 
             void Chave::colisao(Entidade* outraEntidade, sf::Vector2f ds){
-                //terminar...
                 if(!coletou){
                     if(outraEntidade->getID() == IDs::IDs::jogador){
                         Personagem::Jogador::Jogador* pJogador = dynamic_cast<Personagem::Jogador::Jogador*>(outraEntidade);
@@ -46,8 +71,20 @@ namespace Jungle {
             }
 
             const std::string Chave::salvar(){
-                //terminar...
-                return "";
+                std::string linha = "";
+                //salvando atributos da entidade
+                linha += std::to_string(static_cast<int>(ID)) + ' ';
+                linha += std::to_string(pos.x) + ' ';
+                linha += std::to_string(pos.y) + ' ';
+                linha += std::to_string(tam.x) + ' ';
+                linha += std::to_string(tam.y) + ' ';
+                //salvando atributos da chave
+                linha += animacao.getImgAtual() + ' ';
+                linha += std::to_string(animacao.getQuadroAtual()) + ' ';
+                linha += std::to_string(animacao.getTempoTotal()) + ' ';
+                linha += std::to_string(coletou);
+
+                return linha;
             }
 
             void Chave::atualizar(){

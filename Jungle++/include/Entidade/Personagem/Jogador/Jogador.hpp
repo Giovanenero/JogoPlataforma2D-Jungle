@@ -68,6 +68,7 @@ namespace Jungle {
                     void podePular();
                     void mudarEstadoObservador();
                     void addChave(Item::Chave* chave);
+                    void removerChave(Item::Chave* chave);
                     std::vector<Item::Chave*> getChaves();
                     void addPontuacao(const unsigned int pontos);
                     void addExperiencia(const float experiencia);

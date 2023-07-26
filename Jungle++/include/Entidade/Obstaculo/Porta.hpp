@@ -28,14 +28,17 @@ namespace Jungle {
 
                     void inicializarAnimacao();
                     void atualizarAnimacao();
-                    void inicializarTexto();
+                    void inicializarTexto(std::string texto);
                 public:
                     Porta(const sf::Vector2f pos, const sf::Vector2f tam, Item::Chave* chave);
+                    Porta(const std::vector<std::string> atributos, Item::Chave* chave);
                     ~Porta();
                     Item::Chave* getChave();
                     void setMostrarTexto(const bool mostrarTexto);
                     void colidindoJogador(Personagem::Jogador::Jogador* pJogador);
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
+                    const std::string salvar();
+                    void desenhar();
                     void atualizar();
             };
 

@@ -63,6 +63,8 @@ namespace Jungle {
             void criarMoeda(const std::vector<std::string> atributos, const IDs::IDs ID);
             void criarVida(const sf::Vector2f pos);
             void criarVida(const std::vector<std::string> atributos);
+            void criarPorta(const sf::Vector2f posPorta, const sf::Vector2f tamPorta, const sf::Vector2f posChave, const sf::Vector2f tamChave);
+            void criarPorta(const std::vector<std::string> atributosPorta, const std::vector<std::string> atributosChave, Entidade::Personagem::Jogador::Jogador* pJogador);
             Entidade::Personagem::Jogador::Jogador* criarJogador(const sf::Vector2f pos);
             Entidade::Personagem::Jogador::Jogador* criarJogador(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma);
             

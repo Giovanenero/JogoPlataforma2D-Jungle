@@ -9,11 +9,54 @@ namespace Jungle {
             Porta::Porta(const sf::Vector2f pos, const sf::Vector2f tam, Item::Chave* chave):
                 Obstaculo(pos, tam, IDs::IDs::porta), animacao(&corpo), tempoAbrindo(0.0f),
                 fechada(true), abrindo(false), chave(chave), mostrarTexto(false),
-                textoPorta(pGrafico->carregarFonte("Jungle++/fonte/menuColocacao.ttf"), "Encontre a Chave", 30),
+                textoPorta(pGrafico->carregarFonte("Jungle++/fonte/menuColocacao.ttf"), "", 30),
                 caixaTexto(), coletou(false), fundoPorta()
             {
                 inicializarAnimacao();
-                inicializarTexto();
+                inicializarTexto("Encontre a Chave");
+            }
+
+            Porta::Porta(const std::vector<std::string> atributos, Item::Chave* chave):
+                Obstaculo(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(0.0f, 0.0f), IDs::IDs::porta), 
+                animacao(&corpo), chave(chave), fundoPorta(), caixaTexto(),
+                textoPorta(pGrafico->carregarFonte("Jungle++/fonte/menuColocacao.ttf"), "", 30)
+            {
+                try {
+                    const sf::Vector2f posAtual = sf::Vector2f(std::stof(atributos[1]), std::stof(atributos[2]));
+                    const sf::Vector2f tamAtual = sf::Vector2f(std::stof(atributos[3]), std::stof(atributos[4]));
+                    const bool fechadaAtual = atributos[5] == "1";
+                    const bool abrindoAtual = atributos[6] == "1";
+                    const float tempoAbrindoAtual = std::stof(atributos[7]);
+                    const std::string imgAtual = atributos[8];
+                    const unsigned int quadroAtual = std::stoi(atributos[9]);
+                    const float tempoTotalAtual = std::stof(atributos[10]);
+                    const bool mostrarTextoAtual = atributos[11] == "1";
+                    const bool coletouAtual = atributos[12] == "1";
+
+                    setPos(posAtual);
+                    setTam(tamAtual);
+                    this->fechada = fechadaAtual;
+                    this->abrindo = abrindoAtual;
+                    this->tempoAbrindo = tempoAbrindoAtual;
+                    inicializarAnimacao();
+                    animacao.setImgAtual(imgAtual);
+                    animacao.setQuadroAtual(quadroAtual);
+                    animacao.setTempoTotal(tempoAbrindoAtual);
+                    this->mostrarTexto = mostrarTextoAtual;
+                    this->coletou = coletouAtual;
+
+                    if(!coletou){
+                        inicializarTexto("Encontre a Chave");
+                    } else if(fechada){
+                        inicializarTexto("Pressione 'K' para Abrir");
+                    } else {
+                        inicializarTexto("Pressione 'K' para Entrar");
+                    }
+                } catch(const std::exception& e) {
+                    std::cerr << e.what() << std::endl;
+                    podeRemover = true;
+                }
+                
             }
 
             Porta::~Porta(){
@@ -45,7 +88,8 @@ namespace Jungle {
                 }
             }
 
-            void Porta::inicializarTexto(){
+            void Porta::inicializarTexto(std::string texto){
+                textoPorta.setString(texto);
                 textoPorta.setTamanhoBorda(1);
                 textoPorta.setEspacamento(0.6f);
                 textoPorta.setPos(sf::Vector2f(
@@ -70,14 +114,7 @@ namespace Jungle {
                     std::vector<Item::Chave*> vectorChaves = pJogador->getChaves();
                     for(int i = 0; i < vectorChaves.size() && !coletou; i++){
                         if(vectorChaves[i] == chave){
-                            textoPorta.setString("Pressione 'K' para Abrir");
-                            sf::Vector2f tamTexto = textoPorta.getTam();
-                            textoPorta.setPos(sf::Vector2f(
-                                pos.x + tam.x / 2.0f - tamTexto.x / 2.0f,
-                                pos.y - tamTexto.y - 10.0f
-                            ));
-                            caixaTexto.setSize(tamTexto + sf::Vector2f(15.0f, 15.0f));
-                            caixaTexto.setPosition(textoPorta.getPos() + sf::Vector2f(-15.0f / 2.0f, 15.0f / 2.0f));
+                            inicializarTexto("Pressione 'K' para Abrir");
                             coletou = true;
                         }
                     }
@@ -87,14 +124,10 @@ namespace Jungle {
                     if(fechada && pJogador->getAbrirPorta()){
                         fechada = false;
                         abrindo = true;
-                        textoPorta.setString("Pressione 'K' para Entrar");
-                        sf::Vector2f tamTexto = textoPorta.getTam();
-                        textoPorta.setPos(sf::Vector2f(
-                            pos.x + tam.x / 2.0f - tamTexto.x / 2.0f,
-                            pos.y - tamTexto.y - 10.0f
-                        ));
-                        caixaTexto.setSize(tamTexto + sf::Vector2f(15.0f, 15.0f));
-                        caixaTexto.setPosition(textoPorta.getPos() + sf::Vector2f(-15.0f / 2.0f, 15.0f / 2.0f));
+                        inicializarTexto("Pressione 'K' para Entrar");
+                        pJogador->removerChave(chave);
+                        chave->remover();
+                        chave = nullptr;
                     } else if(abrindo){
                         mostrarTexto = false;
                     } else if(pJogador->getAbrirPorta()){
@@ -110,18 +143,46 @@ namespace Jungle {
                     colidindoJogador(pJogador);
                 }
             }
-            
-            void Porta::atualizar(){
-                atualizarAnimacao();
+
+            const std::string Porta::salvar(){
+                std::string linha = "";
+                //salvando atributos da entidade
+                linha += std::to_string(static_cast<int>(ID)) + ' ';
+                linha += std::to_string(pos.x) + ' ';
+                linha += std::to_string(pos.y) + ' ';
+                linha += std::to_string(tam.x) + ' ';
+                linha += std::to_string(tam.y) + ' ';
+                //salvando atributos do obstáculo
+
+                //salvando atributos da porta
+                linha += std::to_string(fechada) + ' ';
+                linha += std::to_string(abrindo) + ' ';
+                linha += std::to_string(tempoAbrindo) + ' ';
+                linha += animacao.getImgAtual() + ' ';
+                linha += std::to_string(animacao.getQuadroAtual()) + ' ';
+                linha += std::to_string(animacao.getTempoTotal()) + ' ';
+                //linha += textoPorta.getString() + ' ';
+                linha += std::to_string(mostrarTexto) + ' ';
+                linha += std::to_string(coletou);
+
+                return linha;
+            }
+
+            void Porta::desenhar(){
                 if(mostrarTexto){
                     pGrafico->desenhaElemento(caixaTexto);
                     pGrafico->desenhaElemento(textoPorta.getTexto());
-                    mostrarTexto = false;
                 }
                 if(!fechada){
                     pGrafico->desenhaElemento(fundoPorta);
                 }
+                pGrafico->desenhaElemento(corpo);
+            }
+            
+            void Porta::atualizar(){
+                atualizarAnimacao();
                 desenhar();
+                mostrarTexto = false;
             }
 
         }

@@ -20,6 +20,7 @@ namespace Jungle {
                     bool coletou;
                 public:
                     Chave(const sf::Vector2f pos, const sf::Vector2f tam);
+                    Chave(const std::vector<std::string> atributos);
                     ~Chave();
                     void setPorta(Obstaculo::Porta* porta);
                     Obstaculo::Porta* getPorta();

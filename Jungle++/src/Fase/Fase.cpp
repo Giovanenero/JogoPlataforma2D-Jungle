@@ -199,6 +199,46 @@ namespace Jungle {
             listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(vida));
         }
 
+        void Fase::criarPorta(const sf::Vector2f posPorta, const sf::Vector2f tamPorta, const sf::Vector2f posChave, const sf::Vector2f tamChave){
+            Entidade::Item::Chave* chave = new Entidade::Item::Chave(posChave, tamChave);
+            if(chave == nullptr){
+                std::cout << "Fase::nao foi possivel criar uma chave" << std::endl;
+                exit(1);
+            }
+            Entidade::Obstaculo::Porta* porta = new Entidade::Obstaculo::Porta(posPorta, tamPorta, chave);
+            if(porta == nullptr){
+                std::cout << "Fase::nao foi possivel criar uma porta" << std::endl;
+                exit(1);
+            }
+            chave->setPorta(porta);
+            listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(porta));
+            listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(chave));
+        }
+
+        void Fase::criarPorta(const std::vector<std::string> atributosPorta, const std::vector<std::string> atributosChave, Entidade::Personagem::Jogador::Jogador* pJogador){
+            Entidade::Item::Chave* chave = nullptr;
+            if(atributosChave.size() > 0){
+                chave = new Entidade::Item::Chave(atributosChave);
+                if(chave == nullptr){
+                    std::cout << "Fase::nao foi possivel criar uma chave" << std::endl;
+                    exit(1);
+                }
+            }
+            Entidade::Obstaculo::Porta* porta = new Entidade::Obstaculo::Porta(atributosPorta, chave);
+            if(porta == nullptr){
+                std::cout << "Fase::nao foi possivel criar uma porta" << std::endl;
+                exit(1);
+            }
+            listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(porta));
+            if(chave != nullptr){
+                chave->setPorta(porta);
+                if(chave->getColetou()){
+                    pJogador->addChave(chave);
+                }
+                listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(chave));
+            }
+        }
+
         Entidade::Personagem::Jogador::Jogador*  Fase::criarJogador(const sf::Vector2f pos){
             Entidade::Item::Arma* espadaJogador = new Entidade::Item::Arma(IDs::IDs::espada_jogador);
             if(espadaJogador == nullptr){

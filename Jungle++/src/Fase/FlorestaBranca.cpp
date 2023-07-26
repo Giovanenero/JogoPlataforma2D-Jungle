@@ -81,6 +81,18 @@ namespace Jungle {
                             criarPlataforma(atributos, IDs::IDs::plataforma_movel);
                         }
                             break;
+                        case(51):
+                        {
+                            std::vector<std::string> atributosChave = {};
+                            if(i + 1 < linhas.size()){
+                                std::vector<std::string> atributosAux = getAtributosEntidade(linhas[i + 1]);
+                                if(atributosAux[0] == "52"){
+                                    atributosChave = atributosAux;
+                                    i++;
+                                }
+                            }
+                            criarPorta(atributos, atributosChave, pJogador);
+                        }
                     }
                     i++;
                 }
@@ -107,11 +119,8 @@ namespace Jungle {
             for(int i = 0; i < 4; i++){
                 criarPlataforma(sf::Vector2f(1450.0f + i * 350.0f, 150.0f), sf::Vector2f(350.0f, 50.0f), false, 0.0f, false);
             }
-            Entidade::Item::Chave* chave = new Entidade::Item::Chave(sf::Vector2f(200.0f, 500.0f), sf::Vector2f(40.0f, 40.0f));
-            Entidade::Obstaculo::Porta* porta = new Entidade::Obstaculo::Porta(sf::Vector2f(400.0f, 450.0f), sf::Vector2f(85.0f, 100.0f), chave);
-            chave->setPorta(porta);
-            listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(porta));
-            listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(chave));
+            criarPorta(sf::Vector2f(400.0f, 450.0f), sf::Vector2f(85.0f, 100.0f), sf::Vector2f(1600.0f, 100.0f), sf::Vector2f(40.0f, 40.0f));
+            criarPorta(sf::Vector2f(550.0f, 450.0f), sf::Vector2f(85.0f, 100.0f), sf::Vector2f(1000.0f, 500.0f), sf::Vector2f(40.0f, 40.0f));
 
             Entidade::Personagem::Jogador::Jogador* pJogador = criarJogador(sf::Vector2f(100.0f, 400.0f));
             criarMoeda(sf::Vector2f(300.0f, 500.0f), IDs::IDs::moeda_amarela);

@@ -62,9 +62,11 @@ namespace Jungle {
                         const float nivelAtual = std::stoi(atributos[17]);
                         const float experienciaAtual = std::stof(atributos[18]);
                         const bool noChaoAtual = atributos[19] == "1";
-                        const std::string imgAtual = atributos[20];
-                        const unsigned int quadroAtual = std::stoi(atributos[21]);
-                        const float tempoTotalAtual = std::stof(atributos[22]);
+                        const bool colidindoPortaAtual = atributos[20] == "1";
+                        const bool abrirPortaAtual = atributos[21] == "1";
+                        const std::string imgAtual = atributos[22];
+                        const unsigned int quadroAtual = std::stoi(atributos[23]);
+                        const float tempoTotalAtual = std::stof(atributos[24]);
 
                         setPos(posAtual);
                         setTam(tamAtual);
@@ -83,6 +85,8 @@ namespace Jungle {
                         nivel.setNivel(nivelAtual);
                         nivel.addExp(experienciaAtual);
                         this->noChao = noChaoAtual;
+                        this->colidindoPorta = colidindoPortaAtual;
+                        this->abrirPorta = abrirPortaAtual;
 
                         inicializarAnimacao();
                         inicializarBarraVida();
@@ -353,6 +357,16 @@ namespace Jungle {
                     chave->setColetou(true);
                 }
 
+                void Jogador::removerChave(Item::Chave* chave){
+                    for(int i = 0; i < vectorChaves.size(); i++){
+                        Item::Chave* chaveAux = vectorChaves[i];
+                        if(chaveAux == chave){
+                            vectorChaves.erase(vectorChaves.begin() + i);
+                            return;
+                        }
+                    }
+                }
+
                 std::vector<Item::Chave*> Jogador::getChaves(){
                     return vectorChaves;
                 }
@@ -400,6 +414,8 @@ namespace Jungle {
                     linha += std::to_string(nivel.getExp()) + ' ';
                     //salvando atributos do jogador
                     linha += std::to_string(noChao) + ' ';
+                    linha += std::to_string(colidindoPorta) + ' ';
+                    linha += std::to_string(abrirPorta) + ' ';
                     linha += animacao.getImgAtual() + ' ';
                     linha += std::to_string(animacao.getQuadroAtual()) + ' ';
                     linha += std::to_string(animacao.getTempoTotal());
