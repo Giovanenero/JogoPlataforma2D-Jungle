@@ -1,4 +1,5 @@
 #include "../../../include/Entidade/Obstaculo/Porta.hpp"
+#include "../../../include/Gerenciador/GerenciadorEstado.hpp"
 
 namespace Jungle {
 
@@ -131,7 +132,11 @@ namespace Jungle {
                     } else if(abrindo){
                         mostrarTexto = false;
                     } else if(pJogador->getAbrirPorta()){
+                        Gerenciador::GerenciadorEstado* pGEstado = Gerenciador::GerenciadorEstado::getGerenciadorEstado();
+                        Estado::EstadoJogar* estadoJogar = dynamic_cast<Estado::EstadoJogar*>(pGEstado->getEstadoAtual());
+                        estadoJogar->mudarFase(IDs::IDs::floresta_branca_parte_2);
                         std::cout << "Entrar" << std::endl;
+
                     }
                 } 
                 pJogador->setColidindoPorta(true);

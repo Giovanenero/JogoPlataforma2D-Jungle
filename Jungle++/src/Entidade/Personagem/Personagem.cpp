@@ -96,6 +96,10 @@ namespace Jungle {
                 this->arma->setPos(sf::Vector2f(-1000.0f, -1000.0f));
             }
 
+            Item::Arma* Personagem::getArma(){
+                return arma;
+            }
+
             const float Personagem::getForca() const{
                 return nivel.getForca();
             }

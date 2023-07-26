@@ -25,24 +25,8 @@ namespace Jungle {
             fundo.addCamada("Jungle++/img/Fase/FLorestaVermelha/camada4.png", 0.5f);
         }
 
-        void FlorestaVermelha::criarMapa(){
-            std::ifstream arquivo;
-            std::string linha;
-            arquivo.open("Jungle++/arquivo/Mapa_FlorestaVermelha.txt");
-            if(!arquivo.is_open()){
-                std::cout << "Jungle::Fase::FlorestaVermelha::nao foi possivel abrir o arquivo" << std::endl;
-                exit(1);
-            }
-            int j = 0;
-            while(std::getline(arquivo, linha)){
-                for(int i = 0; i < linha.size(); i++){
-                    if(linha[i] != ' '){
-                        criarEntidade(linha[i], sf::Vector2i(i, j));
-                    }
-                }
-                j++;
-            }
-            arquivo.close();
+        void FlorestaVermelha::criarMapa(const int mapa){
+            //terminar...
         }
 
     }

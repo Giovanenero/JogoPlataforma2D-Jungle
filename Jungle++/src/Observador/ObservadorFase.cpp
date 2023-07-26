@@ -1,18 +1,23 @@
 #include "../../include/Observador/ObservadorFase.hpp"
 #include "../../include/Gerenciador/GerenciadorEstado.hpp"
+#include "../../include/Fase/Fase.hpp"
 
 namespace Jungle {
 
     namespace Observador {
 
-        ObservadorFase::ObservadorFase(Fase::Fase* fase):
-            Observador(), fase(fase)
+        ObservadorFase::ObservadorFase():
+            Observador(), fase(nullptr)
         {
 
         }
 
         ObservadorFase::~ObservadorFase(){
 
+        }
+
+        void ObservadorFase::setFase(Fase::Fase* fase){
+            this->fase = fase;
         }
 
         void ObservadorFase::notificarJogadorMorreu(){

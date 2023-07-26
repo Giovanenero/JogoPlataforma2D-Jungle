@@ -1,10 +1,13 @@
 #pragma once
 
 #include "Observador.hpp"
-#include "../Fase/Fase.hpp"
 #include "../Menu/Menu.hpp"
 
 namespace Jungle {
+
+    namespace Fase {
+        class Fase;
+    }
 
     namespace Observador {
 
@@ -12,8 +15,9 @@ namespace Jungle {
         private:
             Fase::Fase* fase;
         public:
-            ObservadorFase(Fase::Fase* fase);
+            ObservadorFase();
             ~ObservadorFase();
+            void setFase(Fase::Fase* fase);
             void teclaPressionada(const sf::Keyboard::Key tecla);
             void teclaSolta(const sf::Keyboard::Key tecla);
             void notificarJogadorMorreu();

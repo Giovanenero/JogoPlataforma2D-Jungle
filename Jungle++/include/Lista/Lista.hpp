@@ -16,8 +16,8 @@ namespace Jungle {
             Lista();
             ~Lista();
             void addElemento(TL* elemento);
-            void removerElemento(TL* elemento);
-            void removerElemento(int pos);
+            void removerElemento(TL* elemento, const bool deletar);
+            void removerElemento(int pos, const bool deletar);
             int getTam();
             void limparLista();
             TL* operator[](int pos);
@@ -58,7 +58,7 @@ namespace Jungle {
         }
 
         template<class TL>
-        void Lista<TL>::removerElemento(TL* elemento){
+        void Lista<TL>::removerElemento(TL* elemento, const bool deletar){
             if(elemento == nullptr){
                 std::cout << "ERROR::Lista elemento eh nullptr" << std::endl;
                 exit(1);
@@ -77,18 +77,20 @@ namespace Jungle {
                 } else {
                     aux2->setProx(aux->getProx());
                 }
-                delete(aux);
-                aux = nullptr;
-                aux2 = nullptr;
+                if(deletar){
+                    delete(aux);
+                    aux = nullptr;
+                    aux2 = nullptr;
+                }
                 tam--;
             }
             
         }
 
         template<class TL>
-        void Lista<TL>::removerElemento(int pos){
+        void Lista<TL>::removerElemento(int pos, const bool deletar){
             TL* elemento = operator[](pos);
-            return removerElemento(elemento);
+            return removerElemento(elemento, deletar);
         }
 
         template<class TL>

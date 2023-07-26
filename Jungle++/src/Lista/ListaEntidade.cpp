@@ -18,12 +18,12 @@ namespace Jungle {
             objListaEntidade.addElemento(entidade);
         }
 
-        void ListaEntidade::removerEntidade(Entidade::Entidade* entidade){
-            objListaEntidade.removerElemento(entidade);
+        void ListaEntidade::removerEntidade(Entidade::Entidade* entidade, const bool deletar){
+            objListaEntidade.removerElemento(entidade, deletar);
         }
             
-        void ListaEntidade::removerEntidade(int pos){
-            objListaEntidade.removerElemento(pos);
+        void ListaEntidade::removerEntidade(int pos, const bool deletar){
+            objListaEntidade.removerElemento(pos, deletar);
         }
 
         int ListaEntidade::getTam(){
@@ -45,7 +45,7 @@ namespace Jungle {
             for(int i = tam - 1; i >= 0; i--){
                 aux = objListaEntidade.operator[](i);
                 if(aux->getRemover()){
-                    objListaEntidade.removerElemento(aux);
+                    objListaEntidade.removerElemento(aux, true);
                     aux = nullptr;
                 } else {
                     aux->atualizar();

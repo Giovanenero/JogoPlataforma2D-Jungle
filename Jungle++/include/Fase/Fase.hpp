@@ -22,6 +22,8 @@
 #include "../Entidade/Obstaculo/Caixa.hpp"
 #include "../Entidade/Obstaculo/Porta.hpp"
 #include "../Entidade/Item/Chave.hpp"
+#include "../Entidade/Personagem/Jogador/Jogador.hpp"
+#include "../Observador/ObservadorFase.hpp"
 
 #include "../Menu/Botao/Texto.hpp"
 
@@ -31,15 +33,14 @@
 
 namespace Jungle {
 
-    namespace Observador {
-        class ObservadorFase;
-    }
+    using namespace Entidade;
+    using namespace Entidade::Personagem;
 
     namespace Fase {
 
         class Fase : public Ente {
         private:
-            Observador::ObservadorFase* observadorFase;
+            static Observador::ObservadorFase* observadorFase;
             float tempo;
             Menu::Botao::Texto textoPontuacao;
         protected:
@@ -50,11 +51,12 @@ namespace Jungle {
             Parallax::Fundo fundo;
             Menu::Botao::Texto textoTempo;
             unsigned int pontuacaoJogador;
+            static Jogador::Jogador* pJogador;
 
-            void criarEsqueleto(const sf::Vector2f pos, const int nivel, Entidade::Personagem::Jogador::Jogador* pJogador);
-            void criarEsqueleto(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma, Entidade::Personagem::Jogador::Jogador* pJogador);
-            void criarAlma(const sf::Vector2f pos, const int nivel, Entidade::Personagem::Jogador::Jogador* pJogador);
-            void criarAlma(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma, Entidade::Personagem::Jogador::Jogador* pJogador);
+            void criarEsqueleto(const sf::Vector2f pos, const int nivel);
+            void criarEsqueleto(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma);
+            void criarAlma(const sf::Vector2f pos, const int nivel);
+            void criarAlma(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma);
             void criarPlataforma(const sf::Vector2f pos, const sf::Vector2f tam, const bool ehFlutuante, const float distancia, const bool horizontal);
             void criarPlataforma(const std::vector<std::string> atributos, const IDs::IDs ID);
             void criarCaixa(const sf::Vector2f pos);
@@ -64,21 +66,21 @@ namespace Jungle {
             void criarVida(const sf::Vector2f pos);
             void criarVida(const std::vector<std::string> atributos);
             void criarPorta(const sf::Vector2f posPorta, const sf::Vector2f tamPorta, const sf::Vector2f posChave, const sf::Vector2f tamChave);
-            void criarPorta(const std::vector<std::string> atributosPorta, const std::vector<std::string> atributosChave, Entidade::Personagem::Jogador::Jogador* pJogador);
-            Entidade::Personagem::Jogador::Jogador* criarJogador(const sf::Vector2f pos);
-            Entidade::Personagem::Jogador::Jogador* criarJogador(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma);
+            void criarPorta(const std::vector<std::string> atributosPorta, const std::vector<std::string> atributosChave);
+            void criarJogador(const sf::Vector2f pos);
+            void criarJogador(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma);
             
             std::vector<std::string> getAtributosEntidade(std::string linha);
         public:
             Fase(const IDs::IDs ID_Fase, const IDs::IDs ID_Fundo);
             ~Fase();
             virtual void criarFundo() = 0;
-            virtual void criarMapa() = 0;
-            void criarEntidade(char letra, const sf::Vector2i pos);
+            virtual void criarMapa(const int mapa) = 0;
             void executar();
             void desenhar();
             Entidade::Personagem::Jogador::Jogador* getJogador();
             void mudarEstadoObservador();
+            void mudarFase();
             const unsigned int getPontuacaoJogador() const;
             virtual void recuperarJogada(const std::string arquivoEntidades, const std::vector<std::string> vectorInfoFase) = 0;
             Lista::ListaEntidade* getListaPersonagem();

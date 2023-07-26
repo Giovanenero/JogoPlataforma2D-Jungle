@@ -9,18 +9,23 @@
 #include "../Fase/FlorestaBranca.hpp"
 #include "../Fase/FlorestaVermelha.hpp"
 
+#include <map>
+
 namespace Jungle {
 
     namespace Estado {
 
         class EstadoJogar : public Estado {
         private:
-            Fase::Fase* fase;
+            std::map<IDs::IDs, Fase::Fase*> mapFase;
+            IDs::IDs ID_FaseAtual;
         public:
             EstadoJogar(const IDs::IDs ID);
             ~EstadoJogar();
-            void criarFase(const std::string arquivoEntidades = "", std::vector<std::string> vectorInfoFase = {});
+            void criarFase(const std::string arquivoEntidades, std::vector<std::string> vectorInfoFase);
+            void criarFase();
             Fase::Fase* getFase();
+            void mudarFase(const IDs::IDs ID_Fase);
             void mudarEstadoObservador();
             void executar();
         };

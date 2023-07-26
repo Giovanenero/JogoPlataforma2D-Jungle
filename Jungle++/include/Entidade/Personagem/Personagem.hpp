@@ -64,6 +64,7 @@ namespace Jungle {
                 virtual void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f)) = 0;
                 const unsigned int getPontos() const;
                 void setArma(Item::Arma* arma);
+                Item::Arma* getArma();
                 const float getForca() const;
                 virtual const std::string salvar() = 0;
                 virtual void desenhar();
