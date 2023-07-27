@@ -11,11 +11,11 @@ namespace Jungle {
             recuperarJogada(arquivoEntidades, vectorInfoFase);
         }
 
-        FlorestaBranca::FlorestaBranca(const int mapa):
+        FlorestaBranca::FlorestaBranca(const IDs::IDs ID_Mapa):
             Fase(IDs::IDs::fase_florestaBranca, IDs::IDs::fundo_florestaBranca)
         {
             criarFundo();
-            criarMapa(mapa);
+            criarMapa(ID_Mapa);
         }
 
         FlorestaBranca::~FlorestaBranca(){
@@ -113,37 +113,25 @@ namespace Jungle {
             fundo.addCamada("Jungle++/img/Fase/FlorestaBranca/camada5.png", 1.0f);
         }
 
-        void FlorestaBranca::criarMapa(const int mapa){
-            /*
-            for(int i = -2; i < 8; i++){
-                criarPlataforma(sf::Vector2f(i * 350.0f, 550.0f), sf::Vector2f(350.0f, 50.0f), false, 0.0f, false);
-            }
-            criarPlataforma(sf::Vector2f(1300.0f, 290.0f), sf::Vector2f(80.0f, 40.0f), true, 0.0f, false);
-            criarPlataforma(sf::Vector2f(500.0f, 420.0f), sf::Vector2f(80.0f, 40.0f), true, 800.0f, true);
-            for(int i = 0; i < 4; i++){
-                criarPlataforma(sf::Vector2f(1450.0f + i * 350.0f, 150.0f), sf::Vector2f(350.0f, 50.0f), false, 0.0f, false);
-            }
-            criarPorta(sf::Vector2f(400.0f, 450.0f), sf::Vector2f(85.0f, 100.0f), sf::Vector2f(1600.0f, 100.0f), sf::Vector2f(40.0f, 40.0f));
-            criarPorta(sf::Vector2f(550.0f, 450.0f), sf::Vector2f(85.0f, 100.0f), sf::Vector2f(1000.0f, 500.0f), sf::Vector2f(40.0f, 40.0f));
-
-            Entidade::Personagem::Jogador::Jogador* pJogador = criarJogador(sf::Vector2f(100.0f, 400.0f));
-            criarMoeda(sf::Vector2f(300.0f, 500.0f), IDs::IDs::moeda_amarela);
-            criarMoeda(sf::Vector2f(1200.0f, 80.0f), IDs::IDs::moeda_cinza);
-            criarVida(sf::Vector2f(1400.0f, 350.0f));
-            /*
-            for(int i = 0; i < 3; i++){
-                criarEsqueleto(sf::Vector2f(400.0f * (i + 0.5f), 0.0f), 1, pJogador);
-            }
-            for(int i = 0; i < 3; i++){
-                criarEsqueleto(sf::Vector2f(400.0f * (2 + i + 0.5f), 0.0f), 3, pJogador);
-            }
-            criarAlma(sf::Vector2f(200.0f, 500.0f), 2, pJogador);
-            criarAlma(sf::Vector2f(500.0f, 500.0f), 4, pJogador);
-            */
-           if(mapa == 1){
-                criarMapa1();
-           } else {
-                criarMapa2();
+        void FlorestaBranca::criarMapa(const IDs::IDs ID_Mapa){
+           switch (ID_Mapa)
+           {
+                case (IDs::IDs::floresta_branca_parte_1):
+                {
+                    criarMapa1();
+                }
+                    break;
+                case (IDs::IDs::floresta_branca_parte_2):
+                {
+                    criarMapa2();
+                }
+                    break;
+                default:
+                {
+                    std::cout << "ERRO::FlorestaBranca::ID invalido" << std::endl;
+                    exit(1);
+                }
+                    break;
            }
         }
 
@@ -156,8 +144,8 @@ namespace Jungle {
             for(int i = 0; i < 4; i++){
                 criarPlataforma(sf::Vector2f(1450.0f + i * 350.0f, 150.0f), sf::Vector2f(350.0f, 50.0f), false, 0.0f, false);
             }
-            criarPorta(sf::Vector2f(400.0f, 450.0f), sf::Vector2f(85.0f, 100.0f), sf::Vector2f(1600.0f, 100.0f), sf::Vector2f(40.0f, 40.0f));
-            criarPorta(sf::Vector2f(550.0f, 450.0f), sf::Vector2f(85.0f, 100.0f), sf::Vector2f(1000.0f, 500.0f), sf::Vector2f(40.0f, 40.0f));
+            //criarPorta(sf::Vector2f(400.0f, 450.0f), sf::Vector2f(85.0f, 100.0f), sf::Vector2f(1600.0f, 100.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_2);
+            criarPorta(sf::Vector2f(550.0f, 450.0f), sf::Vector2f(85.0f, 100.0f), sf::Vector2f(1000.0f, 500.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_2);
 
             criarJogador(sf::Vector2f(100.0f, 400.0f));
             criarMoeda(sf::Vector2f(300.0f, 500.0f), IDs::IDs::moeda_amarela);
@@ -177,6 +165,8 @@ namespace Jungle {
             }
             criarAlma(sf::Vector2f(200.0f, 500.0f), 2);
             criarAlma(sf::Vector2f(500.0f, 500.0f), 4);
+
+            criarPorta(sf::Vector2f(400.0f, 450.0f), sf::Vector2f(85.0f, 100.0f), sf::Vector2f(500.0f, 500.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_1);
         }
 
     }

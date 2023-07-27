@@ -13,7 +13,7 @@ namespace Jungle {
             FlorestaVermelha();
             ~FlorestaVermelha();
             void criarFundo();
-            void criarMapa(const int mapa);
+            void criarMapa(const IDs::IDs ID_Mapa);
         };
 
     }

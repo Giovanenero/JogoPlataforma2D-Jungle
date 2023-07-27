@@ -187,7 +187,6 @@ namespace Jungle {
                         {
                             case (IDs::IDs::botao_novoJogo):
                             {
-                                //pGEstado->addEstado(IDs::IDs::estado_menu_carregar_jogo);
                                 pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
                                 Estado::EstadoJogar* estadoJogar = dynamic_cast<Estado::EstadoJogar*>(pGEstado->getEstadoAtual());
                                 estadoJogar->criarFase();

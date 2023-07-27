@@ -65,7 +65,7 @@ namespace Jungle {
             void criarMoeda(const std::vector<std::string> atributos, const IDs::IDs ID);
             void criarVida(const sf::Vector2f pos);
             void criarVida(const std::vector<std::string> atributos);
-            void criarPorta(const sf::Vector2f posPorta, const sf::Vector2f tamPorta, const sf::Vector2f posChave, const sf::Vector2f tamChave);
+            void criarPorta(const sf::Vector2f posPorta, const sf::Vector2f tamPorta, const sf::Vector2f posChave, const sf::Vector2f tamChave, const IDs::IDs ID_Fase);
             void criarPorta(const std::vector<std::string> atributosPorta, const std::vector<std::string> atributosChave);
             void criarJogador(const sf::Vector2f pos);
             void criarJogador(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma);
@@ -75,7 +75,7 @@ namespace Jungle {
             Fase(const IDs::IDs ID_Fase, const IDs::IDs ID_Fundo);
             ~Fase();
             virtual void criarFundo() = 0;
-            virtual void criarMapa(const int mapa) = 0;
+            virtual void criarMapa(const IDs::IDs ID_Mapa) = 0;
             void executar();
             void desenhar();
             Entidade::Personagem::Jogador::Jogador* getJogador();

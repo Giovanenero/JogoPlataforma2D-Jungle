@@ -25,12 +25,13 @@ namespace Jungle {
                     sf::RectangleShape caixaTexto;
                     bool mostrarTexto;
                     bool coletou;
+                    IDs::IDs ID_Fase;
 
                     void inicializarAnimacao();
                     void atualizarAnimacao();
                     void inicializarTexto(std::string texto);
                 public:
-                    Porta(const sf::Vector2f pos, const sf::Vector2f tam, Item::Chave* chave);
+                    Porta(const sf::Vector2f pos, const sf::Vector2f tam, Item::Chave* chave, const IDs::IDs ID_Fase);
                     Porta(const std::vector<std::string> atributos, Item::Chave* chave);
                     ~Porta();
                     Item::Chave* getChave();

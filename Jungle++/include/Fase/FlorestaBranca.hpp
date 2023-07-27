@@ -13,10 +13,10 @@ namespace Jungle {
             void criarMapa2();
         public:
             FlorestaBranca(const std::string arquivoEntidades, const std::vector<std::string> vectorInfoFase);
-            FlorestaBranca(const int mapa);
+            FlorestaBranca(const IDs::IDs ID_Mapa = IDs::IDs::floresta_branca_parte_1);
             ~FlorestaBranca();
             void criarFundo();
-            void criarMapa(const int mapa);
+            void criarMapa(const IDs::IDs ID_Mapa);
         };
 
     }

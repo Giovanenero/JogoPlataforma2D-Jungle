@@ -7,9 +7,9 @@ namespace Jungle {
 
         namespace Obstaculo {
 
-            Porta::Porta(const sf::Vector2f pos, const sf::Vector2f tam, Item::Chave* chave):
+            Porta::Porta(const sf::Vector2f pos, const sf::Vector2f tam, Item::Chave* chave, const IDs::IDs ID_Fase):
                 Obstaculo(pos, tam, IDs::IDs::porta), animacao(&corpo), tempoAbrindo(0.0f),
-                fechada(true), abrindo(false), chave(chave), mostrarTexto(false),
+                fechada(true), abrindo(false), chave(chave), mostrarTexto(false), ID_Fase(ID_Fase),
                 textoPorta(pGrafico->carregarFonte("Jungle++/fonte/menuColocacao.ttf"), "", 30),
                 caixaTexto(), coletou(false), fundoPorta()
             {
@@ -134,9 +134,8 @@ namespace Jungle {
                     } else if(pJogador->getAbrirPorta()){
                         Gerenciador::GerenciadorEstado* pGEstado = Gerenciador::GerenciadorEstado::getGerenciadorEstado();
                         Estado::EstadoJogar* estadoJogar = dynamic_cast<Estado::EstadoJogar*>(pGEstado->getEstadoAtual());
-                        estadoJogar->mudarFase(IDs::IDs::floresta_branca_parte_2);
-                        std::cout << "Entrar" << std::endl;
-
+                        estadoJogar->mudarFase(ID_Fase);
+                        pJogador->setPos(sf::Vector2f(pos.x + tam.x / 2.0f - pJogador->getTam().x / 2.0f, pos.y));
                     }
                 } 
                 pJogador->setColidindoPorta(true);

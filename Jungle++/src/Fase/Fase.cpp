@@ -216,13 +216,13 @@ namespace Jungle {
             listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(vida));
         }
 
-        void Fase::criarPorta(const sf::Vector2f posPorta, const sf::Vector2f tamPorta, const sf::Vector2f posChave, const sf::Vector2f tamChave){
+        void Fase::criarPorta(const sf::Vector2f posPorta, const sf::Vector2f tamPorta, const sf::Vector2f posChave, const sf::Vector2f tamChave, const IDs::IDs ID_Fase){
             Item::Chave* chave = new Item::Chave(posChave, tamChave);
             if(chave == nullptr){
                 std::cout << "Fase::nao foi possivel criar uma chave" << std::endl;
                 exit(1);
             }
-            Obstaculo::Porta* porta = new Obstaculo::Porta(posPorta, tamPorta, chave);
+            Obstaculo::Porta* porta = new Obstaculo::Porta(posPorta, tamPorta, chave, ID_Fase);
             if(porta == nullptr){
                 std::cout << "Fase::nao foi possivel criar uma porta" << std::endl;
                 exit(1);
@@ -312,7 +312,6 @@ namespace Jungle {
         void Fase::mudarFase(){
             observadorFase->setFase(this);
             if(getJogador() == nullptr && pJogador != nullptr){
-                pJogador->setPos(sf::Vector2f(200.0f, 400.0f));
                 listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(pJogador), 0);
                 listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(pJogador->getArma()), 1);
             }

@@ -25,7 +25,7 @@ namespace Jungle {
             fundo.addCamada("Jungle++/img/Fase/FLorestaVermelha/camada4.png", 0.5f);
         }
 
-        void FlorestaVermelha::criarMapa(const int mapa){
+        void FlorestaVermelha::criarMapa(const IDs::IDs ID_Mapa){
             //terminar...
         }
 
