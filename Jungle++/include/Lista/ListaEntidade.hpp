@@ -14,6 +14,7 @@ namespace Jungle {
             ListaEntidade();
             ~ListaEntidade();
             void addEntidade(Entidade::Entidade* entidade);
+            void addEntidade(Entidade::Entidade* entidade, int pos);
             void removerEntidade(Entidade::Entidade* entidade, const bool deletar = true);
             void removerEntidade(int pos, const bool deletar = true);
             int getTam();

@@ -129,6 +129,18 @@ namespace Jungle {
             return nullptr;
         }
 
+        Estado::Estado* GerenciadorEstado::getEstado(const int qtdRemove){
+            std::stack<Estado::Estado*> pilhaEstadoAux = pilhaEstados;
+            int i = 0;
+            while(i < qtdRemove && !pilhaEstadoAux.empty()){
+                pilhaEstadoAux.pop(); 
+                i++;
+            }
+            if(!pilhaEstadoAux.empty()){
+                return pilhaEstadoAux.top();
+            }
+            return nullptr;
+        }
 
         void GerenciadorEstado::executar(){
             //executa o estado que está no topo da minha pilha

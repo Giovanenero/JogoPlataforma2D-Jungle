@@ -41,12 +41,24 @@ namespace Jungle {
         }
 
         void EstadoJogar::criarFase(){
-            Fase::Fase* fase1 = static_cast<Fase::Fase*>(new Fase::FlorestaBranca(1));
-            Fase::Fase* fase2 = static_cast<Fase::Fase*>(new Fase::FlorestaBranca(2));
-            this->ID_FaseAtual = IDs::IDs::floresta_branca_parte_1;
-            mapFase.insert(std::pair<IDs::IDs, Fase::Fase*>(ID_FaseAtual, fase1));
-            mapFase.insert(std::pair<IDs::IDs, Fase::Fase*>(IDs::IDs::floresta_branca_parte_2, fase2));
-            fase1->mudarFase();
+            if(ID == IDs::IDs::jogar_florestaBranca){
+                Fase::Fase* fase1 = static_cast<Fase::Fase*>(new Fase::FlorestaBranca(1));
+                Fase::Fase* fase2 = static_cast<Fase::Fase*>(new Fase::FlorestaBranca(2));
+                this->ID_FaseAtual = IDs::IDs::floresta_branca_parte_1;
+                mapFase.insert(std::pair<IDs::IDs, Fase::Fase*>(ID_FaseAtual, fase1));
+                mapFase.insert(std::pair<IDs::IDs, Fase::Fase*>(IDs::IDs::floresta_branca_parte_2, fase2));
+                //fase2->mudarFase();
+                fase1->mudarFase();
+                //mudarFase(ID_FaseAtual);
+            }
+        }
+
+        std::map<IDs::IDs, Fase::Fase*> EstadoJogar::getMapFase(){
+            return mapFase;
+        }
+
+        const IDs::IDs EstadoJogar::getIDFaseAtual() const{
+            return ID_FaseAtual;
         }
 
         Fase::Fase* EstadoJogar::getFase(){
@@ -58,6 +70,7 @@ namespace Jungle {
             while(it != mapFase.end()){
                 if(it->second != nullptr){
                     if(it->first == ID_Fase){
+                        mapFase[ID_FaseAtual]->removerJogadorLista();
                         this->ID_FaseAtual = ID_Fase;
                         mapFase[ID_FaseAtual]->mudarFase();
                         break;

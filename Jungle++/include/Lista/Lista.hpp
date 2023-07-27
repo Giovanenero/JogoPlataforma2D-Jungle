@@ -16,6 +16,7 @@ namespace Jungle {
             Lista();
             ~Lista();
             void addElemento(TL* elemento);
+            void addElemento(TL* elemento, int pos);
             void removerElemento(TL* elemento, const bool deletar);
             void removerElemento(int pos, const bool deletar);
             int getTam();
@@ -53,6 +54,43 @@ namespace Jungle {
             } else {
                 pUltimo->setProx(novoElemento);
                 pUltimo = novoElemento;
+            }
+            tam++;
+        }
+
+        template<class TL>
+        void Lista<TL>::addElemento(TL* elemento, int pos){
+            if(pos > tam || pos < 0){
+                std::cout << "ERRO::Lista::posicao nao eh compativel com o tamanho da lista" << std::endl;
+                exit(1);
+            }
+            if(elemento == nullptr){
+                std::cout << "ERROR::Lista elemento eh nullptr" << std::endl;
+                exit(1);
+            }
+            Elemento<TL>* novoElemento = new Elemento<TL>();
+            if(novoElemento == nullptr){
+                std::cout << "ERROR::Lista novoElemento eh nullptr" << std::endl;
+                exit(1);
+            }
+            novoElemento->setElemento(elemento);
+            if(pInicio == nullptr){
+                pInicio = novoElemento;
+                pUltimo = novoElemento;
+            } else {
+                Elemento<TL>* aux = pInicio;
+                Elemento<TL>* aux2 = nullptr;
+                for(int i = 0; i < pos; i++){
+                    aux2 = aux;
+                    aux = aux->getProx();
+                }
+                if(aux2 == nullptr){
+                    novoElemento->setProx(aux);
+                    pInicio = novoElemento;
+                } else {
+                    aux2->setProx(novoElemento);
+                    novoElemento->setProx(aux);
+                }
             }
             tam++;
         }

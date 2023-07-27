@@ -2,6 +2,7 @@
 
 #include "MenuPausa.hpp"
 #include "../Gerenciador/GerenciadorArquivo.hpp"
+#include <map>
 
 namespace Jungle {
 

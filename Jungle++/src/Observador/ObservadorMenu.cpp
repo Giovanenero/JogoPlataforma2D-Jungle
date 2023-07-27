@@ -8,7 +8,7 @@ namespace Jungle {
         ObservadorMenu::ObservadorMenu(Menu::Menu* menu):
             Observador(), menu(menu)
         {
-
+            
         }
 
         ObservadorMenu::~ObservadorMenu(){

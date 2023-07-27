@@ -18,6 +18,10 @@ namespace Jungle {
             objListaEntidade.addElemento(entidade);
         }
 
+        void ListaEntidade::addEntidade(Entidade::Entidade* entidade, int pos){
+            objListaEntidade.addElemento(entidade, pos);
+        }
+
         void ListaEntidade::removerEntidade(Entidade::Entidade* entidade, const bool deletar){
             objListaEntidade.removerElemento(entidade, deletar);
         }

@@ -31,6 +31,7 @@ namespace Jungle {
             ~GerenciadorEstado();
             static GerenciadorEstado* getGerenciadorEstado();
             void executar();
+            Estado::Estado* getEstado(const int qtdRemove);
             void addEstado(const IDs::IDs ID);
             void removerEstado(const int qtd);
             void removerEstado();

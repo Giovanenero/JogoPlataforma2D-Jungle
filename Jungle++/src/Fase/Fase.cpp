@@ -8,7 +8,7 @@ namespace Jungle {
     namespace Fase {
 
         Jogador::Jogador* Fase::pJogador = nullptr;
-        Observador::ObservadorFase* Fase::observadorFase = new Observador::ObservadorFase();
+        Observador::ObservadorFase* Fase::observadorFase = nullptr;
 
         Fase::Fase(const IDs::IDs ID_Fase, const IDs::IDs ID_Fundo):
             Ente(ID_Fase), fundo(ID_Fundo), listaPersonagens(new Lista::ListaEntidade()), listaObstaculos(new Lista::ListaEntidade()),
@@ -26,6 +26,11 @@ namespace Jungle {
                 std::cout << "Jungle::Fase::nao foi possivel criar um Gerenciador de Colisao" << std::endl;
                 exit(1);
             }
+
+            if(observadorFase == nullptr){
+                observadorFase = new Observador::ObservadorFase();
+            }
+
             observadorFase->setFase(this);
             textoPontuacao.setTamanhoBorda(2);
             textoTempo.setTamanhoBorda(2);
@@ -42,9 +47,14 @@ namespace Jungle {
             }
 
             if(listaPersonagens != nullptr){
-                delete(listaPersonagens);
+                if(getJogador() != nullptr && pJogador != nullptr){
+                    delete(listaPersonagens);
+                    pJogador = nullptr;
+                    std::cout << "deletou jogador" << std::endl;
+                } else {
+                    delete(listaPersonagens);
+                }
                 listaPersonagens = nullptr;
-                pJogador = nullptr;
             }
 
             if(listaObstaculos != nullptr){
@@ -247,6 +257,10 @@ namespace Jungle {
         }
 
         void Fase::criarJogador(const sf::Vector2f pos){
+            if(pJogador != nullptr){
+                std::cout << "ERRO::pJogador ja existe" << std::endl;
+                exit(1);
+            }
             Item::Arma* espadaJogador = new Item::Arma(IDs::IDs::espada_jogador);
             if(espadaJogador == nullptr){
                 std::cout << "Fase::nao foi possivel criar espada do jogador" << std::endl;
@@ -262,6 +276,10 @@ namespace Jungle {
         }
 
         void Fase::criarJogador(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma){
+            if(pJogador != nullptr){
+                std::cout << "ERRO::pJogador ja existe" << std::endl;
+                exit(1);
+            }
             pJogador = new Jogador::Jogador(atributos);
             if(pJogador == nullptr){
                 std::cout << "Fase::jogador eh nullptr" << std::endl;
@@ -295,8 +313,15 @@ namespace Jungle {
             observadorFase->setFase(this);
             if(getJogador() == nullptr && pJogador != nullptr){
                 pJogador->setPos(sf::Vector2f(200.0f, 400.0f));
-                listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(pJogador));
-                listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(pJogador->getArma()));
+                listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(pJogador), 0);
+                listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(pJogador->getArma()), 1);
+            }
+        }
+
+        void Fase::removerJogadorLista(){
+            if(getJogador() != nullptr && pJogador != nullptr){
+                listaPersonagens->removerEntidade(static_cast<Entidade::Entidade*>(pJogador), false);
+                listaPersonagens->removerEntidade(static_cast<Entidade::Entidade*>(pJogador->getArma()), false);
             }
         }
 
@@ -311,14 +336,6 @@ namespace Jungle {
          const unsigned int Fase::getPontuacaoJogador() const {
             return pontuacaoJogador;
          }
-
-         Lista::ListaEntidade* Fase::getListaPersonagem(){
-            return listaPersonagens;
-         }
-
-        Lista::ListaEntidade* Fase::getListaObstaculo(){
-            return listaObstaculos;
-        }
 
         void Fase::setPontuacao(const unsigned int pontuacaoJogador){
             this->pontuacaoJogador = pontuacaoJogador;
@@ -374,6 +391,25 @@ namespace Jungle {
             linha += '\n';
             linha += textoTempo.getString();
             return linha;
+        }
+
+        const std::vector<std::string> Fase::salvarEntidades(){
+            std::vector<std::string> linhas;
+            for(int i = 0; i < listaPersonagens->getTam(); i++){
+                Entidade::Entidade* entidade = listaPersonagens->operator[](i);
+                if(entidade != nullptr){
+                    std::string linha = entidade->salvar();
+                    linhas.push_back(linha);
+                }
+            }
+            for(int i = 0; i < listaObstaculos->getTam(); i++){
+                Entidade::Entidade* entidade = listaObstaculos->operator[](i);
+                if(entidade != nullptr){
+                    std::string linha = entidade->salvar();
+                    linhas.push_back(linha);
+                }
+            }
+            return linhas;
         }
 
         void Fase::executar(){

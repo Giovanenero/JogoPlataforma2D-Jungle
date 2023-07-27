@@ -24,6 +24,8 @@ namespace Jungle {
             ~EstadoJogar();
             void criarFase(const std::string arquivoEntidades, std::vector<std::string> vectorInfoFase);
             void criarFase();
+            std::map<IDs::IDs, Fase::Fase*> getMapFase();
+            const IDs::IDs getIDFaseAtual() const;
             Fase::Fase* getFase();
             void mudarFase(const IDs::IDs ID_Fase);
             void mudarEstadoObservador();

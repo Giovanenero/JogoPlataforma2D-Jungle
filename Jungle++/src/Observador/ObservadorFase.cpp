@@ -9,7 +9,7 @@ namespace Jungle {
         ObservadorFase::ObservadorFase():
             Observador(), fase(nullptr)
         {
-
+            
         }
 
         ObservadorFase::~ObservadorFase(){

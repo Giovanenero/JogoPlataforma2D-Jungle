@@ -169,6 +169,14 @@ namespace Jungle {
             for(int i = -2; i < 8; i++){
                 criarPlataforma(sf::Vector2f(i * 350.0f, 550.0f), sf::Vector2f(350.0f, 50.0f), false, 0.0f, false);
             }
+            for(int i = 0; i < 3; i++){
+                criarEsqueleto(sf::Vector2f(400.0f * (i + 0.5f), 0.0f), 1);
+            }
+            for(int i = 0; i < 3; i++){
+                criarEsqueleto(sf::Vector2f(400.0f * (2 + i + 0.5f), 0.0f), 3);
+            }
+            criarAlma(sf::Vector2f(200.0f, 500.0f), 2);
+            criarAlma(sf::Vector2f(500.0f, 500.0f), 4);
         }
 
     }

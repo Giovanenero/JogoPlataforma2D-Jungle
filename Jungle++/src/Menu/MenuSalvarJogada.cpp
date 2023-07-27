@@ -1,5 +1,7 @@
 #include "../../include/Menu/MenuSalvarJogada.hpp"
 #include "../../include/Lista/ListaEntidade.hpp"
+#include "../../include/Gerenciador/GerenciadorEstado.hpp"
+#include "../../include/Fase/Fase.hpp"
 
 namespace Jungle {
 
@@ -50,26 +52,14 @@ namespace Jungle {
         }
 
         void MenuSalvarJogada::salvarJogada(){
-            Lista::ListaEntidade* pListaPersonagem = fase->getListaPersonagem();
-            Lista::ListaEntidade* pListaObstaculo = fase->getListaObstaculo();
+            Gerenciador::GerenciadorEstado* pGEstado = Gerenciador::GerenciadorEstado::getGerenciadorEstado();
+            Estado::Estado* estado = pGEstado->getEstado(2);
+            Estado::EstadoJogar* pEstadoJogadr = dynamic_cast<Estado::EstadoJogar*>(estado);
+        
+            std::map<IDs::IDs, Fase::Fase*> mapFase = pEstadoJogadr->getMapFase();
+            const IDs::IDs ID_FaseAtual = pEstadoJogadr->getIDFaseAtual();
 
-            std::vector<std::string> linhasPersonagem;
-            for(int i = 0; i < pListaPersonagem->getTam(); i++){
-                Entidade::Entidade* entidade = pListaPersonagem->operator[](i);
-                if(entidade != nullptr){
-                    std::string linha = entidade->salvar();
-                    linhasPersonagem.push_back(linha);
-                }
-            }
-
-            std::vector<std::string> linhasObstaculo;
-            for(int i = 0; i < pListaObstaculo->getTam(); i++){
-                Entidade::Entidade* entidade = pListaObstaculo->operator[](i);
-                if(entidade != nullptr){
-                    std::string linha = entidade->salvar();
-                    linhasObstaculo.push_back(linha);
-                }
-            }
+            std::vector<std::string> linhas = fase->salvarEntidades();
             
             const std::string caminhoArquivoEntidades = (*itCards)->getCaminhoArquivoEntidades();
             const std::string caminhoArquivoFase = (*itCards)->getCaminhoArquivoFase();
@@ -77,9 +67,13 @@ namespace Jungle {
 
             gerenciadorArquivo.removeArquivo(caminhoArquivoEntidades.c_str());
             gerenciadorArquivo.removeArquivo(caminhoArquivoFase.c_str());
-            gerenciadorArquivo.gravarConteudo(caminhoArquivoEntidades.c_str(), linhasPersonagem);
-            gerenciadorArquivo.gravarConteudo(caminhoArquivoEntidades.c_str(), linhasObstaculo);
-            gerenciadorArquivo.gravarConteudo(caminhoArquivoFase.c_str(), fase->salvar());
+            gerenciadorArquivo.gravarConteudo(caminhoArquivoEntidades.c_str(), linhas);
+
+            std::string linhasFase = std::to_string(static_cast<int>(ID_FaseAtual));
+            linhasFase += '\n';
+            linhasFase += fase->salvar();
+
+            gerenciadorArquivo.gravarConteudo(caminhoArquivoFase.c_str(), linhasFase);
 
             fase->desenhar();
 
@@ -90,6 +84,19 @@ namespace Jungle {
             textura.update(*(static_cast<sf::Window*>(window)));
             sf::Image imagem = textura.copyToImage();
             imagem.saveToFile(caminhoImagem);
+
+            std::map<IDs::IDs, Fase::Fase*>::iterator itMapFase = mapFase.begin();
+            while(itMapFase != mapFase.end()){
+                Fase::Fase* aux = (*itMapFase).second;
+                if(aux != fase && aux != nullptr){
+                    linhas = aux->salvarEntidades();
+                    std::cout << linhas[0] << std::endl;
+                    gerenciadorArquivo.gravarConteudo(caminhoArquivoEntidades.c_str(), std::vector<std::string>{"=========="});
+                    gerenciadorArquivo.gravarConteudo(caminhoArquivoEntidades.c_str(), linhas);
+                    std::cout << "aaaaaa ";
+                }
+                itMapFase++;
+            }
         }
 
         void MenuSalvarJogada::selecionaEsquerda(){

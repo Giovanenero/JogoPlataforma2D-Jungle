@@ -19,11 +19,11 @@ namespace Jungle {
         }
 
         void ListaObservador::removerObservador(Observador::Observador* observador){
-            objListaObservador.removerElemento(observador);
+            objListaObservador.removerElemento(observador, true);
         }
 
         void ListaObservador::removerObservador(int pos){
-            objListaObservador.removerElemento(pos);
+            objListaObservador.removerElemento(pos, true);
         }
 
         int ListaObservador::getTam(){

@@ -81,13 +81,13 @@ namespace Jungle {
             Entidade::Personagem::Jogador::Jogador* getJogador();
             void mudarEstadoObservador();
             void mudarFase();
+            void removerJogadorLista();
             const unsigned int getPontuacaoJogador() const;
             virtual void recuperarJogada(const std::string arquivoEntidades, const std::vector<std::string> vectorInfoFase) = 0;
-            Lista::ListaEntidade* getListaPersonagem();
-            Lista::ListaEntidade* getListaObstaculo();
             void setPontuacao(const unsigned int pontuacaoJogador);
             void atualizarTempo();
             void atualizarPontuacao();
+            const std::vector<std::string> salvarEntidades();
             const std::string salvar();
         };
 
