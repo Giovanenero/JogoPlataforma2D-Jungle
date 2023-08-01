@@ -21,8 +21,13 @@ namespace Jungle {
                 existe = true;
                 Gerenciador::GerenciadorArquivo GArquivo;
                 std::vector<std::string> vectorInfoFase = GArquivo.lerArquivo(caminhoArquivoFase.c_str());
-                std::string textoInfoAux = "Pontos: " + vectorInfoFase[1];
-                textoInfoAux += '\n';
+                std::string pontos = vectorInfoFase[1];
+                while(pontos.size() < 5){
+                    std::string aux = pontos;
+                    pontos = '0' + pontos;
+                }
+                std::string textoInfoAux = "Pontos: " + pontos;
+                textoInfoAux += 10;
                 textoInfoAux +=  vectorInfoFase[2];
                 textoInfo.setString(textoInfoAux);
                 textoInfo.setPos(sf::Vector2f(

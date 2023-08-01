@@ -1,8 +1,0 @@
-ola 750 
-giovane 500 
-SemNome 900 
-SemNome 900 
-tefode 900 
-SemNome 900 
-SemNome 900 
-SemNome 700 

@@ -421,9 +421,9 @@ namespace Jungle {
         const std::string Fase::salvar(){
             std::string linha = "";
             linha += std::to_string(static_cast<int>(ID)) + ' ';
-            linha += '\n';
+            linha += 10;
             linha += std::to_string(this->pontuacaoJogador) + ' ';
-            linha += '\n';
+            linha += 10;
             linha += textoTempo.getString();
             return linha;
         }

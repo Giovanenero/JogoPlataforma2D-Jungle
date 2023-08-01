@@ -29,10 +29,10 @@ namespace Jungle {
                 palavras.push_back(linha.substr(0, pos));
                 linha.erase(0, pos + espaco.length());
             }
-            std::string pontos = ".....";
+            std::string pontos = "....................";
             std::string novaLinha = palavras[0] + pontos;
 
-            while(novaLinha.length() < 30){
+            while(novaLinha.length() < 13){
                 novaLinha += ".";
             }
             novaLinha += palavras[1];
