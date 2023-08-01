@@ -5,17 +5,19 @@ namespace Jungle {
     namespace Estado {
 
         EstadoJogar::EstadoJogar(const IDs::IDs ID):
-            Estado(ID), mapFase()
+            Estado(ID), mapFase(), ID_FaseAtual(IDs::IDs::vazio)
         {
 
         }
 
         EstadoJogar::~EstadoJogar(){
            std::map<IDs::IDs, Fase::Fase*>::iterator it = mapFase.begin();
+           Fase::Fase* fase = it->second;
             while(it != mapFase.end()){
-                if(it->second != nullptr){
-                    delete(it->second);
-                    it->second = nullptr;
+                fase = it->second;
+                if(fase != nullptr){
+                    delete(fase);
+                    fase = nullptr;
                 }
                 it++;
             }
@@ -23,21 +25,56 @@ namespace Jungle {
         }
 
         void EstadoJogar::criarFase(const std::string arquivoEntidades, std::vector<std::string> vectorInfoFase){
-            if(ID == IDs::IDs::jogar_florestaBranca){
-                //terminar...
-            }
-            /*
-            if(ID == IDs::IDs::jogar_florestaBranca){
-                fase = static_cast<Fase::Fase*>(new Fase::FlorestaBranca(arquivoEntidades, vectorInfoFase));
-                if(fase == nullptr){
-                    std::cout << "Jungle::Construtor::ConstrutorFase::nao foi possivel criar Fase Floresta Branca" << std::endl;
-                    exit(1);
+            Gerenciador::GerenciadorArquivo GArquivo;
+            std::vector<std::string> salvarEntidades = GArquivo.lerArquivo(arquivoEntidades.c_str());
+            std::vector<std::string> salvarEntidadesAux;
+            Fase::Fase* fase = nullptr;
+            int i = 0;
+            while(i < salvarEntidades.size()){
+                std::string linha = salvarEntidades[i];
+                if(linha.find("=") != -1){
+                    int id = std::stoi(linha.substr(0, linha.find(' ') + 1));
+                    switch (id)
+                    {
+                    case (53):
+                    {
+                        fase = static_cast<Fase::Fase*>(new Fase::FlorestaBranca(salvarEntidadesAux, vectorInfoFase, IDs::IDs::floresta_branca_parte_1));
+                        mapFase.insert(std::pair<IDs::IDs, Fase::Fase*>(IDs::IDs::floresta_branca_parte_1, fase));
+                        if(this->ID_FaseAtual == IDs::IDs::vazio){
+                            this->ID_FaseAtual = IDs::IDs::floresta_branca_parte_1;
+                        }
+                    }
+                        break;
+                    case(54):
+                    {
+                        fase = static_cast<Fase::Fase*>(new Fase::FlorestaBranca(salvarEntidadesAux, vectorInfoFase, IDs::IDs::floresta_branca_parte_2));
+                        mapFase.insert(std::pair<IDs::IDs, Fase::Fase*>(IDs::IDs::floresta_branca_parte_2, fase));
+                        if(this->ID_FaseAtual == IDs::IDs::vazio){
+                            this->ID_FaseAtual = IDs::IDs::floresta_branca_parte_2;
+                        }
+                    }
+                        break;
+                    case(55):
+                    {
+                        fase = static_cast<Fase::Fase*>(new Fase::FlorestaBranca(salvarEntidadesAux, vectorInfoFase, IDs::IDs::floresta_branca_parte_3));
+                        mapFase.insert(std::pair<IDs::IDs, Fase::Fase*>(IDs::IDs::floresta_branca_parte_3, fase));
+                        if(this->ID_FaseAtual == IDs::IDs::vazio){
+                            this->ID_FaseAtual = IDs::IDs::floresta_branca_parte_3;
+                        }
+                    }
+                        break;
+                    default:
+                        std::cout << "EstadoJogar::Erro ao criar fase, pois o Id atual eh invalido" << std::endl;
+                        exit(1);
+                        break;
+                    }
+                    fase = nullptr;
+                    salvarEntidadesAux.clear();
+                } else {
+                    salvarEntidadesAux.push_back(linha);
                 }
-            } else if(ID == IDs::IDs::jogar_florestaVermelha){
-                //terminar... outra fase
+                i++;
             }
-            */
-
         }
 
         void EstadoJogar::criarFase(){
@@ -62,12 +99,13 @@ namespace Jungle {
 
         void EstadoJogar::mudarFase(const IDs::IDs ID_Fase){
             std::map<IDs::IDs, Fase::Fase*>::iterator it = mapFase.begin();
+            const IDs::IDs ID_Fase_Anterior = this->ID_FaseAtual;
             while(it != mapFase.end()){
                 if(it->second != nullptr){
                     if(it->first == ID_Fase){
                         mapFase[ID_FaseAtual]->removerJogadorLista();
                         this->ID_FaseAtual = ID_Fase;
-                        mapFase[ID_FaseAtual]->mudarFase();
+                        mapFase[ID_FaseAtual]->mudarFase(ID_Fase_Anterior);
                         break;
                     }
                 }
@@ -78,7 +116,7 @@ namespace Jungle {
                 this->ID_FaseAtual = ID_Fase;
                 Fase::Fase* fase = static_cast<Fase::Fase*>(new Fase::FlorestaBranca(this->ID_FaseAtual));
                 mapFase.insert(std::pair<IDs::IDs, Fase::Fase*>(ID_FaseAtual, fase));
-                mapFase[ID_FaseAtual]->mudarFase();
+                mapFase[ID_FaseAtual]->mudarFase(ID_Fase_Anterior);
             }
         }
 

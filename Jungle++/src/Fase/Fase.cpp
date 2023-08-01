@@ -9,13 +9,14 @@ namespace Jungle {
 
         Jogador::Jogador* Fase::pJogador = nullptr;
         Observador::ObservadorFase* Fase::observadorFase = nullptr;
+        unsigned int Fase::pontuacaoJogador = 0;
+        Menu::Botao::Texto Fase::textoPontuacao = Menu::Botao::Texto(pGrafico->carregarFonte(CAMINHO_FONTE_FASE), "", 32);
+        Menu::Botao::Texto Fase::textoTempo = Menu::Botao::Texto(pGrafico->carregarFonte(CAMINHO_FONTE_FASE), "", 32);
 
         Fase::Fase(const IDs::IDs ID_Fase, const IDs::IDs ID_Fundo):
             Ente(ID_Fase), fundo(ID_Fundo), listaPersonagens(new Lista::ListaEntidade()), listaObstaculos(new Lista::ListaEntidade()),
             pColisao(new Gerenciador::GerenciadorColisao(listaPersonagens, listaObstaculos)),
-            pontuacaoJogador(0), GArquivo(), tempo(0.0f),
-            textoPontuacao(pGrafico->carregarFonte(CAMINHO_FONTE_FASE), "Pontos: 000", 32),
-            textoTempo(pGrafico->carregarFonte(CAMINHO_FONTE_FASE), "Tempo 00:00", 32)
+            GArquivo(), tempo(0.0f)
         {
             if(listaPersonagens == nullptr || listaObstaculos == nullptr){
                 std::cout << "Jungle::Fase::nao foi possivel criar lista de entidades na fase" << std::endl;
@@ -32,8 +33,12 @@ namespace Jungle {
             }
 
             observadorFase->setFase(this);
-            textoPontuacao.setTamanhoBorda(2);
-            textoTempo.setTamanhoBorda(2);
+            if(textoPontuacao.getString() == "" && textoTempo.getString() == ""){
+                textoPontuacao.setString("Pontos: 00000");
+                textoPontuacao.setTamanhoBorda(2);
+                textoTempo.setString("Tempo 00:00");
+                textoTempo.setTamanhoBorda(2);
+            }
         }
 
         Fase::~Fase(){
@@ -50,7 +55,6 @@ namespace Jungle {
                 if(getJogador() != nullptr && pJogador != nullptr){
                     delete(listaPersonagens);
                     pJogador = nullptr;
-                    std::cout << "deletou jogador" << std::endl;
                 } else {
                     delete(listaPersonagens);
                 }
@@ -60,6 +64,12 @@ namespace Jungle {
             if(listaObstaculos != nullptr){
                 delete(listaObstaculos);
                 listaObstaculos = nullptr;
+            }
+
+            if(pontuacaoJogador > 0){
+                pontuacaoJogador = 0;
+                textoPontuacao.setString("");
+                textoTempo.setString("");
             }
         }
 
@@ -217,19 +227,24 @@ namespace Jungle {
         }
 
         void Fase::criarPorta(const sf::Vector2f posPorta, const sf::Vector2f tamPorta, const sf::Vector2f posChave, const sf::Vector2f tamChave, const IDs::IDs ID_Fase){
-            Item::Chave* chave = new Item::Chave(posChave, tamChave);
-            if(chave == nullptr){
-                std::cout << "Fase::nao foi possivel criar uma chave" << std::endl;
-                exit(1);
+            Item::Chave* chave = nullptr;
+            if(posChave != sf::Vector2f(-1000.0f, -1000.0f)){
+                chave = new Item::Chave(posChave, tamChave);
+                if(chave == nullptr){
+                    std::cout << "Fase::nao foi possivel criar uma chave" << std::endl;
+                    exit(1);
+                }
             }
             Obstaculo::Porta* porta = new Obstaculo::Porta(posPorta, tamPorta, chave, ID_Fase);
             if(porta == nullptr){
                 std::cout << "Fase::nao foi possivel criar uma porta" << std::endl;
                 exit(1);
             }
-            chave->setPorta(porta);
             listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(porta));
-            listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(chave));
+            if(chave != nullptr){
+                chave->setPorta(porta);
+                listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(chave));
+            }
         }
 
         void Fase::criarPorta(const std::vector<std::string> atributosPorta, const std::vector<std::string> atributosChave){
@@ -309,11 +324,27 @@ namespace Jungle {
             observadorFase->mudarEstadoAtivar();
         }
 
-        void Fase::mudarFase(){
+        void Fase::mudarFase(const IDs::IDs ID_Fase){
             observadorFase->setFase(this);
             if(getJogador() == nullptr && pJogador != nullptr){
                 listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(pJogador), 0);
                 listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(pJogador->getArma()), 1);
+                if(ID_Fase != IDs::IDs::vazio){
+                    std::vector<Entidade::Entidade*> entidades = listaObstaculos->getEntidades(IDs::IDs::porta);
+                    if(entidades.size() <= 0){
+                        std::cout << "ERRO::mudar fase, pois nao ha portas nesta fase" << std::endl;
+                        exit(1);
+                    }
+                    for(int i = 0; i < entidades.size(); i++){
+                        Entidade::Obstaculo::Porta* porta = dynamic_cast<Entidade::Obstaculo::Porta*>(entidades[i]);
+                        if(porta->getIDFase() == ID_Fase){
+                            sf::Vector2f pos(porta->getPos());
+                            sf::Vector2f tam(porta->getTam());
+                            pJogador->setPos(sf::Vector2f(pos.x + tam.x / 2.0f - pJogador->getTam().x / 2.0f, pos.y));
+                            return;
+                        }
+                    }
+                }
             }
         }
 
@@ -338,7 +369,12 @@ namespace Jungle {
 
         void Fase::setPontuacao(const unsigned int pontuacaoJogador){
             this->pontuacaoJogador = pontuacaoJogador;
-            textoPontuacao.setString("Pontos " + std::to_string(pontuacaoJogador));
+            std::string pontos = std::to_string(this->pontuacaoJogador);
+            while(pontos.size() < 5){
+                std::string aux = pontos;
+                pontos = '0' + aux;
+            }
+            textoPontuacao.setString("Pontos: " + pontos);
         }
 
         void Fase::atualizarTempo(){
@@ -428,6 +464,7 @@ namespace Jungle {
                 pColisao->executar();
             } else {
                 observadorFase->notificarJogadorMorreu();
+                pJogador = nullptr;
             }
         }
 

@@ -8,12 +8,15 @@ namespace Jungle {
         namespace Obstaculo {
 
             PlataformaMovel::PlataformaMovel(const sf::Vector2f pos, const float distancia, const sf::Vector2f tam, const bool ehFlutuante, const bool horizontal):
-                Plataforma(IDs::IDs::plataforma_movel, pos, tam, ehFlutuante), horizontal(horizontal), posFinal(pos.x + distancia),
-                posInicial(pos.x), paraEsquerda(pos.x > posFinal), paraBaixo(pos.y > posFinal),
-                velocidade(sf::Vector2f(VELOCIDADE_PLATAFORMA, VELOCIDADE_PLATAFORMA)), tempo(0.0f),
-                ds(sf::Vector2f(0.0f, 0.0f))
+                Plataforma(IDs::IDs::plataforma_movel, pos, tam, ehFlutuante), horizontal(horizontal), 
+                posFinal(horizontal ? pos.x + distancia : pos.y + distancia), posInicial(horizontal ? pos.x : pos.y),
+                ds(sf::Vector2f(0.0f, 0.0f)), paraBaixo(false), paraEsquerda(false),
+                velocidade(sf::Vector2f(VELOCIDADE_PLATAFORMA, VELOCIDADE_PLATAFORMA)), tempo(0.0f)
             {
-
+                if(posInicial > posFinal){
+                    paraEsquerda = true;
+                    paraBaixo = true;
+                }
             }
 
             PlataformaMovel::PlataformaMovel(const std::vector<std::string> atributos):
@@ -62,12 +65,12 @@ namespace Jungle {
 
             void PlataformaMovel::atualizarPosicao(){
                 if(horizontal){
-                    if(pos.x >= posFinal || pos.x <= posInicial){
+                    if(pos.x >= posFinal || pos.x < posInicial){
                         paraEsquerda = !paraEsquerda;
                     }
                     ds = sf::Vector2f((paraEsquerda ? -velocidade.x : velocidade.x) * tempo, 0.0f);
                 } else {
-                    if(pos.y >= posFinal || pos.y <= posInicial){
+                    if(pos.y >= posFinal || pos.y < posInicial){
                         paraBaixo = !paraBaixo;
                     }
                     ds = sf::Vector2f(0.0f, (paraBaixo ? -velocidade.y : velocidade.y) * tempo);

@@ -8,7 +8,7 @@ namespace Jungle {
 
         class FlorestaVermelha : public Fase {
         private:
-            void recuperarJogada(const std::string arquivoEntidades, const std::vector<std::string> vectorInfoFase);
+            void recuperarJogada(const std::vector<std::string> vectorEntidades, const std::vector<std::string> vectorInfoFase);
         public:
             FlorestaVermelha();
             ~FlorestaVermelha();

@@ -14,7 +14,13 @@ namespace Jungle {
                 caixaTexto(), coletou(false), fundoPorta()
             {
                 inicializarAnimacao();
-                inicializarTexto("Encontre a Chave");
+                if(chave == nullptr){
+                    inicializarTexto("Pressione 'K' para Entrar");
+                    coletou = true;
+                    fechada = false;
+                } else {
+                    inicializarTexto("Encontre a Chave");
+                }
             }
 
             Porta::Porta(const std::vector<std::string> atributos, Item::Chave* chave):
@@ -33,6 +39,22 @@ namespace Jungle {
                     const float tempoTotalAtual = std::stof(atributos[10]);
                     const bool mostrarTextoAtual = atributos[11] == "1";
                     const bool coletouAtual = atributos[12] == "1";
+                    switch (std::stoi(atributos[13]))
+                    {
+                    case (53):
+                        this->ID_Fase = IDs::IDs::floresta_branca_parte_1;
+                        break;
+                    case (54):
+                        this->ID_Fase = IDs::IDs::floresta_branca_parte_2;
+                        break;
+                    case (55):
+                        this->ID_Fase = IDs::IDs::floresta_branca_parte_3;
+                        break;
+                    default:
+                        std::cout << "ERRO::Erro ao recuperar porta, pois o  Id da fase atual eh invalido" << std::endl;
+                        exit(1);
+                        break;
+                    }
 
                     setPos(posAtual);
                     setTam(tamAtual);
@@ -86,6 +108,9 @@ namespace Jungle {
                     }
                 } else {
                     animacao.atualizar(true, "PORTA_ABERTA");
+                    if(tempoAbrindo < TEMPO_ENTRAR){
+                        tempoAbrindo += pGrafico->getTempo();
+                    }
                 }
             }
 
@@ -104,6 +129,10 @@ namespace Jungle {
             
             Item::Chave* Porta::getChave(){
                 return chave;
+            }
+
+            const IDs::IDs Porta::getIDFase() const{
+                return ID_Fase;
             }
 
             void Porta::setMostrarTexto(const bool mostrarTexto){
@@ -131,11 +160,12 @@ namespace Jungle {
                         chave = nullptr;
                     } else if(abrindo){
                         mostrarTexto = false;
-                    } else if(pJogador->getAbrirPorta()){
+                    } else if(pJogador->getAbrirPorta() && tempoAbrindo >= TEMPO_ENTRAR){
                         Gerenciador::GerenciadorEstado* pGEstado = Gerenciador::GerenciadorEstado::getGerenciadorEstado();
                         Estado::EstadoJogar* estadoJogar = dynamic_cast<Estado::EstadoJogar*>(pGEstado->getEstadoAtual());
+                        pJogador->setAbrirPorta(false);
+                        tempoAbrindo = 0.0f;
                         estadoJogar->mudarFase(ID_Fase);
-                        pJogador->setPos(sf::Vector2f(pos.x + tam.x / 2.0f - pJogador->getTam().x / 2.0f, pos.y));
                     }
                 } 
                 pJogador->setColidindoPorta(true);
@@ -167,7 +197,8 @@ namespace Jungle {
                 linha += std::to_string(animacao.getTempoTotal()) + ' ';
                 //linha += textoPorta.getString() + ' ';
                 linha += std::to_string(mostrarTexto) + ' ';
-                linha += std::to_string(coletou);
+                linha += std::to_string(coletou) + ' ';
+                linha += std::to_string(static_cast<int>(ID_Fase));
 
                 return linha;
             }

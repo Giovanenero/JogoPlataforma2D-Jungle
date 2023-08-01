@@ -38,6 +38,17 @@ namespace Jungle {
             return objListaEntidade.operator[](pos);
         }
 
+        std::vector<Entidade::Entidade*> ListaEntidade::getEntidades(const IDs::IDs ID){
+            std::vector<Entidade::Entidade*> entidades;
+            for(int i = 0; i < objListaEntidade.getTam(); i++){
+                Entidade::Entidade* entidade = objListaEntidade[i];
+                if(entidade->getID() == ID){
+                    entidades.push_back(entidade);
+                }
+            }
+            return entidades;
+        }
+
         void ListaEntidade::limparLista(){
             objListaEntidade.limparLista();
         }

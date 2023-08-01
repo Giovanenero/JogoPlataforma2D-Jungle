@@ -6,6 +6,7 @@
 #include "../Personagem/Jogador/Jogador.hpp"
 
 #define TEMPO_PORTA_ABRINDO 1.4f
+#define TEMPO_ENTRAR 0.5f
 
 namespace Jungle {
 
@@ -35,6 +36,7 @@ namespace Jungle {
                     Porta(const std::vector<std::string> atributos, Item::Chave* chave);
                     ~Porta();
                     Item::Chave* getChave();
+                    const IDs::IDs getIDFase() const;
                     void setMostrarTexto(const bool mostrarTexto);
                     void colidindoJogador(Personagem::Jogador::Jogador* pJogador);
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));

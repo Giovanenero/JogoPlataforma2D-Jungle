@@ -31,6 +31,7 @@ namespace Jungle {
                 }
             }
             listaCards.clear();
+            fase = nullptr;
         }
 
         void MenuSalvarJogada::inicializarCards(){
@@ -68,10 +69,9 @@ namespace Jungle {
             gerenciadorArquivo.removeArquivo(caminhoArquivoEntidades.c_str());
             gerenciadorArquivo.removeArquivo(caminhoArquivoFase.c_str());
             gerenciadorArquivo.gravarConteudo(caminhoArquivoEntidades.c_str(), linhas);
+            gerenciadorArquivo.gravarConteudo(caminhoArquivoEntidades.c_str(), std::vector<std::string>{std::to_string(static_cast<int>(fase->getID())) + " =========="});
 
-            std::string linhasFase = std::to_string(static_cast<int>(ID_FaseAtual));
-            linhasFase += '\n';
-            linhasFase += fase->salvar();
+            std::string linhasFase = fase->salvar();
 
             gerenciadorArquivo.gravarConteudo(caminhoArquivoFase.c_str(), linhasFase);
 
@@ -90,10 +90,8 @@ namespace Jungle {
                 Fase::Fase* aux = (*itMapFase).second;
                 if(aux != fase && aux != nullptr){
                     linhas = aux->salvarEntidades();
-                    std::cout << linhas[0] << std::endl;
-                    gerenciadorArquivo.gravarConteudo(caminhoArquivoEntidades.c_str(), std::vector<std::string>{"=========="});
                     gerenciadorArquivo.gravarConteudo(caminhoArquivoEntidades.c_str(), linhas);
-                    std::cout << "aaaaaa ";
+                    gerenciadorArquivo.gravarConteudo(caminhoArquivoEntidades.c_str(), std::vector<std::string>{std::to_string(static_cast<int>(aux->getID())) + " =========="});
                 }
                 itMapFase++;
             }

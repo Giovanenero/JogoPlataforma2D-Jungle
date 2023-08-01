@@ -102,24 +102,12 @@ namespace Jungle {
                                 pGEstado->removerEstado();
                                 Gerenciador::GerenciadorArquivo GArquivo;
                                 std::vector<std::string> vectorInfoFase = GArquivo.lerArquivo(caminhoArquivoFase.c_str());
-                                switch (std::stoi(vectorInfoFase[0]))
-                                {
-                                    case (15):
-                                    {
-                                        pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
-                                    }
-                                        break;
-                                    case (17):
-                                    {
-                                        pGEstado->addEstado(IDs::IDs::jogar_florestaVermelha);
-                                    }
-                                        break;
-                                    default:
-                                    {
-                                        std::cout << "ObservadorMenu::nao foi possivel criar uma fase" << std::endl;
-                                        exit(1);
-                                    }
-                                        break;
+                                int id = std::stoi(vectorInfoFase[0]);
+                                if(id >= 53 && id <= 55){
+                                    pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
+                                } else {
+                                    std::cout << "ObservadorMenu::nao foi possivel criar uma fase" << std::endl;
+                                    exit(1);
                                 }
                                 Estado::EstadoJogar* estadoJogar = dynamic_cast<Estado::EstadoJogar*>(pGEstado->getEstadoAtual());
                                 estadoJogar->criarFase(caminhoArquivoEntidades, vectorInfoFase);
@@ -261,24 +249,12 @@ namespace Jungle {
                                         pGEstado->removerEstado();
                                         Gerenciador::GerenciadorArquivo GArquivo;
                                         std::vector<std::string> vectorInfoFase = GArquivo.lerArquivo(caminhoArquivoFase.c_str());
-                                        switch (std::stoi(vectorInfoFase[0]))
-                                        {
-                                            case (15):
-                                            {
-                                                pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
-                                            }
-                                                break;
-                                            case (17):
-                                            {
-                                                pGEstado->addEstado(IDs::IDs::jogar_florestaVermelha);
-                                            }
-                                                break;
-                                            default:
-                                            {
-                                                std::cout << "ObservadorMenu::nao foi possivel criar uma fase" << std::endl;
-                                                exit(1);
-                                            }
-                                                break;
+                                        int id = std::stoi(vectorInfoFase[0]);
+                                        if(id >= 53 && id <= 55){
+                                            pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
+                                        } else {
+                                            std::cout << "ObservadorMenu::nao foi possivel criar uma fase" << std::endl;
+                                            exit(1);
                                         }
                                         Estado::EstadoJogar* estadoJogar = dynamic_cast<Estado::EstadoJogar*>(pGEstado->getEstadoAtual());
                                         estadoJogar->criarFase(caminhoArquivoEntidades, vectorInfoFase);

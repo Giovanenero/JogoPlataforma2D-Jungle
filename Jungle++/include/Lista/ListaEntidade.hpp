@@ -19,6 +19,7 @@ namespace Jungle {
             void removerEntidade(int pos, const bool deletar = true);
             int getTam();
             Entidade::Entidade* operator[](int pos);
+            std::vector<Entidade::Entidade*> getEntidades(const IDs::IDs ID);
             void limparLista();
             void executar();
             void desenharEntidades();

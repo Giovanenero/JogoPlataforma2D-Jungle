@@ -14,7 +14,7 @@ namespace Jungle {
 
         }
 
-        void FlorestaVermelha::recuperarJogada(const std::string arquivoEntidades, const std::vector<std::string> vectorInfoFase){
+        void FlorestaVermelha::recuperarJogada(const std::vector<std::string> vectorEntidades, const std::vector<std::string> vectorInfoFase){
             //terminar...
         }
 
