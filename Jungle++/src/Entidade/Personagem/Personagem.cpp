@@ -45,9 +45,9 @@ namespace Jungle {
                 dt = pGrafico->getTempo();
                 //vai resetar o relógio no caso de jogo pausado;
 
-                if(dt > 0.3f){
-                    dt = 0.0f;
-                }
+                //if(dt > 0.3f){
+                //    dt = 0.0f;
+                //}
                 //relogio.restart();
                 sf::Vector2f ds(0.0f, 0.0f);
 
@@ -58,10 +58,11 @@ namespace Jungle {
                         ds.x *= -1;
                     }
                 }
-
-                    //sofre o efeito da gravidade
-                velFinal.y += GRAVIDADE * dt;
-                ds.y = velFinal.y * GRAVIDADE;
+                
+                //sofre o efeito da gravidade
+                const float Vy = velFinal.y;
+                velFinal.y = velFinal.y + GRAVIDADE * dt;
+                ds.y = Vy * dt + (GRAVIDADE * dt * dt) / 2.0f;
 
                 //atualiza posição
                 setPos(sf::Vector2f(pos.x + ds.x, pos.y + ds.y));

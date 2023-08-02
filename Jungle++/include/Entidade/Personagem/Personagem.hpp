@@ -5,7 +5,7 @@
 #include "Nivel.hpp"
 #include "../../Menu/Botao/Texto.hpp"
 
-#define GRAVIDADE 1.0f
+#define GRAVIDADE 1200.0f
 
 #define BARRA_VIDA_X 60.0f
 #define BARRA_VIDA_Y 6.0f
