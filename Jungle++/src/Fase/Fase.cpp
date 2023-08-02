@@ -341,6 +341,8 @@ namespace Jungle {
                             sf::Vector2f pos(porta->getPos());
                             sf::Vector2f tam(porta->getTam());
                             pJogador->setPos(sf::Vector2f(pos.x + tam.x / 2.0f - pJogador->getTam().x / 2.0f, pos.y));
+                            pGrafico->atualizarCamera(sf::Vector2f(pJogador->getPos().x, 300.0f));
+                            fundo.atualizarPosicao();
                             return;
                         }
                     }

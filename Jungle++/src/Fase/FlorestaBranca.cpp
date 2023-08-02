@@ -31,6 +31,8 @@ namespace Jungle {
                 if(pJogador == nullptr){
                     i = 2;
                     criarJogador(getAtributosEntidade(linhas[0]), getAtributosEntidade(linhas[1]));
+                    pGrafico->atualizarCamera(sf::Vector2f(pJogador->getPos().x, 300.0f));
+                    fundo.atualizarPosicao();
                 }
                 while(i < linhas.size()){
                     std::string linha = linhas[i];
@@ -146,26 +148,55 @@ namespace Jungle {
         }
 
         void FlorestaBranca::criarMapa1(){
-            for(int i = -2; i < 8; i++){
+            //chão
+            for(int i = -2; i < 20; i++){
                 criarPlataforma(sf::Vector2f(i * 350.0f, 550.0f), sf::Vector2f(350.0f, 50.0f), false, 0.0f, false);
             }
-            criarPlataforma(sf::Vector2f(1300.0f, 290.0f), sf::Vector2f(80.0f, 40.0f), true, 0.0f, false);
-            criarPlataforma(sf::Vector2f(500.0f, 420.0f), sf::Vector2f(80.0f, 40.0f), true, 800.0f, true);
-            for(int i = 0; i < 4; i++){
-                criarPlataforma(sf::Vector2f(1450.0f + i * 350.0f, 150.0f), sf::Vector2f(350.0f, 50.0f), false, 0.0f, false);
-            }
-            //criarPorta(sf::Vector2f(400.0f, 450.0f), sf::Vector2f(85.0f, 100.0f), sf::Vector2f(1600.0f, 100.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_2);
-            criarPorta(sf::Vector2f(550.0f, 450.0f), sf::Vector2f(85.0f, 100.0f), sf::Vector2f(1000.0f, 490.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_2);
+            //plataforma do jogador
+            criarJogador(sf::Vector2f(150.0f, 300.0f));
+            criarPlataforma(sf::Vector2f(0.0f, 400.0f), sf::Vector2f(350.0f, 50.0f), false, 0.0f, false);
+            
+            criarEsqueleto(sf::Vector2f(450.0f, 450.0f), 1);
+            criarCaixa(sf::Vector2f(700.0f, 500.0f));
+        
+            criarPlataforma(sf::Vector2f(800.0f, 400.0f), sf::Vector2f(350.0f, 50.0f), false, 0.0f, false);
+            criarPlataforma(sf::Vector2f(800.0f + 350.0f, 400.0f), sf::Vector2f(350.0f, 50.0f), false, 0.0f, false);
+            criarEsqueleto(sf::Vector2f(800.0f, 300.0f), 1);
+            criarEsqueleto(sf::Vector2f(900.0f, 300.0f), 1);
+            criarPlataforma(sf::Vector2f(800.0f + 750.0f, 200.0f), sf::Vector2f(80.0f, 50.0f), true, 200.0f, false);
 
-            criarJogador(sf::Vector2f(100.0f, 400.0f));
-            criarMoeda(sf::Vector2f(300.0f, 500.0f), IDs::IDs::moeda_amarela);
-            criarMoeda(sf::Vector2f(1200.0f, 80.0f), IDs::IDs::moeda_cinza);
-            criarVida(sf::Vector2f(1400.0f, 350.0f));
+            criarPlataforma(sf::Vector2f(800.0f + 850.0f, 200.0f), sf::Vector2f(350.0f, 50.0f), false, 0.0f, false);
+            criarPorta(sf::Vector2f(1800.0f, 100.0f), sf::Vector2f(85.0f, 100.0f),sf::Vector2f(5000.0, 160.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_2);
+            criarEsqueleto(sf::Vector2f(1800.0f, 100.0f), 4);
+            criarEsqueleto(sf::Vector2f(1900.0f, 450.0f), 2);
+            criarCaixa(sf::Vector2f(2450.0f, 500.0f));
 
-            criarPlataforma(sf::Vector2f(0.0f, 300.0f), sf::Vector2f(80.0f, 40.0f), true, 200.0f, false);
+            criarPlataforma(sf::Vector2f(2550.0f, 400.0f), sf::Vector2f(350.0f, 50.0f), false, 0.0f, false);
+            criarEsqueleto(sf::Vector2f(2800.0f, 300.0f), 5);
+            criarPlataforma(sf::Vector2f(2950.0f, 400.0f), sf::Vector2f(80.0f, 50.0f), true, 300.0f, true);
+            criarEsqueleto(sf::Vector2f(3100.0f, 300.0f), 4);
+
+            criarPlataforma(sf::Vector2f(3350.0f, 400.0f), sf::Vector2f(350.0f, 50.0f), false, 0.0f, false);
+            criarPlataforma(sf::Vector2f(3750.0f, 200.0f), sf::Vector2f(80.0f, 50.0f), true, 200.0f, false);
+            criarEsqueleto(sf::Vector2f(3950.0f, 200.0f), 3);
+            criarEsqueleto(sf::Vector2f(3400.0f, 200.0f), 3);
+            criarAlma(sf::Vector2f(3900.0f, 450.0f), 1);
+            criarEsqueleto(sf::Vector2f(4000.0f, 450.0f), 3);
+            criarEsqueleto(sf::Vector2f(3950.0f, 450.0f), 3);
+            criarEsqueleto(sf::Vector2f(4000.0f, 100.0f), 4);
+            criarPlataforma(sf::Vector2f(3850.0f, 200.0f), sf::Vector2f(80.0f, 50.0f), true, 200.0f, true);
+            criarPlataforma(sf::Vector2f(4150.0f, 200.0f), sf::Vector2f(350.0f, 50.0f), false, 0.0f, false);
+            criarPlataforma(sf::Vector2f(4550.0f, 200.0f), sf::Vector2f(80.0f, 50.0f), true, 200.0f, true);
+            criarPlataforma(sf::Vector2f(4850.0f, 200.0f), sf::Vector2f(350.0f, 50.0f), false, 0.0f, false);
         }
         
+        
         void FlorestaBranca::criarMapa2(){
+            for(int i = -2; i < 20; i++){
+                criarPlataforma(sf::Vector2f(i * 350.0f, 550.0f), sf::Vector2f(350.0f, 50.0f), false, 0.0f, false);
+            }
+            criarPorta(sf::Vector2f(0.0f, 450.0f), sf::Vector2f(85.0f, 100.0f),sf::Vector2f(-1000.0f, -1000.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_1);
+            /*
             for(int i = -2; i < 8; i++){
                 criarPlataforma(sf::Vector2f(i * 350.0f, 550.0f), sf::Vector2f(350.0f, 50.0f), false, 0.0f, false);
             }
@@ -180,6 +211,7 @@ namespace Jungle {
 
             criarPorta(sf::Vector2f(400.0f, 450.0f), sf::Vector2f(85.0f, 100.0f),sf::Vector2f(-1000.0f, -1000.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_1);
             criarPorta(sf::Vector2f(800.0f, 450.0f), sf::Vector2f(85.0f, 100.0f),sf::Vector2f(0.0f, 490.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_3);
+            */
         }
 
         void FlorestaBranca::criarMapa3(){

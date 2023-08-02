@@ -38,7 +38,7 @@ namespace Jungle {
             camadas.push_back(camada);
         }
 
-        void Fundo::executar(){
+        void Fundo::atualizarPosicao(){
             sf::Vector2f posCamera = pGrafico->getCamera().getCenter();
             sf::Vector2f ds = posCamera - posAnteriorCamera;
             posAnteriorCamera = posCamera;
@@ -48,6 +48,10 @@ namespace Jungle {
                     camadas.at(i)->atualizar(ds, posCamera);
                 }
             }
+        }
+
+        void Fundo::executar(){
+            atualizarPosicao();
             desenhar();
         }
 

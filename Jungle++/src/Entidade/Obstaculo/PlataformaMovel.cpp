@@ -11,7 +11,7 @@ namespace Jungle {
                 Plataforma(IDs::IDs::plataforma_movel, pos, tam, ehFlutuante), horizontal(horizontal), 
                 posFinal(horizontal ? pos.x + distancia : pos.y + distancia), posInicial(horizontal ? pos.x : pos.y),
                 ds(sf::Vector2f(0.0f, 0.0f)), paraBaixo(false), paraEsquerda(false),
-                velocidade(sf::Vector2f(VELOCIDADE_PLATAFORMA, VELOCIDADE_PLATAFORMA)), tempo(0.0f)
+                velocidade(sf::Vector2f(VELOCIDADE_PLATAFORMA, VELOCIDADE_PLATAFORMA))
             {
                 if(posInicial > posFinal){
                     paraEsquerda = true;
@@ -33,7 +33,6 @@ namespace Jungle {
                     const bool paraEsquerdaAtual = atributos[9] == "1";
                     const bool paraBaixoAtual = atributos[10] == "1";
                     const sf::Vector2f dsAtual(std::stof(atributos[11]), std::stof(atributos[12]));
-                    const float tempoAtual = std::stof(atributos[13]);
 
                     setPos(posAtual);
                     setTam(tamAtual);
@@ -44,7 +43,6 @@ namespace Jungle {
                     this->paraEsquerda = paraEsquerdaAtual;
                     this->paraBaixo = paraBaixoAtual;
                     this->ds = dsAtual;
-                    this->tempo = tempoAtual;
 
                     inicializarAnimacao();
                 }
@@ -64,14 +62,19 @@ namespace Jungle {
             }
 
             void PlataformaMovel::atualizarPosicao(){
+                const float tempo = pGrafico->getTempo();
                 if(horizontal){
-                    if(pos.x >= posFinal || pos.x < posInicial){
-                        paraEsquerda = !paraEsquerda;
+                    if(pos.x >= posFinal){
+                        paraEsquerda = true;
+                    } else if (pos.x < posInicial){
+                        paraEsquerda = false;
                     }
                     ds = sf::Vector2f((paraEsquerda ? -velocidade.x : velocidade.x) * tempo, 0.0f);
                 } else {
-                    if(pos.y >= posFinal || pos.y < posInicial){
-                        paraBaixo = !paraBaixo;
+                    if(pos.y >= posFinal){
+                        paraBaixo = true;
+                    } else if(pos.y < posInicial){
+                        paraBaixo = false;
                     }
                     ds = sf::Vector2f(0.0f, (paraBaixo ? -velocidade.y : velocidade.y) * tempo);
                 }
@@ -116,13 +119,11 @@ namespace Jungle {
                 linha += std::to_string(paraEsquerda) + ' ';
                 linha += std::to_string(paraBaixo) + ' ';
                 linha += std::to_string(ds.x) + ' ';
-                linha += std::to_string(ds.y) + ' ';
-                linha += std::to_string(tempo);
+                linha += std::to_string(ds.y);
                 return linha;
             }
             
             void PlataformaMovel::atualizar(){
-                tempo = pGrafico->getTempo();
                 atualizarPosicao();
                 desenhar();
             }

@@ -18,6 +18,7 @@ namespace Jungle {
             ~Fundo();
             void desenhar();
             void addCamada(const char* caminhoTextura, const float vel);
+            void atualizarPosicao();
             void executar();
         };
 

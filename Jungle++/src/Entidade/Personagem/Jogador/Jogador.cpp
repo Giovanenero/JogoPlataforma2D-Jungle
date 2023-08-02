@@ -81,9 +81,9 @@ namespace Jungle {
                         this->tempoMorrer = tempoMorrerAtual;
                         this->dt = dtAtual;
                         this->pontos = pontosAtual;
-                        inicializarNivel();
                         nivel.setNivel(nivelAtual);
                         nivel.addExp(experienciaAtual);
+                        inicializarNivel();
                         this->noChao = noChaoAtual;
                         this->colidindoPorta = colidindoPortaAtual;
                         this->abrirPorta = abrirPortaAtual;

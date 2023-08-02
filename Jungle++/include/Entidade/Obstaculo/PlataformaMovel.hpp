@@ -19,7 +19,6 @@ namespace Jungle {
                     bool paraBaixo;
                     const sf::Vector2f velocidade;
                     sf::Vector2f ds;
-                    float tempo;
 
                     void atualizarPosicao();
                 public:
