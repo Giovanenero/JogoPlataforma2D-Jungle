@@ -143,19 +143,27 @@ namespace Jungle {
             listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(projetil));
         }
 
-        void Fase::criarPlataforma(const sf::Vector2f pos, const sf::Vector2f tam, const bool ehFlutuante, const float distancia, const bool horizontal){
-            Obstaculo::Plataforma* plataforma = nullptr;
-            if(distancia != 0.0f){
-                plataforma = static_cast<Obstaculo::Plataforma*>(new Obstaculo::PlataformaMovel(pos, distancia, tam, ehFlutuante, horizontal));
-            } else {
-                plataforma = new Obstaculo::Plataforma(IDs::IDs::plataforma, pos, tam, ehFlutuante);
-            }
+        void Fase::criarPlataforma(const sf::Vector2f pos, const sf::Vector2f tam, const std::string type, const sf::Vector2f escala){
+            Obstaculo::Plataforma* plataforma = new Obstaculo::Plataforma(IDs::IDs::plataforma, pos, tam, type);
             if(plataforma == nullptr){
                 std::cout << "Fase::nao foi possivel criar plataforma" << std::endl;
                 exit(1);
             }
-            plataforma->inicializarAnimacao();
+            plataforma->setEscala(escala);
             listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(plataforma));
+        }
+
+        void Fase::criarPlataforma(const sf::Vector2f pos, const sf::Vector2f tam, const float distancia, const bool horizontal){
+            Obstaculo::PlataformaMovel* plataformaMovel = new Obstaculo::PlataformaMovel(pos, distancia, tam, horizontal);
+            if(plataformaMovel == nullptr){
+                std::cout << "Fase::nao foi possivel criar plataformaMovel" << std::endl;
+                exit(1);
+            }
+            listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(plataformaMovel));
+        }
+        
+        void Fase::criarPlataforma(const sf::Vector2f pos, const sf::Vector2f tam, const sf::Vector2f scale){
+
         }
 
         void Fase::criarPlataforma(const std::vector<std::string> atributos, const IDs::IDs ID){

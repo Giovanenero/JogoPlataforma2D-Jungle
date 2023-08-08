@@ -23,11 +23,11 @@ namespace Jungle {
             void setTam(const sf::Vector2f tam);
             const sf::Vector2f getTam() const;
             virtual void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f)) = 0;
+            const bool getRemover() const;
+            void remover();
+            virtual const std::string salvar() = 0;
             virtual void atualizar() = 0;
             virtual void desenhar();
-            const bool getRemover() const;
-            virtual const std::string salvar() = 0;
-            void remover();
         };
 
     }

@@ -37,7 +37,6 @@ namespace Jungle {
                     ~Porta();
                     Item::Chave* getChave();
                     const IDs::IDs getIDFase() const;
-                    void setMostrarTexto(const bool mostrarTexto);
                     void colidindoJogador(Personagem::Jogador::Jogador* pJogador);
                     void colisao(Entidade* outraEntidade, sf::Vector2f ds = sf::Vector2f(0.0f, 0.0f));
                     const std::string salvar();

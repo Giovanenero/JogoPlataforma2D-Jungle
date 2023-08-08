@@ -17,7 +17,7 @@ namespace Jungle {
             void addEntidade(Entidade::Entidade* entidade, int pos);
             void removerEntidade(Entidade::Entidade* entidade, const bool deletar = true);
             void removerEntidade(int pos, const bool deletar = true);
-            int getTam();
+            const int getTam();
             Entidade::Entidade* operator[](int pos);
             std::vector<Entidade::Entidade*> getEntidades(const IDs::IDs ID);
             void limparLista();

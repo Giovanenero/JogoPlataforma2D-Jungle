@@ -135,10 +135,6 @@ namespace Jungle {
                 return ID_Fase;
             }
 
-            void Porta::setMostrarTexto(const bool mostrarTexto){
-                this->mostrarTexto = mostrarTexto;
-            }
-
             void Porta::colidindoJogador(Personagem::Jogador::Jogador* pJogador){
                 if(!coletou){
                     std::vector<Item::Chave*> vectorChaves = pJogador->getChaves();

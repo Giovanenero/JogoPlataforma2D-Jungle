@@ -57,7 +57,9 @@ namespace Jungle {
             void criarEsqueleto(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma);
             void criarAlma(const sf::Vector2f pos, const int nivel);
             void criarAlma(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma);
-            void criarPlataforma(const sf::Vector2f pos, const sf::Vector2f tam, const bool ehFlutuante, const float distancia, const bool horizontal);
+            void criarPlataforma(const sf::Vector2f pos, const sf::Vector2f tam, const std::string type, const sf::Vector2f escala = sf::Vector2f(1.0f, 1.0f));
+            void criarPlataforma(const sf::Vector2f pos, const sf::Vector2f tam, const float distancia, const bool horizontal);
+            void criarPlataforma(const sf::Vector2f pos, const sf::Vector2f tam, const sf::Vector2f scale);
             void criarPlataforma(const std::vector<std::string> atributos, const IDs::IDs ID);
             void criarCaixa(const sf::Vector2f pos);
             void criarCaixa(const std::vector<std::string> atributos);
@@ -76,8 +78,6 @@ namespace Jungle {
             ~Fase();
             virtual void criarFundo() = 0;
             virtual void criarMapa(const IDs::IDs ID_Mapa) = 0;
-            void executar();
-            void desenhar();
             Entidade::Personagem::Jogador::Jogador* getJogador();
             void mudarEstadoObservador();
             void mudarFase(const IDs::IDs ID_Fase = IDs::IDs::vazio);
@@ -89,6 +89,8 @@ namespace Jungle {
             void atualizarPontuacao();
             const std::vector<std::string> salvarEntidades();
             const std::string salvar();
+            void executar();
+            void desenhar();
         };
 
     }

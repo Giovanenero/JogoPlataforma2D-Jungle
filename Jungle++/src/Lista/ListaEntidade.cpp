@@ -30,7 +30,7 @@ namespace Jungle {
             objListaEntidade.removerElemento(pos, deletar);
         }
 
-        int ListaEntidade::getTam(){
+        const int ListaEntidade::getTam(){
             return objListaEntidade.getTam();
         }
 

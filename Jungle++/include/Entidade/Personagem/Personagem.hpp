@@ -31,8 +31,8 @@ namespace Jungle {
                 const float velMax;
                 bool andando;
                 bool paraEsquerda;
-                bool atacando;
                 bool levandoDano;
+                bool atacando;
                 bool morrendo;
                 const float vidaMaxima;
                 float vida;

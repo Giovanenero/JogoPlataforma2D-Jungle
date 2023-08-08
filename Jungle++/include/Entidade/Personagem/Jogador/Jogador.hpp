@@ -48,8 +48,8 @@ namespace Jungle {
                     void atualizarBarraVida();
                     void inicializarNivel();
                     void inicializarBarraXP();
-                    void atualizarNivel();
                     void atualizarBarraXP();
+                    void atualizarNivel();
                     void inicializarExp();
                     void atualizarExp();
                     void atualizarChaves();

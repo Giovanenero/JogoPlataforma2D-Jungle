@@ -43,12 +43,6 @@ namespace Jungle {
 
             void Personagem::atualizarPosicao(){
                 dt = pGrafico->getTempo();
-                //vai resetar o relógio no caso de jogo pausado;
-
-                //if(dt > 0.3f){
-                //    dt = 0.0f;
-                //}
-                //relogio.restart();
                 sf::Vector2f ds(0.0f, 0.0f);
 
                 //move na horizontal

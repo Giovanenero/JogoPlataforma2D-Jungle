@@ -8,10 +8,10 @@ namespace Jungle {
 
         namespace Obstaculo {
 
-            Plataforma::Plataforma(const IDs::IDs ID, sf::Vector2f pos, const sf::Vector2f tam, const bool ehFlutuante):
-                Obstaculo(pos, tam, ID), ehFlutuante(ehFlutuante)
+            Plataforma::Plataforma(const IDs::IDs ID, sf::Vector2f pos, const sf::Vector2f tam, const std::string type):
+                Obstaculo(pos, tam, ID), type(type), escala(sf::Vector2f(1.0f, 1.0f))
             {
-                //inicializarAnimacao();
+                inicializarAnimacao();
             }
 
             Plataforma::Plataforma(const std::vector<std::string> atributos):
@@ -20,11 +20,11 @@ namespace Jungle {
                 try {
                     sf::Vector2f posAtual = sf::Vector2f(std::stof(atributos[1]), std::stof(atributos[2]));
                     sf::Vector2f tamAtual = sf::Vector2f(std::stof(atributos[3]), std::stof(atributos[4]));
-                    const bool ehFlutuanteAtual = atributos[5] == "1";
+                    const std::string typeAtual = atributos[5];
 
                     setPos(posAtual);
                     setTam(tamAtual);
-                    this->ehFlutuante = ehFlutuanteAtual;
+                    this->type = typeAtual;
 
                     inicializarAnimacao();
                 }
@@ -39,6 +39,30 @@ namespace Jungle {
 
             }
 
+            void Plataforma::inicializarAnimacao(){
+                if(type == "padrao"){
+                    textura = pGrafico->carregarTextura(CAMINHO_TEXTURA_PLATAFORMA_PADRAO);
+                } else if(type == "flutuante1"){
+                    textura = pGrafico->carregarTextura(CAMINHO_TEXTURA_PLATAFORMA_FLUTUANTE_1);
+                } else if(type == "flutuante2"){
+                    textura = pGrafico->carregarTextura(CAMINHO_TEXTURA_PLATAFORMA_FLUTUANTE_2);
+                } else if(type == "flutuante_maior"){
+                    textura = pGrafico->carregarTextura(CAMINHO_TEXTURA_PLATAFORMA_FLUTUANTE_MAIOR);
+                } else if(type == "madeira"){
+                    textura = pGrafico->carregarTextura(CAMINHO_TEXTURA_PLATAFORMA_MADEIRA);
+                } else {
+                    std::cout << "ERRO::Plataforma type eh invalido" << std::endl;
+                    exit(1);
+                }
+                corpo.setTexture(&textura);
+                corpo.setScale(escala);
+            }
+
+            void Plataforma::setEscala(const sf::Vector2f escala){
+                this->escala = escala;
+                corpo.setScale(this->escala);
+            }
+
             const std::string Plataforma::salvar(){
                 std::string linha = "";
                 //salvando atributos da entidade
@@ -48,13 +72,8 @@ namespace Jungle {
                 linha += std::to_string(tam.x) + ' ';
                 linha += std::to_string(tam.y) + ' ';
                 //salvando atributos da Plataforma
-                linha += std::to_string(ehFlutuante);
+                linha += type;
                 return linha;
-            }
-
-            void Plataforma::inicializarAnimacao(){
-                textura = pGrafico->carregarTextura(ehFlutuante ? CAMINHO_TEXTURA_PLATAFORMA_FLUTUANTE : CAMINHO_TEXTURA_PLATAFORMA);
-                corpo.setTexture(&textura);
             }
 
             void Plataforma::colisao(Entidade* outraEntidade, sf::Vector2f ds){
