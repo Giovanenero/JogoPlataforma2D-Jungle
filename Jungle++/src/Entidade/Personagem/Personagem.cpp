@@ -46,7 +46,7 @@ namespace Jungle {
                 sf::Vector2f ds(0.0f, 0.0f);
 
                 //move na horizontal
-                if(andando){
+                if(andando && !morrendo){
                     ds.x = velFinal.x * dt;
                     if(paraEsquerda){
                         ds.x *= -1;

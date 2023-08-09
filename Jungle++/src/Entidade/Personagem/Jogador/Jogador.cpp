@@ -5,6 +5,7 @@
 #include "../../../../include/Entidade/Item/Projetil.hpp"
 #include "../../../../include/Entidade/Item/Moeda.hpp"
 #include "../../../../include/Entidade/Obstaculo/Porta.hpp"
+#include "../../../../include/Entidade/Obstaculo/Espinho.hpp"
 
 #include <cmath>
 
@@ -308,6 +309,14 @@ namespace Jungle {
                             }
                             colidindoPorta = true;
                         }
+                            break;
+                        case (IDs::IDs::espinho):
+                        {
+                            Obstaculo::Espinho* espinho = dynamic_cast<Obstaculo::Espinho*>(outraEntidade);
+                            tomarDano(espinho->getDano());
+                        }
+                            break;
+
                     }   
                 }
 
@@ -438,7 +447,16 @@ namespace Jungle {
                         * 
                         * Faz o movimeto do jogador e atualiza animação
                     */
-                    pGrafico->atualizarCamera(sf::Vector2f(pos.x, 300.0f));
+
+                    //arrumar...
+                    sf::Vector2f posCamera(pos.x , 300.0f);
+                    sf::Vector2f tamJanela = pGrafico->getTamJanela();
+                    if(pos.x < -550.0f + tamJanela.x / 2.0f){
+                        posCamera.x = -550.0f + tamJanela.x / 2.0f;
+                    } else if(pos.x > 11 * 500.0f + 50.0f - tamJanela.x / 2.0f){
+                        posCamera.x = 11 * 500.0f + 50.0f - tamJanela.x / 2.0f;
+                    }
+                    pGrafico->atualizarCamera(posCamera);
 
                     atualizarPosicao();
 

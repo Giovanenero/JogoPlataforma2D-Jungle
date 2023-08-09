@@ -50,6 +50,8 @@ namespace Jungle {
                     textura = pGrafico->carregarTextura(CAMINHO_TEXTURA_PLATAFORMA_FLUTUANTE_MAIOR);
                 } else if(type == "madeira"){
                     textura = pGrafico->carregarTextura(CAMINHO_TEXTURA_PLATAFORMA_MADEIRA);
+                } else if(type == "parede"){
+                    textura = pGrafico->carregarTextura(CAMINHO_TEXTURA_PAREDE);
                 } else {
                     std::cout << "ERRO::Plataforma type eh invalido" << std::endl;
                     exit(1);

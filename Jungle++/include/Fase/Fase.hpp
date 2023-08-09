@@ -24,6 +24,7 @@
 #include "../Entidade/Item/Chave.hpp"
 #include "../Entidade/Personagem/Jogador/Jogador.hpp"
 #include "../Observador/ObservadorFase.hpp"
+#include "../Entidade/Obstaculo/Espinho.hpp"
 
 #include "../Menu/Botao/Texto.hpp"
 
