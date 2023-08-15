@@ -103,6 +103,13 @@ namespace Jungle {
                             }
                             criarPorta(atributos, atributosChave);
                         }
+                            break;
+                        case(56):
+                        {
+                            criarEspinho(atributos);
+                        }
+                            break;
+
                     }
                     i++;
                 }
@@ -159,8 +166,8 @@ namespace Jungle {
             //plataforma do jogador
             criarJogador(sf::Vector2f(150.0f, 300.0f));
 
-            Obstaculo::Espinho* espinho = new Obstaculo::Espinho(sf::Vector2f(300.0f, 520.0f), sf::Vector2f(100.0f, 30.0f));
-            listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(espinho));
+            //criando espinho
+            criarEspinho(sf::Vector2f(320.0f, 525.0f), sf::Vector2f(80.0f, 25.0f));
 
             criarPlataforma(sf::Vector2f(0.0f, 400.0f), sf::Vector2f(250.0f, 10.0f), "madeira", sf::Vector2f(1.0f, 15.2f));
             
@@ -169,10 +176,12 @@ namespace Jungle {
         
             criarPlataforma(sf::Vector2f(750.0f, 400.0f), sf::Vector2f(300.0f, 10.0f), "madeira", sf::Vector2f(1.0f, 15.2f));
             criarPlataforma(sf::Vector2f(750.0f + 300.0f, 400.0f), sf::Vector2f(300.0f, 10.0f), "madeira", sf::Vector2f(1.0f, 15.2f));
+            criarEspinho(sf::Vector2f(1000.0f, 375.0f), sf::Vector2f(80.0f, 25.0f));
             criarEsqueleto(sf::Vector2f(900.0f, 300.0f), 1);
             criarPlataforma(sf::Vector2f(1350.0f, 200.0f), sf::Vector2f(80.0f, 50.0f), 200.0f, false);
 
             criarPlataforma(sf::Vector2f(1350.0f + 80.0f, 200.0f), sf::Vector2f(350.0f, 50.0f), "flutuante_maior", sf::Vector2f(1.0f, 1.2f));
+            criarEspinho(sf::Vector2f(1480.0f, 175.0f), sf::Vector2f(80.0f, 25.0f));
             criarPorta(sf::Vector2f(1600.0f, 80.0f), sf::Vector2f(85.0f, 110.0f),sf::Vector2f(4800.0, 160.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_2);
             criarEsqueleto(sf::Vector2f(1700.0f, 100.0f), 4);
             criarCaixa(sf::Vector2f(2250.0f, 500.0f));

@@ -60,7 +60,6 @@ namespace Jungle {
             void criarAlma(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma);
             void criarPlataforma(const sf::Vector2f pos, const sf::Vector2f tam, const std::string type, const sf::Vector2f escala = sf::Vector2f(1.0f, 1.0f));
             void criarPlataforma(const sf::Vector2f pos, const sf::Vector2f tam, const float distancia, const bool horizontal);
-            void criarPlataforma(const sf::Vector2f pos, const sf::Vector2f tam, const sf::Vector2f scale);
             void criarPlataforma(const std::vector<std::string> atributos, const IDs::IDs ID);
             void criarCaixa(const sf::Vector2f pos);
             void criarCaixa(const std::vector<std::string> atributos);
@@ -70,6 +69,8 @@ namespace Jungle {
             void criarVida(const std::vector<std::string> atributos);
             void criarPorta(const sf::Vector2f posPorta, const sf::Vector2f tamPorta, const sf::Vector2f posChave, const sf::Vector2f tamChave, const IDs::IDs ID_Fase);
             void criarPorta(const std::vector<std::string> atributosPorta, const std::vector<std::string> atributosChave);
+            void criarEspinho(const sf::Vector2f pos, const sf::Vector2f tam);
+            void criarEspinho(const std::vector<std::string> atributos);
             void criarJogador(const sf::Vector2f pos);
             void criarJogador(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma);
             

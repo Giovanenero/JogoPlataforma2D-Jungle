@@ -161,10 +161,6 @@ namespace Jungle {
             }
             listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(plataformaMovel));
         }
-        
-        void Fase::criarPlataforma(const sf::Vector2f pos, const sf::Vector2f tam, const sf::Vector2f scale){
-
-        }
 
         void Fase::criarPlataforma(const std::vector<std::string> atributos, const IDs::IDs ID){
             Obstaculo::Plataforma* plataforma = nullptr;
@@ -277,6 +273,24 @@ namespace Jungle {
                 }
                 listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(chave));
             }
+        }
+
+        void Fase::criarEspinho(const sf::Vector2f pos, const sf::Vector2f tam){
+            Obstaculo::Espinho* espinho = new Obstaculo::Espinho(pos, tam);
+            if(espinho == nullptr){
+                std::cout << "Fase::nao foi possivel criar espinhos" << std::endl;
+                exit(1);
+            }
+            listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(espinho));
+        }
+        
+        void Fase::criarEspinho(const std::vector<std::string> atributos){
+            Obstaculo::Espinho* espinho = new Obstaculo::Espinho(atributos);
+            if(espinho == nullptr){
+                std::cout << "Fase::nao foi possivel criar espinhos" << std::endl;
+                exit(1);
+            }
+            listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(espinho));
         }
 
         void Fase::criarJogador(const sf::Vector2f pos){

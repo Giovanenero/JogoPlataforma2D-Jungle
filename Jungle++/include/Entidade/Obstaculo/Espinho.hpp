@@ -18,6 +18,7 @@ namespace Jungle {
                     void inicializarAnimacao();
                 public:
                     Espinho(const sf::Vector2f pos, const sf::Vector2f tam);
+                    Espinho(const std::vector<std::string> atributos);
                     ~Espinho();
                     void setDano(const float dano);
                     const float getDano() const;

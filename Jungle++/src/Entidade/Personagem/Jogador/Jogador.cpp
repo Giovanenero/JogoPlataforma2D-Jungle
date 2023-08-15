@@ -159,7 +159,7 @@ namespace Jungle {
 
 
                 void Jogador::inicializarAnimacao(){
-                    const sf::Vector2f origin = sf::Vector2f(tam.x / 2.5f, tam.y / 2.2f);
+                    const sf::Vector2f origin = sf::Vector2f(tam.x / 2.5f, tam.y / 2.1f);
                     animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Anda.png", "ANDA", 10, 0.12f, sf::Vector2f(6,2), origin);
                     animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Ataca.png", "ATACA", 10, 0.065f, sf::Vector2f(6,2), origin);
                     animacao.addAnimacao("Jungle++/img/Personagem/Jogador/Parado.png", "PARADO", 10, 0.15f, sf::Vector2f(6,2), origin);
@@ -314,6 +314,9 @@ namespace Jungle {
                         {
                             Obstaculo::Espinho* espinho = dynamic_cast<Obstaculo::Espinho*>(outraEntidade);
                             tomarDano(espinho->getDano());
+                            if(!morrendo){
+                                velFinal.y = -sqrt(2.0f * GRAVIDADE * TAMANHO_PULO);
+                            }
                         }
                             break;
 

@@ -18,12 +18,14 @@ namespace Jungle {
                 Obstaculo(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(0.0f, 0.0f), IDs::IDs::plataforma)
             {
                 try {
-                    sf::Vector2f posAtual = sf::Vector2f(std::stof(atributos[1]), std::stof(atributos[2]));
-                    sf::Vector2f tamAtual = sf::Vector2f(std::stof(atributos[3]), std::stof(atributos[4]));
-                    const std::string typeAtual = atributos[5];
+                    const sf::Vector2f posAtual = sf::Vector2f(std::stof(atributos[1]), std::stof(atributos[2]));
+                    const sf::Vector2f tamAtual = sf::Vector2f(std::stof(atributos[3]), std::stof(atributos[4]));
+                    const sf::Vector2f escalaAtual = sf::Vector2f(std::stof(atributos[5]), std::stof(atributos[6]));
+                    const std::string typeAtual = atributos[7];
 
                     setPos(posAtual);
                     setTam(tamAtual);
+                    setEscala(escalaAtual);
                     this->type = typeAtual;
 
                     inicializarAnimacao();
@@ -74,6 +76,8 @@ namespace Jungle {
                 linha += std::to_string(tam.x) + ' ';
                 linha += std::to_string(tam.y) + ' ';
                 //salvando atributos da Plataforma
+                linha += std::to_string(escala.x) + ' ';
+                linha += std::to_string(escala.y) + ' ';
                 linha += type;
                 return linha;
             }

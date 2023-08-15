@@ -18,13 +18,22 @@ namespace Jungle {
 
                 class Esqueleto : public Inimigo {
                 private:
+                    bool raiva;
+                    float tempoRaiva;
+                    sf::Color corPadrao;
+
                     void inicializarAnimacao();
                     void inicializarNivel();
+                    void atualizarRaiva();
+                    void atualizarAnimacao();
                 public:
                     Esqueleto(const sf::Vector2f pos, const int nivel, Jogador::Jogador* jogador);
                     Esqueleto(const std::vector<std::string> atributos, Jogador::Jogador* jogador);
                     ~Esqueleto();
+                    void tomarDano(const float dano);
                     const std::string salvar();
+                    void atualizarTempoAtacar();
+                    void moveInimigo();
                 };
 
             }
