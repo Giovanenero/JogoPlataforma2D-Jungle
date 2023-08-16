@@ -477,6 +477,9 @@ namespace Jungle {
                 //atualiza fundo
                 fundo.executar();
 
+                //atualizar camera
+                pGrafico->atualizarCamera(pJogador->getPos(), pJogador->getTam());
+
                 atualizarTempo();
                 atualizarPontuacao();
 

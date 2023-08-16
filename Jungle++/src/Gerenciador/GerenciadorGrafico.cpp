@@ -10,8 +10,7 @@ namespace Jungle {
 
         GerenciadorGrafico::GerenciadorGrafico():
             window(new sf::RenderWindow(sf::VideoMode(TELA_X, TELA_Y), "Jungle++")),
-            camera(sf::Vector2f(TELA_X / 2.0f, TELA_Y / 2.0f), sf::Vector2f(TELA_X, TELA_Y)),
-            relogio()
+            camera(sf::Vector2f(TELA_X, TELA_Y)), relogio()
         {
             if(window == nullptr){
                 std::cout << "ERROR::Jungle::Gerenciador::GerenciadorGrafico nao foi possivel criar uma janela grafica" << std::endl;
@@ -98,21 +97,34 @@ namespace Jungle {
         }
 
         void GerenciadorGrafico::atualizarCamera(const sf::Vector2f pos){
-            camera.setCenter(pos);
-            window->setView(camera);
+            camera.atualizar(pos);
+            window->setView(camera.getCamera()); 
         }
 
+       void GerenciadorGrafico::atualizarCamera(const sf::Vector2f pos, sf::Vector2f tam){
+            camera.atualizar(pos, tam);
+            window->setView(camera.getCamera()); 
+       }
+
         const sf::View GerenciadorGrafico::getCamera(){
-            return camera;
+            return camera.getCamera();
         }
 
         void GerenciadorGrafico::resetarJanela(){
-            camera.setCenter(TELA_X / 2.0f, TELA_Y / 2.0f);
-            window->setView(camera);
+            camera.resetar(sf::Vector2f(TELA_X / 2.0f, TELA_Y / 2.0f));
+            window->setView(camera.getCamera());
         }
 
         const sf::Vector2f GerenciadorGrafico::getTamJanela() const{
             return (sf::Vector2f)window->getSize();
+        }
+
+        void GerenciadorGrafico::setLimiteCamera(const sf::IntRect limiteCamera){
+            camera.setLimiteCamera(limiteCamera);
+        }
+
+        void GerenciadorGrafico::inicializarLimite(const sf::Vector2f pos, const sf::Vector2f tam){
+            camera.inicializarLimite(pos, tam);
         }
 
     }

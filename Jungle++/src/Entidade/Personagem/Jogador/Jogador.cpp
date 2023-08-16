@@ -38,6 +38,9 @@ namespace Jungle {
                         setArma(arma);
                         arma->setDano(nivel.getForca());
                     }
+
+                    pGrafico->inicializarLimite(pos, tam);
+                    pGrafico->atualizarCamera(pos);
                 }
 
                 Jogador::Jogador(const std::vector<std::string> atributos):
@@ -452,14 +455,14 @@ namespace Jungle {
                     */
 
                     //arrumar...
-                    sf::Vector2f posCamera(pos.x , 300.0f);
-                    sf::Vector2f tamJanela = pGrafico->getTamJanela();
-                    if(pos.x < -550.0f + tamJanela.x / 2.0f){
-                        posCamera.x = -550.0f + tamJanela.x / 2.0f;
-                    } else if(pos.x > 11 * 500.0f + 50.0f - tamJanela.x / 2.0f){
-                        posCamera.x = 11 * 500.0f + 50.0f - tamJanela.x / 2.0f;
-                    }
-                    pGrafico->atualizarCamera(posCamera);
+                    //sf::Vector2f posCamera(pos.x , 300.0f);
+                    //sf::Vector2f tamJanela = pGrafico->getTamJanela();
+                    //if(pos.x < -550.0f + tamJanela.x / 2.0f){
+                    //    posCamera.x = -550.0f + tamJanela.x / 2.0f;
+                    //} else if(pos.x > 11 * 500.0f + 50.0f - tamJanela.x / 2.0f){
+                    //    posCamera.x = 11 * 500.0f + 50.0f - tamJanela.x / 2.0f;
+                    //}
+                    //pGrafico->atualizarCamera(posCamera);
 
                     atualizarPosicao();
 

@@ -155,6 +155,8 @@ namespace Jungle {
         }
 
         void FlorestaBranca::criarMapa1(){
+            pGrafico->setLimiteCamera(sf::IntRect(-550.0f, 0.0f, 12 * 500.0f + 100.0f, pGrafico->getTamJanela().y + 200.0f));
+
             criarPlataforma(sf::Vector2f(-550.0f, 100.0f), sf::Vector2f(50.f, 500.0f), "parede");
             criarPorta(sf::Vector2f(-450.0f, 430.0f), sf::Vector2f(85.0f, 110.0f),sf::Vector2f(-350.0f, 510.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_3);
             //chão
@@ -182,49 +184,37 @@ namespace Jungle {
 
             criarPlataforma(sf::Vector2f(1350.0f + 80.0f, 200.0f), sf::Vector2f(350.0f, 50.0f), "flutuante_maior", sf::Vector2f(1.0f, 1.2f));
             criarEspinho(sf::Vector2f(1480.0f, 175.0f), sf::Vector2f(80.0f, 25.0f));
-            criarPorta(sf::Vector2f(1600.0f, 80.0f), sf::Vector2f(85.0f, 110.0f),sf::Vector2f(4800.0, 160.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_2);
+            //criarPorta(sf::Vector2f(1600.0f, 80.0f), sf::Vector2f(85.0f, 110.0f),sf::Vector2f(4650.0, 160.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_2);
+            criarPorta(sf::Vector2f(150.0f, 250.0f), sf::Vector2f(85.0f, 110.0f),sf::Vector2f(150.0f, 200.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_2);
             criarEsqueleto(sf::Vector2f(1700.0f, 100.0f), 4);
-            criarCaixa(sf::Vector2f(2250.0f, 500.0f));
+            criarCaixa(sf::Vector2f(2200.0f, 500.0f));
 
-            criarPlataforma(sf::Vector2f(2350.0f, 400.0f), sf::Vector2f(300.0f, 10.0f), "madeira", sf::Vector2f(1.0f, 15.2f));
-            criarEsqueleto(sf::Vector2f(2550.0f, 300.0f), 5);
-            criarPlataforma(sf::Vector2f(2650.0f, 400.0f), sf::Vector2f(80.0f, 50.0f), 300.0f, true);
-            criarEsqueleto(sf::Vector2f(2850.0f, 300.0f), 4);
+            criarPlataforma(sf::Vector2f(2300.0f, 400.0f), sf::Vector2f(300.0f, 10.0f), "madeira", sf::Vector2f(1.0f, 15.2f));
+            criarEsqueleto(sf::Vector2f(2500.0f, 300.0f), 5);
+            criarPlataforma(sf::Vector2f(2600.0f, 400.0f), sf::Vector2f(80.0f, 50.0f), 300.0f, true);
+            criarEsqueleto(sf::Vector2f(2800.0f, 300.0f), 4);
 
-            criarPlataforma(sf::Vector2f(3030.0f, 400.0f), sf::Vector2f(300.0f, 10.0f), "madeira", sf::Vector2f(1.0f, 15.2f));
-            criarPlataforma(sf::Vector2f(3430.0f, 200.0f), sf::Vector2f(80.0f, 50.0f), 200.0f, false);
-            criarEsqueleto(sf::Vector2f(3700.0f, 200.0f), 3);
-            criarAlma(sf::Vector2f(3650.0f, 450.0f), 1);
-            criarEsqueleto(sf::Vector2f(3850.0f, 450.0f), 3);
-            criarEsqueleto(sf::Vector2f(3850.0f, 100.0f), 4);
-            criarPlataforma(sf::Vector2f(3530.0f, 200.0f), sf::Vector2f(80.0f, 50.0f), 200.0f, true);
-            criarPlataforma(sf::Vector2f(3830.0f, 200.0f), sf::Vector2f(350.0f, 50.0f), "flutuante_maior", sf::Vector2f(1.0f, 1.2f));
-            criarPlataforma(sf::Vector2f(4230.0f, 200.0f), sf::Vector2f(80.0f, 50.0f), 200.0f, true);
-            criarPlataforma(sf::Vector2f(4530.0f, 200.0f), sf::Vector2f(350.0f, 50.0f), "flutuante_maior", sf::Vector2f(1.0f, 1.2f));
+            criarPlataforma(sf::Vector2f(2980.0f, 400.0f), sf::Vector2f(300.0f, 10.0f), "madeira", sf::Vector2f(1.0f, 15.2f));
+            criarPlataforma(sf::Vector2f(3300.0f, 200.0f), sf::Vector2f(80.0f, 50.0f), 200.0f, false);
+            criarEsqueleto(sf::Vector2f(3650.0f, 200.0f), 3);
+            criarAlma(sf::Vector2f(3600.0f, 450.0f), 1);
+            criarEsqueleto(sf::Vector2f(3800.0f, 450.0f), 3);
+            criarEsqueleto(sf::Vector2f(3800.0f, 100.0f), 4);
+            criarPlataforma(sf::Vector2f(3400.0f, 200.0f), sf::Vector2f(80.0f, 50.0f), 200.0f, true);
+            criarPlataforma(sf::Vector2f(3700.0f, 200.0f), sf::Vector2f(350.0f, 50.0f), "flutuante_maior", sf::Vector2f(1.0f, 1.2f));
+            criarPlataforma(sf::Vector2f(4080.0f, 200.0f), sf::Vector2f(80.0f, 50.0f), 200.0f, true);
+            criarPlataforma(sf::Vector2f(4380.0f, 200.0f), sf::Vector2f(350.0f, 50.0f), "flutuante_maior", sf::Vector2f(1.0f, 1.2f));
         }
         
         
         void FlorestaBranca::criarMapa2(){
-            for(int i = -2; i < 10; i++){
-                criarPlataforma(sf::Vector2f(i * 350.0f, 550.0f), sf::Vector2f(350.0f, 50.0f), "padrao");
+            criarPlataforma(sf::Vector2f(-550.0f, 100.0f), sf::Vector2f(50.f, 500.0f), "parede");
+            criarPlataforma(sf::Vector2f(-500.0f, 450.0f), sf::Vector2f(120.0f, 1.0f), "ponte1", sf::Vector2f(1.0f, 50.0f));
+            for(int i = -1; i < 1; i++){
+                criarPlataforma(sf::Vector2f(i * 500.0f, 550.0f), sf::Vector2f(500.0f, 50.0f), "padrao");
             }
             criarPorta(sf::Vector2f(0.0f, 450.0f), sf::Vector2f(85.0f, 100.0f),sf::Vector2f(-1000.0f, -1000.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_1);
-            /*
-            for(int i = -2; i < 8; i++){
-                criarPlataforma(sf::Vector2f(i * 350.0f, 550.0f), sf::Vector2f(350.0f, 50.0f), false, 0.0f, false);
-            }
-            for(int i = 0; i < 3; i++){
-                criarEsqueleto(sf::Vector2f(400.0f * (i + 0.5f), 0.0f), 1);
-            }
-            for(int i = 0; i < 3; i++){
-                criarEsqueleto(sf::Vector2f(400.0f * (2 + i + 0.5f), 0.0f), 3);
-            }
-            criarAlma(sf::Vector2f(200.0f, 500.0f), 2);
-            criarAlma(sf::Vector2f(500.0f, 500.0f), 4);
-
-            criarPorta(sf::Vector2f(400.0f, 450.0f), sf::Vector2f(85.0f, 100.0f),sf::Vector2f(-1000.0f, -1000.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_1);
-            criarPorta(sf::Vector2f(800.0f, 450.0f), sf::Vector2f(85.0f, 100.0f),sf::Vector2f(0.0f, 490.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_3);
-            */
+            criarPlataforma(sf::Vector2f(500.0f, 100.0f), sf::Vector2f(50.f, 500.0f), "parede");
         }
 
         void FlorestaBranca::criarMapa3(){

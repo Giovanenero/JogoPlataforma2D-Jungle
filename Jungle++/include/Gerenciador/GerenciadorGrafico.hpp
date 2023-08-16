@@ -3,9 +3,7 @@
 #define TELA_X 800.0f
 #define TELA_Y 600.0f
 
-#include <SFML/Graphics.hpp>
-
-#include <iostream>
+#include "Camera.hpp"
 
 namespace Jungle {
 
@@ -16,7 +14,7 @@ namespace Jungle {
             sf::RenderWindow* window;
 
             //movimentar a camera
-            sf::View camera;
+            Camera camera;
             sf::Clock relogio;
             static float tempo;
 
@@ -38,9 +36,12 @@ namespace Jungle {
             void fecharJanela();
             const bool verificaJanelaAberta();
             void atualizarCamera(const sf::Vector2f pos);
+            void atualizarCamera(const sf::Vector2f pos, sf::Vector2f tam);
             const sf::View getCamera();
             void resetarJanela();
             const sf::Vector2f getTamJanela() const;
+            void setLimiteCamera(const sf::IntRect limiteCamera);
+            void inicializarLimite(const sf::Vector2f pos, const sf::Vector2f tam);
         };
 
     }

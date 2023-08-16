@@ -9,6 +9,7 @@
 #define CAMINHO_TEXTURA_PLATAFORMA_FLUTUANTE_MAIOR "Jungle++/img/Obstaculo/FlutuanteMaior.png"
 #define CAMINHO_TEXTURA_PLATAFORMA_MADEIRA "Jungle++/img/Obstaculo/PlataformaMadeira.png"
 #define CAMINHO_TEXTURA_PAREDE "Jungle++/img/Obstaculo/Parede.png"
+#define CAMINHO_TEXTURA_PLATAFORMA_PONTE1 "Jungle++/img/Obstaculo/Ponte1.png"
 #define ESCALA_PLATAFORMA_X 1
 #define ESCALA_PLATAFORMA_Y 1
 #define TAMANHO_PLATAFORMA_X 350.0f
