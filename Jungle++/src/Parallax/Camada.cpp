@@ -38,33 +38,39 @@ namespace Jungle {
         }
 
         void Camada::atualizar(const sf::Vector2f ds, const sf::Vector2f posCameraAtual){
-            const float posDireita = posCameraAtual.x + tamJanela.x / 2.0f;
-            const float posEsquerda = posCameraAtual.x - tamJanela.x / 2.0f;
+            const float y = posCameraAtual.y - tamJanela.y / 2.0f;
+            sf::Vector2f posFundo = fundo.getPosition();
+            sf::Vector2f posFundoAux = fundoAuxiliar.getPosition();
+            fundo.setPosition(sf::Vector2f(posFundo.x, y));
+            fundoAuxiliar.setPosition(sf::Vector2f(posFundoAux.x, y));
+            const float dx = ds.x * 0.5f;
 
-            if(vel != 0.0f){
-                const sf::Vector2f posFundo = fundo.getPosition();
-                const sf::Vector2f posFundoAux = fundoAuxiliar.getPosition();
+            if(dx != 0.0f){
+                const float posDireita = posCameraAtual.x + tamJanela.x / 2.0f;
+                const float posEsquerda = posCameraAtual.x - tamJanela.x / 2.0f;
 
-                //aplicando o movimento contrário para as camadas
-                fundo.move(ds.x * -vel, 0.0f);
-                fundoAuxiliar.move(ds.x * -vel, 0.0f);
+                if(vel != 0.0f){
+                    //aplicando o movimento contrário para as camadas
+                    fundo.move(dx * -vel, 0.0f);
+                    fundoAuxiliar.move(dx * -vel, 0.0f);
 
-                if(ds.x > 0.0f){ // camera movendo para a direita
-                    if(posFundo.x + tamJanela.x < posEsquerda){
-                        trocarTextura();
-                        fundo.setPosition(posEsquerda, 0.0f);
-                        fundoAuxiliar.setPosition(posDireita, 0.0f);
+                    if(ds.x > 0.0f){ // camera movendo para a direita
+                        if(posFundo.x + tamJanela.x < posEsquerda){
+                            trocarTextura();
+                            fundo.setPosition(posEsquerda, posFundo.y);
+                            fundoAuxiliar.setPosition(posDireita, posFundoAux.y);
+                        }
+
+                    } else { // camera movendo para a esquerda
+                        if(posFundo.x > posEsquerda){
+                            trocarTextura();
+                            fundo.setPosition(posEsquerda - tamJanela.x, posFundo.y);
+                            fundoAuxiliar.setPosition(posEsquerda, posFundoAux.y);
+                        }
                     }
-
-                } else { // camera movendo para a esquerda
-                    if(posFundo.x > posEsquerda){
-                        trocarTextura();
-                        fundo.setPosition(posEsquerda - tamJanela.x, 0.0f);
-                        fundoAuxiliar.setPosition(posEsquerda, 0.0f);
-                    }
+                } else {
+                    fundo.setPosition(posEsquerda, posFundo.y);
                 }
-            } else {
-                fundo.setPosition(posEsquerda, 0.0f);
             }
         }
 

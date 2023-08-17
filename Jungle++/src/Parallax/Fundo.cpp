@@ -42,11 +42,8 @@ namespace Jungle {
             sf::Vector2f posCamera = pGrafico->getCamera().getCenter();
             sf::Vector2f ds = posCamera - posAnteriorCamera;
             posAnteriorCamera = posCamera;
-            if(ds.x != 0.0f){
-                ds.x *= 0.5f;
-                for(int i = 0; i < camadas.size(); i++){
-                    camadas.at(i)->atualizar(ds, posCamera);
-                }
+            for(int i = 0; i < camadas.size(); i++){
+                camadas.at(i)->atualizar(ds, posCamera);
             }
         }
 

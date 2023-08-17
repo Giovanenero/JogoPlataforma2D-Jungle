@@ -54,10 +54,13 @@ namespace Jungle {
                     textura = pGrafico->carregarTextura(CAMINHO_TEXTURA_PLATAFORMA_MADEIRA);
                 } else if(type == "parede"){
                     textura = pGrafico->carregarTextura(CAMINHO_TEXTURA_PAREDE);
-                }  else if(type == "ponte1"){
-                    textura = pGrafico->carregarTextura(CAMINHO_TEXTURA_PLATAFORMA_PONTE1);
-                } 
-                else {
+                } else if(type == "parede_flutuante"){
+                    textura = pGrafico->carregarTextura(CAMINHO_TEXTURA_PAREDE_FLUTUANTE);
+                } else if(type == "ponte_direita"){
+                    textura = pGrafico->carregarTextura(CAMINHO_TEXTURA_PLATAFORMA_PONTE_DIREITA);
+                } else if(type == "ponte_esquerda"){
+                    textura = pGrafico->carregarTextura(CAMINHO_TEXTURA_PLATAFORMA_PONTE_ESQUERDA);
+                } else {
                     std::cout << "ERRO::Plataforma type eh invalido" << std::endl;
                     exit(1);
                 }

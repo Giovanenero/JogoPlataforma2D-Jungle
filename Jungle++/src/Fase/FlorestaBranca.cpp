@@ -155,7 +155,7 @@ namespace Jungle {
         }
 
         void FlorestaBranca::criarMapa1(){
-            pGrafico->setLimiteCamera(sf::IntRect(-550.0f, 0.0f, 12 * 500.0f + 100.0f, pGrafico->getTamJanela().y + 200.0f));
+            pGrafico->setLimiteCamera(sf::IntRect(-550.0f + pGrafico->getTamJanela().x / 2.0f - 75.0f, 150.0f, 11 * 500.0f - 50.0f, pGrafico->getTamJanela().y - 350.0f));
 
             criarPlataforma(sf::Vector2f(-550.0f, 100.0f), sf::Vector2f(50.f, 500.0f), "parede");
             criarPorta(sf::Vector2f(-450.0f, 430.0f), sf::Vector2f(85.0f, 110.0f),sf::Vector2f(-350.0f, 510.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_3);
@@ -167,6 +167,8 @@ namespace Jungle {
 
             //plataforma do jogador
             criarJogador(sf::Vector2f(150.0f, 300.0f));
+            // teste
+            criarPlataforma(sf::Vector2f(300.0f, 0.0f), sf::Vector2f(80.0f, 50.0f), 400.0f, false);
 
             //criando espinho
             criarEspinho(sf::Vector2f(320.0f, 525.0f), sf::Vector2f(80.0f, 25.0f));
@@ -208,8 +210,12 @@ namespace Jungle {
         
         
         void FlorestaBranca::criarMapa2(){
+            pGrafico->setLimiteCamera(sf::IntRect(-550.0f + pGrafico->getTamJanela().x / 2.0f - 75.0f, 150.0f, 500.0f - 50.0f, pGrafico->getTamJanela().y - 350.0f));
             criarPlataforma(sf::Vector2f(-550.0f, 100.0f), sf::Vector2f(50.f, 500.0f), "parede");
-            criarPlataforma(sf::Vector2f(-500.0f, 450.0f), sf::Vector2f(120.0f, 1.0f), "ponte1", sf::Vector2f(1.0f, 50.0f));
+            criarPlataforma(sf::Vector2f(-220.0f, -100.0f), sf::Vector2f(50.f, 500.0f), "parede_flutuante");
+            criarPlataforma(sf::Vector2f(-500.0f, 450.0f), sf::Vector2f(80.0f, 1.0f), "ponte_direita", sf::Vector2f(1.0f, 40.0f));
+            criarPlataforma(sf::Vector2f(-220.0f - 80.0f, 350.0f), sf::Vector2f(80.0f, 1.0f), "ponte_esquerda", sf::Vector2f(1.0f, 40.0f));
+            criarPlataforma(sf::Vector2f(-500.0f, 250.0f), sf::Vector2f(80.0f, 1.0f), "ponte_direita", sf::Vector2f(1.0f, 40.0f));
             for(int i = -1; i < 1; i++){
                 criarPlataforma(sf::Vector2f(i * 500.0f, 550.0f), sf::Vector2f(500.0f, 50.0f), "padrao");
             }
