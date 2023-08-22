@@ -77,7 +77,6 @@ namespace Jungle {
                         exit(1);
                         break;
                     }
-                    std::cout << "aaaaaa ";
                     fase->setLimiteCamera(limiteCamera);
                     fase = nullptr;
                     salvarEntidadesAux.clear();
@@ -86,6 +85,7 @@ namespace Jungle {
                 }
                 i++;
             }
+            pGrafico->setLimiteCamera(mapFase[this->ID_FaseAtual]->getLimiteCamera());
         }
 
         void EstadoJogar::criarFase(){
