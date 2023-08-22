@@ -123,8 +123,8 @@ namespace Jungle {
             camera.setLimiteCamera(limiteCamera);
         }
 
-        void GerenciadorGrafico::inicializarLimite(const sf::Vector2f pos, const sf::Vector2f tam){
-            camera.inicializarLimite(pos, tam);
+        void GerenciadorGrafico::setLimiteObjeto(const sf::IntRect objeto){
+            camera.setLimiteObjeto(objeto);
         }
 
     }

@@ -31,7 +31,7 @@ namespace Jungle {
                 if(pJogador == nullptr){
                     i = 2;
                     criarJogador(getAtributosEntidade(linhas[0]), getAtributosEntidade(linhas[1]));
-                    pGrafico->atualizarCamera(sf::Vector2f(pJogador->getPos().x, 300.0f));
+                    pGrafico->atualizarCamera(pJogador->getPos(), pJogador->getTam());
                     fundo.atualizarPosicao();
                 }
                 while(i < linhas.size()){
@@ -155,7 +155,12 @@ namespace Jungle {
         }
 
         void FlorestaBranca::criarMapa1(){
-            pGrafico->setLimiteCamera(sf::IntRect(-550.0f + pGrafico->getTamJanela().x / 2.0f - 75.0f, 150.0f, 11 * 500.0f - 50.0f, pGrafico->getTamJanela().y - 350.0f));
+            sf::Vector2f tamJanela = pGrafico->getTamJanela();
+            limiteCamera.left = -550.0f + tamJanela.x / 2.0f - 75.f;
+            limiteCamera.top = 150.0f;
+            limiteCamera.width = 11 * 500.0f - 50.0f;
+            limiteCamera.height = tamJanela.y - 350.0f;
+            pGrafico->setLimiteCamera(limiteCamera);
 
             criarPlataforma(sf::Vector2f(-550.0f, 100.0f), sf::Vector2f(50.f, 500.0f), "parede");
             criarPorta(sf::Vector2f(-450.0f, 430.0f), sf::Vector2f(85.0f, 110.0f),sf::Vector2f(-350.0f, 510.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_3);
@@ -210,7 +215,13 @@ namespace Jungle {
         
         
         void FlorestaBranca::criarMapa2(){
-            pGrafico->setLimiteCamera(sf::IntRect(-550.0f + pGrafico->getTamJanela().x / 2.0f - 75.0f, 150.0f, 500.0f - 50.0f, pGrafico->getTamJanela().y - 350.0f));
+            sf::Vector2f tamJanela = pGrafico->getTamJanela();
+            limiteCamera.left = -550.0f + tamJanela.x / 2.0f - 75.f;
+            limiteCamera.top = 150.0f;
+            limiteCamera.width = 500.0f - 50.0f;
+            limiteCamera.height = tamJanela.y - 350.0f;
+            pGrafico->setLimiteCamera(limiteCamera);
+
             criarPlataforma(sf::Vector2f(-550.0f, 100.0f), sf::Vector2f(50.f, 500.0f), "parede");
             criarPlataforma(sf::Vector2f(-220.0f, -100.0f), sf::Vector2f(50.f, 500.0f), "parede_flutuante");
             criarPlataforma(sf::Vector2f(-500.0f, 450.0f), sf::Vector2f(80.0f, 1.0f), "ponte_direita", sf::Vector2f(1.0f, 40.0f));

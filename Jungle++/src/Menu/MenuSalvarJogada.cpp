@@ -69,7 +69,15 @@ namespace Jungle {
             gerenciadorArquivo.removeArquivo(caminhoArquivoEntidades.c_str());
             gerenciadorArquivo.removeArquivo(caminhoArquivoFase.c_str());
             gerenciadorArquivo.gravarConteudo(caminhoArquivoEntidades.c_str(), linhas);
-            gerenciadorArquivo.gravarConteudo(caminhoArquivoEntidades.c_str(), std::vector<std::string>{std::to_string(static_cast<int>(fase->getID())) + " =========="});
+
+            sf::IntRect limiteCamera = fase->getLimiteCamera();
+            std::string limite = "";
+            limite += ' ' + std::to_string(limiteCamera.left) + ' ';
+            limite += std::to_string(limiteCamera.width) + ' ';
+            limite += std::to_string(limiteCamera.top) + ' ';
+            limite += std::to_string(limiteCamera.height) + ' ';
+
+            gerenciadorArquivo.gravarConteudo(caminhoArquivoEntidades.c_str(), std::vector<std::string>{std::to_string(static_cast<int>(fase->getID())) + limite + "=========="});
 
             std::string linhasFase = fase->salvar();
 
@@ -91,7 +99,13 @@ namespace Jungle {
                 if(aux != fase && aux != nullptr){
                     linhas = aux->salvarEntidades();
                     gerenciadorArquivo.gravarConteudo(caminhoArquivoEntidades.c_str(), linhas);
-                    gerenciadorArquivo.gravarConteudo(caminhoArquivoEntidades.c_str(), std::vector<std::string>{std::to_string(static_cast<int>(aux->getID())) + " =========="});
+                    sf::IntRect limiteCamera = aux->getLimiteCamera();
+                    std::string limite = "";
+                    limite += ' ' + std::to_string(limiteCamera.left) + ' ';
+                    limite += std::to_string(limiteCamera.width) + ' ';
+                    limite += std::to_string(limiteCamera.top) + ' ';
+                    limite += std::to_string(limiteCamera.height) + ' ';
+                    gerenciadorArquivo.gravarConteudo(caminhoArquivoEntidades.c_str(), std::vector<std::string>{std::to_string(static_cast<int>(aux->getID())) + limite + "=========="});
                 }
                 itMapFase++;
             }

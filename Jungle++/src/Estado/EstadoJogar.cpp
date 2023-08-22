@@ -34,6 +34,15 @@ namespace Jungle {
                 std::string linha = salvarEntidades[i];
                 if(linha.find("=") != -1){
                     int id = std::stoi(linha.substr(0, linha.find(' ') + 1));
+                    linha = linha.erase(0, linha.find(' ') + 1);
+                    sf::IntRect limiteCamera;
+                    limiteCamera.left = std::stoi(linha.substr(0, linha.find(' ') + 1));
+                    linha = linha.erase(0, linha.find(' ') + 1);
+                    limiteCamera.width = std::stoi(linha.substr(0, linha.find(' ') + 1));
+                    linha = linha.erase(0, linha.find(' ') + 1);
+                    limiteCamera.top = std::stoi(linha.substr(0, linha.find(' ') + 1));
+                    linha = linha.erase(0, linha.find(' ') + 1);
+                    limiteCamera.height = std::stoi(linha.substr(0, linha.find(' ') + 1));
                     switch (id)
                     {
                     case (53):
@@ -68,6 +77,8 @@ namespace Jungle {
                         exit(1);
                         break;
                     }
+                    std::cout << "aaaaaa ";
+                    fase->setLimiteCamera(limiteCamera);
                     fase = nullptr;
                     salvarEntidadesAux.clear();
                 } else {

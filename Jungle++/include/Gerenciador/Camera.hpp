@@ -13,11 +13,13 @@ namespace Jungle {
                 sf::IntRect limiteCamera;
                 sf::IntRect limiteObjeto;
                 sf::Vector2f tamJanela;
+
+                void ajustarLimite();
             public:
                 Camera(const sf::Vector2f tamJanela);
                 ~Camera();
-                void inicializarLimite(const sf::Vector2f pos, const sf::Vector2f tam);
                 void setLimiteCamera(const sf::IntRect limiteCamera);
+                void setLimiteObjeto(const sf::IntRect objeto);
                 sf::View getCamera();
                 void resetar(const sf::Vector2f posCenter);
                 void atualizar(const sf::Vector2f pos);

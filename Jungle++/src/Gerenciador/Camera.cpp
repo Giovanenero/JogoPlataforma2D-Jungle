@@ -19,6 +19,9 @@ namespace Jungle {
         
         void Camera::setLimiteCamera(const sf::IntRect limiteCamera){
             this->limiteCamera = limiteCamera;
+            if(limiteObjeto.left != -1){
+                this->ajustarLimite();
+            }
         }
 
         sf::View Camera::getCamera(){
@@ -29,11 +32,32 @@ namespace Jungle {
             camera.setCenter(posCenter);
         }
 
-        void Camera::inicializarLimite(const sf::Vector2f pos, const sf::Vector2f tam){
+        void Camera::ajustarLimite(){
+            if(limiteObjeto.top < limiteCamera.top){
+                limiteObjeto.top = limiteCamera.top;
+            } else if(limiteObjeto.top + limiteObjeto.height > limiteCamera.top + limiteCamera.height){
+                const float dy = limiteObjeto.top + limiteObjeto.height - (limiteCamera.top + limiteCamera.height);
+                limiteObjeto.top = limiteObjeto.top - dy;
+            }
+            if(limiteObjeto.left < limiteCamera.left){
+                limiteObjeto.left = limiteCamera.left;
+            } else if(limiteObjeto.left + limiteObjeto.width > limiteCamera.left + limiteCamera.width){
+                const float dx = limiteObjeto.left + limiteObjeto.width - (limiteCamera.left + limiteCamera.width);
+                limiteObjeto.left = limiteObjeto.left - dx;
+            }
+            camera.setCenter(sf::Vector2f(limiteObjeto.left + limiteObjeto.width / 2.0f, limiteObjeto.top + limiteObjeto.height / 2.0f));
+        }
+
+        void Camera::setLimiteObjeto(const sf::IntRect objeto){
+            const sf::Vector2f pos(objeto.left, objeto.top);
+            const sf::Vector2f tam(objeto.width, objeto.height);
             limiteObjeto.width = tamJanela.x / 5.0f;
             limiteObjeto.height = tamJanela.y / 2.8f;
             limiteObjeto.left = pos.x - limiteObjeto.width / 2.0f + tam.x / 2.0f;
             limiteObjeto.top = pos.y - limiteObjeto.height / 2.0f + tam.y / 2.0f;
+            if(limiteCamera.left != -1){
+                this->ajustarLimite();
+            }
         }
         
         void Camera::atualizar(const sf::Vector2f pos){
@@ -41,7 +65,7 @@ namespace Jungle {
         }
 
         void Camera::atualizar(const sf::Vector2f pos, sf::Vector2f tam){
-            //seguit jogador
+            /*
             sf::RectangleShape corpo2(sf::Vector2f(limiteCamera.width, limiteCamera.height));
             corpo2.setPosition(sf::Vector2f(limiteCamera.left, limiteCamera.top));
             corpo2.setFillColor(sf::Color::Blue);
@@ -52,7 +76,8 @@ namespace Jungle {
             corpo.setPosition(sf::Vector2f(limiteObjeto.left, limiteObjeto.top));
             corpo.setFillColor(sf::Color::Yellow);
             pGrafico->desenhaElemento(corpo);
-
+            */
+            //seguir jogador
             sf::Vector2f ds(0.0f, 0.0f);
             sf::Vector2f center = camera.getCenter();
             bool atualizarCamera = false;

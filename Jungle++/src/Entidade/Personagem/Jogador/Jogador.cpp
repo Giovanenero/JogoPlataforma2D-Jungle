@@ -39,8 +39,7 @@ namespace Jungle {
                         arma->setDano(nivel.getForca());
                     }
 
-                    pGrafico->inicializarLimite(pos, tam);
-                    pGrafico->atualizarCamera(pos);
+                    pGrafico->setLimiteObjeto(sf::IntRect(pos.x, tam.x, pos.y, tam.y));
                 }
 
                 Jogador::Jogador(const std::vector<std::string> atributos):
@@ -99,6 +98,8 @@ namespace Jungle {
                         animacao.setImgAtual(imgAtual);
                         animacao.setQuadroAtual(quadroAtual);
                         animacao.setTempoTotal(tempoTotalAtual);
+
+                        pGrafico->setLimiteObjeto(sf::IntRect(pos.x, tam.x, pos.y, tam.y));
                     }
                     catch(const std::exception& e) {
                         std::cerr << e.what() << std::endl;

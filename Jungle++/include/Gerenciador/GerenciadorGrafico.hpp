@@ -41,7 +41,7 @@ namespace Jungle {
             void resetarJanela();
             const sf::Vector2f getTamJanela() const;
             void setLimiteCamera(const sf::IntRect limiteCamera);
-            void inicializarLimite(const sf::Vector2f pos, const sf::Vector2f tam);
+            void setLimiteObjeto(const sf::IntRect objeto);
         };
 
     }

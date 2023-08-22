@@ -20,7 +20,7 @@ namespace Jungle {
         private:
             std::map<IDs::IDs, Fase::Fase*> mapFase;
             IDs::IDs ID_FaseAtual;
-
+            
         public:
             EstadoJogar(const IDs::IDs ID);
             ~EstadoJogar();

@@ -45,6 +45,7 @@ namespace Jungle {
             float tempo;
             static Menu::Botao::Texto textoPontuacao;
         protected:
+            sf::IntRect limiteCamera;
             Lista::ListaEntidade* listaPersonagens;
             Lista::ListaEntidade* listaObstaculos;
             Gerenciador::GerenciadorArquivo GArquivo;
@@ -90,6 +91,8 @@ namespace Jungle {
             void atualizarTempo();
             void atualizarPontuacao();
             const std::vector<std::string> salvarEntidades();
+            void setLimiteCamera(sf::IntRect limiteCamera);
+            const sf::IntRect getLimiteCamera() const;
             const std::string salvar();
             void executar();
             void desenhar();

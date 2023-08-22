@@ -363,8 +363,9 @@ namespace Jungle {
                             sf::Vector2f pos(porta->getPos());
                             sf::Vector2f tam(porta->getTam());
                             pJogador->setPos(sf::Vector2f(pos.x + tam.x / 2.0f - pJogador->getTam().x / 2.0f, pos.y));
-                            pGrafico->atualizarCamera(sf::Vector2f(pJogador->getPos().x, 300.0f));
+                            pGrafico->atualizarCamera(pJogador->getPos(), pJogador->getTam());
                             fundo.atualizarPosicao();
+                            pGrafico->setLimiteCamera(limiteCamera);
                             return;
                         }
                     }
@@ -471,6 +472,15 @@ namespace Jungle {
             return linhas;
         }
 
+        void Fase::setLimiteCamera(sf::IntRect limiteCamera){
+            this->limiteCamera = limiteCamera;
+            pGrafico->setLimiteCamera(limiteCamera);
+        }
+
+        const sf::IntRect Fase::getLimiteCamera() const{
+            return limiteCamera;
+        }
+
         void Fase::executar(){
             pJogador = getJogador();
             if(pJogador){
@@ -480,12 +490,12 @@ namespace Jungle {
                 //atualizar camera
                 pGrafico->atualizarCamera(pJogador->getPos(), pJogador->getTam());
 
-                atualizarTempo();
-                atualizarPontuacao();
-
                 //atualiza e desenha entidades
                 listaObstaculos->executar();
                 listaPersonagens->executar();
+
+                atualizarTempo();
+                atualizarPontuacao();
 
                 //verifica colisão
                 pColisao->executar();
