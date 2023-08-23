@@ -31,6 +31,7 @@ namespace Jungle {
                     sf::Vector2f escala;
 
                     void inicializarAnimacao();
+                    const std::string salvarPlataforma();
                 public:
                     Plataforma(const IDs::IDs ID, const sf::Vector2f pos, const sf::Vector2f tam, const std::string type);
                     Plataforma(const std::vector<std::string> atributos);

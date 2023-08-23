@@ -14,6 +14,7 @@ namespace Jungle {
             sf::Vector2f tam;
 
             bool podeRemover;
+            const std::string salvarEntidade();
         public:
             Entidade(const sf::Vector2f tam, const IDs::IDs ID, const sf::Vector2f pos = sf::Vector2f(0.0f, 0.0f));
             virtual ~Entidade();

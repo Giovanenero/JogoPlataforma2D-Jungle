@@ -16,6 +16,11 @@ namespace Jungle {
 
             }
 
+            const std::string Obstaculo::salvarObstaculo(){
+                std::string linha = salvarEntidade();
+                return linha;
+            }
+
             void Obstaculo::atualizar(){
                 desenhar();
             }
@@ -50,13 +55,7 @@ namespace Jungle {
             }
 
             const std::string Obstaculo::salvar(){
-                std::string linha = "";
-                //salvando atributos da entidade
-                linha += std::to_string(static_cast<int>(ID)) + ' ';
-                linha += std::to_string(pos.x) + ' ';
-                linha += std::to_string(pos.y) + ' ';
-                linha += std::to_string(tam.x) + ' ';
-                linha += std::to_string(tam.y);
+                std::string linha = salvarEntidade();
                 return linha;
             }
 

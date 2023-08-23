@@ -14,6 +14,15 @@ namespace Jungle {
             
         }
 
+        const std::string Entidade::salvarEntidade(){
+            std::string linha = salvarEnte();
+            linha += std::to_string(pos.x) + ' ';
+            linha += std::to_string(pos.y) + ' ';
+            linha += std::to_string(tam.x) + ' ';
+            linha += std::to_string(tam.y) + ' ';
+            return linha;
+        }
+
         const sf::RectangleShape Entidade::getCorpo() const{
             return corpo;
         }

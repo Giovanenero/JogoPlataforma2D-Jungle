@@ -61,15 +61,15 @@ namespace Jungle {
                         const float tempoDanoAtual = std::stof(atributos[13]);
                         const float tempoMorrerAtual = std::stof(atributos[14]);
                         const float dtAtual = std::stof(atributos[15]);
-                        const unsigned int pontosAtual = std::stoi(atributos[16]);
-                        const float nivelAtual = std::stoi(atributos[17]);
-                        const float experienciaAtual = std::stof(atributos[18]);
-                        const bool noChaoAtual = atributos[19] == "1";
-                        const bool colidindoPortaAtual = atributos[20] == "1";
-                        const bool abrirPortaAtual = atributos[21] == "1";
-                        const std::string imgAtual = atributos[22];
-                        const unsigned int quadroAtual = std::stoi(atributos[23]);
-                        const float tempoTotalAtual = std::stof(atributos[24]);
+                        const float nivelAtual = std::stoi(atributos[16]);
+                        const float experienciaAtual = std::stof(atributos[17]);
+                        const bool noChaoAtual = atributos[18] == "1";
+                        const bool colidindoPortaAtual = atributos[19] == "1";
+                        const bool abrirPortaAtual = atributos[20] == "1";
+                        const std::string imgAtual = atributos[21];
+                        const unsigned int quadroAtual = std::stoi(atributos[22]);
+                        const float tempoTotalAtual = std::stof(atributos[23]);
+                        const unsigned int pontosAtual = std::stoi(atributos[24]);
 
                         setPos(posAtual);
                         setTam(tamAtual);
@@ -406,35 +406,14 @@ namespace Jungle {
                 }
 
                 const std::string Jogador::salvar(){
-                    std::string linha = "";
-                    //salvando atributos da entidade
-                    linha += std::to_string(static_cast<int>(ID)) + ' ';
-                    linha += std::to_string(pos.x) + ' ';
-                    linha += std::to_string(pos.y) + ' ';
-                    linha += std::to_string(tam.x) + ' ';
-                    linha += std::to_string(tam.y) + ' ';
-                    //salvando atributos do personagem
-                    linha += std::to_string(velFinal.x) + ' ';
-                    linha += std::to_string(velFinal.y) + ' ';
-                    linha += std::to_string(andando) + ' ';
-                    linha += std::to_string(paraEsquerda) + ' ';
-                    linha += std::to_string(levandoDano) + ' ';
-                    linha += std::to_string(atacando) + ' ';
-                    linha += std::to_string(morrendo) + ' ';
-                    linha += std::to_string(vida) + ' ';
-                    linha += std::to_string(tempoDano) + ' ';
-                    linha += std::to_string(tempoMorrer) + ' ';
-                    linha += std::to_string(dt) + ' ';
-                    linha += std::to_string(pontos) + ' ';
-                    linha += std::to_string(nivel.getNivel()) + ' ';
-                    linha += std::to_string(nivel.getExp()) + ' ';
-                    //salvando atributos do jogador
+                    std::string linha = salvarPersonagem();
                     linha += std::to_string(noChao) + ' ';
                     linha += std::to_string(colidindoPorta) + ' ';
                     linha += std::to_string(abrirPorta) + ' ';
                     linha += animacao.getImgAtual() + ' ';
                     linha += std::to_string(animacao.getQuadroAtual()) + ' ';
-                    linha += std::to_string(animacao.getTempoTotal());
+                    linha += std::to_string(animacao.getTempoTotal()) + ' ';
+                    linha += std::to_string(pontos);
                     return linha;
                 }
 

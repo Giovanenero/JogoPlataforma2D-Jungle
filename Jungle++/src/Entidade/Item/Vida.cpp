@@ -65,14 +65,7 @@ namespace Jungle {
             }
 
             const std::string Vida::salvar(){
-                std::string linha = "";
-                //salvando atributos da entidade
-                linha += std::to_string(static_cast<int>(ID)) + ' ';
-                linha += std::to_string(pos.x) + ' ';
-                linha += std::to_string(pos.y) + ' ';
-                linha += std::to_string(tam.x) + ' ';
-                linha += std::to_string(tam.y) + ' ';
-                //salvando atributos da vida
+                std::string linha = salvarEntidade();
                 linha += std::to_string(vida) + ' ';
                 linha += animacao.getImgAtual() + ' ';
                 linha += std::to_string(animacao.getQuadroAtual()) + ' ';

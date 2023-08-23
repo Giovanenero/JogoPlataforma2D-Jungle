@@ -19,9 +19,7 @@ namespace Jungle {
         
         void Camera::setLimiteCamera(const sf::IntRect limiteCamera){
             this->limiteCamera = limiteCamera;
-            if(limiteObjeto.left != -1){
-                this->ajustarLimite();
-            }
+            ajustarLimite();
         }
 
         sf::View Camera::getCamera(){
@@ -33,19 +31,21 @@ namespace Jungle {
         }
 
         void Camera::ajustarLimite(){
-            if(limiteObjeto.top < limiteCamera.top){
-                limiteObjeto.top = limiteCamera.top;
-            } else if(limiteObjeto.top + limiteObjeto.height > limiteCamera.top + limiteCamera.height){
-                const float dy = limiteObjeto.top + limiteObjeto.height - (limiteCamera.top + limiteCamera.height);
-                limiteObjeto.top = limiteObjeto.top - dy;
+            if(limiteCamera.width != -1 && limiteObjeto.width != -1){
+                if(limiteObjeto.top < limiteCamera.top){
+                    limiteObjeto.top = limiteCamera.top;
+                } else if(limiteObjeto.top + limiteObjeto.height > limiteCamera.top + limiteCamera.height){
+                    const float dy = limiteObjeto.top + limiteObjeto.height - (limiteCamera.top + limiteCamera.height);
+                    limiteObjeto.top = limiteObjeto.top - dy;
+                }
+                if(limiteObjeto.left < limiteCamera.left){
+                    limiteObjeto.left = limiteCamera.left;
+                } else if(limiteObjeto.left + limiteObjeto.width > limiteCamera.left + limiteCamera.width){
+                    const float dx = limiteObjeto.left + limiteObjeto.width - (limiteCamera.left + limiteCamera.width);
+                    limiteObjeto.left = limiteObjeto.left - dx;
+                }
+                camera.setCenter(sf::Vector2f(limiteObjeto.left + limiteObjeto.width / 2.0f, limiteObjeto.top + limiteObjeto.height / 2.0f));
             }
-            if(limiteObjeto.left < limiteCamera.left){
-                limiteObjeto.left = limiteCamera.left;
-            } else if(limiteObjeto.left + limiteObjeto.width > limiteCamera.left + limiteCamera.width){
-                const float dx = limiteObjeto.left + limiteObjeto.width - (limiteCamera.left + limiteCamera.width);
-                limiteObjeto.left = limiteObjeto.left - dx;
-            }
-            camera.setCenter(sf::Vector2f(limiteObjeto.left + limiteObjeto.width / 2.0f, limiteObjeto.top + limiteObjeto.height / 2.0f));
         }
 
         void Camera::setLimiteObjeto(const sf::IntRect objeto){
@@ -55,9 +55,7 @@ namespace Jungle {
             limiteObjeto.height = tamJanela.y / 2.8f;
             limiteObjeto.left = pos.x - limiteObjeto.width / 2.0f + tam.x / 2.0f;
             limiteObjeto.top = pos.y - limiteObjeto.height / 2.0f + tam.y / 2.0f;
-            if(limiteCamera.left != -1){
-                this->ajustarLimite();
-            }
+            ajustarLimite();
         }
         
         void Camera::atualizar(const sf::Vector2f pos){
@@ -81,39 +79,31 @@ namespace Jungle {
             sf::Vector2f ds(0.0f, 0.0f);
             sf::Vector2f center = camera.getCenter();
             bool atualizarCamera = false;
-            if(pos.x + tam.x > limiteObjeto.left + limiteObjeto.width){
-                if(limiteObjeto.left + limiteObjeto.width < limiteCamera.left + limiteCamera.width){
-                    ds.x = (pos.x + tam.x) - (limiteObjeto.left + limiteObjeto.width);
-                    center.x = pos.x + tam.x - limiteObjeto.width / 2.0f;
-                    atualizarCamera = true;
-                }
-            } else if(pos.x < limiteObjeto.left){
-                if(limiteObjeto.left > limiteCamera.left){
-                    ds.x = pos.x  - limiteObjeto.left;
-                    center.x = pos.x + limiteObjeto.width / 2.0f;
-                    atualizarCamera = true;
-                }
+            if(pos.x + tam.x > limiteObjeto.left + limiteObjeto.width
+                && limiteObjeto.left + limiteObjeto.width < limiteCamera.left + limiteCamera.width){
+                ds.x = (pos.x + tam.x) - (limiteObjeto.left + limiteObjeto.width);
+                center.x = pos.x + tam.x - limiteObjeto.width / 2.0f;
+                atualizarCamera = true;
+            } else if((pos.x < limiteObjeto.left) && (limiteObjeto.left > limiteCamera.left)){
+                ds.x = pos.x  - limiteObjeto.left;
+                center.x = pos.x + limiteObjeto.width / 2.0f;
+                atualizarCamera = true;
             }
-            if(pos.y + tam.y > limiteObjeto.top + limiteObjeto.height){
-                if(limiteObjeto.top + limiteObjeto.height < limiteCamera.top + limiteCamera.height){
-                    ds.y = (pos.y + tam.y) - (limiteObjeto.top + limiteObjeto.height);
-                    center.y = pos.y + tam.y - limiteObjeto.height / 2.0f;
-                    atualizarCamera = true;
-                }
-            } else if(pos.y < limiteObjeto.top){
-                if(limiteObjeto.top > limiteCamera.top){
-                    ds.y = pos.y - limiteObjeto.top;
-                    center.y = pos.y + limiteObjeto.height / 2.0f;
-                    atualizarCamera = true;
-                }
+            if(pos.y + tam.y > limiteObjeto.top + limiteObjeto.height
+                && limiteObjeto.top + limiteObjeto.height < limiteCamera.top + limiteCamera.height){
+                ds.y = (pos.y + tam.y) - (limiteObjeto.top + limiteObjeto.height);
+                center.y = pos.y + tam.y - limiteObjeto.height / 2.0f;
+                atualizarCamera = true;
+            } else if((pos.y < limiteObjeto.top) && (limiteObjeto.top > limiteCamera.top)){
+                ds.y = pos.y - limiteObjeto.top;
+                center.y = pos.y + limiteObjeto.height / 2.0f;
+                atualizarCamera = true;
             }
             if(atualizarCamera){
                 limiteObjeto.left += ds.x;
                 limiteObjeto.top += ds.y;
                 camera.setCenter(center);
             }
-
-
         }
 
     }

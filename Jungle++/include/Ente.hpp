@@ -12,6 +12,8 @@ namespace Jungle {
         protected:
             static Gerenciador::GerenciadorGrafico* pGrafico;
             const IDs::IDs ID;
+
+            const std::string salvarEnte();
         public:
             Ente(const IDs::IDs ID);
             ~Ente();

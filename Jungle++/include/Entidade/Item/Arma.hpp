@@ -12,6 +12,8 @@ namespace Jungle {
                 protected:
                     float dano;
                     Personagem::Personagem* personagem;
+
+                    const std::string salvarArma();
                 public:
                     Arma(const IDs::IDs ID, Personagem::Personagem* personagem = nullptr);
                     Arma(const IDs::IDs ID, const std::vector<std::string> atributos);

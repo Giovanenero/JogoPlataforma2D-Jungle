@@ -17,6 +17,7 @@ namespace Jungle {
                 sf::Texture textura;
 
                 virtual void inicializarAnimacao() = 0;
+                const std::string salvarObstaculo();
             public:
                 Obstaculo(const sf::Vector2f pos, const sf::Vector2f tam, const IDs::IDs ID);
                 ~Obstaculo();

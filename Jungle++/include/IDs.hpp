@@ -59,7 +59,8 @@ namespace IDs {
         floresta_branca_parte_1, //53
         floresta_branca_parte_2, //54
         floresta_branca_parte_3, //55
-        espinho // 56
+        espinho, // 56
+        carniceiro
     };
 
 }

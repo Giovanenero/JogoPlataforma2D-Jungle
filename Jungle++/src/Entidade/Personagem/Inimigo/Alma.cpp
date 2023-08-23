@@ -55,11 +55,11 @@ namespace Jungle {
                         const short moveAleatorioAtual = std::stol(atributos[18]);
                         const float tempoMoverAtual = std::stof(atributos[19]);
                         const float tempoAtacarAtual = std::stof(atributos[20]);
-                        const bool invisivelAtual = atributos[21] == "1";
-                        const float tempoInvisivelAtual = std::stof(atributos[22]);
-                        const std::string imgAtual = atributos[23];
-                        const unsigned int quadroAtual = std::stoi(atributos[24]);
-                        const float tempoTotalAtual = std::stof(atributos[25]);
+                        const std::string imgAtual = atributos[21];
+                        const unsigned int quadroAtual = std::stoi(atributos[22]);
+                        const float tempoTotalAtual = std::stof(atributos[23]);
+                        const bool invisivelAtual = atributos[24] == "1";
+                        const float tempoInvisivelAtual = std::stof(atributos[25]);
 
                         this->pontos = PONTOS_ALMA;
                         setPos(posAtual);
@@ -200,38 +200,9 @@ namespace Jungle {
                 }
 
                 const std::string Alma::salvar(){
-                    std::string linha = "";
-                    //salvando atributos da entidade
-                    linha += std::to_string(static_cast<int>(ID)) + ' ';
-                    linha += std::to_string(pos.x) + ' ';
-                    linha += std::to_string(pos.y) + ' ';
-                    linha += std::to_string(tam.x) + ' ';
-                    linha += std::to_string(tam.y) + ' ';
-                    //salvando atributos do personagem
-                    linha += std::to_string(velFinal.x) + ' ';
-                    linha += std::to_string(velFinal.y) + ' ';
-                    linha += std::to_string(andando) + ' ';
-                    linha += std::to_string(paraEsquerda) + ' ';
-                    linha += std::to_string(levandoDano) + ' ';
-                    linha += std::to_string(atacando) + ' ';
-                    linha += std::to_string(morrendo) + ' ';
-                    linha += std::to_string(vida) + ' ';
-                    linha += std::to_string(tempoDano) + ' ';
-                    linha += std::to_string(tempoMorrer) + ' ';
-                    linha += std::to_string(dt) + ' ';
-                    linha += std::to_string(nivel.getNivel()) + ' ';
-                    linha += std::to_string(nivel.getExp()) + ' ';
-                    //salvando atributos do inimigo
-                    linha += std::to_string(moveAleatorio) + ' ';
-                    linha += std::to_string(tempoMover) + ' ';
-                    linha += std::to_string(tempoAtacar) + ' ';
-                    //salvando atributos da alma
+                    std::string linha = salvarInimigo();
                     linha += std::to_string(invisivel) + ' ';
-                    linha += std::to_string(tempoInvisivel) + ' ';
-                    linha += animacao.getImgAtual() + ' ';
-                    linha += std::to_string(animacao.getQuadroAtual()) + ' ';
-                    linha += std::to_string(animacao.getTempoTotal());
-                    //ainda n tem
+                    linha += std::to_string(tempoInvisivel);
                     return linha;
                 }
 

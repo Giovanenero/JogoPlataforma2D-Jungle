@@ -84,65 +84,6 @@ namespace Jungle {
             return atributos;
         }
 
-        void Fase::criarEsqueleto(const sf::Vector2f pos, const int nivel){
-            Inimigo::Esqueleto* esqueleto = new Inimigo::Esqueleto(pos, nivel, pJogador);
-            if(esqueleto == nullptr){
-                std::cout << "Fase::nao foi possivel criar esqueleto" << std::endl;
-                exit(1);
-            }
-            Item::Arma* espadaInimigo = new Item::Arma(IDs::IDs::espada_inimigo);
-            if(espadaInimigo == nullptr){
-                std::cout << "Fase::nao foi possivel criar espada esqueleto" << std::endl;
-                exit(1);
-            }
-            esqueleto->setArma(espadaInimigo);
-            listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(esqueleto));
-            listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(espadaInimigo));
-        }
-
-        void Fase::criarEsqueleto(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma){
-            Inimigo::Esqueleto* esqueleto = new Inimigo::Esqueleto(atributos, pJogador);
-            if(esqueleto == nullptr){
-                std::cout << "Fase::esqueleto eh nullptr" << std::endl;
-                exit(1);
-            }
-            Item::Arma* espadaEsqueleto = new Item::Arma(IDs::IDs::espada_inimigo, atributosArma);
-            if(espadaEsqueleto == nullptr){
-                std::cout << "Fase::nao foi possivel criar espada esqueleto" << std::endl;
-                exit(1);
-            }
-            esqueleto->setArma(espadaEsqueleto);
-            listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(esqueleto));
-            listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(espadaEsqueleto));
-        }
-
-        void Fase::criarAlma(const sf::Vector2f pos, const int nivel){
-            Inimigo::Alma* alma = new Inimigo::Alma(pos, nivel, pJogador);
-            Item::Projetil* projetil = new Item::Projetil();
-            //projetil->setPersonagem(static_cast<Personagem*>(alma));
-            alma->setArma(static_cast<Item::Projetil*>(projetil));
-            projetil->inicializarAnimacao();
-            listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(alma));
-            listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(projetil));
-        }
-
-        void Fase::criarAlma(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma){
-            Inimigo::Alma* alma = new Inimigo::Alma(atributos, pJogador);
-            if(alma == nullptr){
-                std::cout << "Fase::alma eh nullptr" << std::endl;
-                exit(1);
-            }
-            Item::Projetil* projetil = new Item::Projetil(atributosArma, static_cast<Entidade::Personagem::Personagem*>(alma));
-            if(projetil == nullptr){
-                std::cout << "Fase::projetil eh nullptr" << std::endl;
-                exit(1);
-            }
-
-            //alma->setArma(static_cast<Item::Arma*>(projetil));
-            listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(alma));
-            listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(projetil));
-        }
-
         void Fase::criarPlataforma(const sf::Vector2f pos, const sf::Vector2f tam, const std::string type, const sf::Vector2f escala){
             Obstaculo::Plataforma* plataforma = new Obstaculo::Plataforma(IDs::IDs::plataforma, pos, tam, type);
             if(plataforma == nullptr){
@@ -162,31 +103,8 @@ namespace Jungle {
             listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(plataformaMovel));
         }
 
-        void Fase::criarPlataforma(const std::vector<std::string> atributos, const IDs::IDs ID){
-            Obstaculo::Plataforma* plataforma = nullptr;
-            if(ID == IDs::IDs::plataforma){
-                plataforma = new Obstaculo::Plataforma(atributos);
-            } else {
-                plataforma = static_cast<Obstaculo::Plataforma*>(new Obstaculo::PlataformaMovel(atributos));
-            }
-            if(plataforma == nullptr){
-                std::cout << "Fase::nao foi possivel criar plataforma" << std::endl;
-                exit(1);
-            }
-            listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(plataforma));
-        }
-
         void Fase::criarCaixa(const sf::Vector2f pos){
             Obstaculo::Caixa* caixa = new Obstaculo::Caixa(pos);
-            if(caixa == nullptr){
-                std::cout << "Fase::nao foi possivel criar caixa" << std::endl;
-                exit(1);
-            }
-            listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(caixa));
-        }
-
-        void Fase::criarCaixa(const std::vector<std::string> atributos){
-            Obstaculo::Caixa* caixa = new Obstaculo::Caixa(atributos);
             if(caixa == nullptr){
                 std::cout << "Fase::nao foi possivel criar caixa" << std::endl;
                 exit(1);
@@ -202,27 +120,9 @@ namespace Jungle {
             }
             listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(moeda));
         }
-
-        void Fase::criarMoeda(const std::vector<std::string> atributos, const IDs::IDs ID){
-            Item::Moeda* moeda = new Item::Moeda(atributos, ID);
-            if(moeda == nullptr){
-                std::cout << "Fase::nao foi possivel criar moeda" << std::endl;
-                exit(1);
-            }
-            listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(moeda));
-        }
         
         void Fase::criarVida(const sf::Vector2f pos){
             Item::Vida* vida = new Item::Vida(pos);
-            if(vida == nullptr){
-                std::cout << "Fase::nao foi possivel criar vida" << std::endl;
-                exit(1);
-            }
-            listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(vida));
-        }
-
-        void Fase::criarVida(const std::vector<std::string> atributos){
-            Item::Vida* vida = new Item::Vida(atributos);
             if(vida == nullptr){
                 std::cout << "Fase::nao foi possivel criar vida" << std::endl;
                 exit(1);
@@ -251,30 +151,6 @@ namespace Jungle {
             }
         }
 
-        void Fase::criarPorta(const std::vector<std::string> atributosPorta, const std::vector<std::string> atributosChave){
-            Item::Chave* chave = nullptr;
-            if(atributosChave.size() > 0){
-                chave = new Item::Chave(atributosChave);
-                if(chave == nullptr){
-                    std::cout << "Fase::nao foi possivel criar uma chave" << std::endl;
-                    exit(1);
-                }
-            }
-            Obstaculo::Porta* porta = new Obstaculo::Porta(atributosPorta, chave);
-            if(porta == nullptr){
-                std::cout << "Fase::nao foi possivel criar uma porta" << std::endl;
-                exit(1);
-            }
-            listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(porta));
-            if(chave != nullptr){
-                chave->setPorta(porta);
-                if(chave->getColetou()){
-                    pJogador->addChave(chave);
-                }
-                listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(chave));
-            }
-        }
-
         void Fase::criarEspinho(const sf::Vector2f pos, const sf::Vector2f tam){
             Obstaculo::Espinho* espinho = new Obstaculo::Espinho(pos, tam);
             if(espinho == nullptr){
@@ -283,53 +159,201 @@ namespace Jungle {
             }
             listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(espinho));
         }
-        
-        void Fase::criarEspinho(const std::vector<std::string> atributos){
-            Obstaculo::Espinho* espinho = new Obstaculo::Espinho(atributos);
-            if(espinho == nullptr){
-                std::cout << "Fase::nao foi possivel criar espinhos" << std::endl;
-                exit(1);
+
+        void Fase::criarPersonagem(const IDs::IDs ID, const sf::Vector2f pos, const int nivel){
+            Entidade::Entidade* personagem = nullptr;
+            Entidade::Entidade* arma = nullptr;
+            if(ID == IDs::IDs::jogador){
+                if(pJogador != nullptr){
+                    std::cout << "ERRO::pJogador ja existe" << std::endl;
+                    exit(1);
+                }
+                Item::Arma* espadaJogador = new Item::Arma(IDs::IDs::espada_jogador);
+                if(espadaJogador == nullptr){
+                    std::cout << "Fase::nao foi possivel criar espada do jogador" << std::endl;
+                    exit(1);
+                }
+                pJogador = new Jogador::Jogador(pos, espadaJogador);
+                if(pJogador == nullptr){
+                    std::cout << "Fase::nao foi possivel criar jogador" << std::endl;
+                    exit(1);
+                }
+                personagem = static_cast<Entidade::Entidade*>(pJogador);
+                arma = static_cast<Entidade::Entidade*>(espadaJogador);
+            } else {
+                if(pJogador == nullptr){
+                    std::cout << "ERRO::Fase o ponteiro do jogador eh nullptr" << std::endl;
+                    exit(1);
+                }
+                if(ID == IDs::IDs::esqueleto){
+                    Inimigo::Esqueleto* esqueleto = new Inimigo::Esqueleto(pos, nivel, pJogador);
+                    if(esqueleto == nullptr){
+                        std::cout << "Fase::nao foi possivel criar esqueleto" << std::endl;
+                        exit(1);
+                    }
+                    Item::Arma* espadaInimigo = new Item::Arma(IDs::IDs::espada_inimigo);
+                    if(espadaInimigo == nullptr){
+                        std::cout << "Fase::nao foi possivel criar espada esqueleto" << std::endl;
+                        exit(1);
+                    }
+                    esqueleto->setArma(espadaInimigo);
+                    personagem = static_cast<Entidade::Entidade*>(esqueleto);
+                    arma = static_cast<Entidade::Entidade*>(espadaInimigo);
+                } else if(ID == IDs::IDs::alma){
+                    Inimigo::Alma* alma = new Inimigo::Alma(pos, nivel, pJogador);
+                    if(alma == nullptr){
+                        std::cout << "Fase::nao foi possivel criar alma" << std::endl;
+                        exit(1);
+                    }
+                    Item::Projetil* projetil = new Item::Projetil();
+                    if(projetil == nullptr){
+                        std::cout << "Fase::nao foi possivel criar projetil" << std::endl;
+                        exit(1);
+                    }
+                    alma->setArma(static_cast<Item::Projetil*>(projetil));
+                    projetil->inicializarAnimacao();
+                    personagem = static_cast<Entidade::Entidade*>(alma);
+                    arma = static_cast<Entidade::Entidade*>(projetil);
+                }
             }
-            listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(espinho));
+            if(personagem != nullptr){
+                listaPersonagens->addEntidade(personagem);
+                if(arma != nullptr){
+                    listaPersonagens->addEntidade(arma);
+                }
+            }
         }
 
-        void Fase::criarJogador(const sf::Vector2f pos){
-            if(pJogador != nullptr){
-                std::cout << "ERRO::pJogador ja existe" << std::endl;
+        void Fase::criarEntidade(const IDs::IDs ID, const std::vector<std::string> primeiro, const std::vector<std::string> segundo, const bool ehPersonagem){
+            if(ehPersonagem){
+                Entidade::Entidade* personagem = nullptr;
+                Entidade::Entidade* arma = nullptr;
+                if(ID == IDs::IDs::jogador){
+                    if(pJogador != nullptr){
+                        std::cout << "ERRO::pJogador ja existe" << std::endl;
+                        exit(1);
+                    }
+                    pJogador = new Jogador::Jogador(primeiro);
+                    if(pJogador == nullptr){
+                        std::cout << "ERRO::Fase nao foi possivel criar jogador" << std::endl;
+                        exit(1);
+                    }
+                    Item::Arma* espadaJogador = new Item::Arma(IDs::IDs::espada_jogador, segundo);
+                    if(espadaJogador == nullptr){
+                        std::cout << "Fase::nao foi possivel criar espada do jogador" << std::endl;
+                        exit(1);
+                    }
+                    pJogador->setArma(espadaJogador);
+                    personagem = static_cast<Entidade::Entidade*>(this->pJogador);
+                    arma = static_cast<Entidade::Entidade*>(espadaJogador);
+                } else {
+                    if(pJogador == nullptr){
+                        std::cout << "ERRO::Fase o ponteiro do jogador eh nullptr" << std::endl;
+                        exit(1);
+                    }
+                    if(ID == IDs::IDs::esqueleto){
+                        Inimigo::Esqueleto* esqueleto = new Inimigo::Esqueleto(primeiro, this->pJogador);
+                        if(esqueleto == nullptr){
+                            std::cout << "Fase::esqueleto eh nullptr" << std::endl;
+                            exit(1);
+                        }
+                        Item::Arma* espadaEsqueleto = new Item::Arma(IDs::IDs::espada_inimigo, segundo);
+                        if(espadaEsqueleto == nullptr){
+                            std::cout << "Fase::nao foi possivel criar espada esqueleto" << std::endl;
+                            exit(1);
+                        }
+                        esqueleto->setArma(espadaEsqueleto);
+                        personagem = static_cast<Entidade::Entidade*>(esqueleto);
+                        arma = static_cast<Entidade::Entidade*>(espadaEsqueleto);
+                    } else if(ID == IDs::IDs::alma){
+                        Inimigo::Alma* alma = new Inimigo::Alma(primeiro, this->pJogador);
+                        if(alma == nullptr){
+                            std::cout << "Fase::alma eh nullptr" << std::endl;
+                            exit(1);
+                        }
+                        Item::Projetil* projetil = new Item::Projetil(segundo, static_cast<Entidade::Personagem::Personagem*>(alma));
+                        if(projetil == nullptr){
+                            std::cout << "Fase::projetil eh nullptr" << std::endl;
+                            exit(1);
+                        }
+                        personagem = static_cast<Entidade::Entidade*>(alma);
+                        arma = static_cast<Entidade::Entidade*>(projetil);
+                    }
+                }
+                if(personagem != nullptr){
+                    listaPersonagens->addEntidade(personagem);
+                    if(arma != nullptr){
+                        listaPersonagens->addEntidade(arma);
+                    }
+                }
+            } else if(ID == IDs::IDs::plataforma){
+                Obstaculo::Plataforma* plataforma = new Obstaculo::Plataforma(primeiro);
+                if(plataforma == nullptr){
+                    std::cout << "Fase::nao foi possivel criar plataforma" << std::endl;
+                    exit(1);
+                }
+                listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(plataforma));
+            } else if(ID == IDs::IDs::plataforma_movel){
+                Obstaculo::PlataformaMovel* plataformaMovel = new Obstaculo::PlataformaMovel(primeiro);
+                if(plataformaMovel == nullptr){
+                    std::cout << "Fase::nao foi possivel criar plataforma movel, pois o ponteiro eh invalido" << std::endl;
+                    exit(1);
+                }
+                listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(plataformaMovel));
+            } else if(ID == IDs::IDs::caixa){
+                Obstaculo::Caixa* caixa = new Obstaculo::Caixa(primeiro);
+                if(caixa == nullptr){
+                    std::cout << "Fase::nao foi possivel criar caixa" << std::endl;
+                    exit(1);
+                }
+                listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(caixa));
+            } else if(ID == IDs::IDs::moeda_amarela || ID == IDs::IDs::moeda_cinza){
+                Item::Moeda* moeda = new Item::Moeda(primeiro, ID);
+                if(moeda == nullptr){
+                    std::cout << "Fase::nao foi possivel criar moeda" << std::endl;
+                    exit(1);
+                }
+                listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(moeda));
+            } else if(ID == IDs::IDs::vida){
+                Item::Vida* vida = new Item::Vida(primeiro);
+                if(vida == nullptr){
+                    std::cout << "Fase::nao foi possivel criar vida" << std::endl;
+                    exit(1);
+                }
+                listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(vida));
+            } else if(ID == IDs::IDs::porta){
+                Item::Chave* chave = nullptr;
+                if(segundo.size() > 0){
+                    chave = new Item::Chave(segundo);
+                    if(chave == nullptr){
+                        std::cout << "Fase::nao foi possivel criar uma chave" << std::endl;
+                        exit(1);
+                    }
+                }
+                Obstaculo::Porta* porta = new Obstaculo::Porta(primeiro, chave);
+                if(porta == nullptr){
+                    std::cout << "Fase::nao foi possivel criar uma porta" << std::endl;
+                    exit(1);
+                }
+                listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(porta));
+                if(chave != nullptr){
+                    chave->setPorta(porta);
+                    if(chave->getColetou()){
+                        pJogador->addChave(chave);
+                    }
+                    listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(chave));
+                }
+            } else if(ID == IDs::IDs::espinho){
+                Obstaculo::Espinho* espinho = new Obstaculo::Espinho(primeiro);
+                if(espinho == nullptr){
+                    std::cout << "Fase::nao foi possivel criar espinhos" << std::endl;
+                    exit(1);
+                }
+                listaObstaculos->addEntidade(static_cast<Entidade::Entidade*>(espinho));
+            } else {
+                std::cout << "ERRO::nao foi possivel criar entidade, pois o id eh invalido" << std::endl;
                 exit(1);
             }
-            Item::Arma* espadaJogador = new Item::Arma(IDs::IDs::espada_jogador);
-            if(espadaJogador == nullptr){
-                std::cout << "Fase::nao foi possivel criar espada do jogador" << std::endl;
-                exit(1);
-            }
-            pJogador = new Jogador::Jogador(pos, espadaJogador);
-            if(pJogador == nullptr){
-                std::cout << "Fase::nao foi possivel criar jogador" << std::endl;
-                exit(1);
-            }
-            listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(pJogador));
-            listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(espadaJogador));
-        }
-
-        void Fase::criarJogador(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma){
-            if(pJogador != nullptr){
-                std::cout << "ERRO::pJogador ja existe" << std::endl;
-                exit(1);
-            }
-            pJogador = new Jogador::Jogador(atributos);
-            if(pJogador == nullptr){
-                std::cout << "Fase::jogador eh nullptr" << std::endl;
-                exit(1);
-            }
-            Item::Arma* espadaJogador = new Item::Arma(IDs::IDs::espada_jogador, atributosArma);
-            if(espadaJogador == nullptr){
-                std::cout << "Fase::nao foi possivel criar espada do jogador" << std::endl;
-                exit(1);
-            }
-            pJogador->setArma(espadaJogador);
-            listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(pJogador));
-            listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(espadaJogador));
         }
 
         Jogador::Jogador* Fase::getJogador(){

@@ -39,6 +39,7 @@ namespace Jungle {
                     virtual void atualizarTempoAtacar();
                     virtual void atualizarAnimacao();
                     virtual void inicializarNivel() = 0;
+                    const std::string salvarInimigo();
                 public:
                     Inimigo(const sf::Vector2f pos, const sf::Vector2f tam, Jogador::Jogador* jogador, const IDs::IDs ID, const float tempoMorrer, const float tempoAtacar, const float experiencia);
                     ~Inimigo();

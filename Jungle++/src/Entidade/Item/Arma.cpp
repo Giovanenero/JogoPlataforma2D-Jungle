@@ -40,6 +40,12 @@ namespace Jungle {
 
             }
 
+            const std::string Arma::salvarArma(){
+                std::string linha = salvarEntidade();
+                linha += std::to_string(dano) + ' ';
+                return linha;
+            }
+
             void Arma::setPersonagem(Personagem::Personagem* personagem){
                 this->personagem = personagem;
                 dano = personagem->getForca();
@@ -97,14 +103,7 @@ namespace Jungle {
             }
 
             const std::string Arma::salvar(){
-                std::string linha = "";
-                //salvando atributos da entidade
-                linha += std::to_string(static_cast<int>(ID)) + ' ';
-                linha += std::to_string(pos.x) + ' ';
-                linha += std::to_string(pos.y) + ' ';
-                linha += std::to_string(tam.x) + ' ';
-                linha += std::to_string(tam.y) + ' ';
-                //salvando atributos da arma
+                std::string linha = salvarEntidade();
                 linha += std::to_string(dano);
                 return linha;
             }

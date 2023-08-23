@@ -132,6 +132,17 @@ namespace Jungle {
                     }
                 }
 
+                const std::string Inimigo::salvarInimigo(){
+                    std::string linha = salvarPersonagem();
+                    linha += std::to_string(moveAleatorio) + ' ';
+                    linha += std::to_string(tempoMover) + ' ';
+                    linha += std::to_string(tempoAtacar) + ' ';
+                    linha += animacao.getImgAtual() + ' ';
+                    linha += std::to_string(animacao.getQuadroAtual()) + ' ';
+                    linha += std::to_string(animacao.getTempoTotal()) + ' ';
+                    return linha;
+                }
+
                 void Inimigo::tomarDano(const float dano){
                     if(!levandoDano){
                         levandoDano = true;

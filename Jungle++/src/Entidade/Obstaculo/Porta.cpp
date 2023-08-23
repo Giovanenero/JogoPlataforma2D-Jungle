@@ -175,16 +175,7 @@ namespace Jungle {
             }
 
             const std::string Porta::salvar(){
-                std::string linha = "";
-                //salvando atributos da entidade
-                linha += std::to_string(static_cast<int>(ID)) + ' ';
-                linha += std::to_string(pos.x) + ' ';
-                linha += std::to_string(pos.y) + ' ';
-                linha += std::to_string(tam.x) + ' ';
-                linha += std::to_string(tam.y) + ' ';
-                //salvando atributos do obstáculo
-
-                //salvando atributos da porta
+                std::string linha = salvarObstaculo();
                 linha += std::to_string(fechada) + ' ';
                 linha += std::to_string(abrindo) + ' ';
                 linha += std::to_string(tempoAbrindo) + ' ';
@@ -195,7 +186,6 @@ namespace Jungle {
                 linha += std::to_string(mostrarTexto) + ' ';
                 linha += std::to_string(coletou) + ' ';
                 linha += std::to_string(static_cast<int>(ID_Fase));
-
                 return linha;
             }
 

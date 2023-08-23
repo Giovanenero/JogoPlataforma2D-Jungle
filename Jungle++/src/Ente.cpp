@@ -14,6 +14,10 @@ namespace Jungle {
 
     }
 
+    const std::string Ente::salvarEnte(){
+        return std::to_string(static_cast<int>(ID)) + ' ';
+    }
+
     const IDs::IDs Ente::getID() const {
         return ID;
     }

@@ -41,6 +41,14 @@ namespace Jungle {
 
             }
 
+            const std::string Plataforma::salvarPlataforma(){
+                std::string linha = salvarObstaculo();
+                linha += std::to_string(escala.x) + ' ';
+                linha += std::to_string(escala.y) + ' ';
+                linha += type + ' ';
+                return linha;
+            }
+
             void Plataforma::inicializarAnimacao(){
                 if(type == "padrao"){
                     textura = pGrafico->carregarTextura(CAMINHO_TEXTURA_PLATAFORMA_PADRAO);
@@ -74,14 +82,7 @@ namespace Jungle {
             }
 
             const std::string Plataforma::salvar(){
-                std::string linha = "";
-                //salvando atributos da entidade
-                linha += std::to_string(static_cast<int>(ID)) + ' ';
-                linha += std::to_string(pos.x) + ' ';
-                linha += std::to_string(pos.y) + ' ';
-                linha += std::to_string(tam.x) + ' ';
-                linha += std::to_string(tam.y) + ' ';
-                //salvando atributos da Plataforma
+                std::string linha = salvarObstaculo();
                 linha += std::to_string(escala.x) + ' ';
                 linha += std::to_string(escala.y) + ' ';
                 linha += type;

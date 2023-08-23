@@ -43,7 +43,6 @@ namespace Jungle {
         private:
             static Observador::ObservadorFase* observadorFase;
             float tempo;
-            static Menu::Botao::Texto textoPontuacao;
         protected:
             sf::IntRect limiteCamera;
             Lista::ListaEntidade* listaPersonagens;
@@ -53,27 +52,19 @@ namespace Jungle {
             Parallax::Fundo fundo;
             static Menu::Botao::Texto textoTempo;
             static unsigned int pontuacaoJogador;
+            static Menu::Botao::Texto textoPontuacao;
             static Jogador::Jogador* pJogador;
 
-            void criarEsqueleto(const sf::Vector2f pos, const int nivel);
-            void criarEsqueleto(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma);
-            void criarAlma(const sf::Vector2f pos, const int nivel);
-            void criarAlma(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma);
             void criarPlataforma(const sf::Vector2f pos, const sf::Vector2f tam, const std::string type, const sf::Vector2f escala = sf::Vector2f(1.0f, 1.0f));
             void criarPlataforma(const sf::Vector2f pos, const sf::Vector2f tam, const float distancia, const bool horizontal);
-            void criarPlataforma(const std::vector<std::string> atributos, const IDs::IDs ID);
             void criarCaixa(const sf::Vector2f pos);
-            void criarCaixa(const std::vector<std::string> atributos);
             void criarMoeda(const sf::Vector2f pos, const IDs::IDs ID);
-            void criarMoeda(const std::vector<std::string> atributos, const IDs::IDs ID);
             void criarVida(const sf::Vector2f pos);
-            void criarVida(const std::vector<std::string> atributos);
             void criarPorta(const sf::Vector2f posPorta, const sf::Vector2f tamPorta, const sf::Vector2f posChave, const sf::Vector2f tamChave, const IDs::IDs ID_Fase);
-            void criarPorta(const std::vector<std::string> atributosPorta, const std::vector<std::string> atributosChave);
             void criarEspinho(const sf::Vector2f pos, const sf::Vector2f tam);
-            void criarEspinho(const std::vector<std::string> atributos);
-            void criarJogador(const sf::Vector2f pos);
-            void criarJogador(const std::vector<std::string> atributos, const std::vector<std::string> atributosArma);
+            
+            void criarPersonagem(const IDs::IDs ID, const sf::Vector2f pos, const int nivel = 1);
+            void criarEntidade(const IDs::IDs ID, const std::vector<std::string> primeiro, const std::vector<std::string> segundo, const bool ehPersonagem);
             
             std::vector<std::string> getAtributosEntidade(std::string linha);
         public:

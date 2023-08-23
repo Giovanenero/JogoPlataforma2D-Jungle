@@ -134,6 +134,24 @@ namespace Jungle {
                 textoNivel.setPos(sf::Vector2f(posBarraVida.x - textoNivel.getTam().x, posBarraVida.y - textoNivel.getTam().y / 2.0f));
             }
 
+            const std::string Personagem::salvarPersonagem(){
+                std::string linha = salvarEntidade();
+                linha += std::to_string(velFinal.x) + ' ';
+                linha += std::to_string(velFinal.y) + ' ';
+                linha += std::to_string(andando) + ' ';
+                linha += std::to_string(paraEsquerda) + ' ';
+                linha += std::to_string(levandoDano) + ' ';
+                linha += std::to_string(atacando) + ' ';
+                linha += std::to_string(morrendo) + ' ';
+                linha += std::to_string(vida) + ' ';
+                linha += std::to_string(tempoDano) + ' ';
+                linha += std::to_string(tempoMorrer) + ' ';
+                linha += std::to_string(dt) + ' ';
+                linha += std::to_string(nivel.getNivel()) + ' ';
+                linha += std::to_string(nivel.getExp()) + ' ';
+                return linha;
+            }
+
             void Personagem::desenhar(){
                 pGrafico->desenhaElemento(corpo);
                 pGrafico->desenhaElemento(barraVida);

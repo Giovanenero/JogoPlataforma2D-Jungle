@@ -30,7 +30,7 @@ namespace Jungle {
                 int i = 0;
                 if(pJogador == nullptr){
                     i = 2;
-                    criarJogador(getAtributosEntidade(linhas[0]), getAtributosEntidade(linhas[1]));
+                    criarEntidade(IDs::IDs::jogador, getAtributosEntidade(linhas[0]), getAtributosEntidade(linhas[1]), true);
                     pGrafico->atualizarCamera(pJogador->getPos(), pJogador->getTam());
                     fundo.atualizarPosicao();
                 }
@@ -43,51 +43,51 @@ namespace Jungle {
                         case (5):
                         {
                             //criar esqueleto com espada
-                            criarEsqueleto(atributos, getAtributosEntidade(linhas[i + 1]));
+                            criarEntidade(IDs::IDs::esqueleto, atributos, getAtributosEntidade(linhas[i + 1]), true);
                             i++;
                         }
                             break;
                         case (7):
                         {
                             //criar alma com projetil
-                            criarAlma(atributos, getAtributosEntidade(linhas[i + 1]));
+                            criarEntidade(IDs::IDs::alma, atributos, getAtributosEntidade(linhas[i + 1]), true);
                             i++;
                         }
                             break;
                         case (8):
                         {
                             //cria plataforma
-                            criarPlataforma(atributos, IDs::IDs::plataforma);
+                            criarEntidade(IDs::IDs::plataforma, atributos, {}, false);
                         }
                             break;
                         case (9):
                         {
                             //criar caixa
-                            criarCaixa(atributos);
+                            criarEntidade(IDs::IDs::caixa, atributos, {}, false);
                         }
                             break;
                         case (10):
                         {
                             //criar moeda amarela
-                            criarMoeda(atributos, IDs::IDs::moeda_amarela);
+                            criarEntidade(IDs::IDs::moeda_amarela, atributos, {}, false);
                         }
                             break;
                         case (11):
                         {
                             //criar moeda cinza
-                            criarMoeda(atributos, IDs::IDs::moeda_cinza);
+                            criarEntidade(IDs::IDs::moeda_cinza, atributos, {}, false);
                         }
                             break;
                         case (12):
                         {
                             //criar vida
-                            criarVida(atributos);
+                            criarEntidade(IDs::IDs::vida, atributos, {}, false);
                         }
                             break;
                         case(50):
                         {
                             //criar plataforma
-                            criarPlataforma(atributos, IDs::IDs::plataforma_movel);
+                            criarEntidade(IDs::IDs::plataforma_movel, atributos, {}, false);
                         }
                             break;
                         case(51):
@@ -101,12 +101,12 @@ namespace Jungle {
                                     i++;
                                 }
                             }
-                            criarPorta(atributos, atributosChave);
+                            criarEntidade(IDs::IDs::porta, atributos, atributosChave, false);
                         }
                             break;
                         case(56):
                         {
-                            criarEspinho(atributos);
+                            criarEntidade(IDs::IDs::espinho, atributos, {}, false);
                         }
                             break;
 
@@ -171,7 +171,7 @@ namespace Jungle {
             criarPlataforma(sf::Vector2f(11 * 500.0f, 100.0f), sf::Vector2f(50.f, 500.0f), "parede");
 
             //plataforma do jogador
-            criarJogador(sf::Vector2f(150.0f, 300.0f));
+            criarPersonagem(IDs::IDs::jogador, sf::Vector2f(150.0f, 300.0f));
             // teste
             criarPlataforma(sf::Vector2f(300.0f, 0.0f), sf::Vector2f(80.0f, 50.0f), 400.0f, false);
 
@@ -180,33 +180,33 @@ namespace Jungle {
 
             criarPlataforma(sf::Vector2f(0.0f, 400.0f), sf::Vector2f(250.0f, 10.0f), "madeira", sf::Vector2f(1.0f, 15.2f));
             
-            criarEsqueleto(sf::Vector2f(450.0f, 450.0f), 1);
+            criarPersonagem(IDs::IDs::esqueleto, sf::Vector2f(450.0f, 450.0f), 1);
             criarCaixa(sf::Vector2f(700.0f, 500.0f));
         
             criarPlataforma(sf::Vector2f(750.0f, 400.0f), sf::Vector2f(300.0f, 10.0f), "madeira", sf::Vector2f(1.0f, 15.2f));
             criarPlataforma(sf::Vector2f(750.0f + 300.0f, 400.0f), sf::Vector2f(300.0f, 10.0f), "madeira", sf::Vector2f(1.0f, 15.2f));
             criarEspinho(sf::Vector2f(1000.0f, 375.0f), sf::Vector2f(80.0f, 25.0f));
-            criarEsqueleto(sf::Vector2f(900.0f, 300.0f), 1);
+            criarPersonagem(IDs::IDs::esqueleto, sf::Vector2f(900.0f, 300.0f), 1);
             criarPlataforma(sf::Vector2f(1350.0f, 200.0f), sf::Vector2f(80.0f, 50.0f), 200.0f, false);
 
             criarPlataforma(sf::Vector2f(1350.0f + 80.0f, 200.0f), sf::Vector2f(350.0f, 50.0f), "flutuante_maior", sf::Vector2f(1.0f, 1.2f));
             criarEspinho(sf::Vector2f(1480.0f, 175.0f), sf::Vector2f(80.0f, 25.0f));
             //criarPorta(sf::Vector2f(1600.0f, 80.0f), sf::Vector2f(85.0f, 110.0f),sf::Vector2f(4650.0, 160.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_2);
             criarPorta(sf::Vector2f(150.0f, 250.0f), sf::Vector2f(85.0f, 110.0f),sf::Vector2f(150.0f, 200.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_2);
-            criarEsqueleto(sf::Vector2f(1700.0f, 100.0f), 4);
+            criarPersonagem(IDs::IDs::esqueleto, sf::Vector2f(1700.0f, 100.0f), 4);
             criarCaixa(sf::Vector2f(2200.0f, 500.0f));
 
             criarPlataforma(sf::Vector2f(2300.0f, 400.0f), sf::Vector2f(300.0f, 10.0f), "madeira", sf::Vector2f(1.0f, 15.2f));
-            criarEsqueleto(sf::Vector2f(2500.0f, 300.0f), 5);
+            criarPersonagem(IDs::IDs::esqueleto, sf::Vector2f(2500.0f, 300.0f), 5);
             criarPlataforma(sf::Vector2f(2600.0f, 400.0f), sf::Vector2f(80.0f, 50.0f), 300.0f, true);
-            criarEsqueleto(sf::Vector2f(2800.0f, 300.0f), 4);
+            criarPersonagem(IDs::IDs::esqueleto, sf::Vector2f(2800.0f, 300.0f), 4);
 
             criarPlataforma(sf::Vector2f(2980.0f, 400.0f), sf::Vector2f(300.0f, 10.0f), "madeira", sf::Vector2f(1.0f, 15.2f));
             criarPlataforma(sf::Vector2f(3300.0f, 200.0f), sf::Vector2f(80.0f, 50.0f), 200.0f, false);
-            criarEsqueleto(sf::Vector2f(3650.0f, 200.0f), 3);
-            criarAlma(sf::Vector2f(3600.0f, 450.0f), 1);
-            criarEsqueleto(sf::Vector2f(3800.0f, 450.0f), 3);
-            criarEsqueleto(sf::Vector2f(3800.0f, 100.0f), 4);
+            criarPersonagem(IDs::IDs::esqueleto, sf::Vector2f(3650.0f, 200.0f), 3);
+            criarPersonagem(IDs::IDs::alma, sf::Vector2f(3600.0f, 450.0f), 1);
+            criarPersonagem(IDs::IDs::esqueleto, sf::Vector2f(3800.0f, 450.0f), 3);
+            criarPersonagem(IDs::IDs::esqueleto, sf::Vector2f(3800.0f, 100.0f), 4);
             criarPlataforma(sf::Vector2f(3400.0f, 200.0f), sf::Vector2f(80.0f, 50.0f), 200.0f, true);
             criarPlataforma(sf::Vector2f(3700.0f, 200.0f), sf::Vector2f(350.0f, 50.0f), "flutuante_maior", sf::Vector2f(1.0f, 1.2f));
             criarPlataforma(sf::Vector2f(4080.0f, 200.0f), sf::Vector2f(80.0f, 50.0f), 200.0f, true);

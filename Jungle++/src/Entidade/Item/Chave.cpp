@@ -71,19 +71,11 @@ namespace Jungle {
             }
 
             const std::string Chave::salvar(){
-                std::string linha = "";
-                //salvando atributos da entidade
-                linha += std::to_string(static_cast<int>(ID)) + ' ';
-                linha += std::to_string(pos.x) + ' ';
-                linha += std::to_string(pos.y) + ' ';
-                linha += std::to_string(tam.x) + ' ';
-                linha += std::to_string(tam.y) + ' ';
-                //salvando atributos da chave
+                std::string linha = salvarEntidade();
                 linha += animacao.getImgAtual() + ' ';
                 linha += std::to_string(animacao.getQuadroAtual()) + ' ';
                 linha += std::to_string(animacao.getTempoTotal()) + ' ';
                 linha += std::to_string(coletou);
-
                 return linha;
             }
 

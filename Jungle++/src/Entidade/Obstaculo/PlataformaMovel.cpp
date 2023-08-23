@@ -26,16 +26,18 @@ namespace Jungle {
                 try {
                     sf::Vector2f posAtual = sf::Vector2f(std::stof(atributos[1]), std::stof(atributos[2]));
                     sf::Vector2f tamAtual = sf::Vector2f(std::stof(atributos[3]), std::stof(atributos[4]));
-                    const std::string typeAtual = atributos[5];
-                    const bool horizontalAtual = atributos[6] == "1";
-                    const float posFinalAtual = std::stof(atributos[7]);
-                    const float posInicialAtual = std::stof(atributos[8]);
-                    const bool paraEsquerdaAtual = atributos[9] == "1";
-                    const bool paraBaixoAtual = atributos[10] == "1";
-                    const sf::Vector2f dsAtual(std::stof(atributos[11]), std::stof(atributos[12]));
+                    const sf::Vector2f escalaAtual = sf::Vector2f(std::stof(atributos[5]), std::stof(atributos[6]));
+                    const std::string typeAtual = atributos[7];
+                    const bool horizontalAtual = atributos[8] == "1";
+                    const float posFinalAtual = std::stof(atributos[9]);
+                    const float posInicialAtual = std::stof(atributos[10]);
+                    const bool paraEsquerdaAtual = atributos[11] == "1";
+                    const bool paraBaixoAtual = atributos[12] == "1";
+                    const sf::Vector2f dsAtual(std::stof(atributos[13]), std::stof(atributos[14]));
 
                     setPos(posAtual);
                     setTam(tamAtual);
+                    setEscala(escalaAtual);
                     this->type = typeAtual;
                     this->horizontal = horizontalAtual;
                     this->posFinal = posFinalAtual;
@@ -98,16 +100,7 @@ namespace Jungle {
             }
 
             const std::string PlataformaMovel::salvar(){
-                std::string linha = "";
-                //salvando atributos da entidade
-                linha += std::to_string(static_cast<int>(ID)) + ' ';
-                linha += std::to_string(pos.x) + ' ';
-                linha += std::to_string(pos.y) + ' ';
-                linha += std::to_string(tam.x) + ' ';
-                linha += std::to_string(tam.y) + ' ';
-                //salvando atributos da Plataforma
-                linha += type + ' ';
-                //salvando atributos da PlataformaMovel
+                std::string linha = salvarPlataforma();
                 linha += std::to_string(horizontal) + ' ';
                 linha += std::to_string(posFinal) + ' ';
                 linha += std::to_string(posInicial) + ' ';
