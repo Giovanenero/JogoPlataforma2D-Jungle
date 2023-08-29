@@ -65,7 +65,7 @@ namespace Jungle {
 
         void GerenciadorArquivo::gravarConteudo(const char* caminhoArquivo, const std::string linha){
             abrirArquivoGravar(caminhoArquivo);
-            arquivoGravar << linha << " " << "\n";
+            arquivoGravar << linha << " " << 10;
             fecharArquivoGravar();
         }
 

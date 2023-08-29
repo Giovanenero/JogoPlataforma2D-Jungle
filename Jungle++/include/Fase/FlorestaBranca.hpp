@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Fase.hpp"
+#include "../Entidade/Personagem/Inimigo/Carniceiro.hpp"
 
 namespace Jungle {
 

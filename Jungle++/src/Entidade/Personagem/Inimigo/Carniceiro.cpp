@@ -22,7 +22,13 @@ namespace Jungle {
                 }
 
                 void Carniceiro::inicializarAnimacao(){
-
+                    sf::Vector2f origin(sf::Vector2f(50.0f, 7.5f));
+                    sf::Vector2f escala(sf::Vector2f(2.0f, 1.5f));
+                    animacao.addAnimacao("Jungle++/img/Personagem/Inimigo/Carniceiro/anda.png", "ANDA", 8, 0.1f, escala, origin);
+                    animacao.addAnimacao("Jungle++/img/Personagem/Inimigo/Carniceiro/parado.png", "PARADO", 8, 0.1f, escala, origin);
+                    animacao.addAnimacao("Jungle++/img/Personagem/Inimigo/Carniceiro/ataca.png", "ATACA", 5, 0.1f, escala, origin);
+                    animacao.addAnimacao("Jungle++/img/Personagem/Inimigo/Carniceiro/morre.png", "MORRE", 6, 0.1f, escala, origin);
+                    animacao.addAnimacao("Jungle++/img/Personagem/Inimigo/Carniceiro/tomaDano.png", "TOMADANO", 4, 0.2f, escala, origin);
                 }
 
                 void Carniceiro::inicializarNivel(){

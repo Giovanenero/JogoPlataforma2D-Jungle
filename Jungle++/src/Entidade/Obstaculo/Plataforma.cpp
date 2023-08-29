@@ -94,7 +94,8 @@ namespace Jungle {
                     outraEntidade->getID() == IDs::IDs::esqueleto   ||
                     outraEntidade->getID() == IDs::IDs::minotauro   || 
                     outraEntidade->getID() == IDs::IDs::alma        ||
-                    outraEntidade->getID() == IDs::IDs::jogador
+                    outraEntidade->getID() == IDs::IDs::jogador     ||
+                    outraEntidade->getID() == IDs::IDs::carniceiro
                 ){
                     colisaoObstaculo(ds, static_cast<Personagem::Personagem*>(outraEntidade));
                 } else if(outraEntidade->getID() == IDs::IDs::projetil_inimigo){

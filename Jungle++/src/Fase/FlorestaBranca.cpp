@@ -172,6 +172,11 @@ namespace Jungle {
 
             //plataforma do jogador
             criarPersonagem(IDs::IDs::jogador, sf::Vector2f(150.0f, 300.0f));
+            Entidade::Personagem::Inimigo::Carniceiro* carniceiro = nullptr;
+            carniceiro = new Entidade::Personagem::Inimigo::Carniceiro(sf::Vector2f(200.0f, 300.0f), 2, pJogador);
+            listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(carniceiro));
+
+
             // teste
             criarPlataforma(sf::Vector2f(300.0f, 0.0f), sf::Vector2f(80.0f, 50.0f), 400.0f, false);
 
