@@ -23,7 +23,6 @@ namespace Jungle {
                     std::cout << "Card::nao foi possivel carregar textura" << std::endl;
                     exit(1);
                 }
-                corpo->setTexture(textura);
                 existe = true;
                 Gerenciador::GerenciadorArquivo GArquivo;
                 std::vector<std::string> vectorInfoFase = GArquivo.lerArquivo(caminhoArquivoFase.c_str());
@@ -47,8 +46,8 @@ namespace Jungle {
                     std::cout << "Card::nao foi possivel carregar textura" << std::endl;
                     exit(1);
                 }
-                corpo->setTexture(textura);
             }
+            corpo->setTexture(textura);
             corpo->setPosition(pos);
             corpo->setOutlineThickness(5);
             corpo->setOutlineColor(sf::Color::Black);
@@ -97,13 +96,15 @@ namespace Jungle {
 
         void Card::deletar(){
             if(textura){
-                sf::IntRect textureRect = corpo->getTextureRect();
+                sf::Vector2u tamImgAnt = textura->getSize();
                 if(!textura->loadFromFile("Jungle++/arquivo/SalvarJogada/SalvarImagem/CardVazio.png")){
                     std::cout << "Card::nao foi possivel carregar textura" << std::endl;
                     exit(1);
                 }
                 corpo->setTexture(textura);
-                corpo->setTextureRect(sf::IntRect(0.0f, 0.0f, textureRect.width * 0.25f, textureRect.height * 0.25f));
+                sf::Vector2u tamImgAtual = textura->getSize();
+                sf::Vector2f fator((float)tamImgAtual.x / (float)tamImgAnt.x, (float)tamImgAtual.y / (float)tamImgAnt.y);
+                corpo->setTextureRect(sf::IntRect(0.0f, 0.0f, tamImgAnt.x * fator.x, tamImgAnt.y * fator.y));
             }
             textoInfo.setString("");
             existe = false;

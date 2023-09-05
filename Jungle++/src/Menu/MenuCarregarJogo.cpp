@@ -12,7 +12,15 @@ namespace Jungle {
         }
 
         MenuCarregarJogo::~MenuCarregarJogo(){
-
+            std::list<Card*>::iterator aux = listaCards.begin();
+            while(aux != listaCards.end()){
+                Card* card = *aux;
+                if(card != nullptr){
+                    delete(card);
+                    card = nullptr;
+                }
+            }
+            listaCards.clear();
         }
 
         void MenuCarregarJogo::inicializarCards(){
