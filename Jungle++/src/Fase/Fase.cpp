@@ -214,6 +214,13 @@ namespace Jungle {
                     projetil->inicializarAnimacao();
                     personagem = static_cast<Entidade::Entidade*>(alma);
                     arma = static_cast<Entidade::Entidade*>(projetil);
+                } else if(ID == IDs::IDs::carniceiro){
+                    Inimigo::Carniceiro* carniceiro = new Inimigo::Carniceiro(pos, nivel, pJogador);
+                    if(carniceiro == nullptr){
+                        std::cout << "Fase::nao foi possive criar carniceiro" << std::endl;
+                        exit(1);
+                    }
+                    personagem = static_cast<Entidade::Entidade*>(carniceiro);
                 }
             }
             if(personagem != nullptr){
@@ -278,6 +285,16 @@ namespace Jungle {
                         }
                         personagem = static_cast<Entidade::Entidade*>(alma);
                         arma = static_cast<Entidade::Entidade*>(projetil);
+                    } else if(ID == IDs::IDs::carniceiro){
+                        Inimigo::Carniceiro* carniceiro = new Inimigo::Carniceiro(primeiro, pJogador);
+                        if(carniceiro == nullptr){
+                            std::cout << "Fase::carniceiro eh nullptr" << std::endl;
+                            exit(1);
+                        }
+                        personagem = static_cast<Entidade::Entidade*>(carniceiro);
+                    } else {
+                        std::cout << "Fase::o ID da entidade eh invalido" << std::endl;
+                        exit(1);
                     }
                 }
                 if(personagem != nullptr){

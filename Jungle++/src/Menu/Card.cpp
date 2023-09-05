@@ -1,5 +1,6 @@
 #include "../../include/Menu/Card.hpp"
 #include "../../include/Gerenciador/GerenciadorArquivo.hpp"
+#include <fstream>
 
 namespace Jungle {
 
@@ -16,7 +17,12 @@ namespace Jungle {
             sf::Vector2f tamJanela = pGrafico->getTamJanela();
             corpo = new sf::RectangleShape(sf::Vector2f(tamJanela.x / 5.0f, tamJanela.x / 5.0f - 20.0f));
             textura = new sf::Texture();
-            if(textura->loadFromFile(caminhoImage)){
+            std::ifstream arquivo(caminhoImage);
+            if(arquivo){
+                if(!textura->loadFromFile(caminhoImage)){
+                    std::cout << "Card::nao foi possivel carregar textura" << std::endl;
+                    exit(1);
+                }
                 corpo->setTexture(textura);
                 existe = true;
                 Gerenciador::GerenciadorArquivo GArquivo;
@@ -27,7 +33,8 @@ namespace Jungle {
                     pontos = '0' + pontos;
                 }
                 std::string textoInfoAux = "Pontos: " + pontos;
-                textoInfoAux += 10;
+                const char quebraLinha = 10;
+                textoInfoAux += quebraLinha;
                 textoInfoAux +=  vectorInfoFase[2];
                 textoInfo.setString(textoInfoAux);
                 textoInfo.setPos(sf::Vector2f(
@@ -36,11 +43,16 @@ namespace Jungle {
                 ));
                 textoInfo.setTamanhoBorda(2);
             } else {
-                corpo->setFillColor(sf::Color::Black);
+                if(!textura->loadFromFile("Jungle++/arquivo/SalvarJogada/SalvarImagem/CardVazio.png")){
+                    std::cout << "Card::nao foi possivel carregar textura" << std::endl;
+                    exit(1);
+                }
+                corpo->setTexture(textura);
             }
             corpo->setPosition(pos);
-            corpo->setOutlineThickness(8);
-            corpo->setOutlineColor(sf::Color::Transparent);
+            corpo->setOutlineThickness(5);
+            corpo->setOutlineColor(sf::Color::Black);
+            //corpo->setOutlineColor(sf::Color::Transparent);
         }
 
         Card::~Card(){
@@ -72,7 +84,7 @@ namespace Jungle {
 
         void Card::setSelecionado(const bool selecionado){
             this->selecionado = selecionado;
-            corpo->setOutlineColor(selecionado ? cor : sf::Color::Transparent);
+            corpo->setOutlineColor(selecionado ? cor : sf::Color::Black);
         }
             
         const bool Card::getSelecionado() const{
@@ -85,11 +97,14 @@ namespace Jungle {
 
         void Card::deletar(){
             if(textura){
-                delete(textura);
-                textura = nullptr;
+                sf::IntRect textureRect = corpo->getTextureRect();
+                if(!textura->loadFromFile("Jungle++/arquivo/SalvarJogada/SalvarImagem/CardVazio.png")){
+                    std::cout << "Card::nao foi possivel carregar textura" << std::endl;
+                    exit(1);
+                }
+                corpo->setTexture(textura);
+                corpo->setTextureRect(sf::IntRect(0.0f, 0.0f, textureRect.width * 0.25f, textureRect.height * 0.25f));
             }
-            corpo->setTexture(nullptr);
-            corpo->setFillColor(sf::Color::Black);
             textoInfo.setString("");
             existe = false;
         }

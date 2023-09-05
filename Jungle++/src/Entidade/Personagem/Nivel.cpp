@@ -42,7 +42,7 @@ namespace Jungle {
             
             void Nivel::addExp(const float experiencia){
                 this->experiencia += experiencia;
-                if(this->experiencia >= proximoNivel){
+                while(this->experiencia >= proximoNivel){
                     const float restoExp = this->experiencia - proximoNivel;
                     setNivel(nivel + 1);
                     this->experiencia = restoExp;

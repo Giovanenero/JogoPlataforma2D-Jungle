@@ -109,6 +109,8 @@ namespace Jungle {
                             criarEntidade(IDs::IDs::espinho, atributos, {}, false);
                         }
                             break;
+                        case (57):
+                            criarEntidade(IDs::IDs::carniceiro, atributos, {}, true);
 
                     }
                     i++;
@@ -172,10 +174,6 @@ namespace Jungle {
 
             //plataforma do jogador
             criarPersonagem(IDs::IDs::jogador, sf::Vector2f(150.0f, 300.0f));
-            Entidade::Personagem::Inimigo::Carniceiro* carniceiro = nullptr;
-            carniceiro = new Entidade::Personagem::Inimigo::Carniceiro(sf::Vector2f(200.0f, 300.0f), 2, pJogador);
-            listaPersonagens->addEntidade(static_cast<Entidade::Entidade*>(carniceiro));
-
 
             // teste
             criarPlataforma(sf::Vector2f(300.0f, 0.0f), sf::Vector2f(80.0f, 50.0f), 400.0f, false);
@@ -196,8 +194,8 @@ namespace Jungle {
 
             criarPlataforma(sf::Vector2f(1350.0f + 80.0f, 200.0f), sf::Vector2f(350.0f, 50.0f), "flutuante_maior", sf::Vector2f(1.0f, 1.2f));
             criarEspinho(sf::Vector2f(1480.0f, 175.0f), sf::Vector2f(80.0f, 25.0f));
-            //criarPorta(sf::Vector2f(1600.0f, 80.0f), sf::Vector2f(85.0f, 110.0f),sf::Vector2f(4650.0, 160.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_2);
-            criarPorta(sf::Vector2f(150.0f, 250.0f), sf::Vector2f(85.0f, 110.0f),sf::Vector2f(150.0f, 200.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_2);
+            criarPorta(sf::Vector2f(1650.0f, 80.0f), sf::Vector2f(85.0f, 110.0f),sf::Vector2f(4650.0, 160.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_2);
+            //criarPorta(sf::Vector2f(150.0f, 250.0f), sf::Vector2f(85.0f, 110.0f),sf::Vector2f(150.0f, 200.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_2);
             criarPersonagem(IDs::IDs::esqueleto, sf::Vector2f(1700.0f, 100.0f), 4);
             criarCaixa(sf::Vector2f(2200.0f, 500.0f));
 
@@ -236,6 +234,10 @@ namespace Jungle {
                 criarPlataforma(sf::Vector2f(i * 500.0f, 550.0f), sf::Vector2f(500.0f, 50.0f), "padrao");
             }
             criarPorta(sf::Vector2f(0.0f, 450.0f), sf::Vector2f(85.0f, 100.0f),sf::Vector2f(-1000.0f, -1000.0f), sf::Vector2f(40.0f, 40.0f), IDs::IDs::floresta_branca_parte_1);
+
+            //Boss
+            criarPersonagem(IDs::IDs::carniceiro, sf::Vector2f(400.0f, 300.0f), 2);
+
             criarPlataforma(sf::Vector2f(500.0f, 100.0f), sf::Vector2f(50.f, 500.0f), "parede");
         }
 

@@ -61,39 +61,20 @@ namespace Jungle {
 
             void Arma::colisao(Entidade* outraEntidade, sf::Vector2f ds){
                 if(ID == IDs::IDs::espada_jogador){
-                    switch(outraEntidade->getID()){
-                        case (IDs::IDs::minotauro):
-                        {
-                            std::cout << "Bater no minotauro" << std::endl;
-                            //std::cout << "Empurra inimigo" << std::endl;
-                        }
-                            break;
-                        case(IDs::IDs::esqueleto):
-                        {
-                            Personagem::Inimigo::Esqueleto* esqueleto = dynamic_cast<Personagem::Inimigo::Esqueleto*>(outraEntidade);
-                            if(!esqueleto->getMorrer()){
-                                esqueleto->tomarDano(dano);
-                                if(esqueleto->getMorrer()){
+                    if(
+                        outraEntidade->getID() == IDs::IDs::esqueleto || 
+                        outraEntidade->getID() == IDs::IDs::alma ||
+                        outraEntidade->getID() == IDs::IDs::carniceiro
+                    ){
+                        Personagem::Inimigo::Inimigo* inimigo = dynamic_cast<Personagem::Inimigo::Inimigo*>(outraEntidade);
+                            if(!inimigo->getMorrer()){
+                                inimigo->tomarDano(dano);
+                                if(inimigo->getMorrer()){
                                     Personagem::Jogador::Jogador* jogador = dynamic_cast<Personagem::Jogador::Jogador*>(personagem);
-                                    jogador->addPontuacao(esqueleto->getPontos());
-                                    jogador->addExperiencia(esqueleto->getExperiencia());
+                                    jogador->addPontuacao(inimigo->getPontos());
+                                    jogador->addExperiencia(inimigo->getExperiencia());
                                 }
                             }
-                        }
-                            break;
-                        case (IDs::IDs::alma):
-                        {
-                            Personagem::Inimigo::Alma* alma = dynamic_cast<Personagem::Inimigo::Alma*>(outraEntidade);
-                            if(!alma->getMorrer()){
-                                alma->tomarDano(dano);
-                                if(alma->getMorrer()){
-                                    Personagem::Jogador::Jogador* jogador = dynamic_cast<Personagem::Jogador::Jogador*>(personagem);
-                                    jogador->addPontuacao(alma->getPontos());
-                                    jogador->addExperiencia(alma->getExperiencia());
-                                }
-                            }
-                        }
-                            break;
                     }
                 } else if(ID == IDs::IDs::projetil_inimigo){
                     if(outraEntidade->getID() == IDs::IDs::jogador){

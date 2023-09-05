@@ -17,6 +17,7 @@ namespace Jungle {
                         void inicializarNivel();
                     public:
                         Carniceiro(const sf::Vector2f pos, const int nivel, Jogador::Jogador* pJogador);
+                        Carniceiro(const std::vector<std::string> atributos, Jogador::Jogador* pJogador);
                         ~Carniceiro();
                         const std::string salvar();
                 };

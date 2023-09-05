@@ -68,7 +68,9 @@ namespace Jungle {
                     } else if(levandoDano){
                         tempoAtacar = 0.0f;
                         atacando = false;
-                        arma->setPos(sf::Vector2f(-1000.0f, -1000.0f));
+                        if(arma != nullptr){
+                            arma->setPos(sf::Vector2f(-1000.0f, -1000.0f));
+                        }
                     }
                 }
 
