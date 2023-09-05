@@ -94,7 +94,7 @@ namespace Jungle {
             return existe;
         }
 
-        void Card::deletar(){
+        void Card::deletarTextura(){
             if(textura){
                 sf::Vector2u tamImgAnt = textura->getSize();
                 if(!textura->loadFromFile("Jungle++/arquivo/SalvarJogada/SalvarImagem/CardVazio.png")){
@@ -105,9 +105,9 @@ namespace Jungle {
                 sf::Vector2u tamImgAtual = textura->getSize();
                 sf::Vector2f fator((float)tamImgAtual.x / (float)tamImgAnt.x, (float)tamImgAtual.y / (float)tamImgAnt.y);
                 corpo->setTextureRect(sf::IntRect(0.0f, 0.0f, tamImgAnt.x * fator.x, tamImgAnt.y * fator.y));
+                textoInfo.setString("");
+                existe = false;
             }
-            textoInfo.setString("");
-            existe = false;
         }
 
         void Card::desenhar(){

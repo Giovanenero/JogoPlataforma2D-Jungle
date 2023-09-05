@@ -32,7 +32,7 @@ namespace Jungle {
                 void setSelecionado(const bool selecionado);
                 const bool getSelecionado() const;
                 const bool getExiste() const;
-                void deletar();
+                void deletarTextura();
                 void desenhar();
         };
 

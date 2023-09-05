@@ -65,7 +65,7 @@ namespace Jungle {
                 gerenciadorArquivo.removeArquivo(card->getCaminhoArquivoEntidades().c_str());
                 gerenciadorArquivo.removeArquivo(card->getCaminhoArquivoFase().c_str());
                 gerenciadorArquivo.removeArquivo(card->getCaminhoImage().c_str());
-                card->deletar();
+                card->deletarTextura();
             }
         }
 

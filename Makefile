@@ -7,9 +7,12 @@ link:
 	g++ *.o -Wall -o main -L"SFML\lib" -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
 
 execute: 
-	.\main.exe
-	cls
+	.\main
 
-clear:
+clear-windows:
 	del *.o
 	cls
+
+clear-linux:
+	rm -rf *.o
+	clear
