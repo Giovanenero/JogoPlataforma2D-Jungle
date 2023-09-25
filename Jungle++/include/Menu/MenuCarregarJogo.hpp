@@ -20,8 +20,7 @@ namespace Jungle {
                 void selecionaEsquerda();
                 void selecionaDireita();
                 void deletarArquivos();
-                const std::string getArquivoEntidadesSelecionado() const;
-                const std::string getArquivoFaseSelecionado() const;
+                Card* getCardSelecionado() const;
                 void criarBotoes();
                 void executar();
         };

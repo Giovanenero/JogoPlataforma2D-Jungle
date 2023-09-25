@@ -49,13 +49,17 @@ namespace Jungle {
         }
 
         void Camera::setLimiteObjeto(const sf::IntRect objeto){
-            const sf::Vector2f pos(objeto.left, objeto.top);
-            const sf::Vector2f tam(objeto.width, objeto.height);
-            limiteObjeto.width = tamJanela.x / 5.0f;
-            limiteObjeto.height = tamJanela.y / 2.8f;
-            limiteObjeto.left = pos.x - limiteObjeto.width / 2.0f + tam.x / 2.0f;
-            limiteObjeto.top = pos.y - limiteObjeto.height / 2.0f + tam.y / 2.0f;
-            ajustarLimite();
+            if(objeto.width != -1){
+                const sf::Vector2f pos(objeto.left, objeto.top);
+                const sf::Vector2f tam(objeto.width, objeto.height);
+                limiteObjeto.width = tamJanela.x / 5.0f;
+                limiteObjeto.height = tamJanela.y / 2.8f;
+                limiteObjeto.left = pos.x - limiteObjeto.width / 2.0f + tam.x / 2.0f;
+                limiteObjeto.top = pos.y - limiteObjeto.height / 2.0f + tam.y / 2.0f;
+                ajustarLimite();
+            } else {
+                this->limiteObjeto = objeto;
+            }
         }
         
         void Camera::atualizar(const sf::Vector2f pos){
@@ -75,6 +79,7 @@ namespace Jungle {
             corpo.setFillColor(sf::Color::Yellow);
             pGrafico->desenhaElemento(corpo);
             */
+
             //seguir jogador
             sf::Vector2f ds(0.0f, 0.0f);
             sf::Vector2f center = camera.getCenter();

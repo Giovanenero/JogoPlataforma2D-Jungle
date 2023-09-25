@@ -1,5 +1,6 @@
 #include "../../include/Observador/ObservadorMenu.hpp"
 #include "../../include/Gerenciador/GerenciadorEstado.hpp"
+#include "../../include/Menu/Card.hpp"
 
 namespace Jungle {
 
@@ -96,10 +97,11 @@ namespace Jungle {
                         if(estado->getID() == IDs::IDs::estado_menu_carregar_jogo){
                             Estado::EstadoMenu* estadoMenu = dynamic_cast<Estado::EstadoMenu*>(estado);
                             Menu::MenuCarregarJogo* menuCarregarJogo = dynamic_cast<Menu::MenuCarregarJogo*>(estadoMenu->getMenu());
-                            const std::string caminhoArquivoEntidades = menuCarregarJogo->getArquivoEntidadesSelecionado();
-                            const std::string caminhoArquivoFase = menuCarregarJogo->getArquivoFaseSelecionado();
-                            if(caminhoArquivoEntidades != "" && caminhoArquivoFase != ""){
+                            Menu::Card* card = menuCarregarJogo->getCardSelecionado();
+                            if(card->getExiste()){
                                 pGEstado->removerEstado();
+                                const  std::string caminhoArquivoEntidades = card->getCaminhoArquivoEntidades();
+                                const std::string caminhoArquivoFase = card->getCaminhoArquivoFase();
                                 Gerenciador::GerenciadorArquivo GArquivo;
                                 std::vector<std::string> vectorInfoFase = GArquivo.lerArquivo(caminhoArquivoFase.c_str());
                                 int id = std::stoi(vectorInfoFase[0]);
@@ -243,13 +245,15 @@ namespace Jungle {
                                 if(estado->getID() == IDs::IDs::estado_menu_carregar_jogo){
                                     Estado::EstadoMenu* estadoMenu = dynamic_cast<Estado::EstadoMenu*>(estado);
                                     Menu::MenuCarregarJogo* menuCarregarJogo = dynamic_cast<Menu::MenuCarregarJogo*>(estadoMenu->getMenu());
-                                    const std::string caminhoArquivoEntidades = menuCarregarJogo->getArquivoEntidadesSelecionado();
-                                    const std::string caminhoArquivoFase = menuCarregarJogo->getArquivoFaseSelecionado();
-                                    if(caminhoArquivoEntidades != "" && caminhoArquivoFase != ""){
+                                    Menu::Card* card = menuCarregarJogo->getCardSelecionado();
+                                    if(card->getExiste()){
                                         pGEstado->removerEstado();
+                                        const std::string caminhoArquivoEntidades = card->getCaminhoArquivoEntidades();
+                                        const std::string caminhoArquivoFase = card->getCaminhoArquivoFase();
                                         Gerenciador::GerenciadorArquivo GArquivo;
                                         std::vector<std::string> vectorInfoFase = GArquivo.lerArquivo(caminhoArquivoFase.c_str());
                                         int id = std::stoi(vectorInfoFase[0]);
+                                        //criar estado
                                         if(id >= 53 && id <= 55){
                                             pGEstado->addEstado(IDs::IDs::jogar_florestaBranca);
                                         } else {

@@ -515,7 +515,6 @@ namespace Jungle {
 
         void Fase::setLimiteCamera(sf::IntRect limiteCamera){
             this->limiteCamera = limiteCamera;
-            pGrafico->setLimiteCamera(limiteCamera);
         }
 
         const sf::IntRect Fase::getLimiteCamera() const{

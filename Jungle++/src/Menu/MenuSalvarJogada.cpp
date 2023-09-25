@@ -100,7 +100,7 @@ namespace Jungle {
                     linhas = aux->salvarEntidades();
                     gerenciadorArquivo.gravarConteudo(caminhoArquivoEntidades.c_str(), linhas);
                     sf::IntRect limiteCamera = aux->getLimiteCamera();
-                    std::string limite = "";
+                    limite = "";
                     limite += ' ' + std::to_string(limiteCamera.left) + ' ';
                     limite += std::to_string(limiteCamera.width) + ' ';
                     limite += std::to_string(limiteCamera.top) + ' ';

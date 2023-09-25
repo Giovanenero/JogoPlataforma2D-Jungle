@@ -22,6 +22,8 @@ namespace Jungle {
                 it++;
             }
             mapFase.clear();
+            pGrafico->setLimiteCamera(sf::IntRect(-1,-1,-1,-1));
+            pGrafico->setLimiteObjeto(sf::IntRect(-1,-1,-1,-1));
         }
 
         void EstadoJogar::criarFase(const std::string arquivoEntidades, std::vector<std::string> vectorInfoFase){
@@ -85,7 +87,14 @@ namespace Jungle {
                 }
                 i++;
             }
-            pGrafico->setLimiteCamera(mapFase[this->ID_FaseAtual]->getLimiteCamera());
+            fase = mapFase[this->ID_FaseAtual];
+            pGrafico->setLimiteCamera(fase->getLimiteCamera());
+            Entidade::Personagem::Jogador::Jogador* pJogador = fase->getJogador();
+            if(pJogador != nullptr){
+                pGrafico->atualizarCamera(pJogador->getPos(), pJogador->getTam());
+                pJogador = nullptr;
+            }
+            fase = nullptr;
         }
 
         void EstadoJogar::criarFase(){

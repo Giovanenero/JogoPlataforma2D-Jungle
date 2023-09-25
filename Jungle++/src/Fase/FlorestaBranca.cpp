@@ -31,8 +31,8 @@ namespace Jungle {
                 if(pJogador == nullptr){
                     i = 2;
                     criarEntidade(IDs::IDs::jogador, getAtributosEntidade(linhas[0]), getAtributosEntidade(linhas[1]), true);
-                    pGrafico->atualizarCamera(pJogador->getPos(), pJogador->getTam());
-                    fundo.atualizarPosicao();
+                    //pGrafico->atualizarCamera(pJogador->getPos(), pJogador->getTam());
+                    //fundo.atualizarPosicao();
                 }
                 while(i < linhas.size()){
                     std::string linha = linhas[i];

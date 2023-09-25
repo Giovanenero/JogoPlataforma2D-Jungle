@@ -88,7 +88,7 @@ namespace Jungle {
                 this->arma->setPersonagem(this);
                 this->arma->setTam(tam);
                 this->arma->setDano(nivel.getForca());
-                this->arma->setPos(sf::Vector2f(-1000.0f, -1000.0f));
+                //this->arma->setPos(sf::Vector2f(-1000.0f, -1000.0f));
             }
 
             Item::Arma* Personagem::getArma(){

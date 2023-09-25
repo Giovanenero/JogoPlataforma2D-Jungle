@@ -69,14 +69,8 @@ namespace Jungle {
             }
         }
 
-        const std::string MenuCarregarJogo::getArquivoEntidadesSelecionado() const{
-            Card* card = (*itCards);
-            return card->getExiste() ? card->getCaminhoArquivoEntidades() : "";
-        }
-
-        const std::string MenuCarregarJogo::getArquivoFaseSelecionado() const{
-            Card* card = (*itCards);
-            return card->getExiste() ? card->getCaminhoArquivoFase() : "";
+        Card* MenuCarregarJogo::getCardSelecionado() const{
+            return *itCards;
         }
 
         void MenuCarregarJogo::criarBotoes(){
