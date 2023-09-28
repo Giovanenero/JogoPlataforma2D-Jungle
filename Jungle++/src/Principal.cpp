@@ -28,7 +28,16 @@ namespace Jungle {
 
     void Principal::inicializa(){
         pGerenciadorEstado->addEstado(IDs::IDs::estado_menu_principal);
-        //pGerenciadorEstado->addEstado(IDs::IDs::estado_menu_colocacao);
+
+        int value;
+        std::cout << "Eh servidor: ";
+        std::cin >> value;
+        if(value){
+            Servidor servidor;
+        } else {
+            Cliente cliente;
+        }
+
     }
 
     void Principal::executar(){

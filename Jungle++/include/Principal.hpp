@@ -12,6 +12,9 @@
 
 #include <SFML/Audio.hpp>
 
+#include "Proxy/Servidor.hpp"
+#include "Proxy/Cliente.hpp"
+
 namespace Jungle {
 
     class Principal {
